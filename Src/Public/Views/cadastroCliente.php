@@ -166,7 +166,7 @@
 
                                 <div class="botoes col-md-6 mt-5 mb-4">
                                     <input type="reset" class="btn-reset" value="Limpar Formulário">
-                                    <input type="submit" class="btn-submit" value="Finalizar Cadastro">
+                                    <input type="submit" name="enviar" class="btn-submit" value="Finalizar Cadastro">
                                 </div>
 
 
@@ -284,7 +284,7 @@
 
                                 <div class="botoes col-md-6 mt-5 mb-4">
                                     <input type="reset" class="btn-reset" value="Limpar Formulário">
-                                    <input type="submit" class="btn-submit" value="Finalizar Cadastro">
+                                    <input type="submit" name="enviar" class="btn-submit" value="Finalizar Cadastro">
                                 </div>
 
 
