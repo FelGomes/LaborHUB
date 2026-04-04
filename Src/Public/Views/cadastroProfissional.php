@@ -21,7 +21,7 @@
                 <h5 class="text-center mt-5">Foto de perfil</h5>
                 <form action="criarConta.php" method="post"> <!--Formulario para enviou de validação de dados -->
                     <div class="text-center">
-                        <img id="fotoPerfil border" src="" alt="cliente">
+                        <img id="fotoPerfil border" src="../../Assets/Images/cliente.png" alt="cliente">
                         <div class="inserir text-center">
 
                             <input type="file" name="usuarios_imagem" id="imagem">
@@ -49,7 +49,7 @@
 
 
                         <!-- Cadastro de pessoa fisica -->
-                        <div id="form-pf" class="col-md-12 mt-4">
+                        <div id="form-pf tela1" class="col-md-12 mt-4">
                             <h5 class="text-start"> <i class="bi bi-person-fill fs-3 "></i> Dados Pessoais</h5>
                             <div class="row">
 
@@ -165,10 +165,10 @@
                                 </div>
 
                                 <div class="botoes col-md-6 mt-5 mb-4">
-                                    <input type="reset" class="btn-reset" value="Limpar Formulário">
-                                    <input type="submit" name="enviar" class="btn-submit" value="Finalizar Cadastro">
-                                </div>
+                                    <button type="reset" class="btn-reset">Limpar formulario</button>
+                                    <button type="submit" name="enviar" class="btn-submit" onclick="proximaTela()">Continuar</button>
 
+                                </div>
 
                             </div>
 
@@ -363,7 +363,10 @@
 
         }
 
-    
+        function proximaTela() {
+            document.getElementById("tela1").style.display = "none";
+            document.getElementById("tela2").style.display = "block";
+        }
     </script>
 
 

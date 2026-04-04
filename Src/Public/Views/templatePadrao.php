@@ -4,97 +4,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Serviço Fácil</title>
-    <link rel="stylesheet" href="../../Assets/Css/style1.css">
+    <title>Serviço Facil</title>
+    <link rel="stylesheet" href="../../Assets/Css/home.css">
 
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
+        .topo {
+            border: 1px solid black;
+            display: flex;
+            justify-content: space-between;
+            
+        }
 
-        
+        .imagem {
+            border: 2px dotted blue;
+        }
 
-        .container-box{
+        .sair {
+            border: 2px dotted red;
+            display: flex;
+            gap: 20px;
+            
+        }
+
+        ul {
+            border: 1px solid black;
             display: flex;
             justify-content: center;
-            align-items: center;
-        }
+            gap: 50px;
 
-        .usuario{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            /* justify-content: space-between; */
-            /* border: 2px dotted blue !important; */
-            gap: 60px;
-        }
-
-        .cliente {
-            display: flex;
-            flex-direction: column;
-        }
-
-         .profissional {
-            display: flex;
-            flex-direction: column;
-        }
-
-
-        
-
-        img {
-            width: 200px;
-            height: 200px;
-            border: 1px solid #00000036;
-            box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.175);
-            border-radius: 5px;
-        }
-
-        .btn-escolher{
-            width: 100%;
-            height: 40px;
-           border: 2px solid #3B82F6;
-            background-color:  #3B82F6;
-            color: white;
-            font-weight: 700;
-            box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.175);
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .btn-escolher:hover{
-            transform: scale(1.03) translateY(-2px) translateX(4px);
         }
     </style>
-
 
 </head>
 
 <body>
 
-    <main>
-        <div class="container-box">
-            <h2 class="mb-4">Escolha seu tipo de usuário</h2>
-            <div class="usuario ">
-                <div class="cliente">
-                    <img src="../../Assets/Images/cliente.png"alt="cliente">
-                    <button type="submit" class="btn-escolher mt-5" onclick="window.location.href='cadastroCliente.php'"> Cliente</button>
-                </div>
-
-                <div class="profissional">
-                    <img src="../../Assets/Images/profissional.png" alt="profissional">
-                   <button type="submit" class="btn-escolher mt-5" onclick="window.location.href='testeSegundatela.php'"> Profissional</button>
-                </div>
-
-            </div>
-           
-        
+    <div class="topo mt-3">
+        <div class="imagem">
+            <img src="" alt="Foto Escolhida">
         </div>
 
-    </main>
+        <div class="sair">
+            <p>Deseja sair da conta? </p>
+            <button onclick="window.location.href='login.php'" class="btn-sair">Sair</button>
+        </div>
+
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="">Home</a></li>
+            <li><a href="#">Histórico</a></li>
+            <li><a href="#">Mensagem</a></li>
+            <li><a href="#">Pagamentos</a></li>
+            <li><a href="#">Agenda</a></li>
+
+        </ul>
+
+
+    </nav>
+
+
+
+
+
+
+
+
 
 
     <footer class="bg-dark text-center text-white py-4">
@@ -114,7 +95,7 @@
                     <p>Telefone: (00) 00000-0000</p>
                 </div>
 
-                <!-- Ícones de Redes Sociais  -->
+                <!-- Ícones de Redes Sociais -->
                 <section class="mb-4">
 
                     <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/FelGomes" target="_blank" role="button">
@@ -132,7 +113,7 @@
 
                 </section>
 
-                <!-- Texto de Copyright  -->
+                <!-- Texto de Copyright -->
                 <div class="text-center p-3">
                     © 2026 Copyright: <a class="text-white" href="#">Equipe geral de desenvolvimento do serviço fácil</a>
                 </div>

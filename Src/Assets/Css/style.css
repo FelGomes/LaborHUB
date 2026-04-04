@@ -9,6 +9,7 @@
 }
 
 
+
 :root {
     --corPrincipal: #3B82F6;
     --fontePrincipal: 'Montserrat', sans-serif;
@@ -25,8 +26,12 @@
 
 }
 
-.container > h4 {
+.container>h4 {
     font-weight: 300;
+}
+
+h2, .row > p {
+    font-weight: bold !important;
 }
 
 main>.container {
