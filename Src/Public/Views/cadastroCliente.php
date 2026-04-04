@@ -21,7 +21,7 @@
                 <h5 class="text-center mt-5">Foto de perfil</h5>
                 <form action="criarConta.php" method="post"> <!--Formulario para enviou de validação de dados -->
                     <div class="text-center">
-                        <img src="/Src/Assets/Images/SemImagem.jpg" alt="Cadastrar foto">
+                        <img id="fotoPerfil border" src="" alt="cliente">
                         <div class="inserir text-center">
 
                             <input type="file" name="usuarios_imagem" id="imagem">
