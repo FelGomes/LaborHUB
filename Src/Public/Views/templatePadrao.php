@@ -12,33 +12,6 @@
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
-    <style>
-        .topo {
-            border: 1px solid black;
-            display: flex;
-            justify-content: space-between;
-            
-        }
-
-        .imagem {
-            border: 2px dotted blue;
-        }
-
-        .sair {
-            border: 2px dotted red;
-            display: flex;
-            gap: 20px;
-            
-        }
-
-        ul {
-            border: 1px solid black;
-            display: flex;
-            justify-content: center;
-            gap: 50px;
-
-        }
-    </style>
 
 </head>
 
@@ -46,19 +19,19 @@
 
     <div class="topo mt-3">
         <div class="imagem">
-            <img src="" alt="Foto Escolhida">
+            <img src="../../Assets/Images/FOTOPERFIL.png" alt="Foto Escolhida">
         </div>
 
         <div class="sair">
-            <p>Deseja sair da conta? </p>
+            <p class="mt-2">Deseja sair da conta? </p>
             <button onclick="window.location.href='login.php'" class="btn-sair">Sair</button>
         </div>
 
     </div>
 
     <nav>
-        <ul>
-            <li><a href="">Home</a></li>
+        <ul class="mt-1 mb-5">
+            <li><a href="#">Home</a></li>
             <li><a href="#">Histórico</a></li>
             <li><a href="#">Mensagem</a></li>
             <li><a href="#">Pagamentos</a></li>
@@ -66,8 +39,141 @@
 
         </ul>
 
-
     </nav>
+
+    <main>
+
+        <section> <!-- De busca -->
+            <div class="container-fluid mt-2 pt-2">
+                <div class="busca mt-2">
+                    <h5 class="mt-2">Encontre o profissional ideal para suas demandas</h5>
+                    <p class="text-center">Conectamos os melhores profissionais da sua região com você!</p>
+                </div>
+
+                <div class="search mt-2">
+                    <div class="col-md-3 mb-4">
+                        <input type="search" name="pesquisar" class="form-control" placeholder="Pesquisar por profissional" id="pesquisar">
+
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </section>
+
+
+        <section> <!-- listagem dos profissionais -->
+
+            <div id="principal" class="container border mt-4">
+                <div class="titulo mt-3">
+                    <h4 class="text-center">Profissionais que estão perto de você</h4>
+                    <p class="text-center">Veja profissionais e empresa que estão próxima de você</p>
+                </div>
+
+                <div class="profissionais">
+                    <div class="listagem">
+
+
+                        <div class="item mb-4 ">
+                            <p id="tipoServico" class="text-end">Desenvolvedor</p>
+                            <div class="perfil">
+                                <div class="foto">
+                                    <img src="../../Assets/Images/FOTOPERFIL.png" alt="Foto">
+                                </div>
+                                <div class="info">
+                                    <strong>Felipe Ferreira Gomes</strong>
+                                    <p>Ceres, GO</p>
+                                    <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> 5.0 (12.200)
+                                </div>
+
+                            </div>
+
+                            <div class="texto mt-3">
+                                <p> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fuga architecto eos recusandae ut dolorum. Culpa cupiditate ipsum quaerat repudiandae, labore ratione earum, illum expedita voluptate in voluptatem! Delectus, provident laudantium! Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                            </div>
+
+                            <div class="valor">
+                                <h4>R$: 1.000,00 Total</h4>
+                            </div>
+
+                            <div class="botoes">
+                                <button type="submit" class="btn-perfil" onclick="window.location.href='perfil.php'" name="verPerfil">Ver perfil</button>
+                            </div>
+
+
+                        </div>
+
+                        <div class="item mb-4 ">
+                            <p id="tipoServico" class="text-end">Desenvolvedor</p>
+                            <div class="perfil">
+                                <div class="foto">
+                                    <img src="../../Assets/Images/Academia.jpeg" alt="Foto">
+                                </div>
+                                <div class="info">
+                                    <strong>Felipe Ferreira Gomes</strong>
+                                    <p>Ceres, GO</p>
+                                    <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> 5.0 (12.200)
+                                </div>
+
+                            </div>
+
+                            <div class="texto mt-3">
+                                <p> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fuga architecto eos recusandae ut dolorum. Culpa cupiditate ipsum quaerat repudiandae, labore ratione earum, illum expedita voluptate in voluptatem! Delectus, provident laudantium! Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                            </div>
+
+                            <div class="valor">
+                                <h4>R$: 1.000,00 Total</h4>
+                            </div>
+
+                            <div class="botoes">
+                                <button type="submit" class="btn-perfil" onclick="window.location.href='perfil.php'" name="verPerfil">Ver perfil</button>
+                            </div>
+
+
+                        </div>
+
+                        <div class="item mb-4 ">
+                            <p id="tipoServico" class="text-end">Desenvolvedor</p>
+                            <div class="perfil">
+                                <div class="foto">
+                                    <img src="../../Assets/Images/Academia.jpeg" alt="Foto">
+                                </div>
+                                <div class="info">
+                                    <strong>Felipe Ferreira Gomes</strong>
+                                    <p>Ceres, GO</p>
+                                    <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> 5.0 (12.200)
+                                </div>
+
+                            </div>
+
+                            <div class="texto mt-3">
+                                <p> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fuga architecto eos recusandae ut dolorum. Culpa cupiditate ipsum quaerat repudiandae, labore ratione earum, illum expedita voluptate in voluptatem! Delectus, provident laudantium! Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                            </div>
+
+                            <div class="valor">
+                                <h4>R$: 1.000,00 Total</h4>
+                            </div>
+
+                            <div class="botoes">
+                                <button type="submit" class="btn-perfil" onclick="window.location.href='perfil.php'" name="verPerfil">Ver perfil</button>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
 
 
 

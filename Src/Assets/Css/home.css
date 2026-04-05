@@ -1,0 +1,236 @@
+@charset "UTF-8";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--fontePrincipal);
+}
+
+
+
+:root {
+    --corPrincipal: #3B82F6;
+    --fontePrincipal: 'Montserrat', sans-serif;
+    --TamanhoFonte: 700;
+    --bordas: 5px;
+    --sombras: 0px 3px 5px rgba(0, 0, 0, 0.175)
+}
+
+html.body {
+    height: 100%;
+
+}
+
+
+.topo {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.imagem > img {
+    width: 80px;
+    height: 80px;
+}
+
+.sair {
+    display: flex;
+    gap: 20px;
+
+}
+
+.btn-sair {
+    width: 110px;
+    height: 50px;
+    margin-right: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.103);
+    background-color: white;
+    border: 1px solid #6D6B6B;
+    color: black;
+    font-family: var(--fontePrincipal);
+    cursor: pointer;
+}
+
+.btn-sair:hover {
+    transform: scale(1.03) translateY(-2px) translateX(4px);
+    background-color: lightgray;
+    color: black;
+}
+
+ul {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+
+
+}
+
+li {
+    list-style: none;
+}
+
+li>a {
+    text-decoration: none;
+    font-family: var(--fontePrincipal);
+    color: black;
+    font-size: 21px;
+    display: inline-block;
+
+
+}
+
+a:hover {
+    transform: scale(1.03) translateY(-5px);
+    color: var(--corPrincipal);
+    font-weight: var(--TamanhoFonte);
+}
+
+main {
+    min-height: 100vh;
+}
+
+/* Ate aqui todas as outras telas vao usar */
+
+
+
+
+.container-fluid {
+    background-color: var(--corPrincipal);
+}
+
+.busca {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column wrap;
+}
+
+.busca>h5,
+.busca>p {
+    color: white;
+    font-weight: var(--TamanhoFonte);
+}
+
+.search {
+    display: flex;
+    justify-content: center;
+}
+
+
+.container#principal {
+    border-radius: 20px;
+    background-color: #F9FAFB;
+    width: 75% !important;
+    box-shadow: var(--sombras);
+
+}
+
+.profissionais {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+
+}
+
+#tipoServico {
+    margin-right: 9px;
+    margin-top: 10px;
+}
+
+.item {
+    border: var(--bordas);
+    box-shadow: var(--sombras);
+    width: 100%;
+    margin-top: 10px;
+    border-radius: var(--bordas);
+    border: 1px solid #3b83f650;
+}
+
+.listagem {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+    /* espaço entre os cards */
+    max-width: 1900px;
+    /* limita largura */
+    margin-left: 10px;
+    margin-right: 10px;
+
+}
+
+.perfil {
+    display: flex;
+
+}
+
+
+
+.foto {
+    width: 120px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.imagem > img {
+    margin-top: 5px ;
+}
+
+img {
+    width: 140px;
+    height: 140px;
+    border-radius: 100px;
+    object-fit: cover; 
+
+}
+
+.titulo > h4, .titulo >p {
+    font-weight: 500;
+
+}
+
+.info {
+    margin-left: 20px;
+}
+
+.botoes {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.texto {
+    padding: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.texto>p {
+    text-align: justify;
+}
+
+.btn-perfil {
+    width: 120px;
+    height: 40px;
+    border: 1px solid var(--corPrincipal);
+    box-shadow: var(--sombras);
+    border-radius: var(--bordas);
+    margin-right: 15px;
+    margin-bottom: 15px;
+    background-color: var(--corPrincipal);
+    color: white;
+    font-weight: 600;
+
+}
+
+.valor>h4 {
+    font-weight: var(--TamanhoFonte);
+    color: #22C55E;
+    margin-left: 10px;
+
+}
+
+.btn-perfil:hover {
+    transform: scale(1.03) translateY(-5px) translateX(3px);
+
+}
