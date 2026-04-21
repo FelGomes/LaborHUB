@@ -26,12 +26,18 @@ html.body {
 .topo {
     display: flex;
     justify-content: space-between;
+    padding: 0 20px;
 
+}
+
+.imagem {
+    margin-left: 10px;
 }
 
 .imagem > img {
     width: 80px;
     height: 80px;
+    margin-left: 15px;
 }
 
 .sair {
@@ -172,16 +178,18 @@ main {
     margin-left: 10px;
     margin-right: 10px;
 }
-
+/* 
 .imagem > img {
-    margin-top: 5px ;
-}
+    margin-top: 5px;
+    margin-right: 35px;
+} */
 
 img {
     width: 140px;
     height: 140px;
     border-radius: 100px;
     object-fit: cover; 
+    
 
 }
 

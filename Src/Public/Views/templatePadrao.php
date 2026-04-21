@@ -66,7 +66,7 @@
 
         <section> <!-- listagem dos profissionais -->
 
-            <div id="principal" class="container border mt-4">
+            <div id="principal" class="container border mt-4 mb-5">
                 <div class="titulo mt-3">
                     <h4 class="text-center">Profissionais que estão perto de você</h4>
                     <p class="text-center">Veja profissionais e empresa que estão próxima de você</p>
