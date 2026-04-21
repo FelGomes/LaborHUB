@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Serviço Fácil</title>
     <link rel="stylesheet" href="../../Assets/Css/style1.css">
+    <link rel="stylesheet" href="../../Assets/Css/mediaLogin.css">
 
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -30,7 +31,7 @@
                     <div class="campos">
                         <div class="col-md-7 mt-3 mb-4">
                             <label for="usuarios_nome">Email</label>
-                            <input type="email" name="usuarios_email" id="usuarios_email" placeholder="Digite seu email" class="form-control" required>
+                            <input type="email" name="usuarios_email" id="usuarios_email" placeholder="Digite seu email" class="login form-control" required>
 
                         </div>
 

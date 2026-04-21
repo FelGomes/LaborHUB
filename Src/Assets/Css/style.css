@@ -26,6 +26,7 @@
 
 }
 
+
 .container>h4 {
     font-weight: 300;
 }
@@ -42,18 +43,18 @@ main>.container {
 
 
 .botoes {
-    width: 100vw;
+    width: 100%;
     display: grid;
     gap: 25px;
     grid-template-columns: repeat(2, 1fr);
 }
 
 .btn-reset {
-    width: 635px;
+    width: 20%;
     height: 42px;
     background-color: white;
     border: none;
-    border: 1px solid black;
+    border: 1px solid rgba(0, 0, 0, 0.205);
     font-family: var(--fontePrincipal);
     font-weight: var(--TamanhoFonte);
     border-radius: var(--bordas);

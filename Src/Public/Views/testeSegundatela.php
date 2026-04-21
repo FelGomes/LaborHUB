@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Serviço Facil</title>
     <link rel="stylesheet" href="../../Assets/Css/style.css">
+    <link rel="stylesheet" href="../../Assets/Css/mediaQuery.css">
+
 
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -23,7 +25,7 @@
 
 
 <body>
-    <main>
+    <main style="min-height: 100vh">
         <div class="container mt-4 mb-5 border">
             <div class="row">
                 <h2 class="text-center mt-3">Serviços</h2>
@@ -94,11 +96,11 @@
                                 </div>
 
 
-                                <div class="botoes col-md-6 mt-5 mb-4">
-                                    <button type="submit" onclick="window.history.back()" class="btn-reset">Voltar</button>
-                                    <button type="submit" name="enviar" class="btn-submit" onclick="proximaTela()">Continuar</button>
 
-                                </div>
+                            </div>
+                            <div class="botoes col-12 col-md-6 mt-5 mb-4 ms-auto mt-md-5 mb-md-4">
+                                <button type="submit" onclick="window.history.back()" class="btn-reset">Voltar</button>
+                                <button type="submit" name="enviar" class="btn-submit" onclick="proximaTela()">Continuar</button>
 
                             </div>
 

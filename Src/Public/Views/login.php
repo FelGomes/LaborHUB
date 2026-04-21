@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Serviço Fácil</title>
     <link rel="stylesheet" href="../../Assets/Css/style1.css">
+     <link rel="stylesheet" href="../../Assets/Css/mediaLogin.css">
+
 
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -28,17 +30,17 @@
                     <div class="campos">
                         <div class="col-md-7 mb-3">
                             <label for="usuarios_nome">Email</label>
-                            <input type="email" name="usuarios_email" id="usuarios_email" placeholder="Digite seu email" class="form-control" required>
+                            <input type="email" name="usuarios_email" id="usuarios_email" placeholder="Digite seu email" class="login form-control" required>
 
                         </div>
 
                         <div class="col-md-7 ">
                             <label for="usuarios_senha_hash">Senha</label>
-                            <input type="password" name="usuarios_senha_hash" id="usuarios_senha_hash" placeholder="Digite sua senha" class="form-control" required>
+                            <input type="password" name="usuarios_senha_hash" id="usuarios_senha_hash" placeholder="Digite sua senha" class="login form-control" required>
 
                         </div>
 
-                        <div class="mb-3 form-check col-md-7 d-flex justify-content-between align-items-center mt-2">
+                        <div class="mb-3 form-check col-md-7 d-flex justify-content-between align-items-center mt-2 link">
                             <div>
                                 <input type="checkbox" class="form-check-input" id="rememberMe" name="rememberMe">
                                 <label class="form-check-label text-start" for="rememberMe">Manter-me conectado</label>

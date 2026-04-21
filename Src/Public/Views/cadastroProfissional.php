@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Serviço Facil</title>
     <link rel="stylesheet" href="../../Assets/Css/style.css">
+    <link rel="stylesheet" href="../../Assets/Css/mediaQuery.css">
+    
 
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -21,7 +23,7 @@
                 <h5 class="text-center mt-5">Foto de perfil</h5>
                 <form action="criarConta.php" method="post"> <!--Formulario para enviou de validação de dados -->
                     <div class="text-center">
-                        <img id="fotoPerfil border" src="../../Assets/Images/cliente.png" alt="cliente">
+                        <img id="fotoPerfil border" src="" alt="cliente">
                         <div class="inserir text-center">
 
                             <input type="file" name="usuarios_imagem" id="imagem">
@@ -164,7 +166,7 @@
                                     </select>
                                 </div>
 
-                                <div class="botoes col-md-6 mt-5 mb-4">
+                                <div class="botoes col-md-6 ms-auto mt-5 mb-4">
                                     <button type="reset" class="btn-reset">Limpar formulario</button>
                                     <button type="submit" name="enviar" class="btn-submit" onclick="proximaTela()">Continuar</button>
 

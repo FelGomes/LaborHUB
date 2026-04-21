@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Serviço Facil</title>
     <link rel="stylesheet" href="../../Assets/Css/style.css">
+    <link rel="stylesheet" href="../../Assets/Css/mediaQuery.css">
 
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -164,7 +165,7 @@
                                     </select>
                                 </div>
 
-                                <div class="botoes col-md-6 mt-5 mb-4">
+                                <div class="botoes col-md-6 ms-auto mt-5 mb-4">
                                     <input type="reset" class="btn-reset" value="Limpar Formulário">
                                     <input type="submit" name="enviar" class="btn-submit" value="Finalizar Cadastro">
                                 </div>
