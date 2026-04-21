@@ -13,33 +13,37 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
 
+
+
 </head>
 
 <body>
+    <header>
 
-    <div class="topo mt-3">
-        <div class="imagem">
-            <img src="../../Assets/Images/FOTOPERFIL.png" alt="Foto Escolhida">
+        <div class="topo mt-3">
+            <div class="imagem">
+                <img src="../../Assets/Images/FOTOPERFIL.png" alt="Foto Escolhida">
+            </div>
+
+            <div class="sair">
+                <p class="mt-2">Deseja sair da conta? </p>
+                <button onclick="window.location.href='login.php'" class="btn-sair">Sair</button>
+            </div>
+
         </div>
 
-        <div class="sair">
-            <p class="mt-2">Deseja sair da conta? </p>
-            <button onclick="window.location.href='login.php'" class="btn-sair">Sair</button>
-        </div>
+        <nav>
+            <ul class="mt-1 mb-5">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Histórico</a></li>
+                <li><a href="#">Mensagem</a></li>
+                <li><a href="#">Pagamentos</a></li>
+                <li><a href="#">Agenda</a></li>
 
-    </div>
+            </ul>
 
-    <nav>
-        <ul class="mt-1 mb-5">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Histórico</a></li>
-            <li><a href="#">Mensagem</a></li>
-            <li><a href="#">Pagamentos</a></li>
-            <li><a href="#">Agenda</a></li>
-
-        </ul>
-
-    </nav>
+        </nav>
+    </header>
 
     <main>
 
@@ -66,7 +70,7 @@
 
         <section> <!-- listagem dos profissionais -->
 
-            <div id="principal" class="container border mt-4 mb-5">
+            <div id="principal" class="container container-custom border mt-4 mb-5 pb-4">
                 <div class="titulo mt-3">
                     <h4 class="text-center">Profissionais que estão perto de você</h4>
                     <p class="text-center">Veja profissionais e empresa que estão próxima de você</p>
@@ -75,8 +79,7 @@
                 <div class="profissionais">
                     <div class="listagem">
 
-
-                        <div class="item mb-4 ">
+                        <div class="item mb-3 ">
                             <p id="tipoServico" class="text-end">Desenvolvedor</p>
                             <div class="perfil">
                                 <div class="foto">
@@ -105,7 +108,7 @@
 
                         </div>
 
-                        <div class="item mb-4 ">
+                        <div class="item mb-3 ">
                             <p id="tipoServico" class="text-end">Desenvolvedor</p>
                             <div class="perfil">
                                 <div class="foto">
@@ -134,7 +137,7 @@
 
                         </div>
 
-                        <div class="item mb-4 ">
+                        <div class="item mb-3 ">
                             <p id="tipoServico" class="text-end">Desenvolvedor</p>
                             <div class="perfil">
                                 <div class="foto">
@@ -162,6 +165,66 @@
 
 
                         </div>
+
+                        <div class="item mb-3 ">
+                            <p id="tipoServico" class="text-end">Desenvolvedor</p>
+                            <div class="perfil">
+                                <div class="foto">
+                                    <img src="../../Assets/Images/Academia.jpeg" alt="Foto">
+                                </div>
+                                <div class="info">
+                                    <strong>Felipe Ferreira Gomes</strong>
+                                    <p>Ceres, GO</p>
+                                    <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> 5.0 (12.200)
+                                </div>
+
+                            </div>
+
+                            <div class="texto mt-3">
+                                <p> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fuga architecto eos recusandae ut dolorum. Culpa cupiditate ipsum quaerat repudiandae, labore ratione earum, illum expedita voluptate in voluptatem! Delectus, provident laudantium! Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                            </div>
+
+                            <div class="valor">
+                                <h4>R$: 1.000,00 Total</h4>
+                            </div>
+
+                            <div class="botoes">
+                                <button type="submit" class="btn-perfil" onclick="window.location.href='perfil.php'" name="verPerfil">Ver perfil</button>
+                            </div>
+
+
+                        </div>
+
+                        <div class="item mb-3 ">
+                            <p id="tipoServico" class="text-end">Desenvolvedor</p>
+                            <div class="perfil">
+                                <div class="foto">
+                                    <img src="../../Assets/Images/Academia.jpeg" alt="Foto">
+                                </div>
+                                <div class="info">
+                                    <strong>Felipe Ferreira Gomes</strong>
+                                    <p>Ceres, GO</p>
+                                    <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> 5.0 (12.200)
+                                </div>
+
+                            </div>
+
+                            <div class="texto mt-3">
+                                <p> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fuga architecto eos recusandae ut dolorum. Culpa cupiditate ipsum quaerat repudiandae, labore ratione earum, illum expedita voluptate in voluptatem! Delectus, provident laudantium! Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                            </div>
+
+                            <div class="valor">
+                                <h4>R$: 1.000,00 Total</h4>
+                            </div>
+
+                            <div class="botoes">
+                                <button type="submit" class="btn-perfil" onclick="window.location.href='perfil.php'" name="verPerfil">Ver perfil</button>
+                            </div>
+
+
+                        </div>
+
+
                     </div>
 
 
