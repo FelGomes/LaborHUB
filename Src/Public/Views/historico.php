@@ -14,6 +14,17 @@
 
 
     <style>
+        /* header {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+ */
+
+
         .busca-historico {
             display: flex;
             justify-content: center;
@@ -50,6 +61,7 @@
 
         }
 
+
         .card-historico {
             margin-top: 15px;
             border: 1px solid rgba(0, 0, 0, 0.17);
@@ -62,7 +74,7 @@
             box-shadow: var(--sombras);
         }
 
-        .info-imagem  img {
+        .info-imagem img {
             width: 120px;
             height: 120px;
             border: 25px !important;
@@ -79,10 +91,10 @@
 
         #valorServico {
             line-height: 3.2;
-            font-size: 18pt;
+            font-size: 16pt;
         }
 
-        .info-dados > h5 {
+        .info-dados>h5 {
             line-height: 1.2;
         }
 
@@ -125,7 +137,7 @@
             transform: scale(1.03) translateY(-5px) translateX(3px);
         }
 
-        #favorito {
+        .favorito {
             display: flex;
             font-size: 35px;
             color: #ccc;
@@ -133,12 +145,158 @@
             transition: 0.2s;
         }
 
-        #favorito.ativo {
+        .favorito.ativo {
             color: gold;
         }
 
+        @media screen and (max-width: 768px) {
+
+            .container {
+                padding-top: 10px;
+            }
+
+            .busca-historico {
+                display: flex;
+                flex-flow: column wrap;
+                flex: auto;
+                width: 100%;
+                justify-content: flex-start;
+
+            }
+
+            input {
+                width: 80% !important;
+                height: 40px;
+            }
+
+            .filtros ul {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                gap: 20px;
+                padding: 0;
+                margin-left: 45px;
+            }
+
+            .filtros>ul>li>a {
+                font-size: 14pt;
+            }
+
+            .lista-historico {
+                width: 100%;
+            }
+
+            .card-historico {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .info-group {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 10px;
+
+            }
+
+            .info-dados,
+            h5 {
+                font-size: 12pt;
+                line-height: 1.1;
+            }
+
+            .info-status {
+                display: flex;
+                width: 100%;
+                flex-direction: column;
+            }
+
+            .info-validation {
+                display: flex;
+                justify-content: flex-start;
+                margin-bottom: 5px;
+            }
+
+            .info-validation>h5 {
+                font-size: 15pt;
+            }
+
+            .detalhes>h6 {
+                text-align: start !important;
+                margin-top: 4px;
+            }
+
+            .botao {
+                margin-top: 10px !important;
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 1024px) {
+
+            .busca-historico {
+                width: 100%;
+                gap: 10px;
+                display: flex;
+            }
 
 
+            input {
+                width: 70% !important;
+                height: 40px;
+            }
+
+            .filtros ul {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                gap: 20px;
+                padding: 0;
+                margin-left: 45px;
+            }
+
+
+
+            .card-historico {
+                display: flex;
+                flex-flow: column wrap;
+            }
+
+
+            #valorServico {
+                margin-top: 5px !important;
+            }
+
+            .info-dados,
+            h5 {
+                font-size: 12pt;
+                line-height: 1.1;
+            }
+
+            .info-status {
+                display: flex;
+                width: 100%;
+                flex-direction: column;
+            }
+
+            .info-validation {
+                display: flex;
+                justify-content: flex-start;
+                margin-bottom: 5px;
+            }
+
+            .info-validation>h5 {
+                font-size: 15pt;
+            }
+
+            .detalhes>h6 {
+                text-align: start !important;
+                margin-top: 4px;
+            }
+
+            .botao {
+                margin-top: 10px !important;
+            }
+
+        }
     </style>
 
 
@@ -187,7 +345,7 @@
                 <div class="busca-historico mt-5 ">
                     <div class="row">
                         <div class="campo col-md-6">
-                            <input type="search" name="buscaHistorico" class="busca form-control" placeholder="Buscar nome" id="buscaHistorico">
+                            <input type="search" name="buscaHistorico" class="form-control" placeholder="Buscar nome" id="buscaHistorico">
 
                         </div>
 
@@ -222,8 +380,8 @@
                                 <h6>Eletricista</h6>
                                 <h5>Data de início: 28/10/2025</h5>
                                 <h5>Data de conclusão: 04/11/2025</h5>
-                                <h5 id="valorServico"><strong>Valor do serviço:</strong> R$200,00</h5>
 
+                                <h5 id="valorServico"><strong>Valor do serviço:</strong> R$200,00</h5>
 
                             </div>
                         </div>
@@ -239,7 +397,7 @@
                                 <p class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad velit sint itaque quasi aliquid necessitatibus, nostrum aut totam placeat magni perferendis exercitationem dolores, quibusdam quae, saepe numquam voluptatum? In, ipsam?</p>
 
                                 <div class="botao">
-                                    <i class="bi bi-star" id="favorito"></i>
+                                    <i class="bi bi-star" class="favorito"></i>
                                     <button class="btn-detalhar">Detalhar</button>
 
                                 </div>
@@ -283,7 +441,7 @@
                                 <p class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad velit sint itaque quasi aliquid necessitatibus, nostrum aut totam placeat magni perferendis exercitationem dolores, quibusdam quae, saepe numquam voluptatum? In, ipsam?</p>
 
                                 <div class="botao">
-                                    <i class="bi bi-star" id="favorito"></i>
+                                    <i class="bi bi-star" class="favorito"></i>
                                     <button class="btn-detalhar">Detalhar</button>
 
                                 </div>
