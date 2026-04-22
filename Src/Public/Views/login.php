@@ -54,7 +54,7 @@
 
                         <input type="submit" class="btn-submit mt-5" name="enviar" value="Entrar">
                         <div class="mt-2">
-                            <p>Ainda não tem conta? <a href="">Criar conta agora</a></p>
+                            <p>Ainda não tem conta? <a href="escolhaUsuario.php">Criar conta agora</a></p>
                         </div>
                     </div>
 

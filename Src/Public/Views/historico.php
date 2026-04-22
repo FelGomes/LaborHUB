@@ -58,6 +58,7 @@
             display: flex;
             justify-content: center;
             margin-top: 10px;
+            width: 100%;
 
         }
 
@@ -137,7 +138,7 @@
             transform: scale(1.03) translateY(-5px) translateX(3px);
         }
 
-        .favorito {
+        #favorito {
             display: flex;
             font-size: 35px;
             color: #ccc;
@@ -145,7 +146,7 @@
             transition: 0.2s;
         }
 
-        .favorito.ativo {
+        #favorito.ativo {
             color: gold;
         }
 
@@ -321,7 +322,7 @@
 
         <nav>
             <ul class="mt-1 mb-5">
-                <li><a href="#">Home</a></li>
+                <li><a href="homeCliente.php">Home</a></li>
                 <li><a href="#">Histórico</a></li>
                 <li><a href="#">Mensagem</a></li>
                 <li><a href="#">Pagamentos</a></li>
@@ -397,7 +398,7 @@
                                 <p class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad velit sint itaque quasi aliquid necessitatibus, nostrum aut totam placeat magni perferendis exercitationem dolores, quibusdam quae, saepe numquam voluptatum? In, ipsam?</p>
 
                                 <div class="botao">
-                                    <i class="bi bi-star" class="favorito"></i>
+                                    <i class="bi bi-star" id="favorito"></i>
                                     <button class="btn-detalhar">Detalhar</button>
 
                                 </div>
@@ -441,7 +442,7 @@
                                 <p class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad velit sint itaque quasi aliquid necessitatibus, nostrum aut totam placeat magni perferendis exercitationem dolores, quibusdam quae, saepe numquam voluptatum? In, ipsam?</p>
 
                                 <div class="botao">
-                                    <i class="bi bi-star" class="favorito"></i>
+                                    <i class="bi bi-star" id="favorito"></i>
                                     <button class="btn-detalhar">Detalhar</button>
 
                                 </div>

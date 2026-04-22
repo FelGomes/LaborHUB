@@ -177,7 +177,7 @@
 
 
                         </div>
-
+                        <!-- Fim da pessoa -->
 
                         <div id="form-pj" style="display:none" class="cold-md-12 mt-4">
                             <h5 class="text-start"> <i class="bi bi-building-fill fs-3"></i> Dados Empresarial</h5>
@@ -283,7 +283,7 @@
                                     </select>
                                 </div>
 
-                                <div class="botoes col-md-6 mt-5 mb-4">
+                                <div class="botoes col-md-6 ms-auto mt-5 mb-4">
                                     <input type="reset" class="btn-reset" value="Limpar Formulário">
                                     <input type="submit" name="enviar" class="btn-submit" value="Finalizar Cadastro">
                                 </div>
@@ -363,8 +363,6 @@
             document.getElementById('form-' + tipo).style.display = 'block';
 
         }
-
-    
     </script>
 
 

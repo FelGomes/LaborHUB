@@ -86,7 +86,7 @@
 
                 <div class="profissional">
                     <img src="../../Assets/Images/profissional.png" alt="profissional">
-                   <button type="submit" class="btn-escolher mt-5" onclick="window.location.href='testeSegundatela.php'"> Profissional</button>
+                   <button type="submit" class="btn-escolher mt-5" onclick="window.location.href='cadastroProfissional.php'"> Profissional</button>
                 </div>
 
             </div>

@@ -35,7 +35,7 @@
         <nav>
             <ul class="mt-1 mb-5">
                 <li><a href="#">Home</a></li>
-                <li><a href="#">Histórico</a></li>
+                <li><a href="historico.php">Histórico</a></li>
                 <li><a href="#">Mensagem</a></li>
                 <li><a href="#">Pagamentos</a></li>
                 <li><a href="#">Agenda</a></li>
@@ -79,7 +79,7 @@
                 <div class="profissionais">
                     <div class="listagem">
 
-                        <div class="item mb-3 ">
+                        <div class="item  mb-3">
                             <p id="tipoServico" class="text-end">Desenvolvedor</p>
                             <div class="perfil">
                                 <div class="foto">
