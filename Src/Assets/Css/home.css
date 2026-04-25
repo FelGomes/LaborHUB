@@ -17,7 +17,8 @@
     --sombras: 0px 3px 5px rgba(0, 0, 0, 0.175)
 }
 
-html,body {
+html,
+body {
     height: 100%;
 
 }
@@ -303,4 +304,38 @@ img {
     }
 
 
+}
+
+
+/* Tela de profissional */
+
+.lista-servico {
+    display: flex;
+    gap: 40px;
+    padding-left: 40px;
+
+}
+
+.servicos-groups {
+    padding: 10px;
+    border-radius: 15px;
+    line-height: 1.2;
+    width: 300px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.175);
+}
+
+.servicos-groups>h6 {
+    font-size: 14pt;
+    font-weight: bold;
+    margin-bottom: 20px;
+
+
+}
+
+.servicos-groups>a {
+    text-decoration: none;
+}
+
+.comentService {
+    color: #898585;
 }
