@@ -12,16 +12,9 @@
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
-    <style>
-        @media screen and (max-width:768px) {
-            .lista-servico {
-                display: flex;
-                flex-flow: column wrap;
-                align-items: flex-start;
-            }
 
-        }
-    </style>
+
+
 
 </head>
 
@@ -42,7 +35,7 @@
 
         <nav>
             <ul class="mt-1 mb-5">
-                <li><a href="#">Home</a></li>
+                <li><a href="homeProfissional.php">Home</a></li>
                 <li><a href="#">Histórico</a></li>
                 <li><a href="#">Minhas avaliações</a></li>
 
@@ -53,28 +46,72 @@
 
     <main>
 
-        <div class="lista-servico">
+        <div id="principal" class="container container-custom border mt-4 mb-5 pb-4">
+            <h3 class="text-center mt-4"> <a href="servicoPendentes.php" class="mt-2"><i class="bi bi-caret-left-fill"></i></a> &nbsp; Serviços Ativos</h3>
 
-            <div class="servicos-groups border">
-                <h6>Serviços Pendentes</h6>
-                <p>2 serviços</p>
-                <p class="comentService">Veja quem solicitou seu serviço</p>
-                <a href="servicoPendentes.php">Acessar <i class="bi bi-arrow-right-short"></i></a>
+            <div class="finalizarServico mt-3">
+                <button type="button" class="btn-finalizar">Finalizar Serviço</button>
 
             </div>
 
-            <div class="servicos-groups border">
-                <h6>Serviços ativos</h6>
-                <p> 5 serviços ativos</p>
-                <p class="comentService">Veja detalhado seus serviços</p>
-                <a href="servicoAtivo.php">Acessar <i class="bi bi-arrow-right-short"></i></a>
+            <div class="lista-servicoAtivo">
+                <div class="ativoGroup p-3">
+                    <div class="ativoInfo">
+                        <img src="../../Assets/Images/FOTOPERFIL.png" alt="FotoDePerfilDoUsuario">
+                        <div class="ativoDados">
+                            <h4 class="mb-3">Felipe Ferreira Gomes</h4>
+                            <h6><strong>Data de início:</strong> 19/10/2025</h6>
+                            <h6><strong>Data fim:</strong> 29/10/2025</h6>
+                            <h6><strong>Quantidade de dias:</strong>10 dias</h6>
+
+                        </div>
+                    </div>
+
+                    <div class="ativoDetalhes">
+                        <p class="text-center">Horário solicitado: 08h às 16h</p>
+
+                        <button type="button" class="btn-detalhar">Mais</button>
+                    </div>
+
+                </div>
+
+                <div class="ativoGroup p-3">
+                    <div class="ativoInfo">
+                        <img src="../../Assets/Images/FOTOPERFIL.png" alt="FotoDePerfilDoUsuario">
+                        <div class="ativoDados">
+                            <h4 class="mb-3">Felipe Ferreira Gomes</h4>
+                            <h6><strong>Data de início:</strong> 19/10/2025</h6>
+                            <h6><strong>Data fim:</strong> 29/10/2025</h6>
+                            <h6><strong>Quantidade de dias:</strong>10 dias</h6>
+
+                        </div>
+                    </div>
+
+                    <div class="ativoDetalhes">
+                        <p class="text-center">Horário solicitado: 08h às 16h</p>
+
+                        <button type="button" class="btn-detalhar">Mais</button>
+                    </div>
+
+                </div>
+
+
+
+
+
+
+
 
             </div>
+
+
 
         </div>
 
 
     </main>
+
+
 
 
 

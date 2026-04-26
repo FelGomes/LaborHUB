@@ -77,7 +77,7 @@
 
         <nav>
             <ul class="mt-1 mb-5">
-                <li><a href="#">Home</a></li>
+                <li><a href="homeProfissional.php">Home</a></li>
                 <li><a href="#">Histórico</a></li>
                 <li><a href="#">Minhas avaliações</a></li>
 
@@ -89,7 +89,7 @@
     <main>
 
         <div id="principal" class="container container-custom border mt-4 mb-5 pb-4">
-            <h3 class="text-center mt-4">Serviços pendentes &nbsp; <a href="" class="mt-2"><i class="bi bi-caret-right-fill"></i></a></h3>
+            <h3 class="text-center mt-4">Serviços Pendentes &nbsp; <a href="servicoAtivo.php" class="mt-2"><i class="bi bi-caret-right-fill"></i></a></h3>
             <div class="lista-servicoPendentes ">
                 <div class="listServices">
                     <div class="infoService ">

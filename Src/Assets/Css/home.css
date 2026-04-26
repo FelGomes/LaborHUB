@@ -295,7 +295,7 @@ img {
 
     .btn-sair {
         width: 120px;
-        height: 40px;
+        height: 50px;
     }
 
     nav {
@@ -305,7 +305,7 @@ img {
 
     ul {
         display: flex;
-        flex-flow: column wrap;
+        flex-flow: row wrap;
         align-items: center;
         gap: 20px;
     }
@@ -653,6 +653,39 @@ input {
 
 }
 
+/* Home Profissional */
+.lista-servico {
+    display: flex;
+    gap: 40px;
+    padding-left: 40px;
+
+}
+
+.servicos-groups {
+    padding: 10px;
+    border-radius: 15px;
+    line-height: 1.2;
+    width: 300px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.175);
+}
+
+.servicos-groups>h6 {
+    font-size: 14pt;
+    font-weight: bold;
+    margin-bottom: 20px;
+
+
+}
+
+.servicos-groups>a {
+    text-decoration: none;
+}
+
+.comentService {
+    color: #898585;
+}
+
+
 /* Servico Pendentes */
 
 .lista-servicoPendentes {
@@ -737,6 +770,19 @@ input {
         height: 100px;
     }
 
+    .solicitacaoServices>p {
+        line-height: 1.0;
+        text-align: justify;
+        display: none;
+
+    }
+
+    .botoesSerivces {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 25px;
+    }
+
 
 }
 
@@ -754,6 +800,114 @@ input {
     .infoService>img {
         width: 100px;
         height: 100px;
+    }
+
+
+
+}
+
+
+
+
+/* Servicos Ativo */
+.lista-servicoAtivo {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+
+}
+
+.finalizarServico {
+    display: flex;
+    justify-content: flex-end;
+    width: 91%;
+}
+
+.ativoGroup {
+    display: flex;
+    width: 80%;
+    justify-content: space-between;
+    border: 1px solid rgba(0, 0, 0, 0.096);
+    box-shadow: var(--sombras);
+    border-radius: var(--bordas);
+    margin-bottom: 40px;
+}
+
+.ativoInfo {
+    display: flex;
+}
+
+.ativoDados {
+    padding: 10px;
+}
+
+.ativoDetalhes {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+
+}
+
+
+.btn-finalizar {
+    width: 150px;
+    height: 40px;
+    border: 1px solid var(--corPrincipal);
+    box-shadow: var(--sombras);
+    border-radius: var(--bordas);
+    margin-right: 15px;
+    margin-bottom: 15px;
+    background-color: var(--corPrincipal);
+    color: white;
+    font-weight: 600;
+
+
+}
+
+
+@media screen and (max-width: 768px) {
+    .ativoGroup {
+        display: flex;
+        width: 100%;
+        flex-flow: column wrap;
+        border: 1px solid rgba(0, 0, 0, 0.096);
+        box-shadow: var(--sombras);
+        border-radius: var(--bordas);
+        margin-bottom: 40px;
+    }
+
+    .finalizarServico {
+        display: flex;
+        padding-top: 10px;
+        justify-content: flex-end;
+        width: 100%;
+    }
+
+
+    .ativoDetalhes {
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: flex-end;
+        align-items: flex-end;
+
+    }
+
+    .btn-finalizar {
+        width: 150px;
+        height: 40px;
+        border: 1px solid var(--corPrincipal);
+        box-shadow: var(--sombras);
+        border-radius: var(--bordas);
+        margin-right: 15px;
+        margin-bottom: 15px;
+        background-color: var(--corPrincipal);
+        color: white;
+        font-weight: 600;
+
+
     }
 
 
