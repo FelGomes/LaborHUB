@@ -13,6 +13,51 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
 
+    <style>
+        /* .lista-servicoPendentes {
+            margin-top: 10px;
+            
+        }
+        
+        .listServices {
+            width: 45%;
+            padding: 5px;
+            margin-top: 50px;
+            border: 1px solid #00000052;
+        }
+
+        .infoService {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px ;
+        }
+
+        .infoServicesName{
+            padding: 10px;
+
+        }
+
+        .solicitacaoServices > h5 {
+            line-height: 1.1;
+        }
+
+        .solicitacaoServices > p {
+            line-height: 1.0;
+            text-align: justify;
+            
+        }
+
+        #observacao{
+            font-weight: bold;
+        }
+
+        .botoesSerivces{
+            display: flex;
+            justify-content: flex-end;
+        } */
+    </style>
+
+
 </head>
 
 <body>
@@ -43,7 +88,96 @@
 
     <main>
 
-        <div class="container">
+        <div id="principal" class="container container-custom border mt-4 mb-5 pb-4">
+            <h3 class="text-center mt-4">Serviços pendentes &nbsp; <a href="" class="mt-2"><i class="bi bi-caret-right-fill"></i></a></h3>
+            <div class="lista-servicoPendentes ">
+                <div class="listServices">
+                    <div class="infoService ">
+                        <img src="../../Assets/Images/FOTOPERFIL.png" alt="fotoPerfil">
+                        <div class="infoServicesName">
+                            <h4>Felipe Ferreira</h4>
+                            <h6>Rua 18, QDZ-18 LT 16, Jardim Sorriso II - Ceres - GO</h6>
+
+                        </div>
+                    </div>
+
+                    <div class="solicitacaoServices">
+                        <h5><strong>Data Solicitação:</strong> 15/10/2025</h5>
+                        <h5><strong>Data para serviço:</strong> 17/10/2025</h5>
+                        <h5><strong>Dias previsto:</strong> 30 dias</h5>
+
+                        <p class="mt-3" id="observacao">Observaçao:</p>
+                        <p>Preciso que arrume minha casa esse mês,
+                            pois irei viajar e queria que ficasse tudo arrumado.</p>
+                    </div>
+
+                    <div class="botoesSerivces">
+                        <button type="button" class="btn-sair">Recusar</button>
+                        <button type="button" class="btn-recusar">Negociar</button>
+                    </div>
+
+                </div>
+
+                <div class="listServices">
+                    <div class="infoService ">
+                        <img src="../../Assets/Images/FOTOPERFIL.png" alt="fotoPerfil">
+                        <div class="infoServicesName">
+                            <h4>Felipe Ferreira</h4>
+                            <h6>Rua 18, QDZ-18 LT 16, Jardim Sorriso II - Ceres - GO</h6>
+
+                        </div>
+                    </div>
+
+                    <div class="solicitacaoServices">
+                        <h5><strong>Data Solicitação:</strong> 15/10/2025</h5>
+                        <h5><strong>Data para serviço:</strong> 17/10/2025</h5>
+                        <h5><strong>Dias previsto:</strong> 30 dias</h5>
+
+                        <p class="mt-3" id="observacao">Observaçao:</p>
+                        <p>Preciso que arrume minha casa esse mês,
+                            pois irei viajar e queria que ficasse tudo arrumado.</p>
+                    </div>
+
+                    <div class="botoesSerivces">
+                        <button type="button" class="btn-sair">Recusar</button>
+                        <button type="button" class="btn-recusar">Negociar</button>
+                    </div>
+
+                </div>
+
+                <div class="listServices">
+                    <div class="infoService ">
+                        <img src="../../Assets/Images/FOTOPERFIL.png" alt="fotoPerfil">
+                        <div class="infoServicesName">
+                            <h4>Felipe Ferreira Gomes </h4>
+                            <h6>Rua 18, QDZ-18 LT 16, Jardim Sorriso II - Ceres - GO</h6>
+
+                        </div>
+                    </div>
+
+                    <div class="solicitacaoServices">
+                        <h5><strong>Data Solicitação:</strong> 15/10/2025</h5>
+                        <h5><strong>Data para serviço:</strong> 17/10/2025</h5>
+                        <h5><strong>Dias previsto:</strong> 30 dias</h5>
+
+                        <p class="mt-3" id="observacao">Observaçao:</p>
+                        <p>Preciso que arrume minha casa esse mês,
+                            pois irei viajar e queria que ficasse tudo arrumado.</p>
+                    </div>
+
+                    <div class="botoesSerivces">
+                        <button type="button" class="btn-sair">Recusar</button>
+                        <button type="button" class="btn-recusar">Negociar</button>
+                    </div>
+
+                </div>
+
+
+
+
+            </div>
+
+
 
         </div>
 

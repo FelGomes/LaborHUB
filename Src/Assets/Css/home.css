@@ -76,6 +76,27 @@ body {
     color: black;
 }
 
+.btn-recusar {
+    width: 110px;
+    height: 50px;
+    margin-right: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.103);
+    background-color: var(--corPrincipal);
+    border: 1px solid var(--corPrincipal);
+    color: rgb(255, 255, 255);
+    font-family: var(--fontePrincipal);
+    cursor: pointer;
+}
+
+.btn-recusar:hover {
+    transform: scale(1.03) translateY(-2px) translateX(4px);
+    background-color: var(--corPrincipal);
+    color: rgb(255, 255, 255);
+    border: 2px solid #3B82F6;
+}
+
+
 ul {
     display: flex;
     justify-content: center;
@@ -338,4 +359,403 @@ img {
 
 .comentService {
     color: #898585;
+}
+
+
+/* tela de historico de cliente */
+header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+
+
+.busca-historico {
+    display: flex;
+    justify-content: center;
+}
+
+.campo {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    justify-content: center;
+}
+
+.busca {
+    width: 100%;
+}
+
+#busca-historico {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#profissionais li {
+    display: flex;
+    flex-flow: column;
+    align-items: flex-end;
+}
+
+.lista-historico {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    width: 100%;
+
+}
+
+
+.card-historico {
+    margin-top: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.17);
+    border-radius: 20px;
+    display: flex;
+    padding: 10px 10px;
+    justify-items: center;
+    justify-content: space-between;
+    width: 80%;
+    box-shadow: var(--sombras);
+}
+
+.info-imagem img {
+    width: 120px;
+    height: 120px;
+    border: 25px !important;
+}
+
+.info-group {
+    display: flex;
+}
+
+.info-dados {
+    margin-left: 10px;
+
+}
+
+#valorServico {
+    line-height: 3.2;
+    font-size: 16pt;
+}
+
+.info-dados>h5 {
+    line-height: 1.2;
+}
+
+.info-status {
+    width: 40%;
+}
+
+.info-validation {
+    display: flex;
+    justify-content: center;
+
+}
+
+.info-validation>h5 {
+    text-align: center !important;
+}
+
+.botao {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+}
+
+input {
+    width: 100%;
+}
+
+
+.btn-detalhar {
+    width: 120px;
+    height: 40px;
+    border: 1px solid var(--corPrincipal);
+    box-shadow: var(--sombras);
+    border-radius: var(--bordas);
+    margin-right: 15px;
+    margin-bottom: 15px;
+    background-color: var(--corPrincipal);
+    color: white;
+    font-weight: 600;
+}
+
+
+.btn-detalhar:hover {
+    transform: scale(1.03) translateY(-5px) translateX(3px);
+}
+
+#favorito {
+    display: flex;
+    font-size: 35px;
+    color: #ccc;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#favorito.ativo {
+    color: gold;
+}
+
+@media screen and (max-width: 768px) {
+
+    .container {
+        padding-top: 10px;
+    }
+
+    .busca-historico {
+        display: flex;
+        flex-flow: column wrap;
+        flex: auto;
+        width: 100%;
+        justify-content: flex-start;
+
+    }
+
+    input {
+        width: 80%;
+        height: 40px;
+    }
+
+    .filtros ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 20px;
+        padding: 0;
+        margin-left: 45px;
+    }
+
+    .filtros>ul>li>a {
+        font-size: 14pt;
+    }
+
+    .lista-historico {
+        width: 100%;
+    }
+
+    .card-historico {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .info-group {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+
+    }
+
+    .info-dados,
+    h5 {
+        font-size: 12pt;
+        line-height: 1.1;
+    }
+
+    .info-status {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .info-validation {
+        display: flex;
+        justify-content: flex-start;
+        margin-bottom: 5px;
+    }
+
+    .info-validation>h5 {
+        font-size: 15pt;
+    }
+
+    .detalhes>h6 {
+        text-align: start !important;
+        margin-top: 4px;
+    }
+
+    .botao {
+        margin-top: 10px !important;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    .busca-historico {
+        width: 100%;
+        gap: 10px;
+        display: flex;
+    }
+
+
+    input {
+        width: 70% !important;
+        height: 40px;
+    }
+
+    .filtros ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 20px;
+        padding: 0;
+        margin-left: 45px;
+    }
+
+
+
+    .card-historico {
+        display: flex;
+        flex-flow: column wrap;
+    }
+
+
+    #valorServico {
+        margin-top: 5px !important;
+    }
+
+    .info-dados,
+    h5 {
+        font-size: 12pt;
+        line-height: 1.1;
+    }
+
+    .info-status {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .info-validation {
+        display: flex;
+        justify-content: flex-start;
+        margin-bottom: 5px;
+    }
+
+    .info-validation>h5 {
+        font-size: 15pt;
+    }
+
+    .detalhes>h6 {
+        text-align: start !important;
+        margin-top: 4px;
+    }
+
+    .botao {
+        margin-top: 10px !important;
+    }
+
+}
+
+/* Servico Pendentes */
+
+.lista-servicoPendentes {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-around;
+    flex-flow: row wrap;
+
+}
+
+.listServices {
+    width: 80%;
+    padding: 10px 5px 20px 10px;
+    border: 1px solid rgba(0, 0, 0, 0.096);
+    box-shadow: var(--sombras);
+    border-radius: var(--bordas);
+    margin-bottom: 60px;
+}
+
+.infoService {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.infoServicesName {
+    padding: 10px;
+
+}
+
+.solicitacaoServices>h5 {
+    line-height: 1.1;
+}
+
+.solicitacaoServices>p {
+    line-height: 1.0;
+    text-align: justify;
+
+}
+
+#observacao {
+    font-weight: bold;
+}
+
+.botoesSerivces {
+    display: flex;
+    justify-content: flex-end;
+}
+
+@media screen and (max-width: 768px) {
+    header {
+        position: initial;
+
+    }
+
+    .lista-servicoPendentes {
+        margin-top: 40px;
+        display: flex;
+        justify-content: center;
+        flex-flow: column wrap;
+
+
+    }
+
+    .solicitacaoServices>h5 {
+        line-height: 1.1;
+        font-size: 13pt;
+    }
+
+
+    .listServices {
+        width: 100%;
+        padding: 10px 5px 20px 10px;
+        border: 1px solid rgba(0, 0, 0, 0.096);
+        box-shadow: var(--sombras);
+        border-radius: var(--bordas);
+        margin-bottom: 40px;
+    }
+
+    .infoService>img {
+        width: 100px;
+        height: 100px;
+    }
+
+
+}
+
+
+@media (min-width: 768px) and (max-width: 1440px) {
+    .lista-servicoPendentes {
+        margin-top: 40px;
+        display: flex;
+        justify-content: space-around;
+        flex-flow: row wrap;
+
+
+    }
+
+    .infoService>img {
+        width: 100px;
+        height: 100px;
+    }
+
+
+
 }

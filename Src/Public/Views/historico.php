@@ -22,10 +22,10 @@
             backdrop-filter: blur(5px);
             background-color: rgba(255, 255, 255, 0.8);
         }
- */
+ 
 
 
-        .busca-historico {
+         .busca-historico {
             display: flex;
             justify-content: center;
         }
@@ -297,7 +297,7 @@
                 margin-top: 10px !important;
             }
 
-        }
+        } */
     </style>
 
 
