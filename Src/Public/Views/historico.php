@@ -324,8 +324,6 @@
             <ul class="mt-1 mb-5">
                 <li><a href="homeCliente.php">Home</a></li>
                 <li><a href="#">Histórico</a></li>
-                <li><a href="#">Mensagem</a></li>
-                <li><a href="#">Pagamentos</a></li>
                 <li><a href="#">Agenda</a></li>
 
             </ul>

@@ -14,7 +14,8 @@
     --fontePrincipal: 'Montserrat', sans-serif;
     --TamanhoFonte: 700;
     --bordas: 5px;
-    --sombras: 0px 3px 5px rgba(0, 0, 0, 0.175)
+    --sombras: 0px 3px 5px rgba(0, 0, 0, 0.175);
+   
 }
 
 html,

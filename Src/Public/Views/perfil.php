@@ -12,7 +12,134 @@
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
+    <style>
+        .voltarPerfil>a {
+            font-size: 16pt;
+            margin-left: 50px;
+            color: black;
+            text-decoration: none;
+        }
 
+        .margem {
+            width: 100%;
+            color: blue;
+        }
+
+
+        .perfilCliente {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .perfilDados {
+            margin-left: 40px !important;
+        }
+
+        .perfiServico {
+            margin-top: 50px;
+            padding: 15px;
+            border: 1px solid #00000041;
+            margin-right: 155px;
+            height: 220px;
+            border-radius: 10px;
+            box-shadow: var(--sombras);
+            display: flex;
+            flex-flow: column wrap;
+
+        }
+
+        .perfiServico>h6 {
+            font-weight: bold;
+            color: #22c55e;
+            font-size: 15pt;
+        }
+
+        .perfilName {
+            padding: 10px 0px 0px 10px;
+        }
+
+        .perfilName>h3 {
+            font-weight: bold;
+        }
+
+        .perfilName>h3,
+        p {
+            line-height: 1.1;
+        }
+
+        .perfilName>p {
+            line-height: 0.8;
+        }
+
+        .perfilImagem>img {
+            width: 230px !important;
+            height: 224px !important;
+            border-radius: 20px;
+        }
+
+        .perfilNotas>p {
+            text-align: justify;
+        }
+
+        .perfilDetalhes {
+            display: flex;
+            gap: 10px;
+            padding: 10px;
+            width: 50%;
+        }
+
+        .comentGroup {
+            display: flex;
+            padding: 10px;
+            justify-content: space-around;
+            width: 70%;
+            margin-left: 40px;
+            box-shadow: var(--sombras);
+            border-radius: var(--bordas);
+            border: 1px solid rgba(0, 0, 0, 0.175);
+            margin-bottom: 40px;
+        }
+
+        .perfilAvaliacao {
+            display: flex;
+            flex-flow: column wrap;
+        }
+
+        .perfilAvaliacao>h4 {
+            margin-left: 40px;
+            margin-top: 40px;
+        }
+
+        .avaliacaoGroup {
+            display: grid;
+            width: 100%;
+            grid-template-columns: repeat(3, 1fr);
+
+
+        }
+
+
+
+        .infoComent {
+            display: flex;
+            width: 100%;
+        }
+
+        .dataComentario {
+            margin-top: 5px;
+        }
+
+        .infoComentario {
+            margin-left: 10px;
+        }
+
+        .Imagecomentario {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+        }
+    </style>
 
 
 </head>
@@ -34,25 +161,21 @@
 
         <nav>
             <ul class="mt-1 mb-5">
-                <li><a href="#">Home</a></li>
+                <li><a href="homeCliente.php">Home</a></li>
                 <li><a href="historico.php">Histórico</a></li>
-                <li><a href="#">Mensagem</a></li>
-                <li><a href="#">Pagamentos</a></li>
                 <li><a href="#">Agenda</a></li>
-
             </ul>
 
         </nav>
     </header>
 
     <main>
-        <div class="voltarPerfil border ">
+        <div class="voltarPerfil  ">
             <a href="homeCliente.php"><i class="bi bi-arrow-left"></i> Voltar</a>
 
         </div>
 
-        <div class="margen border-4">
-        </div>
+        <hr class="margem">
 
         <div class="perfilCliente"> <!--Borda cinza-->
             <div class="perfilDados"> <!--Borda vermelha-->
@@ -65,21 +188,79 @@
 
                 <div class="perfilDetalhes"> <!--Borda verde-->
                     <div class="perfilImagem"> <!--Borda azul -->
-                        <img src="../../Assets/Images/FOTOPERFIL.png" alt="FOTOPERFIL">
+                        <img src="../../Assets/Images/Academia.jpeg" alt="FOTOPERFIL">
                     </div>
                     <div class="perfilNotas">
                         <div class="perfilStars">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill fs-5"></i>
+                            <i class="bi bi-star-fill fs-5"></i>
+                            <i class="bi bi-star-fill fs-5"></i>
+                            <i class="bi bi-star-fill fs-5"></i>
+                            <i class="bi bi-star-fill fs-5"></i>
+                            <p>5.0(12.000)</p>
 
                         </div>
 
+                        <p>Eletricista</p>
+                        <h4>Sobre</h4>
+                        <p>Profissional Avançado, trabalho na área a cerca de 5 anos. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio maiores quam autem quod, facilis omnis et perferendis dignissimos cum non, quaerat esse? Nam aliquam quibusdam laboriosam. Molestiae consequuntur possimus minus!</p>
+
                     </div>
 
+
                 </div>
+
+            </div>
+
+
+            <div class="perfiServico">
+                <h5>Serviço</h5>
+                <h6>R$: Negociável</h6>
+                <button type="button" class="btn-finalizar mt-5" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Solicitar</button>
+
+
+                <div class="modal fade modal-lg" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Solicitação de serviço</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body"> <!--COnteudo com os formulario-->
+                                <div class="row">
+                                    <form action="" method="post">
+
+                                        <div class="col-md-12">
+                                            <label for="solicitacao_data">Data de solicitação</label>
+                                            <input type="date" name="solicitacao_data" class="form-control" placeholder="Data para o serviço" id="solicitacao_data">
+                                        </div>
+
+                                        <!-- Vai puxar o endereço conforme foi cadastrado -->
+                                         <div class="col-md-12 mt-3">
+                                            <label for="solicitacao_endereço">Endereço</label>
+                                            <input type="text" name="solicitacao_endereco" class="form-control" placeholder="Endereço para serviço" id="solicitacao_endereco" readonly>
+                                        </div>
+
+                                         <div class="col-md-12 mt-3">
+                                            <label for="solicitacao_observacao">Observação</label>
+                                            <textarea name="solicitacao_observacao" class="form-control" placeholder="Observação do serviço" id="solicitacao_observacao">
+
+                                            </textarea>
+                                        </div>
+
+
+                                    </form>
+                                </div>
+
+
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn-finalizar" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Enviar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
 
             </div>
 
@@ -88,19 +269,193 @@
         </div>
 
 
+        <div class="perfilAvaliacao"> <!--Background gray -->
+            <h4>Avaliações</h4>
+            <div class="avaliacaoGroup"> <!--Listagem de avaliacoes -->
 
+                <div class="comentGroup"> <!--Bloco de comentario -->
+                    <div class="infoComent"> <!--informaçoes do comentario -->
+                        <div class="comentImage">
+                            <img class="Imagecomentario" src="../../Assets/Images/comentario.jpg" alt="">
+
+                        </div>
+                        <div class="perfilStars infoComentario">
+                            <h5>Maria Gonçalves Ferreira</h5>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+
+                            <h5 class="mt-3"><strong>Ótimo profissional</strong></h5>
+                            <p>Ele foi super prestativo no serviço, trabalho bem feito, AMEI!!! </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="dataComentario">
+                        <p>10/02/2026</p>
+                    </div>
+
+                </div>
+
+                <div class="comentGroup"> <!--card -->
+                    <div class="infoComent"> <!--informaçoes do comentario -->
+                        <div class="comentImage">
+                            <img class="Imagecomentario" src="../../Assets/Images/comentario2.jpg" alt="">
+
+                        </div>
+                        <div class="perfilStars infoComentario">
+                            <h5>Maria Gonçalves Ferreira</h5>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+
+                            <h5 class="mt-3"><strong>Ótimo profissional</strong></h5>
+                            <p>Ele foi super prestativo no serviço, trabalho bem feito, AMEI!!! </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="dataComentario">
+                        <p>10/02/2026</p>
+                    </div>
+
+                </div>
+
+                <div class="comentGroup"> <!--Card -->
+                    <div class="infoComent"> <!--informaçoes do comentario -->
+                        <div class="comentImage">
+                            <img class="Imagecomentario" src="../../Assets/Images/comentario3.jpg" alt="">
+
+                        </div>
+                        <div class="perfilStars infoComentario">
+                            <h5>Maria Gonçalves Ferreira</h5>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+
+                            <h5 class="mt-3"><strong>Ótimo profissional</strong></h5>
+                            <p>Ele foi super prestativo no serviço, trabalho bem feito, AMEI!!! </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="dataComentario">
+                        <p>10/02/2026</p>
+                    </div>
+
+                </div>
+
+                <div class="comentGroup"> <!--CARD -->
+                    <div class="infoComent"> <!--informaçoes do comentario -->
+                        <div class="comentImage">
+                            <img class="Imagecomentario" src="../../Assets/Images/comentario4.jpg" alt="">
+
+                        </div>
+                        <div class="perfilStars infoComentario">
+                            <h5>Maria Gonçalves Ferreira</h5>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+
+                            <h5 class="mt-3"><strong>Ótimo profissional</strong></h5>
+                            <p>Ele foi super prestativo no serviço, trabalho bem feito, AMEI!!! </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="dataComentario">
+                        <p>10/02/2026</p>
+                    </div>
+
+                </div>
+
+                <div class="comentGroup"> <!--Card -->
+                    <div class="infoComent"> <!--informaçoes do comentario -->
+                        <div class="comentImage">
+                            <img class="Imagecomentario" src="../../Assets/Images/comentario.jpg" alt="">
+
+                        </div>
+                        <div class="perfilStars infoComentario">
+                            <h5>Maria Gonçalves Ferreira</h5>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+
+                            <h5 class="mt-3"><strong>Ótimo profissional</strong></h5>
+                            <p>Ele foi super prestativo no serviço, trabalho bem feito, AMEI!!! </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="dataComentario">
+                        <p>10/02/2026</p>
+                    </div>
+
+                </div>
+
+                <div class="comentGroup"> <!--Card-->
+                    <div class="infoComent"> <!--informaçoes do comentario -->
+                        <div class="comentImage">
+                            <img class="Imagecomentario" src="../../Assets/Images/comentario4.jpg" alt="">
+
+                        </div>
+                        <div class="perfilStars infoComentario">
+                            <h5>Maria Gonçalves Ferreira</h5>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+
+                            <h5 class="mt-3"><strong>Ótimo profissional</strong></h5>
+                            <p>Ele foi super prestativo no serviço, trabalho bem feito, AMEI!!! </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="dataComentario">
+                        <p>10/02/2026</p>
+                    </div>
+
+                </div>
+
+
+
+
+
+            </div>
+
+        </div>
 
 
 
     </main>
 
-
-
-
-
-
-
-
+    <nav aria-label="...">
+        <ul class="pagination pagination-lg">
+            <li class="page-item active">
+                <a class="page-link" aria-current="page">1</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+        </ul>
+    </nav>
 
 
     <footer class="bg-dark text-center text-white py-4">
