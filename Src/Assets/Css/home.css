@@ -856,7 +856,7 @@ input {
 .ativoDetalhes {
     display: flex;
     flex-flow: column wrap;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: flex-end;
 
 }

@@ -68,7 +68,6 @@
                     </div>
 
                     <div class="ativoDetalhes">
-                        <p class="text-center">Horário solicitado: 08h às 16h</p>
 
                         <button type="button" class="btn-detalhar">Mais</button>
                     </div>
@@ -88,7 +87,6 @@
                     </div>
 
                     <div class="ativoDetalhes">
-                        <p class="text-center">Horário solicitado: 08h às 16h</p>
 
                         <button type="button" class="btn-detalhar">Mais</button>
                     </div>
