@@ -685,6 +685,15 @@ input {
     color: #898585;
 }
 
+@media screen and (max-width:768px) {
+    .lista-servico {
+        display: flex;
+        flex-flow: column wrap;
+        align-items: flex-start;
+    }
+
+}
+
 
 /* Servico Pendentes */
 
@@ -865,6 +874,10 @@ input {
     font-weight: 600;
 
 
+}
+
+.btn-finalizar:hover {
+    transform: scale(1.03) translateY(-5px) translateX(3px);
 }
 
 
