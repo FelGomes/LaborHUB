@@ -12,134 +12,7 @@
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
-    <style>
-        .voltarPerfil>a {
-            font-size: 16pt;
-            margin-left: 50px;
-            color: black;
-            text-decoration: none;
-        }
 
-        .margem {
-            width: 100%;
-            color: blue;
-        }
-
-
-        .perfilCliente {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 10px;
-        }
-
-        .perfilDados {
-            margin-left: 40px !important;
-        }
-
-        .perfiServico {
-            margin-top: 50px;
-            padding: 15px;
-            border: 1px solid #00000041;
-            margin-right: 155px;
-            height: 220px;
-            border-radius: 10px;
-            box-shadow: var(--sombras);
-            display: flex;
-            flex-flow: column wrap;
-
-        }
-
-        .perfiServico>h6 {
-            font-weight: bold;
-            color: #22c55e;
-            font-size: 15pt;
-        }
-
-        .perfilName {
-            padding: 10px 0px 0px 10px;
-        }
-
-        .perfilName>h3 {
-            font-weight: bold;
-        }
-
-        .perfilName>h3,
-        p {
-            line-height: 1.1;
-        }
-
-        .perfilName>p {
-            line-height: 0.8;
-        }
-
-        .perfilImagem>img {
-            width: 230px !important;
-            height: 224px !important;
-            border-radius: 20px;
-        }
-
-        .perfilNotas>p {
-            text-align: justify;
-        }
-
-        .perfilDetalhes {
-            display: flex;
-            gap: 10px;
-            padding: 10px;
-            width: 50%;
-        }
-
-        .comentGroup {
-            display: flex;
-            padding: 10px;
-            justify-content: space-around;
-            width: 70%;
-            margin-left: 40px;
-            box-shadow: var(--sombras);
-            border-radius: var(--bordas);
-            border: 1px solid rgba(0, 0, 0, 0.175);
-            margin-bottom: 40px;
-        }
-
-        .perfilAvaliacao {
-            display: flex;
-            flex-flow: column wrap;
-        }
-
-        .perfilAvaliacao>h4 {
-            margin-left: 40px;
-            margin-top: 40px;
-        }
-
-        .avaliacaoGroup {
-            display: grid;
-            width: 100%;
-            grid-template-columns: repeat(3, 1fr);
-
-
-        }
-
-
-
-        .infoComent {
-            display: flex;
-            width: 100%;
-        }
-
-        .dataComentario {
-            margin-top: 5px;
-        }
-
-        .infoComentario {
-            margin-left: 10px;
-        }
-
-        .Imagecomentario {
-            width: 80px;
-            height: 80px;
-            border-radius: 20px;
-        }
-    </style>
 
 
 </head>
@@ -197,7 +70,7 @@
                             <i class="bi bi-star-fill fs-5"></i>
                             <i class="bi bi-star-fill fs-5"></i>
                             <i class="bi bi-star-fill fs-5"></i>
-                            <p>5.0(12.000)</p>
+                            <p>5.0 &nbsp;(12.000)</p>
 
                         </div>
 
@@ -236,12 +109,12 @@
                                         </div>
 
                                         <!-- Vai puxar o endereço conforme foi cadastrado -->
-                                         <div class="col-md-12 mt-3">
+                                        <div class="col-md-12 mt-3">
                                             <label for="solicitacao_endereço">Endereço</label>
                                             <input type="text" name="solicitacao_endereco" class="form-control" placeholder="Endereço para serviço" id="solicitacao_endereco" readonly>
                                         </div>
 
-                                         <div class="col-md-12 mt-3">
+                                        <div class="col-md-12 mt-3">
                                             <label for="solicitacao_observacao">Observação</label>
                                             <textarea name="solicitacao_observacao" class="form-control" placeholder="Observação do serviço" id="solicitacao_observacao">
 
