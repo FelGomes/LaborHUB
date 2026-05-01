@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--fontePrincipal);
+}
+
+
+
+:root {
+    --corPrincipal: #3B82F6;
+    --fontePrincipal: 'Montserrat', sans-serif;
+    --TamanhoFonte: 700;
+    --bordas: 5px;
+    --sombras: 0px 3px 5px rgba(0, 0, 0, 0.175);
+
+}
+
+html,
+body {
+    height: 70%;
+
+}
+
+main {
+    min-height: 90vh;
+}
