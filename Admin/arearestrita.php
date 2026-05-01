@@ -12,130 +12,6 @@
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
-    <style>
-        .topo {
-            display: flex;
-            margin-left: 50px;
-
-        }
-
-        .perfil {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-
-        }
-
-        .textoTela {
-            display: flex;
-            align-items: center;
-            padding-left: 20px;
-        }
-
-        .listagem {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-        }
-
-        .person {
-            display: flex;
-            align-items: center;
-        }
-
-        .cliente {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-
-        }
-
-        .cardList {
-            border: 1px solid rgba(0, 0, 0, 0.16);
-            width: 25%;
-            padding: 15px;
-            border-radius: 5px;
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.14);
-        }
-
-        .cardList>h5 {
-            font-weight: bold;
-            font-size: 18pt;
-        }
-
-        .cardList p {
-            line-height: 0.7;
-        }
-
-        .personInfo {
-            display: flex;
-        }
-
-        .info {
-            padding: 10px;
-        }
-
-        .info>h6 {
-            font-size: 14pt;
-        }
-
-        .info>p {
-            font-size: 10pt;
-            color: #535353d8;
-        }
-
-        .grafico {
-            display: flex;
-            justify-content: center;
-            height: 500px;
-            margin-top: 50px;
-        }
-
-        .listaGrafico {
-            height: 400px;
-            width: 79%;
-            border: 1px solid rgba(0, 0, 0, 0.16);
-            border-radius: 5px;
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.14);
-        }
-
-        @media screen and (max-width: 768px) {
-
-            .listagem {
-                display: flex;
-                flex-flow: column wrap;
-                align-items: center;
-            }
-
-            .cardList {
-                width: 70%;
-            }
-
-            .listaGrafico {
-                width: 70%;
-            }
-
-        }
-
-        @media (min-width: 768px) and (max-width: 1300px) {
-
-            .listagem {
-                display: flex;
-                flex-flow: column wrap;
-                align-items: center;
-            }
-
-            .cardList {
-                width: 70%;
-            }
-
-            .listaGrafico {
-                width: 70%;
-            }
-
-
-        }
-    </style>
 
 
 
@@ -164,7 +40,7 @@
                             </li>
 
                             <li>
-                                <a href="#" class="nav-link px-0 align-middle text-white">
+                                <a href="listaProfissional.php" class="nav-link px-0 align-middle text-white">
                                     <i class="bi bi-building fs-4"></i> <span class="ms-1 d-none d-sm-inline">Profissionais</span>
                                 </a>
                             </li>
@@ -173,7 +49,7 @@
                         <hr>
 
                         <div class="sair">
-                            <a href="logout.php" class="nav-link px-0 align-middle text-white">
+                            <a href="../Src/Public/Views/login.php" class="nav-link px-0 align-middle text-white">
                                 <i class="bi bi-arrow-bar-left fs-4"></i> <span class="ms-1 d-none d-sm-inline">Sair</span>
                             </a>
                         </div>
@@ -185,7 +61,7 @@
                     <div class="listagem mt-4">
 
                         <div class="cardList">
-                            <h5>Cliente mais assiduo</h5>
+                            <h5>Cliente mais assíduo</h5>
                             <p class="mb-4">Clientes que mais contrataram serviços</p>
 
                             <div class="personInfo ">
@@ -217,7 +93,7 @@
                         </div>
 
                         <div class="cardList">
-                            <h5>Empresa mais assidua</h5>
+                            <h5>Empresa mais assídua</h5>
                             <p class="mb-4">Empresa que mais contrataram serviços</p>
 
                             <div class="personInfo ">
@@ -288,13 +164,10 @@
                     <div class="grafico">
 
                         <div class="listaGrafico">
-                            <div class="item">A</div>
-                            <div class="item">A</div>
-                            <div class="item">A</div>
-                            <div class="item">A</div>
-                            <div class="item">A</div>
-                            <div class="item">A</div>
-                            <div class="item">A</div>
+                            <div id="myPlot" style="width:100%;max-width:700px">
+
+                            </div>
+
 
                         </div>
 
@@ -356,6 +229,31 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+
+    <script>
+        const xArray = [20, 9, 14, 4, 5];
+        const yArray = ["Pedreiro", "Encanador", "Eletricista", "Servente", "Marceneiro"];
+
+        const data = [{
+            x: xArray,
+            y: yArray,
+            type: "bar",
+            orientation: "h",
+            marker: {
+                color: "#3B82F6"
+            }
+        }]
+
+        const layout = {
+            title: "Serviços mais procurados"
+        };
+        Plotly.newPlot("myPlot", data, layout, {
+            displayModeBar: false
+        });
+    </script>
 
 
 </body>

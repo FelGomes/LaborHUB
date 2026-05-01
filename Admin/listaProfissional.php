@@ -16,6 +16,7 @@
 
 
 
+
 </head>
 
 <body>
@@ -34,13 +35,13 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link px-0 align-middle text-white">
+                                <a href="listaCliente.php" class="nav-link px-0 align-middle text-white">
                                     <i class="bi bi-person fs-4"></i> <span class="ms-1 d-none d-sm-inline">Clientes</span>
                                 </a>
                             </li>
 
                             <li>
-                                <a href="listaProfissional.php" class="nav-link px-0 align-middle text-white">
+                                <a href="#" class="nav-link px-0 align-middle text-white">
                                     <i class="bi bi-building fs-4"></i> <span class="ms-1 d-none d-sm-inline">Profissionais</span>
                                 </a>
                             </li>
@@ -58,14 +59,17 @@
 
                 <!-- Conteúdo Principal -->
                 <div class="col py-3">
-                    <h4>Listagem de Clientes</h4>
+                    <h4>Listagem de Profissionais</h4>
                     <div class="listagemBusca mt-4">
 
                         <form action="" role="search" method="POST">
                             <div class="row">
                                 <div class="campo col-12 col-md-6 col-lg-4 input-group">
                                     <input type="search" name="buscarUsuario" class="form-control" aria-label="Search" placeholder="Pesquise por um cliente" id="buscarUsuario">
-                                    <button type="button" class="btn btn-outline-primary">Buscar <i class="bi bi-search"></i> </button>
+                                    <div class="botao">
+
+                                        <button type="button" class="btn btn-outline-primary">Buscar <i class="bi bi-search"></i> </button>
+                                    </div>
 
                                 </div>
 
@@ -111,7 +115,7 @@
                                             <td>Felipe Ferreira Gomes</td>
                                             <td>felipeferreiraag0@gmail.com</td>
                                             <td>Masculino</td>
-                                            <td >Há 3 meses</td>
+                                            <td>Há 3 meses</td>
                                             <td> <button type="button" onclick="window.location.href='detalhamento.php'" class="btn btn-outline-primary">Buscar <i class="bi bi-plus"></i> </button></td>
                                         </tr>
                                         <tr>

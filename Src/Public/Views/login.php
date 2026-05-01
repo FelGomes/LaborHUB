@@ -23,7 +23,7 @@
         <div class="container-box">
             <div class="texto">
 
-                <h3>Olá, seja bem vindo ao Serviço Fácil!</h3>
+                <h3>Olá, seja bem vindo ao LaborHUB!</h3>
             </div>
             <div class="row ">
                 <form action="cadastro.php" method="post">
