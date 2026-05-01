@@ -427,8 +427,8 @@ header {
 }
 
 .info-imagem img {
-    width: 120px;
-    height: 120px;
+    width: 80px;
+    height: 80px;
     border: 25px !important;
 }
 
@@ -448,6 +448,7 @@ header {
 
 .info-dados>h5 {
     line-height: 1.2;
+    font-size: 14pt;
 }
 
 .info-status {
@@ -715,11 +716,18 @@ input {
     margin-bottom: 60px;
 }
 
+
 .infoService {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
 }
+
+.infoService>img {
+    width: 90px;
+    height: 90px;
+}
+
 
 .infoServicesName {
     padding: 10px;
@@ -728,6 +736,7 @@ input {
 
 .solicitacaoServices>h5 {
     line-height: 1.1;
+    font-size: 13pt;
 }
 
 .solicitacaoServices>p {
@@ -848,6 +857,12 @@ input {
 .ativoInfo {
     display: flex;
 }
+
+.ativoInfo> img {
+    width: 90px;
+    height: 90px;
+}
+
 
 .ativoDados {
     padding: 10px;
@@ -1012,9 +1027,9 @@ p {
     justify-content: space-around;
     width: 70%;
     margin-left: 40px;
-    box-shadow: var(--sombras);
-    border-radius: var(--bordas);
-    border: 1px solid rgba(0, 0, 0, 0.175);
+    /* box-shadow: var(--sombras); */
+    /* border-radius: var(--bordas); */
+    /* border: 1px solid rgba(0, 0, 0, 0.021); */
     margin-bottom: 40px;
 }
 

@@ -52,7 +52,7 @@
 
                 <div class="busca-historico mt-5 ">
                     <div class="row">
-                        <div class="campo col-md-6">
+                        <div class="campo col-md-12">
                             <input type="search" name="buscaHistorico" class="form-control" placeholder="Buscar nome" id="buscaHistorico">
 
                         </div>
