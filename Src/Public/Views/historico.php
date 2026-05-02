@@ -64,6 +64,7 @@
                         <ul>
                             <li><a href="">Último</a></li>
                             <li><a href="">Favorito</a></li>
+                            <li><a href="">Recusados</a></li>
                         </ul>
 
                     </div>

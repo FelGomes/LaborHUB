@@ -14,98 +14,7 @@
 
 
     <style>
-        .solicitacao {
-            display: flex;
-            margin-top: 50px;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .solicitacaoDados {
-            display: flex;
-            gap: 15px;
-            margin-left: 20px;
-        }
-
-        .solicitacaoImagem>img {
-            width: 230px !important;
-            height: 224px !important;
-            border-radius: 20px;
-        }
-
-        .solicitacaoInfo>h5 {
-            font-size: 13pt;
-        }
-
-        .solicitacaoConfirmar {
-            display: flex;
-            flex-flow: column wrap;
-            padding: 8px;
-            padding: 10px;
-            border: 1px solid #00000041;
-            margin-right: 155px;
-            height: 180px;
-            border-radius: 10px;
-            box-shadow: var(--sombras);
-        }
-
-        .solicitacaoBotao {
-            display: flex;
-            justify-content: center;
-
-
-        }
-
-        .solicitacaoObservacao {
-            width: 50%;
-            margin-top: 20px;
-            margin-left: 20px;
-        }
-
-        .solicitacaoObservacao>h4 {
-            font-size: 20pt;
-            font-weight: bold;
-        }
-
-        .solicitacaoObservacao>p {
-            text-align: justify;
-        }
-
-        @media screen and (max-width: 670px) {
-
-            .solicitacaoDados {
-                display: flex;
-                flex-flow: column wrap;
-            }
-
-
-        }
-
-        @media screen and (max-width: 1250px) {
-
-            .tituloSolicitacao {
-                margin-top: 40px !important;
-            }
-
-            .solicitacao {
-                display: flex;
-                flex-flow: column wrap;
-                align-items: flex-start;
-                gap: 50px;
-            }
-
-            .solicitacaoConfirmar {
-                margin-left: 20px;
-                margin-bottom: 40px;
-            }
-
-            .solicitacaoObservacao {
-                width: 80%;
-                margin-bottom: 30px;
-            }
-
-
-        }
+        
     </style>
 
 
@@ -129,7 +38,7 @@
         <nav>
             <ul class="mt-1 mb-5">
                 <li><a href="homeProfissional.php">Home</a></li>
-                <li><a href="#">Histórico</a></li>
+                <li><a href="historicoProfissional.php">Histórico</a></li>
                 <li><a href="#">Minhas avaliações</a></li>
 
             </ul>
@@ -176,7 +85,7 @@
                     </div>
 
                     <div class="solicitacaoBotao">
-                        <button type="button" class="btn-negar" data-bs-target="#modalrecusar" data-bs-dismiss="modal" data-bs-toggle="modal"  >Recusar</button>
+                        <button type="button" class="btn-negar" data-bs-target="#modalrecusar" data-bs-dismiss="modal" data-bs-toggle="modal">Recusar</button>
                         <button type="submit" class="btn-finalizar" style="margin-right: 0px !important">Aceitar</button>
 
                     </div>
@@ -191,7 +100,15 @@
                                 <div class="modal-body"> <!--COnteudo com os formulario-->
                                     <div class="row">
                                         <h4 class="text-center ">Deseja recusar esse serviço?</h4>
-                                        <p class="text-center mt-2 mb-5">Ao recusar esse serviço, você não consiguirá mais ver detalhes dele em sua conta!</p>
+                                        <p class="text-center mt-2 mb-3">Ao recusar esse serviço, você não consiguirá mais ver detalhes dele em sua conta!</p>
+
+                                        <div class="row">
+                                            <div class="col-md-12 mt-2 mb-4">
+                                                <label for="solicitacao_observacao">Observação</label>
+                                                <textarea name="solicitacao_observacao" class="form-control" placeholder="Descreva o motivo (opcional)" id="solicitacao_observacao">  </textarea>
+                                            </div>
+                                        </div>
+
 
                                         <div class="botaoModalDeletar mt-3">
 
