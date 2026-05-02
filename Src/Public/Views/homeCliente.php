@@ -84,7 +84,38 @@
                                     <img src="../../Assets/Images/FOTOPERFIL.png" alt="Foto">
                                 </div>
                                 <div class="info">
-                                    <strong>Felipe Ferreira Gomes</strong>
+                                    <h4><strong>Felipe Ferreira Gomes</strong></h4>
+                                    <p>Ceres, GO</p>
+                                    <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> 5.0 (12.200)
+
+                                    <h6 class="mt-2"><strong>Atendimento: </strong> Seg à Sexta</h6>
+                                </div>
+
+                            </div>
+
+                            <div class="texto mt-3">
+                                <p> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fuga architecto eos recusandae ut dolorum. Culpa cupiditate ipsum quaerat repudiandae, labore ratione earum, illum expedita voluptate in voluptatem! Delectus, provident laudantium! Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                            </div>
+
+                            <div class="valor">
+                                <h4>R$: 1.000,00 Total</h4>
+                            </div>
+
+                            <div class="botoes">
+                                <button type="submit" class="btn-perfil" onclick="window.location.href='perfil.php'" name="verPerfil">Ver perfil</button>
+                            </div>
+
+
+                        </div>
+
+                        <div class="item mb-3 ">
+                            <p id="tipoServico" class="text-end">Desenvolvedor</p>
+                            <div class="perfil">
+                                <div class="foto">
+                                    <img src="../../Assets/Images/Academia.jpeg" alt="Foto">
+                                </div>
+                                <div class="info">
+                                    <h4><strong>Felipe Ferreira Gomes</strong></h4>
                                     <p>Ceres, GO</p>
                                     <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> 5.0 (12.200)
                                 </div>
@@ -113,7 +144,7 @@
                                     <img src="../../Assets/Images/Academia.jpeg" alt="Foto">
                                 </div>
                                 <div class="info">
-                                    <strong>Felipe Ferreira Gomes</strong>
+                                    <h4><strong>Felipe Ferreira Gomes</strong></h4>
                                     <p>Ceres, GO</p>
                                     <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> 5.0 (12.200)
                                 </div>
@@ -142,7 +173,7 @@
                                     <img src="../../Assets/Images/Academia.jpeg" alt="Foto">
                                 </div>
                                 <div class="info">
-                                    <strong>Felipe Ferreira Gomes</strong>
+                                    <h4><strong>Felipe Ferreira Gomes</strong></h4>
                                     <p>Ceres, GO</p>
                                     <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> 5.0 (12.200)
                                 </div>
@@ -171,36 +202,7 @@
                                     <img src="../../Assets/Images/Academia.jpeg" alt="Foto">
                                 </div>
                                 <div class="info">
-                                    <strong>Felipe Ferreira Gomes</strong>
-                                    <p>Ceres, GO</p>
-                                    <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> 5.0 (12.200)
-                                </div>
-
-                            </div>
-
-                            <div class="texto mt-3">
-                                <p> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fuga architecto eos recusandae ut dolorum. Culpa cupiditate ipsum quaerat repudiandae, labore ratione earum, illum expedita voluptate in voluptatem! Delectus, provident laudantium! Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                            </div>
-
-                            <div class="valor">
-                                <h4>R$: 1.000,00 Total</h4>
-                            </div>
-
-                            <div class="botoes">
-                                <button type="submit" class="btn-perfil" onclick="window.location.href='perfil.php'" name="verPerfil">Ver perfil</button>
-                            </div>
-
-
-                        </div>
-
-                        <div class="item mb-3 ">
-                            <p id="tipoServico" class="text-end">Desenvolvedor</p>
-                            <div class="perfil">
-                                <div class="foto">
-                                    <img src="../../Assets/Images/Academia.jpeg" alt="Foto">
-                                </div>
-                                <div class="info">
-                                    <strong>Felipe Ferreira Gomes</strong>
+                                    <h4><strong>Felipe Ferreira Gomes</strong></h4>
                                     <p>Ceres, GO</p>
                                     <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> 5.0 (12.200)
                                 </div>

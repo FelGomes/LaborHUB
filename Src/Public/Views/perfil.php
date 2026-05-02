@@ -74,7 +74,11 @@
 
                         </div>
 
-                        <p>Eletricista</p>
+                        <h5 class="mb-3"><strong>Eletricista - </strong> Seg à Sexta</h5>
+
+                        
+                        
+
                         <h4>Sobre</h4>
                         <p>Profissional Avançado, trabalho na área a cerca de 5 anos. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio maiores quam autem quod, facilis omnis et perferendis dignissimos cum non, quaerat esse? Nam aliquam quibusdam laboriosam. Molestiae consequuntur possimus minus!</p>
 
@@ -89,6 +93,8 @@
             <div class="perfiServico">
                 <h5>Serviço</h5>
                 <h6>R$: Negociável</h6>
+
+
                 <button type="button" class="btn-finalizar mt-5" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Solicitar</button>
 
 
@@ -106,6 +112,11 @@
                                         <div class="col-md-12">
                                             <label for="solicitacao_data">Data de solicitação</label>
                                             <input type="date" name="solicitacao_data" class="form-control" placeholder="Data para o serviço" id="solicitacao_data">
+                                        </div>
+
+                                        <div class="col-md-12 mt-3">
+                                            <label for="solicitacao_quantidade">Quantidade de dias para serviço</label>
+                                            <input type="number" name="solicitacao_quantidade" class="form-control" placeholder="Quantidade de dias para o serviço" id="solicitacao_quantidade">
                                         </div>
 
                                         <!-- Vai puxar o endereço conforme foi cadastrado -->
@@ -321,7 +332,7 @@
     </main>
 
     <nav aria-label="...">
-        <ul class="pagination pagination-lg">
+        <ul class="pagination pagination-md">
             <li class="page-item active">
                 <a class="page-link" aria-current="page">1</a>
             </li>
@@ -336,7 +347,7 @@
 
             <div class="row">
                 <div class="col-lg-6 col-md-12 mb-4">
-                    <h5 class="text-uppercase">Serviço Fácil</h5>
+                    <h5 class="text-uppercase">LaborHUB</h5>
                     <p>
                         O sistema tem como finalidade de conectar cliente à prestadores de serviço a qualquer hora do dia
                     </p>

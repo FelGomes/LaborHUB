@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap');
 
 * {
     margin: 0;
@@ -11,16 +12,21 @@
 
 :root {
     --corPrincipal: #3B82F6;
-    --fontePrincipal: 'Montserrat', sans-serif;
+     font-family: 'Montserrat', sans-serif;
     --TamanhoFonte: 700;
     --bordas: 5px;
     --sombras: 0px 3px 5px rgba(0, 0, 0, 0.175);
 
 }
 
+html {
+    scroll-behavior:smooth;
+}
+
 html,
 body {
     height: 70%;
+
 
 }
 
@@ -104,7 +110,7 @@ main {
     justify-content: center;
     height: 500px;
     margin-top: 50px;
-   
+
 }
 
 .listaGrafico {

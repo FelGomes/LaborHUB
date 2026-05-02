@@ -1,22 +1,28 @@
 @charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap');
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: var(--fontePrincipal);
+    font-family: 'Montserrat', sans-serif;
 }
 
 
 
 :root {
     --corPrincipal: #3B82F6;
-    --fontePrincipal: 'Montserrat', sans-serif;
+    
     --TamanhoFonte: 700;
     --bordas: 5px;
     --sombras: 0px 3px 5px rgba(0, 0, 0, 0.175);
 
 }
+
+html {
+    scroll-behavior: smooth;
+}
+
 
 html,
 body {
@@ -77,8 +83,8 @@ header {
     color: black;
 }
 
-.btn-recusar {
-    width: 110px;
+.btn-solicitacao {
+    width: 130px;
     height: 50px;
     margin-right: 20px;
     border-radius: 8px;
@@ -90,7 +96,7 @@ header {
     cursor: pointer;
 }
 
-.btn-recusar:hover {
+.btn-solicitacao:hover {
     transform: scale(1.03) translateY(-2px) translateX(4px);
     background-color: var(--corPrincipal);
     color: rgb(255, 255, 255);
@@ -448,7 +454,7 @@ header {
 
 .info-dados>h5 {
     line-height: 1.2;
-    font-size: 14pt;
+    font-size: 12pt;
 }
 
 .info-status {
@@ -858,7 +864,7 @@ input {
     display: flex;
 }
 
-.ativoInfo> img {
+.ativoInfo>img {
     width: 90px;
     height: 90px;
 }
@@ -1081,6 +1087,7 @@ p {
         align-items: flex-start;
     }
 
+
     .perfilDados {
         display: flex;
         flex-flow: row wrap;
@@ -1110,11 +1117,16 @@ p {
     .avaliacaoGroup {
         display: flex;
         flex-flow: column wrap;
-        align-items: center;
+        align-items: flex-start;
     }
 
     .comentGroup {
         width: 80%;
+    }
+
+    .Imagecomentario {
+        width: 70px;
+        height: 70xp;
     }
 
 
@@ -1142,4 +1154,75 @@ p {
     }
 
 
+}
+
+
+/* TELA DE SERVIÇOS ATIVO */
+.modalAtivoInfo {
+    display: flex;
+}
+
+.modalAtivoDetalhes {
+    display: flex;
+    gap: 10px;
+}
+
+.modalImagem {
+    padding: 5px;
+}
+
+.modalObservacao {
+    width: 80%;
+    margin-left: 20px;
+    margin-bottom: 50px;
+}
+
+.modalObservacao>p {
+    text-align: justify;
+}
+
+.botaoServicoAtivo {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+
+.botaoModalDeletar {
+    display: flex;
+    justify-content: center;
+}
+
+.btn-finalizarSerivo {
+    width: 250px;
+    height: 40px;
+    border: 1px solid var(--corPrincipal);
+    box-shadow: var(--sombras);
+    border-radius: var(--bordas);
+    margin-right: 15px;
+    background-color: var(--corPrincipal);
+    color: white;
+    font-weight: 600;
+}
+
+.btn-finalizarSerivo:hover {
+    transform: scale(1.03) translateY(-5px) translateX(3px);
+}
+
+.btn-negar {
+    width: 150px;
+    height: 40px;
+    margin-right: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.103);
+    background-color: white;
+    border: 1px solid #6D6B6B;
+    color: black;
+    font-family: var(--fontePrincipal);
+    cursor: pointer;
+}
+
+.btn-negar:hover {
+    transform: scale(1.03) translateY(-2px) translateX(4px);
+    background-color: lightgray;
+    color: black;
 }

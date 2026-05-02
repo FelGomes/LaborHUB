@@ -100,7 +100,7 @@
                             </div>
                             <div class="botoes col-12 col-md-6 mt-5 mb-4 ms-auto mt-md-5 mb-md-4">
                                 <button type="submit" onclick="window.history.back()" class="btn-reset">Voltar</button>
-                                <button type="submit" name="enviar" class="btn-submit" onclick="proximaTela()">Continuar</button>
+                                <button type="submit" name="enviar" class="btn-submit" onclick="proximaTela()">Finalizar</button>
 
                             </div>
 
