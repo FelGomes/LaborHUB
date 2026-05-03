@@ -13,120 +13,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
 
-    <style>
-        .filtrosHistorico {
-            display: flex;
-            margin-top: 25px;
-            justify-content: space-between;
-        }
 
-        .listaHistorico {
-            margin-top: 50px;
-            margin-left: 30px;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-
-        }
-
-
-        .img-card {
-            width: 170px !important;
-            height: 170px !important;
-            border-radius: 20px;
-            margin: 10px 10px 0px 10px;
-
-        }
-
-
-        .status {
-            display: flex;
-            justify-content: flex-start;
-        }
-
-        .status>p {
-            color: #22C55E;
-            font-weight: bold;
-        }
-
-
-
-        .cardBotao {
-            display: flex;
-            justify-content: flex-end;
-            width: 320px
-        }
-
-
-        .cardBotaoExcluir {
-            margin-right: 25px;
-
-        }
-
-        .btn-deletar {
-            width: 150px;
-            height: 40px;
-            border: 1px solid #C52222;
-            box-shadow: var(--sombras);
-            border-radius: var(--bordas);
-            margin-right: 15px;
-            background-color: #C52222;
-            color: white;
-            font-weight: 600;
-
-
-        }
-
-        .btn-deletar:hover {
-            transform: scale(1.03) translateY(-5px) translateX(3px);
-        }
-
-
-        @media screen and (max-width: 768px) {
-
-            .filtrosHistorico {
-                display: flex;
-                margin-top: 25px;
-                flex-flow: column wrap;
-                align-items: flex-start;
-            }
-
-            .cardBotaoExcluir {
-                margin-left: 30px;
-
-            }
-
-
-
-            .listaHistorico {
-                display: flex;
-                flex-flow: column wrap;
-                align-items: flex-start;
-                padding-right: 10px;
-
-            }
-
-            .cardHistorico {
-                height: 43vh;
-                width: 100%;
-                margin-bottom: 10px;
-
-            }
-
-
-
-
-        }
-
-        @media (min-width: 768px) and (max-width: 1450px) {
-            .listaHistorico {
-                display: flex;
-                flex-flow: row wrap;
-                justify-content: center;
-            }
-
-        }
-    </style>
 
 
 </head>
@@ -181,8 +68,8 @@
         <div class="filtrosHistorico">
             <div class="lista">
                 <ul>
-                    <li><a href="">Concluídos</a></li>
-                    <li><a href="">Recusados</a></li>
+                    <li><a onclick="mostrar('concluidos')" href="#">Concluídos</a></li>
+                    <li><a onclick="mostrar('recusados')" href="#">Recusados</a></li>
                 </ul>
 
             </div>
@@ -201,7 +88,7 @@
                                 <form action="" method="post">
                                     <div class="row">
                                         <h4 class="text-center ">Deseja excluir todo histórico?</h4>
-                                        <p class="text-center mt-2 mb-3">Ao deletar todo histórico, você não conseguirá ver seus serviços prestados anteriormente!</p>
+                                        <p class="text-center mt-2 mb-3">Ao deletar todo histórico, você não conseguirá ver seus serviços prestados anteriormente! Somente comentários recebidos por serviços na aba- <strong> <a href="MinhasAvaliações.php">Minhas avaliações</a></strong> </p>
 
 
                                         <div class="botaoModalDeletar mt-5">
@@ -227,7 +114,7 @@
         </div>
 
 
-        <div class="listaHistorico ">
+        <div class="listaHistorico" id="form-concluidos">
 
             <div class="card mb-3" style="max-width: 540px;">
                 <div class="row g-0">
@@ -247,7 +134,43 @@
                             </div>
 
                             <div class="cardBotao mt-3">
-                                <button type="button" name="deletar" class="btn-deletar"> Excluir</button>
+                                <button type="button" name="deletar" class="btn-deletar" data-bs-target="#modalDeletarUnique" data-bs-dismiss="modal" data-bs-toggle="modal"> Excluir</button>
+                                <div class="modal fade modal-lg" id="modalDeletarUnique" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                                    <div class="modal-dialog modal-dialog-centered">
+
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body"> <!--COnteudo com os formulario-->
+                                                <form action="" method="post">
+                                                    <div class="row">
+                                                        <h4 class="text-center ">Deseja excluir histórico de: <strong>Felipe Ferreira Gomes</strong></h4>
+                                                        <p class="text-center mt-2 mb-3">Ao deletar este histórico, você não conseguirá ver mais detalhes referente a esse serviço, somente comentario referente ao mesmo na aba - <strong> <a href="MinhasAvaliações.php">Minhas avaliações</a></strong></p>
+
+
+                                                        <div class="botaoModalDeletar mt-5">
+
+                                                            <button type="button" data-bs-dismiss="modal" class="btn-negar"> Não</button>
+                                                            <button type="button" class="btn-finalizar">Sim</button>
+                                                        </div>
+
+
+
+                                                    </div>
+
+                                                </form>
+
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
                             </div>
 
 
@@ -336,6 +259,86 @@
                     </div>
                 </div>
             </div>
+
+
+        </div>
+
+
+        <div class="listaHistorico" id="form-recusados" style="display: none;">
+
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="../../Assets/Images/Academia.jpeg" class="img-card" alt="...">
+                    </div>
+                    <div class="col-md-7">
+                        <div class="card-body">
+                            <h4 class="card-title mb-2"><strong>Felipe Ferreira Gomes</strong></h4>
+                            <h6><strong>Contato: </strong> 62996496240</h6>
+                            <h6><strong>Data finalização: </strong> 01/05/2026</h6>
+                            <h6><strong>Endereço: </strong> Rua 18 QD-Z 18 LT-16 Jardim Sorriso II</h6>
+                            <h6><strong>Cidade: </strong> Ceres GO</h6>
+
+                            <div class="statusR">
+                                <p>Recusado</p>
+                            </div>
+
+                            <div class="descricao">
+                                <details>
+                                    <summary>Observação</summary>
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste animi adipisci ut vel
+                                        libero nobis obcaecati harum eius error quas perferendis, dicta praesentium amet
+                                        assumenda? Eligendi voluptas error sequi dolore. Lorem ipsum dolor, sit amet
+                                        consectetur adipisicing elit. Beatae repellendus temporibus excepturi assumenda
+                                        nesciunt, aliquid corrupti ex pariatur dolorum quae, veniam iure animi maxime soluta
+                                        facilis vero ipsum quia debitis.</p>
+                                </details>
+                            </div>
+
+                            <div class="cardBotao mt-3">
+                                <button type="button" name="deletar" class="btn-deletar" data-bs-target="#modalDeletarUniqueRecusado" data-bs-dismiss="modal" data-bs-toggle="modal"> Excluir</button>
+                                <div class="modal fade modal-lg" id="modalDeletarUniqueRecusado" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                                    <div class="modal-dialog modal-dialog-centered">
+
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body"> <!--COnteudo com os formulario-->
+                                                <form action="" method="post">
+                                                    <div class="row">
+                                                        <h4 class="text-center ">Deseja excluir histórico de: <strong>Felipe Ferreira Gomes</strong></h4>
+                                                        <p class="text-center mt-2 mb-3">Ao deletar este histórico, você não conseguirá ver mais detalhes referente a esse serviço, somente comentario referente ao mesmo na aba - <strong> <a href="MinhasAvaliações.php">Minhas avaliações</a></strong></p>
+
+
+                                                        <div class="botaoModalDeletar mt-5">
+
+                                                            <button type="button" data-bs-dismiss="modal" class="btn-negar"> Não</button>
+                                                            <button type="button" class="btn-finalizar">Sim</button>
+                                                        </div>
+
+
+
+                                                    </div>
+
+                                                </form>
+
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
 
         </div>
@@ -401,6 +404,17 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
+
+
+    <script>
+        function mostrar(tipo) {
+            document.getElementById("form-recusados").style.display = 'none';
+            document.getElementById("form-concluidos").style.display = 'none';
+
+            document.getElementById('form-' + tipo).style.display = 'block';
+
+        }
+    </script>
 
 
 </body>

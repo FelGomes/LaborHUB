@@ -1398,6 +1398,20 @@ p {
     font-weight: bold;
 }
 
+.statusR > p {
+    font-weight: bold;
+    color: #C52222;
+
+}
+
+summary {
+    font-weight: bold;
+}
+
+details p {
+    text-align: justify;
+}
+
 
 
 .cardBotao {
