@@ -362,7 +362,7 @@ img {
     .item {
         margin-bottom: 10px !important;
     }
-    
+
 }
 
 
@@ -593,7 +593,7 @@ input {
 
     }
 
-    .info-imagem > img {
+    .info-imagem>img {
         display: none;
     }
 
@@ -1358,5 +1358,120 @@ p {
         margin-bottom: 30px;
     }
 
+
+}
+
+
+/* Historico profissional */
+.filtrosHistorico {
+    display: flex;
+    margin-top: 25px;
+    justify-content: space-between;
+}
+
+.listaHistorico {
+    margin-top: 50px;
+    margin-left: 30px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+
+}
+
+
+.img-card {
+    width: 170px !important;
+    height: 170px !important;
+    border-radius: 20px;
+    margin: 10px 10px 0px 10px;
+
+}
+
+
+.status {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.status>p {
+    color: #22C55E;
+    font-weight: bold;
+}
+
+
+
+.cardBotao {
+    display: flex;
+    justify-content: flex-end;
+    width: 320px
+}
+
+
+.cardBotaoExcluir {
+    margin-right: 25px;
+
+}
+
+.btn-deletar {
+    width: 150px;
+    height: 40px;
+    border: 1px solid #C52222;
+    box-shadow: var(--sombras);
+    border-radius: var(--bordas);
+    margin-right: 15px;
+    background-color: #C52222;
+    color: white;
+    font-weight: 600;
+
+
+}
+
+.btn-deletar:hover {
+    transform: scale(1.03) translateY(-5px) translateX(3px);
+}
+
+
+@media screen and (max-width: 768px) {
+
+    .filtrosHistorico {
+        display: flex;
+        margin-top: 25px;
+        flex-flow: column wrap;
+        align-items: flex-start;
+    }
+
+    .cardBotaoExcluir {
+        margin-left: 30px;
+
+    }
+
+
+
+    .listaHistorico {
+        display: flex;
+        flex-flow: column wrap;
+        align-items: flex-start;
+        padding-right: 10px;
+
+    }
+
+    .cardHistorico {
+        height: 43vh;
+        width: 100%;
+        margin-bottom: 10px;
+
+    }
+
+
+
+
+}
+
+@media (min-width: 768px) and (max-width: 1450px) {
+    .listaHistorico {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+    }
 
 }

@@ -29,19 +29,6 @@
 
         }
 
-        /* .cardHistorico {
-            display: flex;
-            flex-flow: column wrap;
-            width: 80%;
-            height: 270px;
-            margin: 15px 0px 50px 15px;
-            padding: 20px 10px 10px 10px;
-            border: 1px solid rgba(0, 0, 0, 0.096);
-            box-shadow: var(--sombras);
-            border-radius: var(--bordas);
-        } */
-
-
 
         .img-card {
             width: 170px !important;
@@ -127,60 +114,18 @@
             }
 
 
-        }
 
-        /* 
-        @media (min-width: 768px) and (max-width: 1000px) {
-            .listaHistorico {
-                display: flex;
-                flex-flow: column wrap;
-                align-items: center;
-            }
-
-            .cardDetalhes {
-                width: 100%;
-            }
-
-            .cardImage>img {
-                width: 120px;
-                height: 120px;
-                border-radius: 20px;
-            }
-
-            .cardHistorico {
-                height: 100%;
-                padding-bottom: 20px;
-                margin-bottom: 15px;
-                display: flex;
-                justify-content: flex-start;
-
-            }
-
-            .cardInfo {
-                margin-left: 1px;
-            }
 
         }
 
-        @media (min-width: 1000px) and (max-width: 1400px) {
-
+        @media (min-width: 768px) and (max-width: 1450px) {
             .listaHistorico {
-                display: grid;
                 display: flex;
-                background-color: #C52222;
-                flex-flow: column wrap;
+                flex-flow: row wrap;
+                justify-content: center;
             }
 
-            .cardHistorico {
-                height: 100%;
-                padding-bottom: 20px;
-                margin-bottom: 15px;
-                display: flex;
-                justify-content: flex-start;
-
-            }
-
-        } */
+        }
     </style>
 
 
