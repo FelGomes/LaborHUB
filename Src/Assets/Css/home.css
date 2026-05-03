@@ -219,11 +219,6 @@ main {
     margin-right: 10px;
 }
 
-/* 
-.imagem > img {
-    margin-top: 5px;
-    margin-right: 35px;
-} */
 
 img {
     width: 140px;
@@ -294,6 +289,8 @@ img {
         /* margin-left: -25px; */
     }
 
+
+
     .sair {
         display: flex;
         flex-flow: column wrap;
@@ -318,20 +315,54 @@ img {
     }
 
     li {
-        /* border: 1px solid black; */
         padding: 5px;
         border-radius: 15px;
     }
 
 
     .listagem {
-        /* border: 1px solid black; */
         display: flex;
         flex-flow: column wrap;
         gap: 10px;
     }
 
+    .perfil {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
 
+    .foto {
+        margin-right: 0px;
+    }
+
+    .foto>img {
+        width: 100px;
+        height: 100px;
+
+    }
+
+    .info {
+        margin-left: 0px;
+    }
+
+
+
+
+}
+
+@media (min-width: 768px) and (max-width: 1100px) {
+
+    .listagem {
+        display: flex;
+        flex-flow: column wrap;
+        gap: 10px;
+    }
+
+    .item {
+        margin-bottom: 10px !important;
+    }
+    
 }
 
 
@@ -555,10 +586,20 @@ input {
     }
 
     .info-group {
-        display: grid;
-        grid-template-columns: 1fr;
+        display: flex;
         gap: 10px;
+        flex-flow: column wrap;
+        align-items: flex-start;
 
+    }
+
+    .info-imagem > img {
+        display: none;
+    }
+
+    #valorServico {
+        font-size: 15pt;
+        font-weight: bold;
     }
 
     .info-dados,
@@ -1033,9 +1074,6 @@ p {
     justify-content: space-around;
     width: 70%;
     margin-left: 40px;
-    /* box-shadow: var(--sombras); */
-    /* border-radius: var(--bordas); */
-    /* border: 1px solid rgba(0, 0, 0, 0.021); */
     margin-bottom: 40px;
 }
 

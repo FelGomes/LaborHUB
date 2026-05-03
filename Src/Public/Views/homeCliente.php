@@ -94,6 +94,7 @@
                             </div>
 
                             <div class="texto mt-3">
+                                <h4><strong>Observação</strong></h4>
                                 <p> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fuga architecto eos recusandae ut dolorum. Culpa cupiditate ipsum quaerat repudiandae, labore ratione earum, illum expedita voluptate in voluptatem! Delectus, provident laudantium! Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
                             </div>
 

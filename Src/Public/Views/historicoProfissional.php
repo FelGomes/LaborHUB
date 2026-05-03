@@ -14,39 +14,52 @@
 
 
     <style>
-        .listaHistorico {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            margin-top: 50px;
-            padding-right: 20px;
-            gap: 20px;
-            
-            
+        .filtrosHistorico {
+            display: flex;
+            margin-top: 25px;
+            justify-content: space-between;
         }
 
-        .cardHistorico {
+        .listaHistorico {
+            margin-top: 50px;
+            margin-left: 30px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+
+        }
+
+        /* .cardHistorico {
             display: flex;
             flex-flow: column wrap;
+            width: 80%;
             height: 270px;
-            margin: 15px 0px 20px 15px;
-            padding: 20px 0px 10px 10px;
+            margin: 15px 0px 50px 15px;
+            padding: 20px 10px 10px 10px;
             border: 1px solid rgba(0, 0, 0, 0.096);
             box-shadow: var(--sombras);
             border-radius: var(--bordas);
+        } */
+
+
+
+        .img-card {
+            width: 170px !important;
+            height: 170px !important;
+            border-radius: 20px;
+            margin: 10px 10px 0px 10px;
+
         }
 
-        .cardImage>img {
-            width: 90px;
-            height: 90px;
 
-        }
-
-        .cardDetalhes {
+        .status {
             display: flex;
+            justify-content: flex-start;
         }
 
-        .cardInfo {
-            padding-left: 10px;
+        .status>p {
+            color: #22C55E;
+            font-weight: bold;
         }
 
 
@@ -54,7 +67,13 @@
         .cardBotao {
             display: flex;
             justify-content: flex-end;
-            padding-right: 10px;
+            width: 320px
+        }
+
+
+        .cardBotaoExcluir {
+            margin-right: 25px;
+
         }
 
         .btn-deletar {
@@ -74,6 +93,94 @@
         .btn-deletar:hover {
             transform: scale(1.03) translateY(-5px) translateX(3px);
         }
+
+
+        @media screen and (max-width: 768px) {
+
+            .filtrosHistorico {
+                display: flex;
+                margin-top: 25px;
+                flex-flow: column wrap;
+                align-items: flex-start;
+            }
+
+            .cardBotaoExcluir {
+                margin-left: 30px;
+
+            }
+
+
+
+            .listaHistorico {
+                display: flex;
+                flex-flow: column wrap;
+                align-items: flex-start;
+                padding-right: 10px;
+
+            }
+
+            .cardHistorico {
+                height: 43vh;
+                width: 100%;
+                margin-bottom: 10px;
+
+            }
+
+
+        }
+
+        /* 
+        @media (min-width: 768px) and (max-width: 1000px) {
+            .listaHistorico {
+                display: flex;
+                flex-flow: column wrap;
+                align-items: center;
+            }
+
+            .cardDetalhes {
+                width: 100%;
+            }
+
+            .cardImage>img {
+                width: 120px;
+                height: 120px;
+                border-radius: 20px;
+            }
+
+            .cardHistorico {
+                height: 100%;
+                padding-bottom: 20px;
+                margin-bottom: 15px;
+                display: flex;
+                justify-content: flex-start;
+
+            }
+
+            .cardInfo {
+                margin-left: 1px;
+            }
+
+        }
+
+        @media (min-width: 1000px) and (max-width: 1400px) {
+
+            .listaHistorico {
+                display: grid;
+                display: flex;
+                background-color: #C52222;
+                flex-flow: column wrap;
+            }
+
+            .cardHistorico {
+                height: 100%;
+                padding-bottom: 20px;
+                margin-bottom: 15px;
+                display: flex;
+                justify-content: flex-start;
+
+            }
+
+        } */
     </style>
 
 
@@ -126,274 +233,167 @@
 
         </section>
 
-        <div class="filtrosHistorico text-start">
-            <ul>
-                <li><a href="">Concluídos</a></li>
-                <li><a href="">Recusados</a></li>
-            </ul>
+        <div class="filtrosHistorico">
+            <div class="lista">
+                <ul>
+                    <li><a href="">Concluídos</a></li>
+                    <li><a href="">Recusados</a></li>
+                </ul>
 
+            </div>
+
+            <div class="cardBotaoExcluir">
+                <button type="button" name="deletar" class="btn-deletar" data-bs-target="#modalDeletar" data-bs-dismiss="modal" data-bs-toggle="modal"> Excluir todos</button>
+
+                <div class="modal fade modal-lg" id="modalDeletar" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body"> <!--COnteudo com os formulario-->
+                                <form action="" method="post">
+                                    <div class="row">
+                                        <h4 class="text-center ">Deseja excluir todo histórico?</h4>
+                                        <p class="text-center mt-2 mb-3">Ao deletar todo histórico, você não conseguirá ver seus serviços prestados anteriormente!</p>
+
+
+                                        <div class="botaoModalDeletar mt-5">
+
+                                            <button type="button" data-bs-dismiss="modal" class="btn-negar"> Não</button>
+                                            <button type="button" class="btn-finalizar">Sim</button>
+                                        </div>
+
+
+
+                                    </div>
+
+                                </form>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
-        <div class="listaHistorico">
 
-            <div class="cardHistorico">
-                <div class="cardDetalhes">
 
-                    <div class="cardImage">
-                        <img src="../../Assets/Images/FOTOPERFIL.png" alt="">
+        <div class="listaHistorico ">
+
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="../../Assets/Images/Academia.jpeg" class="img-card" alt="...">
                     </div>
-                    <div class="cardInfo">
-                        <h4 class="mb-2"><strong>Felipe Ferreira Gomes</strong></h4>
-                        <h6><strong>Contato: </strong> 62996496240</h6>
-                        <h6><strong>Data finalização: </strong> 01/05/2026</h6>
-                        <h6><strong>Endereço: </strong> Rua 18 QD-Z 18 LT-16 Jardim Sorriso II</h6>
-                        <h6><strong>Cidade: </strong> Ceres GO</h6>
+                    <div class="col-md-7">
+                        <div class="card-body">
+                            <h4 class="card-title mb-2"><strong>Felipe Ferreira Gomes</strong></h4>
+                            <h6><strong>Contato: </strong> 62996496240</h6>
+                            <h6><strong>Data finalização: </strong> 01/05/2026</h6>
+                            <h6><strong>Endereço: </strong> Rua 18 QD-Z 18 LT-16 Jardim Sorriso II</h6>
+                            <h6><strong>Cidade: </strong> Ceres GO</h6>
+
+                            <div class="status">
+                                <p>Concluído</p>
+                            </div>
+
+                            <div class="cardBotao mt-3">
+                                <button type="button" name="deletar" class="btn-deletar"> Excluir</button>
+                            </div>
 
 
+                        </div>
                     </div>
                 </div>
-
-                <div class="cardBotao mt-3">
-                    <button type="button" name="deletar" class="btn-deletar"> Excluir</button>
-                    <button type="button" name="ver" class="btn-finalizar"> Ver</button>
-                </div>
-
             </div>
 
-            <div class="cardHistorico">
-                <div class="cardDetalhes">
-
-                    <div class="cardImage">
-                        <img src="../../Assets/Images/FOTOPERFIL.png" alt="">
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="../../Assets/Images/Academia.jpeg" class="img-card" alt="...">
                     </div>
-                    <div class="cardInfo">
-                        <h4 class="mb-2"><strong>Felipe Ferreira Gomes</strong></h4>
-                        <h6><strong>Contato: </strong> 62996496240</h6>
-                        <h6><strong>Data finalização: </strong> 01/05/2026</h6>
-                        <h6><strong>Endereço: </strong> Rua 18 QD-Z 18 LT-16 Jardim Sorriso II</h6>
-                        <h6><strong>Cidade: </strong> Ceres GO</h6>
+                    <div class="col-md-7">
+                        <div class="card-body">
+                            <h4 class="card-title mb-2"><strong>Felipe Ferreira Gomes</strong></h4>
+                            <h6><strong>Contato: </strong> 62996496240</h6>
+                            <h6><strong>Data finalização: </strong> 01/05/2026</h6>
+                            <h6><strong>Endereço: </strong> Rua 18 QD-Z 18 LT-16 Jardim Sorriso II</h6>
+                            <h6><strong>Cidade: </strong> Ceres GO</h6>
+
+                            <div class="status">
+                                <p>Concluído</p>
+                            </div>
+
+                            <div class="cardBotao mt-3">
+                                <button type="button" name="deletar" class="btn-deletar"> Excluir</button>
+                            </div>
 
 
+                        </div>
                     </div>
                 </div>
-
-                <div class="cardBotao mt-3">
-                    <button type="button" name="deletar" class="btn-deletar"> Excluir</button>
-                </div>
-
             </div>
 
-            <div class="cardHistorico">
-                <div class="cardDetalhes">
-
-                    <div class="cardImage">
-                        <img src="../../Assets/Images/FOTOPERFIL.png" alt="">
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="../../Assets/Images/Academia.jpeg" class="img-card" alt="...">
                     </div>
-                    <div class="cardInfo">
-                        <h4 class="mb-2"><strong>Felipe Ferreira Gomes</strong></h4>
-                        <h6><strong>Contato: </strong> 62996496240</h6>
-                        <h6><strong>Data finalização: </strong> 01/05/2026</h6>
-                        <h6><strong>Endereço: </strong> Rua 18 QD-Z 18 LT-16 Jardim Sorriso II</h6>
-                        <h6><strong>Cidade: </strong> Ceres GO</h6>
+                    <div class="col-md-7">
+                        <div class="card-body">
+                            <h4 class="card-title mb-2"><strong>Felipe Ferreira Gomes</strong></h4>
+                            <h6><strong>Contato: </strong> 62996496240</h6>
+                            <h6><strong>Data finalização: </strong> 01/05/2026</h6>
+                            <h6><strong>Endereço: </strong> Rua 18 QD-Z 18 LT-16 Jardim Sorriso II</h6>
+                            <h6><strong>Cidade: </strong> Ceres GO</h6>
+
+                            <div class="status">
+                                <p>Concluído</p>
+                            </div>
+
+                            <div class="cardBotao mt-3">
+                                <button type="button" name="deletar" class="btn-deletar"> Excluir</button>
+                            </div>
 
 
+                        </div>
                     </div>
                 </div>
-
-                <div class="cardBotao mt-3">
-                    <button type="button" name="deletar" class="btn-deletar"> Excluir</button>
-                </div>
-
             </div>
 
-            <div class="cardHistorico">
-                <div class="cardDetalhes">
-
-                    <div class="cardImage">
-                        <img src="../../Assets/Images/FOTOPERFIL.png" alt="">
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="../../Assets/Images/Academia.jpeg" class="img-card" alt="...">
                     </div>
-                    <div class="cardInfo">
-                        <h4 class="mb-2"><strong>Felipe Ferreira Gomes</strong></h4>
-                        <h6><strong>Contato: </strong> 62996496240</h6>
-                        <h6><strong>Data finalização: </strong> 01/05/2026</h6>
-                        <h6><strong>Endereço: </strong> Rua 18 QD-Z 18 LT-16 Jardim Sorriso II</h6>
-                        <h6><strong>Cidade: </strong> Ceres GO</h6>
+                    <div class="col-md-7">
+                        <div class="card-body">
+                            <h4 class="card-title mb-2"><strong>Felipe Ferreira Gomes</strong></h4>
+                            <h6><strong>Contato: </strong> 62996496240</h6>
+                            <h6><strong>Data finalização: </strong> 01/05/2026</h6>
+                            <h6><strong>Endereço: </strong> Rua 18 QD-Z 18 LT-16 Jardim Sorriso II</h6>
+                            <h6><strong>Cidade: </strong> Ceres GO</h6>
+
+                            <div class="status">
+                                <p>Concluído</p>
+                            </div>
+
+                            <div class="cardBotao mt-3">
+                                <button type="button" name="deletar" class="btn-deletar"> Excluir</button>
+                            </div>
 
 
+                        </div>
                     </div>
                 </div>
-
-                <div class="cardBotao mt-3">
-                    <button type="button" name="deletar" class="btn-deletar"> Excluir</button>
-                </div>
-
             </div>
-
-            <div class="cardHistorico">
-                <div class="cardDetalhes">
-
-                    <div class="cardImage">
-                        <img src="../../Assets/Images/FOTOPERFIL.png" alt="">
-                    </div>
-                    <div class="cardInfo">
-                        <h4 class="mb-2"><strong>Felipe Ferreira Gomes</strong></h4>
-                        <h6><strong>Contato: </strong> 62996496240</h6>
-                        <h6><strong>Data finalização: </strong> 01/05/2026</h6>
-                        <h6><strong>Endereço: </strong> Rua 18 QD-Z 18 LT-16 Jardim Sorriso II</h6>
-                        <h6><strong>Cidade: </strong> Ceres GO</h6>
-
-
-                    </div>
-                </div>
-
-                <div class="cardBotao mt-3">
-                    <button type="button" name="deletar" class="btn-deletar"> Excluir</button>
-                </div>
-
-            </div><div class="cardHistorico">
-                <div class="cardDetalhes">
-
-                    <div class="cardImage">
-                        <img src="../../Assets/Images/FOTOPERFIL.png" alt="">
-                    </div>
-                    <div class="cardInfo">
-                        <h4 class="mb-2"><strong>Felipe Ferreira Gomes</strong></h4>
-                        <h6><strong>Contato: </strong> 62996496240</h6>
-                        <h6><strong>Data finalização: </strong> 01/05/2026</h6>
-                        <h6><strong>Endereço: </strong> Rua 18 QD-Z 18 LT-16 Jardim Sorriso II</h6>
-                        <h6><strong>Cidade: </strong> Ceres GO</h6>
-
-
-                    </div>
-                </div>
-
-                <div class="cardBotao mt-3">
-                    <button type="button" name="deletar" class="btn-deletar"> Excluir</button>
-                </div>
-
-            </div>
-
-            <div class="cardHistorico">
-                <div class="cardDetalhes">
-
-                    <div class="cardImage">
-                        <img src="../../Assets/Images/FOTOPERFIL.png" alt="">
-                    </div>
-                    <div class="cardInfo">
-                        <h4 class="mb-2"><strong>Felipe Ferreira Gomes</strong></h4>
-                        <h6><strong>Contato: </strong> 62996496240</h6>
-                        <h6><strong>Data finalização: </strong> 01/05/2026</h6>
-                        <h6><strong>Endereço: </strong> Rua 18 QD-Z 18 LT-16 Jardim Sorriso II</h6>
-                        <h6><strong>Cidade: </strong> Ceres GO</h6>
-
-
-                    </div>
-                </div>
-
-                <div class="cardBotao mt-3">
-                    <button type="button" name="deletar" class="btn-deletar"> Excluir</button>
-                </div>
-
-            </div>
-            <div class="cardHistorico">
-                <div class="cardDetalhes">
-
-                    <div class="cardImage">
-                        <img src="../../Assets/Images/FOTOPERFIL.png" alt="">
-                    </div>
-                    <div class="cardInfo">
-                        <h4 class="mb-2"><strong>Felipe Ferreira Gomes</strong></h4>
-                        <h6><strong>Contato: </strong> 62996496240</h6>
-                        <h6><strong>Data finalização: </strong> 01/05/2026</h6>
-                        <h6><strong>Endereço: </strong> Rua 18 QD-Z 18 LT-16 Jardim Sorriso II</h6>
-                        <h6><strong>Cidade: </strong> Ceres GO</h6>
-
-
-                    </div>
-                </div>
-
-                <div class="cardBotao mt-3">
-                    <button type="button" name="deletar" class="btn-deletar"> Excluir</button>
-                </div>
-
-            </div>
-            <div class="cardHistorico">
-                <div class="cardDetalhes">
-
-                    <div class="cardImage">
-                        <img src="../../Assets/Images/FOTOPERFIL.png" alt="">
-                    </div>
-                    <div class="cardInfo">
-                        <h4 class="mb-2"><strong>Felipe Ferreira Gomes</strong></h4>
-                        <h6><strong>Contato: </strong> 62996496240</h6>
-                        <h6><strong>Data finalização: </strong> 01/05/2026</h6>
-                        <h6><strong>Endereço: </strong> Rua 18 QD-Z 18 LT-16 Jardim Sorriso II</h6>
-                        <h6><strong>Cidade: </strong> Ceres GO</h6>
-
-
-                    </div>
-                </div>
-
-                <div class="cardBotao mt-3">
-                    <button type="button" name="deletar" class="btn-deletar"> Excluir</button>
-                </div>
-
-            </div><div class="cardHistorico">
-                <div class="cardDetalhes">
-
-                    <div class="cardImage">
-                        <img src="../../Assets/Images/FOTOPERFIL.png" alt="">
-                    </div>
-                    <div class="cardInfo">
-                        <h4 class="mb-2"><strong>Felipe Ferreira Gomes</strong></h4>
-                        <h6><strong>Contato: </strong> 62996496240</h6>
-                        <h6><strong>Data finalização: </strong> 01/05/2026</h6>
-                        <h6><strong>Endereço: </strong> Rua 18 QD-Z 18 LT-16 Jardim Sorriso II</h6>
-                        <h6><strong>Cidade: </strong> Ceres GO</h6>
-
-
-                    </div>
-                </div>
-
-                <div class="cardBotao mt-3">
-                    <button type="button" name="deletar" class="btn-deletar"> Excluir</button>
-                </div>
-
-            </div>
-            <div class="cardHistorico">
-                <div class="cardDetalhes">
-
-                    <div class="cardImage">
-                        <img src="../../Assets/Images/FOTOPERFIL.png" alt="">
-                    </div>
-                    <div class="cardInfo">
-                        <h4 class="mb-2"><strong>Felipe Ferreira Gomes</strong></h4>
-                        <h6><strong>Contato: </strong> 62996496240</h6>
-                        <h6><strong>Data finalização: </strong> 01/05/2026</h6>
-                        <h6><strong>Endereço: </strong> Rua 18 QD-Z 18 LT-16 Jardim Sorriso II</h6>
-                        <h6><strong>Cidade: </strong> Ceres GO</h6>
-
-
-                    </div>
-                </div>
-
-                <div class="cardBotao mt-3">
-                    <button type="button" name="deletar" class="btn-deletar"> Excluir</button>
-                </div>
-
-            </div>
-
-
-
-
-
-
 
 
         </div>
-
-        
-
-
 
 
 
