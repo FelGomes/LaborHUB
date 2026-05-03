@@ -88,7 +88,7 @@
                                 <form action="" method="post">
                                     <div class="row">
                                         <h4 class="text-center ">Deseja excluir todo histórico?</h4>
-                                        <p class="text-center mt-2 mb-3">Ao deletar todo histórico, você não conseguirá ver seus serviços prestados anteriormente! Somente comentários recebidos por serviços na aba- <strong> <a href="MinhasAvaliações.php">Minhas avaliações</a></strong> </p>
+                                        <p class="text-center mt-2 mb-3">Ao deletar todo histórico, você não conseguirá ver seus serviços prestados anteriormente! Somente comentários recebidos por serviços anteriores na aba- <strong> <a href="MinhasAvaliações.php">Minhas avaliações.</a></strong> Serviços recusados serão deletados da sua base de dados. </p>
 
 
                                         <div class="botaoModalDeletar mt-5">
@@ -307,8 +307,8 @@
                                             <div class="modal-body"> <!--COnteudo com os formulario-->
                                                 <form action="" method="post">
                                                     <div class="row">
-                                                        <h4 class="text-center ">Deseja excluir histórico de: <strong>Felipe Ferreira Gomes</strong></h4>
-                                                        <p class="text-center mt-2 mb-3">Ao deletar este histórico, você não conseguirá ver mais detalhes referente a esse serviço, somente comentario referente ao mesmo na aba - <strong> <a href="MinhasAvaliações.php">Minhas avaliações</a></strong></p>
+                                                        <h4 class="text-center ">Deseja excluir histórico recusado de: <strong>Felipe Ferreira Gomes</strong></h4>
+                                                        <p class="text-center mt-2 mb-3">Ao deletar este histórico, você perderá todos os detalhes desta solicitação de serviço </p>
 
 
                                                         <div class="botaoModalDeletar mt-5">
