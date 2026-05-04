@@ -102,7 +102,7 @@
                                 <h4>R$: 1.000,00 Total</h4>
                             </div>
 
-                            <div class="botoes">
+                            <div class="botoes mb-2">
                                 <button type="submit" class="btn-perfil" onclick="window.location.href='perfil.php'" name="verPerfil">Ver perfil</button>
                             </div>
 

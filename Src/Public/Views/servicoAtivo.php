@@ -59,7 +59,7 @@
                                 <div class="row">
                                     <form action="" method="post">
                                         <h4 class="text-center ">Deseja finalizar todos o serviços? </h4>
-                                        <p class="text-center mt-2 mb-5">Ao finalizar todos os serviços não será possível visualizar nessa aba novamente. Todos estarão na página de histórico!</p>
+                                        <p class="text-center mt-2 mb-5">Ao finalizar todos os serviços não será possível visualizar nessa aba novamente. Todos estarão disponível na página de histórico!</p>
 
                                         <div class="botaoModalDeletar mt-3">
 

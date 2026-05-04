@@ -15,7 +15,7 @@
      font-family: 'Montserrat', sans-serif;
     --TamanhoFonte: 700;
     --bordas: 5px;
-    --sombras: 0px 3px 5px rgba(0, 0, 0, 0.175);
+    --sombras:  2px 2px 3px rgba(0, 0, 0, 0.199);
 
 }
 
@@ -76,7 +76,7 @@ main {
     width: 25%;
     padding: 15px;
     border-radius: 5px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.14);
+    box-shadow: var(--sombras)
 }
 
 .cardList>h5 {
@@ -120,7 +120,7 @@ main {
     width: 79%;
     border: 1px solid rgba(0, 0, 0, 0.16);
     border-radius: 5px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.14);
+    box-shadow: var(--sombras);
 }
 
 @media screen and (max-width: 768px) {
@@ -204,7 +204,7 @@ main {
     padding: 20px;
     border: 1px solid rgba(0, 0, 0, 0.16);
     border-radius: 5px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.14);
+    box-shadow: var(--sombras);
 
 }
 

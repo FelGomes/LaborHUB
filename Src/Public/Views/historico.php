@@ -12,6 +12,15 @@
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
+    <style>
+        .botaoRecusado {
+            display: flex;
+            justify-content: flex-end;
+            margin-right: 120px;
+            margin-top: 15px;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -47,11 +56,11 @@
             <div id="principal" class="container container-custom border mt-4 mb-5 pb-4">
                 <div class="titulo mt-3">
                     <h4 class="text-center">Veja serviços que você contratou</h4>
-                    <p class="text-center">Veja os últimos serviços que você solicitou e seus profissionais favoritos</p>
+                    <p class="text-center">Veja os últimos serviços que você solicitou, seus profissionais favoritos e outros status.</p>
                 </div>
 
                 <div class="busca-historico mt-5 ">
-                    <div class="row">
+                    <div class="col-sm">
                         <div class="campo col-md-12">
                             <input type="search" name="buscaHistorico" class="form-control" placeholder="Buscar nome" id="buscaHistorico">
 
@@ -62,9 +71,10 @@
 
                     <div class="filtros">
                         <ul>
-                            <li><a href="">Último</a></li>
-                            <li><a href="">Favorito</a></li>
-                            <li><a href="">Recusados</a></li>
+                            <li><a onclick="mostrar('ultimos')" return false href="#">Últimos</a></li>
+                            <li><a onclick="mostrar('favoritos')" return false href="#">Favoritos</a></li>
+                            <li><a onclick="mostrar('recusados')" return false href="#">Recusados</a></li>
+                            <li><a onclick="mostrar('pendentes')" return false href="#">Pendentes</a></li>
                         </ul>
 
                     </div>
@@ -75,92 +85,388 @@
 
 
                 <!-- listagem de historicos -->
+                <div id="form-ultimos" >
+                    <div class="lista-historico ">
 
-                <div class="lista-historico ">
+                        <div class="card-historico">
+                            <div class="info-group">
 
-                    <div class="card-historico">
-                        <div class="info-group">
+                                <div class="info-imagem">
+                                    <img src="../../Assets/Images/Academia.jpeg" alt="">
+                                </div>
+                                <div class="info-dados mt-2">
+                                    <h4>João Guilherme Silva</h4>
+                                    <h6>Eletricista</h6>
+                                    <h5>Data de início: 28/10/2025</h5>
+                                    <h5>Data de conclusão: 04/11/2025</h5>
 
-                            <div class="info-imagem">
-                                <img src="../../Assets/Images/Academia.jpeg" alt="">
-                            </div>
-                            <div class="info-dados mt-2">
-                                <h4>João Guilherme Silva</h4>
-                                <h6>Eletricista</h6>
-                                <h5>Data de início: 28/10/2025</h5>
-                                <h5>Data de conclusão: 04/11/2025</h5>
+                                    <h5 id="valorServico"><strong>Valor do serviço:</strong> R$200,00</h5>
 
-                                <h5 id="valorServico"><strong>Valor do serviço:</strong> R$200,00</h5>
-
-                            </div>
-                        </div>
-
-                        <div class="info-status">
-                            <div class="info-validation">
-                                <h5><strong>Sua avaliação</strong></h5>
-
+                                </div>
                             </div>
 
-                            <div class="detalhes">
-                                <h6 class="text-center"><strong>Atendimento Fantástico</strong></h6> <!--TIUTLO DO COMENTARIO-->
-                                <p class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad velit sint itaque quasi aliquid necessitatibus, nostrum aut totam placeat magni perferendis exercitationem dolores, quibusdam quae, saepe numquam voluptatum? In, ipsam?</p>
+                            <div class="info-status">
+                                <div class="info-validation">
+                                    <h5><strong>Sua avaliação</strong></h5>
 
-                                <div class="botao">
-                                    <i class="bi bi-star" id="favorito"></i>
-                                    <button class="btn-detalhar">Detalhar</button>
+                                </div>
+
+                                <div class="detalhes">
+                                    <h6 class="text-center"><strong>Atendimento Fantástico</strong></h6> <!--TIUTLO DO COMENTARIO-->
+                                    <p class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad velit sint itaque quasi aliquid necessitatibus, nostrum aut totam placeat magni perferendis exercitationem dolores, quibusdam quae, saepe numquam voluptatum? In, ipsam?</p>
+
+                                    <div class="botao">
+                                        <i class="bi bi-star" id="favorito"></i>
+                                        <button class="btn-detalhar" onclick="window.location.href='detalhamentoHistorico.php'">Detalhar</button>
+
+                                    </div>
 
                                 </div>
 
                             </div>
 
+
                         </div>
 
+                    </div>
+
+                    <div class="lista-historico ">
+
+                        <div class="card-historico">
+                            <div class="info-group">
+
+                                <div class="info-imagem">
+                                    <img src="../../Assets/Images/Academia.jpeg" alt="">
+                                </div>
+                                <div class="info-dados mt-2">
+                                    <h4>João Guilherme Silva</h4>
+                                    <h6>Eletricista</h6>
+                                    <h5>Data de início: 28/10/2025</h5>
+                                    <h5>Data de conclusão: 04/11/2025</h5>
+                                    <h5 id="valorServico"><strong>Valor do serviço:</strong> R$200,00</h5>
+
+
+                                </div>
+                            </div>
+
+                            <div class="info-status">
+                                <div class="info-validation">
+                                    <h5><strong>Sua avaliação</strong></h5>
+
+                                </div>
+
+                                <div class="detalhes">
+                                    <h6 class="text-center"><strong>Atendimento Fantástico</strong></h6> <!--TIUTLO DO COMENTARIO-->
+                                    <p class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad velit sint itaque quasi aliquid necessitatibus, nostrum aut totam placeat magni perferendis exercitationem dolores, quibusdam quae, saepe numquam voluptatum? In, ipsam?</p>
+
+                                    <div class="botao">
+                                        <i class="bi bi-star" id="favorito"></i>
+                                        <button class="btn-detalhar">Detalhar</button>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
 
                     </div>
 
                 </div>
 
-                <div class="lista-historico ">
 
-                    <div class="card-historico">
-                        <div class="info-group">
+                <!-- Listagem de apenas serviços favoritados -->
+                <div id="form-favoritos" style="display: none;">
+                    <div class="lista-historico ">
 
-                            <div class="info-imagem">
-                                <img src="../../Assets/Images/Academia.jpeg" alt="">
-                            </div>
-                            <div class="info-dados mt-2">
-                                <h4>João Guilherme Silva</h4>
-                                <h6>Eletricista</h6>
-                                <h5>Data de início: 28/10/2025</h5>
-                                <h5>Data de conclusão: 04/11/2025</h5>
-                                <h5 id="valorServico"><strong>Valor do serviço:</strong> R$200,00</h5>
+                        <div class="card-historico">
+                            <div class="info-group">
 
+                                <div class="info-imagem">
+                                    <img src="../../Assets/Images/Academia.jpeg" alt="">
+                                </div>
+                                <div class="info-dados mt-2">
+                                    <h4>João Guilherme Silva</h4>
+                                    <h6>Eletricista</h6>
+                                    <h5>Data de início: 28/10/2025</h5>
+                                    <h5>Data de conclusão: 04/11/2025</h5>
 
-                            </div>
-                        </div>
+                                    <h5 id="valorServico"><strong>Valor do serviço:</strong> R$200,00</h5>
 
-                        <div class="info-status">
-                            <div class="info-validation">
-                                <h5><strong>Sua avaliação</strong></h5>
-
+                                </div>
                             </div>
 
-                            <div class="detalhes">
-                                <h6 class="text-center"><strong>Atendimento Fantástico</strong></h6> <!--TIUTLO DO COMENTARIO-->
-                                <p class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad velit sint itaque quasi aliquid necessitatibus, nostrum aut totam placeat magni perferendis exercitationem dolores, quibusdam quae, saepe numquam voluptatum? In, ipsam?</p>
+                            <div class="info-status">
+                                <div class="info-validation">
+                                    <h5><strong>Sua avaliação</strong></h5>
 
-                                <div class="botao">
-                                    <i class="bi bi-star" id="favorito"></i>
-                                    <button class="btn-detalhar">Detalhar</button>
+                                </div>
+
+                                <div class="detalhes">
+                                    <h6 class="text-center"><strong>Atendimento Fantástico</strong></h6> <!--TIUTLO DO COMENTARIO-->
+                                    <p class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad velit sint itaque quasi aliquid necessitatibus, nostrum aut totam placeat magni perferendis exercitationem dolores, quibusdam quae, saepe numquam voluptatum? In, ipsam?</p>
+
+                                    <div class="botao">
+                                        <i class="bi bi-star" id="favorito"></i>
+                                        <button class="btn-detalhar">Detalhar</button>
+
+                                    </div>
 
                                 </div>
 
                             </div>
 
+
+                        </div>
+
+                    </div>
+
+                    <div class="lista-historico ">
+
+                        <div class="card-historico">
+                            <div class="info-group">
+
+                                <div class="info-imagem">
+                                    <img src="../../Assets/Images/Academia.jpeg" alt="">
+                                </div>
+                                <div class="info-dados mt-2">
+                                    <h4>João Guilherme Silva</h4>
+                                    <h6>Eletricista</h6>
+                                    <h5>Data de início: 28/10/2025</h5>
+                                    <h5>Data de conclusão: 04/11/2025</h5>
+                                    <h5 id="valorServico"><strong>Valor do serviço:</strong> R$200,00</h5>
+
+
+                                </div>
+                            </div>
+
+                            <div class="info-status">
+                                <div class="info-validation">
+                                    <h5><strong>Sua avaliação</strong></h5>
+
+                                </div>
+
+                                <div class="detalhes">
+                                    <h6 class="text-center"><strong>Atendimento Fantástico</strong></h6> <!--TIUTLO DO COMENTARIO-->
+                                    <p class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad velit sint itaque quasi aliquid necessitatibus, nostrum aut totam placeat magni perferendis exercitationem dolores, quibusdam quae, saepe numquam voluptatum? In, ipsam?</p>
+
+                                    <div class="botao">
+                                        <i class="bi bi-star" id="favorito"></i>
+                                        <button class="btn-detalhar">Detalhar</button>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Serviço recusados -->
+                <div id="form-recusados" style="display: none;">
+
+                    <div class="botaoRecusado">
+                        <button class="btn-deletar mt-2 mb-2" data-bs-target="#modalDeletarTodosHistoricoCliente" data-bs-dismiss="modal" data-bs-toggle="modal">Excluir todos</button>
+
+                        <div class="modal fade modal-lg" id="modalDeletarTodosHistoricoCliente" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                            <div class="modal-dialog modal-dialog-centered">
+
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body"> <!--COnteudo com os formulario-->
+                                        <form action="" method="post">
+                                            <div class="row">
+                                                <h4 class="text-center ">Deseja excluir todas solicitação recusadas?</h4>
+                                                <p class="text-center mt-2 mb-3">Ao deletar todas as solicitações você não conseguirá ver todas solicitações <strong>Recusadas.</strong> Tem certeza? </p>
+
+
+                                                <div class="botaoModalDeletar mt-5">
+
+                                                    <button type="button" data-bs-dismiss="modal" class="btn-negar"> Não</button>
+                                                    <button type="button" class="btn-finalizar">Sim</button>
+                                                </div>
+
+
+
+                                            </div>
+
+                                        </form>
+
+
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
 
 
                     </div>
+
+                    <div class="lista-historico ">
+
+                        <div class="card-historico">
+                            <div class="info-group">
+
+                                <div class="info-imagem">
+                                    <img src="../../Assets/Images/Academia.jpeg" alt="">
+                                </div>
+                                <div class="info-dados mt-2">
+                                    <h4>João Guilherme Silva</h4>
+                                    <h6>Eletricista</h6>
+                                    <h5>Data de solicitação: 28/10/2025</h5>
+
+                                    <h5 id="valorServico"><strong>Status: </strong><span style="color: #C52222; font-weight: bold ">Rescusado</span> </h5>
+
+                                </div>
+                            </div>
+
+                            <div class="info-status">
+
+
+                                <div class="detalhes">
+                                    <h6 class="text-start"><strong>Observação</strong></h6> <!--Observação de nao aceitar solicitação-->
+                                    <p class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad velit sint itaque quasi aliquid necessitatibus, nostrum aut totam placeat magni perferendis exercitationem dolores, quibusdam quae, saepe numquam voluptatum? In, ipsam?</p>
+
+                                    <div class="botao mt-2">
+                                        <button class="btn-deletar mt-2 mb-2" data-bs-target="#modalDeletarHistoricoCliente" data-bs-dismiss="modal" data-bs-toggle="modal">Excluir</button>
+
+                                        <div class="modal fade modal-lg" id="modalDeletarHistoricoCliente" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                                            <div class="modal-dialog modal-dialog-centered">
+
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body"> <!--COnteudo com os formulario-->
+                                                        <form action="" method="post">
+                                                            <div class="row">
+                                                                <h4 class="text-center ">Deseja excluir esta solicitação?</h4>
+                                                                <p class="text-center mt-2 mb-3">Ao deletar esta solicitação você perderá todos os detalhes dela. Tem certeza? </p>
+
+
+                                                                <div class="botaoModalDeletar mt-5">
+
+                                                                    <button type="button" data-bs-dismiss="modal" class="btn-negar"> Não</button>
+                                                                    <button type="button" class="btn-finalizar">Sim</button>
+                                                                </div>
+
+
+
+                                                            </div>
+
+                                                        </form>
+
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                    
+
+                </div>
+
+                <!-- Serviços Pendentes -->
+                <div id="form-pendentes" style="display: none;">
+
+
+
+                    <div class="lista-historico ">
+
+                        <div class="card-historico">
+                            <div class="info-group">
+
+                                <div class="info-imagem">
+                                    <img src="../../Assets/Images/Academia.jpeg" alt="">
+                                </div>
+                                <div class="info-dados mt-2">
+                                    <h4>João Guilherme Silva</h4>
+                                    <h6>Eletricista</h6>
+                                    <h5>Data de solicitação: 28/10/2025</h5>
+
+                                    <h5 id="valorServico"><strong>Status: </strong><span style="color: #F97316; font-weight: bold ">Pendente</span> </h5>
+
+                                </div>
+                            </div>
+
+                            <div class="info-status">
+
+
+                                <div class="detalhes">
+                                    <h6 class="text-start"><strong>Aviso!</strong></h6> <!--Observação de nao aceitar solicitação-->
+                                    <p class="text-justify">Sua solicitação de serviço foi enviado ao profissional, aguarde uma resposta. Caso deseje cancelar a solicitação, clique no botão abaixo!</p>
+
+                                    <div class="botao mt-2">
+                                        <button class="btn-pendente mt-2 mb-2" data-bs-target="#modalCancelarSolicitação" data-bs-dismiss="modal" data-bs-toggle="modal">Cancelar</button>
+
+                                        <div class="modal fade modal-lg" id="modalCancelarSolicitação" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                                            <div class="modal-dialog modal-dialog-centered">
+
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body"> <!--COnteudo com os formulario-->
+                                                        <form action="" method="post">
+                                                            <div class="row">
+                                                                <h4 class="text-center ">Deseja cancelar esta solicitação?</h4>
+                                                                <p class="text-center mt-2 mb-3">Ao cancelar esta solicitação ela desaparecerá para o profissional enviado. Tem certeza? </p>
+
+
+                                                                <div class="botaoModalDeletar mt-5">
+
+                                                                    <button type="button" data-bs-dismiss="modal" class="btn-negar"> Não</button>
+                                                                    <button type="button" class="btn-finalizar">Sim</button>
+                                                                </div>
+
+
+
+                                                            </div>
+
+                                                        </form>
+
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+
 
                 </div>
 
@@ -245,7 +551,18 @@
                 estrela.classList.add("bi-star");
             }
         });
+
+        function mostrar(tipo) {
+            document.getElementById("form-ultimos").style.display = 'none';
+            document.getElementById("form-favoritos").style.display = 'none';
+            document.getElementById("form-recusados").style.display = 'none';
+            document.getElementById("form-pendentes").style.display = 'none';
+
+            document.getElementById('form-' + tipo).style.display = 'block';
+
+        }
     </script>
+
 
 
 </body>

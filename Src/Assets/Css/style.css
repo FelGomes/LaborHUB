@@ -13,10 +13,9 @@
 
 :root {
     --corPrincipal: #3B82F6;
-    
     --TamanhoFonte: 700;
     --bordas: 5px;
-    --sombras: 0px 3px 5px rgba(0, 0, 0, 0.175)
+    --sombras:  2px 2px 3px rgba(0, 0, 0, 0.199);
 }
 
 html {
@@ -43,7 +42,7 @@ h2, .row > p {
 
 main>.container {
     border-radius: 10px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.103);
+    box-shadow: var(--sombras);
 }
 
 

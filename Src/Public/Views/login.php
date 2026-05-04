@@ -29,7 +29,7 @@
                 <form action="cadastro.php" method="post">
                     <div class="campos">
                         <div class="col-md-7 mb-3">
-                            <label for="usuarios_nome">Email</label>
+                            <label for="usuarios_email">Email</label>
                             <input type="email" name="usuarios_email" id="usuarios_email" placeholder="Digite seu email" class="login form-control" required>
 
                         </div>
@@ -47,7 +47,7 @@
                                 
                             </div>
                             <div>
-                                <a href="esqueciSenha.php">Esqueci minha senha</a>
+                                <a href="recuperacaoSenha.php">Esqueci minha senha</a>
 
                             </div>
                         </div>
