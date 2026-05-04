@@ -53,9 +53,9 @@
 
         <div class="perfilAvaliacao"> <!--Background gray -->
             <h4 class="mb-4"><strong>Suas Avaliações</strong></h4>
-            <div class="avaliacaoGroup"> <!--Listagem de avaliacoes -->
+            <div class="avaliacaoGroup "> <!--Listagem de avaliacoes -->
 
-                <div class="comentGroup "> <!--Bloco de comentario -->
+                <div class="comentGroup border "> <!--Bloco de comentario -->
                     <div class="infoComent "> <!--informaçoes do comentario -->
                         <div class="comentImage">
                             <img class="Imagecomentario" src="../../Assets/Images/comentario.jpg" alt="">
@@ -72,7 +72,7 @@
                             <h5 class="mt-3"><strong>Ótimo profissional</strong></h5>
                             <p>Ele foi super prestativo no serviço, trabalho bem feito, AMEI!!! </p>
 
-                            <div class="respostaBox" style="display: block;">
+                            <div class="respostaBox" style="display: none;">
                                 <textarea class="form-control" placeholder="Responder comentário..."></textarea>
                                 <button class="btn-solicitacao mt-4">Responder</button>
                             </div>
@@ -99,7 +99,7 @@
                 </div>
 
 
-                <div class="comentGroup"> <!--card -->
+                <div class="comentGroup border"> <!--card -->
                     <div class="infoComent"> <!--informaçoes do comentario -->
                         <div class="comentImage">
                             <img class="Imagecomentario" src="../../Assets/Images/comentario2.jpg" alt="">
@@ -135,7 +135,7 @@
 
                 </div>
 
-                <div class="comentGroup"> <!--Card -->
+                <div class="comentGroup border"> <!--Card -->
                     <div class="infoComent"> <!--informaçoes do comentario -->
                         <div class="comentImage">
                             <img class="Imagecomentario" src="../../Assets/Images/comentario3.jpg" alt="">
@@ -162,7 +162,7 @@
 
                 </div>
 
-                <div class="comentGroup"> <!--CARD -->
+                <div class="comentGroup border"> <!--CARD -->
                     <div class="infoComent"> <!--informaçoes do comentario -->
                         <div class="comentImage">
                             <img class="Imagecomentario" src="../../Assets/Images/comentario4.jpg" alt="">
@@ -189,7 +189,7 @@
 
                 </div>
 
-                <div class="comentGroup"> <!--Card -->
+                <div class="comentGroup border"> <!--Card -->
                     <div class="infoComent"> <!--informaçoes do comentario -->
                         <div class="comentImage">
                             <img class="Imagecomentario" src="../../Assets/Images/comentario.jpg" alt="">
@@ -216,7 +216,7 @@
 
                 </div>
 
-                <div class="comentGroup"> <!--Card-->
+                <div class="comentGroup border"> <!--Card-->
                     <div class="infoComent"> <!--informaçoes do comentario -->
                         <div class="comentImage">
                             <img class="Imagecomentario" src="../../Assets/Images/comentario4.jpg" alt="">
@@ -321,12 +321,15 @@
 
     <script>
         function toggleResposta(element) {
-            const box = element.closest('.comentGroup').querySelector('.respostaBox');
+            const comentario = element.closest('.comentGroup');
+            const box = comentario.querySelector('.respostaBox');
 
-            if (box.style.display === "none") {
-                box.style.display = "block";
-            } else {
-                box.style.display = "none";
+            const aberto = box.style.display === 'block';
+
+            document.querySelectorAll('.respostaBox').forEach(b => b.style.display = 'none');
+
+            if (!aberto) {
+                box.style.display = 'block';
             }
         }
     </script>

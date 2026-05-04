@@ -39,7 +39,7 @@
             <ul class="mt-1 mb-5">
                 <li><a href="homeCliente.php">Home</a></li>
                 <li><a href="historico.php">Histórico</a></li>
-                <li><a href="#">Agenda</a></li>
+                <li><a href="MinhasAvaliacao.php">Agenda</a></li>
 
             </ul>
 
