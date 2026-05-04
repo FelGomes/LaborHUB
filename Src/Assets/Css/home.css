@@ -94,6 +94,7 @@ header {
     color: rgb(255, 255, 255);
     font-family: var(--fontePrincipal);
     cursor: pointer;
+    font-weight: bold;
 }
 
 .btn-solicitacao:hover {
@@ -1080,6 +1081,7 @@ p {
     width: 70%;
     margin-left: 40px;
     margin-bottom: 40px;
+    gap: 5px;
 }
 
 .perfilAvaliacao {
@@ -1111,6 +1113,20 @@ p {
 
 .dataComentario {
     margin-top: 5px;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between
+}
+
+
+.icones {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.icones i {
+    cursor: pointer;
 }
 
 .infoComentario {
