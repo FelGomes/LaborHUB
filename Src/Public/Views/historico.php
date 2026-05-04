@@ -69,12 +69,12 @@
 
                     </div>
 
-                    <div class="filtros">
+                    <div class="filtros nav nav-underline">
                         <ul>
-                            <li><a onclick="mostrar('ultimos')" return false href="#">Últimos</a></li>
-                            <li><a onclick="mostrar('favoritos')" return false href="#">Favoritos</a></li>
-                            <li><a onclick="mostrar('recusados')" return false href="#">Recusados</a></li>
-                            <li><a onclick="mostrar('pendentes')" return false href="#">Pendentes</a></li>
+                            <li class="nav-item"> <a class="nav-link" onclick="mostrar('ultimos')" return false href="#">Últimos</a></li>
+                            <li class="nav-item"> <a class="nav-link" onclick="mostrar('favoritos')" return false href="#">Favoritos</a></li>
+                            <li class="nav-item"> <a class="nav-link" onclick="mostrar('recusados')" return false href="#">Recusados</a></li>
+                            <li class="nav-item"> <a class="nav-link" onclick="mostrar('pendentes')" return false href="#">Pendentes</a></li>
                         </ul>
 
                     </div>

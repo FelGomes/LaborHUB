@@ -67,9 +67,9 @@
 
         <div class="filtrosHistorico">
             <div class="lista">
-                <ul>
-                    <li><a onclick="mostrar('concluidos')" href="#">Concluídos</a></li>
-                    <li><a onclick="mostrar('recusados')" href="#">Recusados</a></li>
+                <ul class="filtros nav nav-underline" style="margin-left: 40px !important;">
+                    <li class="nav-item" style="font-size: 16pt; "> <a class="nav-link" onclick="mostrar('concluidos')" href="#">Concluídos</a></li>
+                    <li class="nav-item" style="font-size: 16pt; "> <a class="nav-link" onclick="mostrar('recusados')" href="#">Recusados</a></li>
                 </ul>
 
             </div>
@@ -275,7 +275,7 @@
                         <div class="card-body">
                             <h4 class="card-title mb-2"><strong>Felipe Ferreira Gomes</strong></h4>
                             <h6><strong>Contato: </strong> 62996496240</h6>
-                            <h6><strong>Data finalização: </strong> 01/05/2026</h6>
+                            <h6><strong>Data de solicitação: </strong> 01/05/2026</h6>
                             <h6><strong>Endereço: </strong> Rua 18 QD-Z 18 LT-16 Jardim Sorriso II</h6>
                             <h6><strong>Cidade: </strong> Ceres GO</h6>
 
