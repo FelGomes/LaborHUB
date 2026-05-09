@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Serviço Facil</title>
     <link rel="stylesheet" href="../../Assets/Css/home.css">
+    <link rel="shortcut icon" href="../../Assets/Images/Texto-do-seu-parágrafo.ico" type="image/x-icon">
 
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -21,19 +22,40 @@
     <header>
 
         <div class="topo mt-3">
+            <!-- <div class="logo "> -->
+            <a href="#" class="logo-link navbar-brand"> <img src="../../Assets/Images/Texto do seu parágrafo(3).png" class="logo" alt="Foto Escolhida"> </a>
+            <!-- </div> -->
+
             <div class="imagem">
-                <img src="../../Assets/Images/FOTOPERFIL.png" alt="Foto Escolhida">
+                <img src="../../Assets/Images/FOTOPERFIL.png" alt="Foto Escolhida" data-bs-toggle="offcanvas" data-bs-target="#sidebarPerfil">
             </div>
 
-            <div class="sair">
-                <p class="mt-2">Deseja sair da conta? </p>
-                <button onclick="window.location.href='login.php'" class="btn-sair">Sair</button>
+            <div class="offcanvas offcanvas-end" style="height: 100vh" tabindex="-1" id="sidebarPerfil">
+
+                <div class="offcanvas-header">
+                    <div class="comentImage">
+                        <img class="Imagecomentario" style="border-radius: 50% !important;" src="../../Assets/Images/comentario.jpg" alt="">
+
+                    </div>
+                    <h5> &nbsp; Felipe Ferreira Gomes</h5>
+                    <br>
+
+                    <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="offcanvas">
+                    </button>
+                </div>
+
+                <div class="offcanvas-body">
+                    <button onclick="window.location.href='login.php'" class="btn-sair">Sair</button>
+                </div>
+
             </div>
 
         </div>
 
         <nav>
-            <ul class="mt-1 mb-5">
+            <ul class="mt-1 mb-5 ">
                 <li><a href="#">Home</a></li>
                 <li><a href="historico.php">Histórico</a></li>
                 <li><a href="#">Agenda</a></li>

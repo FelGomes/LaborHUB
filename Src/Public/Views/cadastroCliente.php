@@ -7,11 +7,23 @@
     <title>Serviço Facil</title>
     <link rel="stylesheet" href="../../Assets/Css/style.css">
     <link rel="stylesheet" href="../../Assets/Css/mediaQuery.css">
-
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <style>
+
+        #fotoPerfil{
+            width: 100px;
+            height: 100px;
+            border-radius: 100px;
+            border: 2px solid red;
+            background-color: red;
+        }
+    </style>
+
+
+
 </head>
 
 <body>
@@ -21,11 +33,11 @@
                 <h4 class="text-center mt-3">Preencha seus dados pessoais e endereço</h4>
                 <h5 class="text-center mt-5">Foto de perfil</h5>
                 <form action="criarConta.php" method="post"> <!--Formulario para enviou de validação de dados -->
-                    <div class="text-center">
+                    <div class="text-center imagem perfil border">
                         <img id="fotoPerfil border" src="" alt="cliente">
                         <div class="inserir text-center">
 
-                            <input type="file" name="usuarios_imagem" id="imagem">
+                            <input type="file" name="usuarios_imagem" class="btn-finalizar" id="imagem">
                         </div>
                     </div>
                     <div class="cadastro mt-4">
@@ -307,7 +319,7 @@
 
             <div class="row">
                 <div class="col-lg-6 col-md-12 mb-4">
-                    <h5 class="text-uppercase">Serviço Fácil</h5>
+                    <h5 class="text-uppercase">LABORHUB</h5>
                     <p>
                         O sistema tem como finalidade de conectar cliente à prestadores de serviço a qualquer hora do dia
                     </p>
@@ -339,7 +351,7 @@
 
                 <!-- Texto de Copyright -->
                 <div class="text-center p-3">
-                    © 2026 Copyright: <a class="text-white" href="#">Equipe geral de desenvolvimento do serviço fácil</a>
+                    © 2026 Copyright: <a class="text-white" href="#">Equipe geral de desenvolvimento do LaborHUB</a>
                 </div>
             </div>
     </footer>
