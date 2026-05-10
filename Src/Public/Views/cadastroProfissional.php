@@ -23,7 +23,7 @@
                 <h5 class="text-center mt-5">Foto de perfil</h5>
                 <form action="criarConta.php" method="post"> <!--Formulario para enviou de validação de dados -->
                     <div class="text-center">
-                        <img id="fotoPerfil border" src="" alt="cliente">
+                        <i class="iconeFoto bi bi-person-circle"></i>
                         <div class="inserir text-center">
 
                             <input type="file" name="usuarios_imagem" id="imagem">
@@ -288,7 +288,7 @@
 
                             <div class="botoes col-md-6 ms-auto mt-5 mb-4">
                                 <button type="reset" class="btn-reset">Limpar formulario</button>
-                                <button type="submit" name="enviar" class="btn-submit" onclick="window.location.href='continuacaoProfissional.php'">Próximo</button>
+                                <button type="button" name="enviar" class="btn-submit" onclick="window.location.href='continuacaoProfissional.php'">Próximo</button>
 
                             </div>
 

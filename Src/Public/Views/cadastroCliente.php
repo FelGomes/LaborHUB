@@ -20,6 +20,8 @@
             border: 2px solid red;
             background-color: red;
         }
+
+        
     </style>
 
 
@@ -33,8 +35,8 @@
                 <h4 class="text-center mt-3">Preencha seus dados pessoais e endereço</h4>
                 <h5 class="text-center mt-5">Foto de perfil</h5>
                 <form action="criarConta.php" method="post"> <!--Formulario para enviou de validação de dados -->
-                    <div class="text-center imagem perfil border">
-                        <img id="fotoPerfil border" src="" alt="cliente">
+                    <div class="text-center imagem perfil">
+                        <i class="iconeFoto bi bi-person-circle"></i>
                         <div class="inserir text-center">
 
                             <input type="file" name="usuarios_imagem" class="btn-finalizar" id="imagem">

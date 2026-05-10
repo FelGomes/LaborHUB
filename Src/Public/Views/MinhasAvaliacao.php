@@ -29,27 +29,7 @@
                 <img src="../../Assets/Images/FOTOPERFIL.png" alt="Foto Escolhida" data-bs-toggle="offcanvas" data-bs-target="#sidebarPerfil">
             </div>
 
-            <div class="offcanvas offcanvas-end" style="height: 100vh" tabindex="-1" id="sidebarPerfil">
 
-                <div class="offcanvas-header">
-                    <div class="comentImage">
-                        <img class="Imagecomentario" style="border-radius: 50% !important;" src="../../Assets/Images/comentario.jpg" alt="">
-
-                    </div>
-                    <h5> &nbsp; Felipe Ferreira Gomes</h5>
-                    <br>
-
-                    <button type="button"
-                        class="btn-close"
-                        data-bs-dismiss="offcanvas">
-                    </button>
-                </div>
-
-                <div class="offcanvas-body">
-                    <button onclick="window.location.href='login.php'" class="btn-sair">Sair</button>
-                </div>
-
-            </div>
 
         </div>
 
@@ -65,6 +45,28 @@
     </header>
 
     <main>
+
+        <div class="offcanvas offcanvas-end" style="height: 100vh" tabindex="-1" id="sidebarPerfil">
+
+            <div class="offcanvas-header">
+                <div class="comentImage">
+                    <img class="Imagecomentario" style="border-radius: 50% !important;" src="../../Assets/Images/comentario.jpg" alt="">
+
+                </div>
+                <h5> &nbsp; Felipe Ferreira Gomes</h5>
+                <br>
+
+                <button type="button"
+                    class="btn-close"
+                    data-bs-dismiss="offcanvas">
+                </button>
+            </div>
+
+            <div class="offcanvas-body">
+                <button onclick="window.location.href='login.php'" class="btn-sair">Sair</button>
+            </div>
+
+        </div>
         <div class="voltarPerfil  ">
             <a href="homeCliente.php"><i class="bi bi-arrow-left"></i> Voltar</a>
 

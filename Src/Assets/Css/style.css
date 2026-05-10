@@ -15,11 +15,11 @@
     --corPrincipal: #3B82F6;
     --TamanhoFonte: 700;
     --bordas: 5px;
-    --sombras:  2px 2px 3px rgba(0, 0, 0, 0.199);
+    --sombras: 2px 2px 3px rgba(0, 0, 0, 0.199);
 }
 
 html {
-    scroll-behavior:smooth;
+    scroll-behavior: smooth;
 }
 
 
@@ -36,7 +36,8 @@ html {
     font-weight: 300;
 }
 
-h2, .row > p {
+h2,
+.row>p {
     font-weight: bold !important;
 }
 
@@ -45,6 +46,10 @@ main>.container {
     box-shadow: var(--sombras);
 }
 
+.iconeFoto {
+    font-size: 110px;
+    color: var(--corPrincipal);
+}
 
 
 .botoes {

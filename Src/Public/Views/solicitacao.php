@@ -14,7 +14,7 @@
 
 
     <style>
-        
+
     </style>
 
 
@@ -23,7 +23,7 @@
 <body>
     <header>
 
-       <div class="topo mt-3">
+        <div class="topo mt-3">
             <!-- <div class="logo "> -->
             <a href="#" class="logo-link navbar-brand"> <img src="../../Assets/Images/Texto do seu parágrafo(3).png" class="logo" alt="Foto Escolhida"> </a>
             <!-- </div> -->
@@ -32,27 +32,6 @@
                 <img src="../../Assets/Images/FOTOPERFIL.png" alt="Foto Escolhida" data-bs-toggle="offcanvas" data-bs-target="#sidebarPerfil">
             </div>
 
-            <div class="offcanvas offcanvas-end" style="height: 100vh" tabindex="-1" id="sidebarPerfil">
-
-                <div class="offcanvas-header">
-                    <div class="comentImage">
-                        <img class="Imagecomentario" style="border-radius: 50% !important;" src="../../Assets/Images/comentario.jpg" alt="">
-
-                    </div>
-                    <h5> &nbsp; Felipe Ferreira Gomes</h5>
-                    <br>
-
-                    <button type="button"
-                        class="btn-close"
-                        data-bs-dismiss="offcanvas">
-                    </button>
-                </div>
-
-                <div class="offcanvas-body">
-                    <button onclick="window.location.href='login.php'" class="btn-sair">Sair</button>
-                </div>
-
-            </div>
 
         </div>
 
@@ -68,12 +47,34 @@
     </header>
 
     <main>
+        <div class="offcanvas offcanvas-end" style="height: 100vh" tabindex="-1" id="sidebarPerfil">
 
-        <div class="voltarPerfil">
+            <div class="offcanvas-header">
+                <div class="comentImage">
+                    <img class="Imagecomentario" style="border-radius: 50% !important;" src="../../Assets/Images/comentario.jpg" alt="">
+
+                </div>
+                <h5> &nbsp; Felipe Ferreira Gomes</h5>
+                <br>
+
+                <button type="button"
+                    class="btn-close"
+                    data-bs-dismiss="offcanvas">
+                </button>
+            </div>
+
+            <div class="offcanvas-body">
+                <button onclick="window.location.href='login.php'" class="btn-sair">Sair</button>
+            </div>
+
+        </div>
+
+
+        <div class="voltarPerfil ">
             <a href="servicoPendentes.php"><i class="bi bi-arrow-left"></i> Voltar</a>
         </div>
 
-        <div class="tituloSolicitacao mt-2">
+        <div class="tituloSolicitacao  mt-2">
             <h3 class="text-center"> <a href=""><i class="bi bi-caret-left-fill"></i></a> Outras solicitações <a href=""><i class="bi bi-caret-right-fill"></i></a></h3>
         </div>
 
@@ -98,7 +99,7 @@
             </div>
 
             <form action="" method="post">
-                <div class="solicitacaoConfirmar">
+                <div class="solicitacaoConfirmar border">
 
                     <div class="solicitacaoTitulo">
                         <h5 class="text-center mt-4 mb-5"><strong>Solicitação de serviço</strong></h5>

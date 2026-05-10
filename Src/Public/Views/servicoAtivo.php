@@ -26,34 +26,14 @@
                 <img src="../../Assets/Images/FOTOPERFIL.png" alt="Foto Escolhida" data-bs-toggle="offcanvas" data-bs-target="#sidebarPerfil">
             </div>
 
-            <div class="offcanvas offcanvas-end" style="height: 100vh" tabindex="-1" id="sidebarPerfil">
 
-                <div class="offcanvas-header">
-                    <div class="comentImage">
-                        <img class="Imagecomentario" style="border-radius: 50% !important;" src="../../Assets/Images/comentario.jpg" alt="">
-
-                    </div>
-                    <h5> &nbsp; Felipe Ferreira Gomes</h5>
-                    <br>
-
-                    <button type="button"
-                        class="btn-close"
-                        data-bs-dismiss="offcanvas">
-                    </button>
-                </div>
-
-                <div class="offcanvas-body">
-                    <button onclick="window.location.href='login.php'" class="btn-sair">Sair</button>
-                </div>
-
-            </div>
 
         </div>
 
         <nav>
             <ul class="mt-1 mb-5">
                 <li><a href="homeProfissional.php">Home</a></li>
-               <li><a href="historicoProfissional.php">Histórico</a></li>
+                <li><a href="historicoProfissional.php">Histórico</a></li>
                 <li><a href="MinhasAvaliacao.php">Minhas avaliações</a></li>
 
             </ul>
@@ -62,6 +42,28 @@
     </header>
 
     <main>
+
+        <div class="offcanvas offcanvas-end" style="height: 100vh" tabindex="-1" id="sidebarPerfil">
+
+            <div class="offcanvas-header">
+                <div class="comentImage">
+                    <img class="Imagecomentario" style="border-radius: 50% !important;" src="../../Assets/Images/comentario.jpg" alt="">
+
+                </div>
+                <h5> &nbsp; Felipe Ferreira Gomes</h5>
+                <br>
+
+                <button type="button"
+                    class="btn-close"
+                    data-bs-dismiss="offcanvas">
+                </button>
+            </div>
+
+            <div class="offcanvas-body">
+                <button onclick="window.location.href='login.php'" class="btn-sair">Sair</button>
+            </div>
+
+        </div>
 
         <div id="principal" class="container container-custom border mt-4 mb-5 pb-4">
             <h3 class="text-center mt-4"> <a href="servicoPendentes.php" class="mt-2"><i class="bi bi-caret-left-fill"></i></a> &nbsp; Serviços Ativos</h3>
