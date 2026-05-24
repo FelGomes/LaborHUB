@@ -4,6 +4,7 @@
 namespace Controllers;
 
 use \Models\Database as Conexao;
+use \Utils\Email as Email;
 use \PDO;
 
 use \Utils\RenderView;
@@ -19,6 +20,7 @@ class PessoaFisica extends RenderView
     private $endereco;
     private $solicitacao;
     private $solicitacaoServicos;
+    private $profissionalId;
 
     public function __construct()
     {
@@ -29,6 +31,7 @@ class PessoaFisica extends RenderView
         $this->endereco = new Conexao('endereco');
         $this->solicitacao = new Conexao('solicitacao');
         $this->solicitacaoServicos = new Conexao('solicitacaoServico');
+        $this->profissionalId = $_POST['profissional_id'] ?? '';
     }
 
 
@@ -43,7 +46,7 @@ class PessoaFisica extends RenderView
 
 
 
-
+    // Lisrar a tela de usaurio tipo cliente
     public function index()
     {
         $data = [];
@@ -55,13 +58,20 @@ class PessoaFisica extends RenderView
 
         $data['listaProfissionais'] = $profissional;
 
+        // $solicitacao = $this->verificarPendencia($_SESSION['usuarios_logado']->usuarios_id, $this->profissionalId);
+        // $pendencia = $this->solicitacao->selectProfissionais($solicitacao)->fetch(PDO::FETCH_OBJ);
 
+        // if($pendencia->total > 0) {
+        //     $_SESSION['desabilitarSolicitacao'] = true;
+        // } else {
+        //     $_SESSION['desabilitarSolicitacao'] = false;
+        // }
 
         return $this->loadView('user/homeCliente/index', $data);
     }
 
 
-
+    // Função para enviar solicitação de serviço para usuario
     public function enviarSolicitacao()
     {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -114,6 +124,18 @@ class PessoaFisica extends RenderView
 
             if ($this->solicitacaoServicos->insert($valuesSolicitacaoServico)) {
                 $_SESSION['msg'] = ['texto' => "Solicitação enviada com sucesso!", 'color' => 'success'];
+
+                $dadosUsuario = $this->dadosEmailSolicitacao($profissionalId);
+                $emailDados = $this->solicitacaoServicos->selectProfissionais($dadosUsuario)->fetch(PDO::FETCH_OBJ);
+
+
+                $email = new Email();
+                $email->enviarSolicitacao($emailDados->email);
+
+
+
+
+
             } else {
                 $_SESSION['msg'] = ['texto' => "Erro ao solicitar serviço!", 'color' => 'danger'];
             }
@@ -122,7 +144,7 @@ class PessoaFisica extends RenderView
         return $this->listaProfissionais->perfil($profissionalId); // ← sempre volta para o perfil
     }
 
-
+    // Buscar endereco de usaurio que enviou solicitaçao
     public function buscarEndereco()
     {
         $usuarioId = $_SESSION['usuarios_logado']->usuarios_id;
@@ -131,5 +153,51 @@ class PessoaFisica extends RenderView
 
 
         return $this->endereco->select($join, $where)->fetch(PDO::FETCH_OBJ);
+    }
+
+
+    // public function verificarPendencia($usuarioId, $profissionalId)
+    // {
+    //     // Busca se existe algum registro com o ID desse cliente e desse profissional com status 'Pendente'
+    //    return "SELECT count(*) as total 
+    //         FROM solicitacao
+    //         INNER JOIN solicitacaoServico ON solicitacao_id = solicitacaoServico_solicitacao_id
+    //         INNER JOIN servicos ON solicitacaoServico_servicos_id = servicos_id
+    //         WHERE solicitacao_usuarios_id = $usuarioId 
+    //         AND servicos_usuarios_id = $profissionalId 
+    //         AND solicitacao_status = 'Pendente'
+    //         LIMIT 1";
+
+
+    // }
+
+
+    // FUnção para enviar email para prestador de serviço
+    public function dadosEmailSolicitacao($usuarioId)
+    {
+        return "
+        SELECT
+
+            -- EMAIL DO CLIENTE
+            u_prof.usuarios_email AS email
+
+
+        FROM solicitacaoServico ss
+
+        INNER JOIN servicos s 
+            ON s.servicos_id = ss.solicitacaoServico_servicos_id
+
+        -- PROFISSIONAL DONO DO SERVIÇO
+        INNER JOIN usuarios u_prof 
+            ON u_prof.usuarios_id = s.servicos_usuarios_id
+
+        LEFT JOIN pessoaFisica pf_prof 
+            ON pf_prof.pf_usuarios_id = u_prof.usuarios_id
+
+        LEFT JOIN pessoaJuridica pj_prof 
+            ON pj_prof.pj_usuarios_id = u_prof.usuarios_id
+
+        WHERE s.servicos_usuarios_id =  '$usuarioId'
+    ";
     }
 }

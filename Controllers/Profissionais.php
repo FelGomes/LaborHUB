@@ -57,7 +57,7 @@ class Profissionais extends RenderView
     }
 
 
-
+    // Mostrar comentarios de cada prestador de serviço na tela de perfil
     public function comentarios($usuariosAvaliadoId)
     {
 

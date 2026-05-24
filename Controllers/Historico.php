@@ -34,7 +34,7 @@ class Historico extends RenderView
     }
 
 
-
+    // Listar historico com servicos finalizado, pendente e recusados
     public function index()
     {
 
@@ -57,7 +57,7 @@ class Historico extends RenderView
         return $this->loadView('user/homeCliente/historico', $data);
     }
 
-
+    // Cancelar solicitação pendente
     public function cancelar($solicitacaoId)
     {
 
@@ -84,15 +84,16 @@ class Historico extends RenderView
         return $this->redirect(base_url('historico/index'));
     }
 
+     // Funçao para deletar todas solicitações recusada
     public function deletarAll()
     {
 
         $valuesRecusado = [
-            'servicos_status' => 'Excluido',
-            'servicos_deletado_em' => date('Y-m-d'),
+            'solicitacao_status' => 'Excluido',
+            'solicitacao_deletada_em' => date('Y-m-d'),
         ];
 
-        $where = "solicitacao_usuarios_id = '$this->usuarioID";
+        $where = "solicitacao_usuarios_id = '$this->usuarioID'";
 
         if ($this->solicitacao->update($where, $valuesRecusado)) {
             $_SESSION['msg'] = ['texto' => 'Solicitação excluída com sucesso!', 'color' => 'success'];
@@ -103,7 +104,7 @@ class Historico extends RenderView
         return $this->redirect(base_url('historico/index'));
     }
 
-
+    // Funçao para deletar uma solicitação recusada em especifico
     public function deletarUnique($solicitacaoID)
     {
         if (!$solicitacaoID) {
@@ -131,7 +132,7 @@ class Historico extends RenderView
 
 
 
-    // Vai listar todas as solicitações que foram finalizadas pelo profissional
+    // Vai listar todas as solicitações que foram finalizadas pelo profissional - view historico
     public function listarHistoricoFinalizado()
     {
         return "SELECT 
@@ -181,6 +182,8 @@ class Historico extends RenderView
         WHERE u_cliente.usuarios_id = '$this->usuarioID' AND so.solicitacao_status = 'Finalizado'
         ORDER BY so.solicitacao_conclusao DESC";
     }
+
+    // Selec para listar dados de solicitações pendentes - viww historico
     public function listarHistoricoPendente()
     {
         return "SELECT 
@@ -226,7 +229,8 @@ class Historico extends RenderView
             WHERE u_cliente.usuarios_id = '$this->usuarioID' AND so.solicitacao_status = 'Pendente'
             ORDER BY so.solicitacao_id DESC";
     }
-
+    
+    // Selec para retornar dados de solicitações recusados - view historico
     public function listarHistoricoRecusado()
     {
         return "SELECT 

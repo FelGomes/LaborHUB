@@ -181,8 +181,6 @@
                 <h5>Serviço</h5>
                 <h6>R$: <?= esc(number_format($servicoValor, '2', ',', '.') . ' - ' . $servicoCobranca) ?> </h6>
 
-
-
                 <button type="button" class="btn-finalizar mt-5" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Solicitar</button>
 
 

@@ -24,10 +24,11 @@ $routes = [
 '/historico/cancelar/:id'           => ['Historico', 'cancelar'],
 '/historico/deletarAll'             => ['Historico', 'deletarAll'],
 '/historico/deletarUnique:id'       => ['Historico', 'deletarUnique'],
-'/profissional/detalhesSolicitacao/:id'         => ['PessoaJuridica', 'detalhesSolicitacao'],
+'/profissional/detalhesSolicitacao/:id' => ['PessoaJuridica', 'detalhesSolicitacao'],
 '/pessoaJuridica/aceitar/:id'       => ['PessoaJuridica', 'aceitar'],
 '/pessoaJuridica/recusar/:id'       => ['PessoaJuridica', 'recusar'],         
-
+'/pessoaJuridica/finalizarUnique/:id'=> ['PessoaJuridica', 'finalizarUnique'],
+'/pessoaJuridica/finalizarAll'   => ['PessoaJuridica', 'finalizarAll'],
 
 
 '/login/logout' => ['Login', 'logout'],

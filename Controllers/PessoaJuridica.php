@@ -78,6 +78,9 @@ class PessoaJuridica extends RenderView
         $data = [];
         $data['pagina'] = 'Serviços ativos';
 
+        $solicitacaoAtivas = $this->servicosAtivos();
+        $data['solicitacaoAtivas'] = $this->solicitacaoServico->selectProfissionais($solicitacaoAtivas)->fetchAll(PDO::FETCH_OBJ);
+
         return $this->loadView('user/homeProfissional/servicosAtivos', $data);
     }
 
@@ -88,6 +91,7 @@ class PessoaJuridica extends RenderView
         $data['solicitacaoPendente'] = 'Dados Pendentes';
         $solicitacaoPendente = $this->servicosPendentes();
         $data['solicitacaoPendente'] = $this->solicitacaoServico->selectProfissionais($solicitacaoPendente)->fetch(PDO::FETCH_OBJ);
+
         return $this->loadView('user/homeProfissional/solicitacao', $data);
     }
 
@@ -116,7 +120,6 @@ class PessoaJuridica extends RenderView
 
             $email = new Email();
             $email->solicitacaoServico($emailDados->email, $emailDados->nome, $emailDados->servico, $status);
-
         } else {
 
             $_SESSION['msg'] = [
@@ -130,7 +133,7 @@ class PessoaJuridica extends RenderView
 
 
 
-     public function recusar($solicitacaoId)
+    public function recusar($solicitacaoId)
     {
 
         $values = [
@@ -155,7 +158,6 @@ class PessoaJuridica extends RenderView
 
             $email = new Email();
             $email->solicitacaoServico($emailDados->email, $emailDados->nome, $emailDados->servico, $status);
-
         } else {
 
             $_SESSION['msg'] = [
@@ -166,6 +168,53 @@ class PessoaJuridica extends RenderView
 
         return $this->redirect(base_url('user/homeProfissional/index'));
     }
+
+
+
+    public function finalizarAll()
+    {
+        $sql = "UPDATE solicitacao so
+                    INNER JOIN solicitacaoServico ss on ss.solicitacaoServico_solicitacao_id = so.solicitacao_id
+                    INNER JOIN servicos s on ss.solicitacaoServico_servicos_id = s.servicos_id
+                    Set so.solicitacao_status = 'Finalizado',
+                    so.solicitacao_conclusao = NOW()
+                    WHERE s.servicos_usuarios_id = '$this->usuarioId'";
+
+        if ($this->solicitacaoServico->selectProfissionais($sql)) {
+            $_SESSION['msg'] = ['texto' => 'Solicitações excluídas com sucesso!', 'color' => 'success'];
+
+            
+        } else {
+            $_SESSION['msg'] = ['texto' => 'Erro ao excluir as solicitações, tente novamente!', 'color' => 'danger'];
+        }
+
+        return $this->telaAtivas();
+    }
+
+    // Funçao para deletar uma solicitação recusada em especifico
+    public function finalizarUnique($solicitacaoID)
+    {
+        if (!$solicitacaoID) {
+            return $this->redirect(base_url('user/homeProfissional/servicosAtivos'));
+        }
+
+        $sql = "UPDATE solicitacao so
+                    INNER JOIN solicitacaoServico ss on ss.solicitacaoServico_solicitacao_id = so.solicitacao_id
+                    Set so.solicitacao_status = 'Finalizado',
+                    so.solicitacao_conclusao = NOW()
+                    WHERE so.solicitacao_id = '$solicitacaoID'";
+
+        if ($this->solicitacaoServico->selectProfissionais($sql)) {
+            $_SESSION['msg'] = ['texto' => 'Serviço finalizado com sucesso!', 'color' => 'success'];
+        } else {
+
+            $_SESSION['msg'] = ['texto' => 'Erro ao finalizar esse serviço tente novamente!', 'color' => 'danger'];
+        }
+
+        return $this->telaAtivas();
+    }
+
+
 
 
 
@@ -250,6 +299,50 @@ class PessoaJuridica extends RenderView
             
             -- Filtra pelo ID do cliente logado e status Pendente
             WHERE servicos_usuarios_id = '$this->usuarioId' AND so.solicitacao_status = 'Pendente'
+            ORDER BY so.solicitacao_id DESC";
+    }
+
+    public function servicosAtivos()
+    {
+
+        return "SELECT 
+           COALESCE(
+                CONCAT(pf_cliente.pf_nome, ' ', pf_cliente.pf_sobrenome),
+                pj_cliente.pj_nomeFantasia
+            ) AS nome,
+            u_cliente.usuarios_imagem as usuariosImagem,
+            u_cliente.usuarios_id,
+            u_cliente.usuarios_email as email,
+            u_cliente.usuarios_telefone as telefone,
+            e.endereco_rua as rua,
+            e.endereco_complemento as complemento,
+            e.endereco_bairro as bairro,
+            e.endereco_numero as numero,
+            e.endereco_descricao as descricao,
+            e.endereco_cidade as cidade,
+            e.endereco_uf as uf,
+            so.solicitacao_id,
+            so.solicitacao_data_atual as solicitacao_data_atual,
+            so.solicitacao_data as solicitacao_data,
+            so.solicitacao_quantidade as quantidade,
+            servicos_nome,
+            so.solicitacao_observacao as observacao,
+            servicos_id
+
+
+            from solicitacaoServico
+
+            INNER JOIN solicitacao so on solicitacaoServico_solicitacao_id = so.solicitacao_id
+            INNER JOIN servicos on solicitacaoServico_servicos_id = servicos_id
+            INNER JOIN usuarios u_cliente ON u_cliente.usuarios_id = so.solicitacao_usuarios_id
+            
+            -- Instância 2: O Dono do serviço (O Profissional)
+            LEFT JOIN pessoaFisica pf_cliente ON pf_cliente.pf_usuarios_id = u_cliente.usuarios_id 
+            LEFT JOIN pessoaJuridica pj_cliente ON pj_cliente.pj_usuarios_id = u_cliente.usuarios_id
+            left JOIN endereco e on e.endereco_usuarios_id = u_cliente.usuarios_id
+            
+            -- Filtra pelo ID do cliente logado e status Pendente
+            WHERE servicos_usuarios_id = '$this->usuarioId' AND so.solicitacao_status = 'Ativo'
             ORDER BY so.solicitacao_id DESC";
     }
 

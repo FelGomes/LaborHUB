@@ -73,7 +73,7 @@
 
         <nav>
             <ul class="mt-1 mb-5">
-                <li><a href="homeProfissional.php">Home</a></li>
+                 <li><a href="<?= base_url('user/homeProfissional/index') ?>">Home</a></li>
                 <li><a href="historicoProfissional.php">Histórico</a></li>
                 <li><a href="MinhasAvaliacao.php">Minhas avaliações</a></li>
 
