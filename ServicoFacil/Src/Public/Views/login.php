@@ -6,69 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Serviço Fácil</title>
     <link rel="stylesheet" href="../../Assets/Css/style1.css">
+     <link rel="stylesheet" href="../../Assets/Css/mediaLogin.css">
+
 
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-
-    <!-- <style>
-
-        
-
-        .container-box{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .usuario{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            /* justify-content: space-between; */
-            /* border: 2px dotted blue !important; */
-            gap: 60px;
-        }
-
-        .cliente {
-            display: flex;
-            flex-direction: column;
-        }
-
-         .profissional {
-            display: flex;
-            flex-direction: column;
-        }
-
-
-        
-
-        img {
-            width: 200px;
-            height: 200px;
-            border: 1px solid #00000036;
-            box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.175);
-            border-radius: 5px;
-        }
-
-        .btn-escolher{
-            width: 100%;
-            height: 40px;
-           border: 2px solid #3B82F6;
-            background-color:  #3B82F6;
-            color: white;
-            font-weight: 700;
-            box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.175);
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .btn-escolher:hover{
-            transform: scale(1.03) translateY(-2px) translateX(4px);
-        }
-    </style> -->
 
 
 </head>
@@ -77,21 +21,45 @@
 
     <main>
         <div class="container-box">
-            <h2 class="mb-4">Escolha seu tipo de usuário</h2>
-            <div class="usuario ">
-                <div class="cliente">
-                    <img src="../../Assets/Images/cliente.png"alt="cliente">
-                    <button type="submit" class="btn-escolher mt-5" onclick="window.location.href='cadastroCliente.php'"> Cliente</button>
-                </div>
+            <div class="texto">
 
-                <div class="profissional">
-                    <img src="../../Assets/Images/profissional.png" alt="profissional">
-                   <button type="submit" class="btn-escolher mt-5" onclick="window.location.href='cadastroProfissional.php'"> Profissional</button>
-                </div>
-
+                <h3>Olá, seja bem vindo ao LaborHUB!</h3>
             </div>
-           
-        
+            <div class="row ">
+                <form action="cadastro.php" method="post">
+                    <div class="campos">
+                        <div class="col-md-7 mb-3">
+                            <label for="usuarios_email">Email</label>
+                            <input type="email" name="usuarios_email" id="usuarios_email" placeholder="Digite seu email" class="login form-control" required>
+
+                        </div>
+
+                        <div class="col-md-7 ">
+                            <label for="usuarios_senha_hash">Senha</label>
+                            <input type="password" name="usuarios_senha_hash" id="usuarios_senha_hash" placeholder="Digite sua senha" class="login form-control" required>
+
+                        </div>
+
+                        <div class="mb-3 form-check col-md-7 d-flex justify-content-between align-items-center mt-2 link">
+                            <div>
+                                <input type="checkbox" class="form-check-input" id="rememberMe" name="rememberMe">
+                                <label class="form-check-label text-start" for="rememberMe">Manter-me conectado</label>
+                                
+                            </div>
+                            <div>
+                                <a href="recuperacaoSenha.php">Esqueci minha senha</a>
+
+                            </div>
+                        </div>
+
+                        <input type="submit" class="btn-submit mt-5" name="enviar" value="Entrar">
+                        <div class="mt-2">
+                            <p>Ainda não tem conta? <a href="escolhaUsuario.php">Criar conta agora</a></p>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
         </div>
 
     </main>
@@ -114,7 +82,7 @@
                     <p>Telefone: (00) 00000-0000</p>
                 </div>
 
-                <!-- Ícones de Redes Sociais  -->
+                 <!-- Ícones de Redes Sociais  -->
                 <section class="mb-4">
 
                     <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/FelGomes" target="_blank" role="button">

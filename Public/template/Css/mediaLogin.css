@@ -1,0 +1,30 @@
+@media screen and (max-width: 768px) {
+    .container-box {
+        width: 90%;
+    }
+
+    .campos {
+        width: 100%;
+    }
+
+    .login {
+        width: 420px !important;
+    }
+
+    .link {
+        display: flex;
+        gap: 70px;
+    }
+
+    .btn-submit {
+        width: 93%;
+    }
+
+    .btn-voltar {
+        width: 93%;
+
+    }
+
+    
+}
+

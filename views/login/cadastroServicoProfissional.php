@@ -5,8 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Serviço Facil</title>
-    <link rel="stylesheet" href="../../Assets/Css/style.css">
-    <link rel="stylesheet" href="../../Assets/Css/mediaQuery.css">
+    <!-- <link rel="stylesheet" href="../../Assets/Css/style.css">
+    <link rel="stylesheet" href="../../Assets/Css/mediaQuery.css"> -->
+     <link rel="stylesheet" href="<?= base_url('Public/template/Css/style.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('Public/template/Css/mediaQuery.css') ?>">
+
 
 
 
@@ -30,7 +33,7 @@
             <div class="row">
                 <h2 class="text-center mt-3">Serviços</h2>
                 <p class="text-center">Para finalizar o cadastro é necessário que informe algumas caracteristicas referente ao seu serviço</p>
-                <form action="criarConta.php" method="post"> <!--Formulario para enviou de validação de dados -->
+                <form action="<?= base_url('usuario/cadastarProfissional') ?>" method="post"> <!--Formulario para enviou de validação de dados -->
 
                     <div class="cadastro mt-4">
 
@@ -42,35 +45,35 @@
 
                                 <div class="col-md-6 mt-4 mb-2">
                                     <label for="servicos_nome">Tipo de serviço </label>
-                                    <input type="text" name="servicos_nome" id="servicos_nome" placeholder="Informe o tipo de serviço" class="form-control" required>
+                                    <input type="text" name="servicos_nome" id="servicos_nome" placeholder="Informe o tipo de serviço" class="form-control" required value="<?= $post['servicos_nome'] ?? '' ?>">
                                 </div>
 
                                 <div class="col-md-6 mt-4 mb-2">
                                     <label for="servicos_data">Dias de serviço</label>
-                                    <select name="servicos_data" class="form-control" id="data">
+                                    <select name="servicos_data" class="form-control" id="data" value="<?= $post['servicos_data'] ?? '' ?>">
                                         <option selected>Selecione</option>
-                                        <option value="segundaSexta">Seg. à Sexta</option>
-                                        <option value="segundaSabado">Seg. à Sábado</option>
-                                        <option value="todoDIa">Todos os dias</option>
-                                        <option value="finsDeSemana">Fins de Semana</option>
-                                        <option value="diasIntercalados">Dias intercalados</option>
+                                        <option value="Segunda à Sexta">Seg. à Sexta</option>
+                                        <option value="Segunda à Sabado">Seg. à Sábado</option>
+                                        <option value="Todos os dias">Todos os dias</option>
+                                        <option value="Fins de Semana">Fins de Semana</option>
+                                        <option value="Dias Intercalados">Dias intercalados</option>
                                     </select>
                                 </div>
 
                                 <div class="col-md-6 mt-4 mb-2">
                                     <label for="servicos_valor">Valor do atendimento </label>
-                                    <input type="number" name="servicos_valor" placeholder="Informe o valor do seu serviço" id="servicos_valor" class="form-control" step="0.01" min="0.01" required>
+                                    <input type="number" name="servicos_valor" placeholder="Informe o valor do seu serviço" id="servicos_valor" class="form-control" step="0.01" min="0.01" required value="<?= $post['servicos_valor'] ?? '' ?>">
                                 </div>
 
 
                                 <div class="col-md-6 mt-4 mb-2">
-                                    <label for="servicos_tipo_cobrança">Tipo de cobrança</label>
-                                    <select name="servicos_tipo_cobrança" class="form-control" id="servicos_cobrança">
-                                        <option selected>Selecione a cobrança</option>
-                                        <option value="hora">Por hora</option>
-                                        <option value="dia">Por dia</option>
-                                        <option value="total">Serviço total</option>
-                                        <option value="negociar">A negociar</option>
+                                    <label for="servicos_tipo_cobranca">Tipo de cobrança</label>
+                                    <select name="servicos_tipo_cobranca" class="form-control" id="servicos_tipo_cobranca" value="<?= $post['servicos_tipo_cobrança'] ?? '' ?>">
+                                        <option value="" selected>Selecione a cobrança</option>
+                                        <option value="Hora">Por hora</option>
+                                        <option value="Dia">Por dia</option>
+                                        <option value="Total">Serviço total</option>
+                                        <option value="Negociar">A negociar</option>
 
                                     </select>
                                 </div>
@@ -78,18 +81,18 @@
 
                                 <div class="col-md-12 mt-4 mb-2">
                                     <label for="servicos_nivel_experiencia">Nível de experiência</label>
-                                    <select name="servicos_nivel_experiencia" class="form-control" id="servicos_nivel_experiencia">
+                                    <select name="servicos_nivel_experiencia" class="form-control" id="servicos_nivel_experiencia" value="<?= $post['servicos_nivel_experiencia'] ?? '' ?>">
                                         <option selected>Selecione o nível de experiência</option>
-                                        <option value="inciante">Inciante</option>
-                                        <option value="intermediario">Intermediário</option>
-                                        <option value="avancado">Avançado</option>
+                                        <option value="Inciante">Inciante</option>
+                                        <option value="Intermediario">Intermediário</option>
+                                        <option value="Avançado">Avançado</option>
                                     </select>
 
                                 </div>
 
                                 <div class="col-md-12 mt-4 mb-5">
                                     <label for="servicos_descricao">Descrição</label>
-                                    <textarea name="servicos_descricao" placeholder="Descreva mais sobre seu serviço" class="form-control h-1200px" id="servicos_descricao">
+                                    <textarea name="servicos_descricao" placeholder="Descreva mais sobre seu serviço" class="form-control h-1200px" id="servicos_descricao" value="<?= $post['servicos_descricao'] ?? '' ?>">
 
                                     </textarea>
 
@@ -99,8 +102,8 @@
 
                             </div>
                             <div class="botoes col-12 col-md-6 mt-5 mb-4 ms-auto mt-md-5 mb-md-4">
-                                <button type="submit" onclick="window.history.back()" class="btn-reset">Voltar</button>
-                                <button type="submit" name="enviar" class="btn-submit" onclick="proximaTela()">Finalizar</button>
+                                <button type="button" onclick="window.history.back()" class="btn-reset">Voltar</button>
+                                <button type="submit" name="enviar" class="btn-submit" >Finalizar</button>
 
                             </div>
 
@@ -165,21 +168,6 @@
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
 
-
-    <script>
-        function mostrar(tipo) {
-            document.getElementById("form-pj").style.display = 'none';
-            document.getElementById("form-pf").style.display = 'none';
-
-            document.getElementById('form-' + tipo).style.display = 'block';
-
-        }
-
-        function proximaTela() {
-            document.getElementById("tela1").style.display = "none";
-            document.getElementById("tela2").style.display = "block";
-        }
-    </script>
 
 
 </body>

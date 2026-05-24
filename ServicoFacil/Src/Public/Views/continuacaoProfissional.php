@@ -64,8 +64,8 @@
 
 
                                 <div class="col-md-6 mt-4 mb-2">
-                                    <label for="servicos_tipo_cobrança">Tipo de cobrança</label>
-                                    <select name="servicos_tipo_cobrança" class="form-control" id="servicos_cobrança">
+                                    <label for="servicos_cobrança">Tipo de cobrança</label>
+                                    <select name="servicos_cobrança" class="form-control" id="servicos_cobrança">
                                         <option selected>Selecione a cobrança</option>
                                         <option value="hora">Por hora</option>
                                         <option value="dia">Por dia</option>

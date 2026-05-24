@@ -153,3 +153,35 @@ img {
 .btn-escolher:hover {
     transform: scale(1.03) translateY(-2px) translateX(4px);
 }
+
+.alert-custom {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    width: 75%;
+    left: 50%;
+    transform: translateX(-50%);
+    /* centraliza horizontalmente */
+    margin: 0;
+    /* remove margin que pode causar deslocamento */
+}
+
+
+.btn-voltar{
+    width: 500px;
+    height: 42px;
+    background-color: white;
+    border: none;
+    border: 1px solid rgba(0, 0, 0, 0.205);
+    font-family: var(--fontePrincipal);
+    font-weight: var(--TamanhoFonte);
+    border-radius: var(--bordas);
+    box-shadow: var(--sombras);
+    cursor: pointer;
+}
+
+.btn-voltar:hover {
+    transform: scale(1.03) translateY(-2px) translateX(4px);
+    background-color: rgba(211, 211, 211, 0.527);
+}

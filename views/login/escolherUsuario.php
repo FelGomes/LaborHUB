@@ -5,70 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Serviço Fácil</title>
-    <link rel="stylesheet" href="../../Assets/Css/style1.css">
+    <!-- <link rel="stylesheet" href="../../Assets/Css/style1.css"> -->
+    <link rel="stylesheet" href="<?= base_url('Public/template/Css/style1.css') ?>">
 
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-
-    <!-- <style>
-
-        
-
-        .container-box{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .usuario{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            /* justify-content: space-between; */
-            /* border: 2px dotted blue !important; */
-            gap: 60px;
-        }
-
-        .cliente {
-            display: flex;
-            flex-direction: column;
-        }
-
-         .profissional {
-            display: flex;
-            flex-direction: column;
-        }
-
-
-        
-
-        img {
-            width: 200px;
-            height: 200px;
-            border: 1px solid #00000036;
-            box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.175);
-            border-radius: 5px;
-        }
-
-        .btn-escolher{
-            width: 100%;
-            height: 40px;
-           border: 2px solid #3B82F6;
-            background-color:  #3B82F6;
-            color: white;
-            font-weight: 700;
-            box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.175);
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .btn-escolher:hover{
-            transform: scale(1.03) translateY(-2px) translateX(4px);
-        }
-    </style> -->
 
 
 </head>
@@ -78,20 +22,23 @@
     <main>
         <div class="container-box">
             <h2 class="mb-4">Escolha seu tipo de usuário</h2>
+
+
             <div class="usuario ">
                 <div class="cliente">
-                    <img src="../../Assets/Images/cliente.png"alt="cliente">
-                    <button type="submit" class="btn-escolher mt-5" onclick="window.location.href='cadastroCliente.php'"> Cliente</button>
+                    <img src="<?= base_url('Public/template/Images/cliente.png') ?>" alt="cliente">
+                    <button type="button" class="btn-escolher mt-5"  onclick="window.location.href='<?= base_url('usuario/cadastro/cliente') ?>'" name="cliente"> Cliente</button>
                 </div>
 
                 <div class="profissional">
-                    <img src="../../Assets/Images/profissional.png" alt="profissional">
-                   <button type="submit" class="btn-escolher mt-5" onclick="window.location.href='cadastroProfissional.php'"> Profissional</button>
+                    <img src="<?= base_url('Public/template/Images/profissional.png') ?>" alt="profissional">
+                    <button type="submit" class="btn-escolher mt-5" onclick="window.location.href='<?= base_url('usuario/cadastro/profissional') ?>'" name="profissional"> Profissional</button>
                 </div>
 
             </div>
-           
-        
+
+
+
         </div>
 
     </main>

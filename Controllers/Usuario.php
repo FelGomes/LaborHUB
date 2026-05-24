@@ -1,0 +1,468 @@
+<?php
+
+namespace Controllers;
+
+use DateTime;
+use Models\Database as Conexao;
+
+use PDO;
+use \Utils\RenderView;
+
+
+class Usuario extends RenderView
+{
+
+
+    private $usuario;
+    private $endereco;
+    private $pessoaFisica;
+    private $pessoaJuridica;
+    private $servico;
+
+
+    public function __construct()
+    {
+        $this->usuario = new Conexao('usuarios');
+        $this->endereco = new Conexao('endereco');
+        $this->pessoaFisica = new Conexao('pessoaFisica');
+        $this->pessoaJuridica = new Conexao('pessoaJuridica');
+        $this->servico = new Conexao('servicos');
+    }
+
+    public function index()
+    {
+        return $this->loadView('login/escolherUsuario', []);
+    }
+
+    public function flash(string $texto, string $tipo = 'succes'): array
+    {
+        return [
+            'texto' => $texto,
+            'tipo' => $tipo,
+        ];
+    }
+
+    protected function redirect($path, $mensagem = null)
+    {
+        if ($mensagem) {
+            $_SESSION['msg'] = $mensagem;
+        }
+        header("Location: {$path}");
+        exit();
+    }
+
+
+
+    public function redirecionar($tipo = null)
+    {
+        if ($tipo === 'cliente') {
+            return $this->loadView('login/cadastroCliente', []);
+        } elseif ($tipo === 'profissional') {
+            return $this->loadView('login/cadastroProfissional', []);
+        } else {
+            return $this->loadView('login/escolherUsuario', []);
+        }
+    }
+
+
+
+
+    public function continuacaoProfissional()
+    {
+        $data = [];
+
+        $_SESSION['cadastro_profissional'] = $_POST;
+
+        if (
+            !isset($_FILES['usuarios_imagem']) ||
+            $_FILES['usuarios_imagem']['error'] !== 0
+        ) {
+
+            $_SESSION['msg'] = [
+                'texto' => 'Informe uma imagem!',
+                'color' => 'warning',
+            ];
+
+            return $this->loadView(
+                'login/cadastroProfissional',
+                $data
+            );
+        }
+
+        $arquivo = $_FILES['usuarios_imagem'];
+
+        // TAMANHO
+        if (!$this->usuario->validaImagemPerfi($arquivo)) {
+
+            $_SESSION['msg'] = [
+                'texto' => 'Imagem maior que 2MB!',
+                'color' => 'danger',
+            ];
+
+            return $this->loadView(
+                'login/cadastroProfissional',
+                $data
+            );
+        }
+
+        // TIPO
+        if (!$this->usuario->tipoImagem($arquivo)) {
+
+            $_SESSION['msg'] = [
+                'texto' => 'Formato inválido!',
+                'color' => 'danger',
+            ];
+
+            return $this->loadView(
+                'login/cadastroProfissional',
+                $data
+            );
+        }
+
+        // RESOLUÇÃO
+        if (!$this->usuario->tamanhoImagem($arquivo)) {
+
+            $_SESSION['msg'] = [
+                'texto' => 'Imagem menor que 400x400!',
+                'color' => 'danger',
+            ];
+
+            return $this->loadView(
+                'login/cadastroProfissional',
+                $data
+            );
+        }
+
+        // MOVE UPLOAD
+        $pasta = __DIR__ .
+            '/../Public/template/UploadImages/';
+
+        $nomeArquivo =
+            uniqid() . '-' . basename($arquivo['name']);
+
+        $caminhoFinal = $pasta . $nomeArquivo;
+
+        if (
+            !move_uploaded_file(
+                $arquivo['tmp_name'],
+                $caminhoFinal
+            )
+        ) {
+
+            $_SESSION['msg'] = [
+                'texto' => 'Erro upload imagem!',
+                'color' => 'danger',
+            ];
+
+            return $this->loadView(
+                'login/cadastroProfissional',
+                $data
+            );
+        }
+
+        $_SESSION['cadastro_profissional_imagem'] =
+            'Public/template/UploadImages/' .
+            $nomeArquivo;
+
+        return $this->loadView(
+            'login/cadastroServicoProfissional',
+            []
+        );
+    }
+
+
+
+
+    // METODO PARA CADASTAR PESSOA FISICA E PESSOA JURIDICA DO TIPO CLIENTE
+    public function cadastrarCliente()
+    {
+
+        $data = [];
+
+        $usuarios_imagem = 'UploadImages/default.png';
+
+        // Validando se os dados foram ao menos enviado
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            return $this->loadView('login/cadastroCliente', $data);
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && empty($_POST) && empty($_FILES)) {
+            $_SESSION['msg'] = [
+                'texto' => 'Informe todos os dados abaixo!',
+                'color' => 'danger',
+            ];
+
+            return $this->loadView('login/cadastroCliente', $data);
+        }
+
+
+        if (!isset($_FILES['usuarios_imagem']) || empty($_FILES['usuarios_imagem']) || $_FILES['usuarios_imagem']['error'] !== 0) {
+
+            $_SESSION['msg'] = [
+                'texto' => 'Atenção! Informe uma imagem para seu perfil!',
+                'color' => 'warning',
+            ];
+
+            return $this->loadView('login/cadastroCliente', $data);
+        }
+
+        $arquivo = $_FILES['usuarios_imagem']; //Se passou por aqui, significa que recebeu a imagem
+
+
+        // Validando se a imagem é maior que 2MB
+        if (!$this->usuario->validaImagemPerfi($arquivo)) {
+            $_SESSION['msg'] = [
+                'texto' => "Atenção! Informe uma imagem até 2MB!",
+                'color' => 'danger',
+            ];
+
+            return $this->loadView('login/cadastroCliente', $data);
+        }
+
+
+        // Verificando o tipo da imagem
+        if (!$this->usuario->tipoImagem($arquivo)) {
+            $_SESSION['msg'] = [
+                'texto' => "Atenção! Formato não permitido, Selecione apenas JPEG, JPG ou PNG",
+                'color' => 'danger',
+            ];
+
+            return $this->loadView('login/cadastroCliente', $data);
+        }
+
+        if (!$this->usuario->tamanhoImagem($arquivo)) {
+            $_SESSION['msg'] = [
+                'texto' => "Atenção! Tamanho da imagem é menor que 400x400. Selecione uma imagem maior!",
+                'color' => "danger",
+            ];
+
+            return $this->loadView('login/cadastroCliente', $data);
+        }
+
+        // Se passou por tudo isso, a imagem enviada é válida
+
+        $pasta = __DIR__ . '/../Public/template/UploadImages/';
+        $nomeArquivo = uniqid() . "-" . basename($arquivo['name']);
+        $caminhoFinal = $pasta . $nomeArquivo; //String para o banco de dados
+
+
+        if (!move_uploaded_file($arquivo['tmp_name'], $caminhoFinal)) {
+            $_SESSION['msg'] = [
+                'texto' => "Erro ao fazer o upload da imagem!",
+                'color' => "warning",
+            ];
+
+            return $this->loadView('login/cadastroCliente', $data);
+        }
+
+        $usuarios_imagem = 'Public/template/UploadImages/' . $nomeArquivo;
+
+        // echo "A rota funcionou!";
+        // var_dump($_POST);
+        // die();
+
+        $post = $_POST;
+
+        $values = [
+            'usuarios_email' => $post['usuarios_email'] ?? '',
+            'usuarios_imagem' => $usuarios_imagem,
+            'usuarios_telefone' => $post['usuarios_telefone'] ?? '',
+            'usuarios_senha_hash' => password_hash($post['usuarios_senha_hash'], PASSWORD_DEFAULT) ?? '',
+            'usuarios_ativo' => 1,
+            'usuarios_is_admin' => 0,
+
+
+
+        ];
+
+        $usuarioID = $this->usuario->insert($values);
+
+
+        if (!empty($post['pf_nome'])) {
+
+            if ($usuarioID > 0) {
+                $valuesPf = [
+                    'pf_nome' => $post['pf_nome'] ?? '',
+                    'pf_sobrenome' => $post['pf_sobrenome'] ?? '',
+                    'pf_dataNascimento' =>  $post['pf_dataNascimento'] ?? '',
+                    'pf_genero' => $post['pf_genero'] ?? '',
+                    'pf_cpf' => $post['pf_cpf'] ?? '',
+                    'pf_tipo' => 'Cliente',
+                    'pf_usuarios_id' => $usuarioID,
+
+                ];
+
+                $this->pessoaFisica->insert($valuesPf);
+            }
+        } else {
+
+            if ($usuarioID > 0) {
+                $valuesPj = [
+                    'pj_razaoSocial' => $post['pj_razaoSocial'] ?? '',
+                    'pj_nomeFantasia' => $post['pj_nomeFantasia'] ?? '',
+                    'pj_dataFundacao' =>  $post['pj_dataFundacao'] ?? '',
+                    'pj_cnpj' => $post['pj_cnpj'] ?? '',
+                    'pj_tipo' => 'Cliente',
+                    'pj_usuarios_id' => $usuarioID,
+
+                ];
+
+                $this->pessoaJuridica->insert($valuesPj);
+            }
+        }
+
+        $valuesEndereco = [
+            'endereco_nome' => $post['endereco_nome'] ?? '',
+            'endereco_rua' => $post['endereco_rua'] ?? '',
+            'endereco_bairro' => $post['endereco_bairro'] ?? '',
+            'endereco_cep'    => $post['endereco_cep'] ?? '',
+            'endereco_complemento'   => $post['endereco_complemento'] ?? '',
+            'endereco_numero' => $post['endereco_numero'] ?? '',
+            'endereco_descricao' => $post['endereco_descricao'] ?? '',
+            'endereco_cidade' => $post['endereco_cidade'] ?? '',
+            'endereco_uf'    => $post['endereco_uf'] ?? '',
+            'endereco_usuarios_id' => $usuarioID,
+
+        ];
+        if ($this->endereco->insert($valuesEndereco)) {
+
+            $_SESSION['msg'] = [
+                'texto' => "Usuário Cadastrado com sucesso!",
+                'color' => 'success',
+
+            ];
+
+            return $this->loadView('login/index', $data);
+        }
+    }
+
+
+    /**
+     * CADASTAR PROFISSIONAIS PESSOA FISICA E PESSOA JURIDICA
+     */
+    public function cadastrarProfissional()
+    {
+        $data = [];
+
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            return $this->redirect(
+                base_url('login/cadastroProfissional')
+            );
+        }
+
+
+        // // JUNÇÃO DA SESSAO DA PRIMEIRA TELA E SEGUNDA TELA
+        $post = array_merge($_SESSION['cadastro_profissional'] ?? [], $_POST);
+
+
+        $usuarios_imagem =
+            $_SESSION['cadastro_profissional_imagem'] ?? '';
+
+        if (empty($usuarios_imagem)) {
+
+            $_SESSION['msg'] = [
+                'texto' => 'Informe uma imagem!',
+                'color' => 'warning',
+            ];
+
+            return $this->redirect(
+                base_url('login/cadastroProfissional')
+            );
+        }
+
+
+        // Validação dos dados
+
+        $values = [
+            'usuarios_email' => $post['usuarios_email'] ?? '',
+            'usuarios_imagem' => $usuarios_imagem,
+            'usuarios_telefone' => $post['usuarios_telefone'] ?? '',
+            'usuarios_senha_hash' => password_hash($post['usuarios_senha_hash'], PASSWORD_DEFAULT) ?? '',
+            'usuarios_ativo' => 1,
+            'usuarios_is_admin' => 0,
+
+
+
+        ];
+        // Se deu certo para inserir na tabela usuarios, passamos para tabela de Pessoa Fisica
+        $usuarioID = $this->usuario->insert($values);
+
+        if (!$usuarioID) {
+            $_SESSION['msg'] = [
+                'texto' => "Erro cadastar usuario!",
+                'color' => 'danger',
+            ];
+
+            return $this->redirect(base_url('login/cadastroProfissional'));
+        }
+
+
+        if (!empty($post['pf_nome'])) {
+
+            $valuesPf = [
+                'pf_nome' => $post['pf_nome'] ?? '',
+                'pf_sobrenome' => $post['pf_sobrenome'] ?? '',
+                'pf_dataNascimento' =>  $post['pf_dataNascimento'] ?? '',
+                'pf_genero' => $post['pf_genero'] ?? '',
+                'pf_cpf' => $post['pf_cpf'] ?? '',
+                'pf_tipo' => 'Profissional',
+                'pf_usuarios_id' => $usuarioID,
+
+            ];
+
+            $this->pessoaFisica->insert($valuesPf);
+        } else {
+
+            $valuesPj = [
+                'pj_razaoSocial' => $post['pj_razaoSocial'] ?? '',
+                'pj_nomeFantasia' => $post['pj_nomeFantasia'] ?? '',
+                'pj_dataFundacao' =>  $post['pj_dataFundacao'] ?? '',
+                'pj_cnpj' => $post['pj_cnpj'] ?? '',
+                'pj_tipo' => 'Profissional',
+                'pj_usuarios_id' => $usuarioID,
+
+            ];
+
+            $this->pessoaJuridica->insert($valuesPj);
+        }
+
+        $valuesEndereco = [
+            'endereco_rua' => $post['endereco_rua'] ?? '',
+            'endereco_bairro' => $post['endereco_bairro'] ?? '',
+            'endereco_cep'    => $post['endereco_cep'] ?? '',
+            'endereco_complemento'   => $post['endereco_complemento'] ?? '',
+            'endereco_numero' => $post['endereco_numero'] ?? '',
+            'endereco_cidade' => $post['endereco_cidade'] ?? '',
+            'endereco_uf'    => $post['endereco_uf'] ?? '',
+            'endereco_usuarios_id' => $usuarioID,
+
+        ];
+
+        $this->endereco->insert($valuesEndereco);
+
+
+
+        $valuesServico = [
+            'servicos_nome'  => $post['servicos_nome'] ?? '',
+            'servicos_data'  => $post['servicos_data'] ?? '',
+            'servicos_valor' => $post['servicos_valor'] ?? '',
+            'servicos_tipo_cobranca' => $post['servicos_tipo_cobranca'] ?? '',
+            'servicos_nivel_experiencia' => $post['servicos_nivel_experiencia'] ?? '',
+            'servicos_descricao' => $post['servicos_descricao'] ?? '',
+            'servicos_usuarios_id' => $usuarioID
+        ];
+
+        if ($this->servico->insert($valuesServico)) {
+
+            unset($_SESSION['cadastro_profissional']);
+            unset($_SESSION['cadastro_profissional_imagem']);
+
+            $_SESSION['msg'] = [
+                'texto' => 'Usuário cadastrado com sucesso!',
+                'color' => 'success',
+            ];
+
+            return $this->redirect(base_url('/login'));
+        }
+    }
+}

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serviço Facil</title>
+    <link rel="stylesheet" href="adm.css">
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+
+
+
+
+</head>
+
+<body>
+    <main>
+
+        <div class="container-fluid">
+            <div class="row flex-nowrap">
+                <!-- Sidebar -->
+                <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark min-vh-100">
+                    <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white sticky-top">
+                        <span class="fs-5 d-none d-sm-inline mt-3 mb-3"> <img class="perfil" src="../Src/Assets/Images/FOTOPERFIL.png" alt="Foto Escolhida"> Felipe Ferreira Gomes</span>
+                        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                            <li class="nav-item mt-4">
+                                <a href="#" class="nav-link align-middle px-0 text-white">
+                                    <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">DashBoard</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="listaCliente.php" class="nav-link px-0 align-middle text-white">
+                                    <i class="bi bi-person fs-4"></i> <span class="ms-1 d-none d-sm-inline">Clientes</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="listaProfissional.php" class="nav-link px-0 align-middle text-white">
+                                    <i class="bi bi-building fs-4"></i> <span class="ms-1 d-none d-sm-inline">Profissionais</span>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <hr>
+
+                        <div class="sair">
+                            <a href="../Src/Public/Views/login.php" class="nav-link px-0 align-middle text-white">
+                                <i class="bi bi-arrow-bar-left fs-4"></i> <span class="ms-1 d-none d-sm-inline">Sair</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col py-3">
+                    <h4 class="mb-5">Area Restrita</h4>
+                    <div class="listagem mt-4">
+
+                        <div class="cardList">
+                            <h5>Cliente mais assíduo</h5>
+                            <p class="mb-4">Clientes que mais contrataram serviços</p>
+
+                            <div class="personInfo ">
+                                <div class="person">
+                                    <img class="cliente" src="../Src/Assets/Images/FOTOPERFIL.png" alt="">
+                                </div>
+
+                                <div class="info">
+                                    <h6>Felipe Ferreira Gomes</h6>
+                                    <p>50 Solicitações nos últimos mês</p>
+                                </div>
+
+                            </div>
+
+                            <div class="personInfo ">
+                                <div class="person">
+                                    <img class="cliente" src="../Src/Assets/Images/FOTOPERFIL.png" alt="">
+                                </div>
+
+                                <div class="info">
+                                    <h6>Felipe Ferreira Gomes</h6>
+                                    <p>50 Solicitações nos últimos mês</p>
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+
+                        <div class="cardList">
+                            <h5>Empresa mais assídua</h5>
+                            <p class="mb-4">Empresa que mais contrataram serviços</p>
+
+                            <div class="personInfo ">
+                                <div class="person">
+                                    <img class="cliente" src="../Src/Assets/Images/empresa.jpeg" alt="">
+                                </div>
+
+                                <div class="info">
+                                    <h6>Accenture Consultoria</h6>
+                                    <p>150 Solicitações nos últimos mês</p>
+                                </div>
+
+                            </div>
+
+                            <div class="personInfo ">
+                                <div class="person">
+                                    <img class="cliente" src="../Src/Assets/Images/empresa.jpeg" alt="">
+                                </div>
+
+                                <div class="info">
+                                    <h6>Accenture Consultoria</h6>
+                                    <p>150 Solicitações nos últimos mês</p>
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+
+                        <div class="cardList">
+                            <h5>Serviço prestado</h5>
+                            <p class="mb-4">Maiores serviços prestados</p>
+
+                            <div class="personInfo ">
+                                <div class="person">
+                                    <img class="cliente" src="../Src/Assets/Images/encanador.jpeg" alt="">
+                                </div>
+
+                                <div class="info">
+                                    <h6>João Magalhães Júnior</h6>
+                                    <p>Encanador</p>
+                                </div>
+
+                            </div>
+
+                            <div class="personInfo ">
+                                <div class="person">
+                                    <img class="cliente" src="../Src/Assets/Images/encanador.jpeg" alt="">
+                                </div>
+
+                                <div class="info">
+                                    <h6>Lucas Martins</h6>
+                                    <p>Eletricista</p>
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+
+
+
+
+                    </div>
+
+                    <div class="grafico">
+
+                        <div class="listaGrafico">
+                            <div id="myPlot" style="width:100%;max-width:700px">
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+    </main>
+
+    <footer class="bg-dark text-center text-white py-4">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-6 col-md-12 mb-4">
+                    <h5 class="text-uppercase">Serviço Fácil</h5>
+                    <p>
+                        O sistema tem como finalidade de conectar cliente à prestadores de serviço a qualquer hora do dia
+                    </p>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 class="text-uppercase">Contato</h5>
+                    <p>Email: contato@email.com</p>
+                    <p>Telefone: (00) 00000-0000</p>
+                </div>
+
+                <!-- Ícones de Redes Sociais -->
+                <section class="mb-4">
+
+                    <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/FelGomes" target="_blank" role="button">
+                        <i class="bi bi-github"></i>
+                    </a>
+
+                    <a class="btn btn-outline-light btn-floating m-1" href="#!" target="_blank" role="button">
+                        <i class="bi bi-github"></i>
+                    </a>
+
+                    <a class="btn btn-outline-light btn-floating m-1" href="#!" target="_blank" role="button">
+                        <i class="bi bi-github"></i>
+                    </a>
+
+
+                </section>
+
+                <!-- Texto de Copyright -->
+                <div class="text-center p-3">
+                    © 2026 Copyright: <a class="text-white" href="#">Equipe geral de desenvolvimento do serviço fácil</a>
+                </div>
+            </div>
+    </footer>
+
+
+
+
+
+
+    <!-- Boostrap-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+
+    <script>
+        const xArray = [20, 9, 14, 4, 5];
+        const yArray = ["Pedreiro", "Encanador", "Eletricista", "Servente", "Marceneiro"];
+
+        const data = [{
+            x: xArray,
+            y: yArray,
+            type: "bar",
+            orientation: "h",
+            marker: {
+                color: "#3B82F6"
+            }
+        }]
+
+        const layout = {
+            title: "Serviços mais procurados"
+        };
+        Plotly.newPlot("myPlot", data, layout, {
+            displayModeBar: false
+        });
+    </script>
+
+
+</body>
+
+</html>
