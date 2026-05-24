@@ -5,7 +5,7 @@ namespace Controllers;
 
 use \Models\Database as Conexao;
 use \PDO;
-
+use \Utils\Email as Email;
 use \Utils\RenderView;
 
 
@@ -16,6 +16,7 @@ class PessoaJuridica extends RenderView
     private $solicitacaoServico;
     private $usuarioId;
     private $solicitacao;
+    private $servico;
 
     public function __construct()
     {
@@ -23,6 +24,7 @@ class PessoaJuridica extends RenderView
         $this->solicitacaoServico = new Conexao('solicitacaoServico');
         $this->usuarioId = $_SESSION['usuarios_logado']->usuarios_id;
         $this->solicitacao = new Conexao('solicitacao');
+        $this->servico = new Conexao('servicos');
     }
 
     protected function redirect($path, $mensagem = null)
@@ -106,6 +108,15 @@ class PessoaJuridica extends RenderView
                 'texto' => 'Solicitação de serviço aceita com sucesso!',
                 'color' => 'success',
             ];
+
+            $dadosUsuario = $this->dadosEmailSolicitacao($solicitacaoId, $this->usuarioId);
+            $emailDados = $this->servico->selectProfissionais($dadosUsuario)->fetch(PDO::FETCH_OBJ);
+
+            $status = "Aceito";
+
+            $email = new Email();
+            $email->solicitacaoServico($emailDados->email, $emailDados->nome, $emailDados->servico, $status);
+
         } else {
 
             $_SESSION['msg'] = [
@@ -115,7 +126,45 @@ class PessoaJuridica extends RenderView
         }
 
         return $this->redirect(base_url('user/homeProfissional/index'));
+    }
 
+
+
+     public function recusar($solicitacaoId)
+    {
+
+        $values = [
+            'solicitacao_status' => 'Recusado',
+            'solicitacao_motivo' => $_POST['solicitacao_motivo'] ?? '',
+        ];
+
+        $where = "solicitacao_id = '$solicitacaoId'";
+
+
+        if ($this->solicitacao->update($where, $values)) {
+
+            $_SESSION['msg'] = [
+                'texto' => 'Solicitação de serviço recusada com sucesso!',
+                'color' => 'success',
+            ];
+
+            $dadosUsuario = $this->dadosEmailSolicitacao($solicitacaoId, $this->usuarioId);
+            $emailDados = $this->servico->selectProfissionais($dadosUsuario)->fetch(PDO::FETCH_OBJ);
+
+            $status = "Recusada";
+
+            $email = new Email();
+            $email->solicitacaoServico($emailDados->email, $emailDados->nome, $emailDados->servico, $status);
+
+        } else {
+
+            $_SESSION['msg'] = [
+                'texto' => 'Erro ao recusar solicitação de serviço. Tente novamente!',
+                'color' => 'danger',
+            ];
+        }
+
+        return $this->redirect(base_url('user/homeProfissional/index'));
     }
 
 
@@ -184,6 +233,7 @@ class PessoaJuridica extends RenderView
             so.solicitacao_data_atual as solicitacao_data_atual,
             so.solicitacao_data as solicitacao_data,
             so.solicitacao_quantidade as quantidade,
+            servicos_nome,
             so.solicitacao_observacao as observacao
 
 
@@ -201,5 +251,51 @@ class PessoaJuridica extends RenderView
             -- Filtra pelo ID do cliente logado e status Pendente
             WHERE servicos_usuarios_id = '$this->usuarioId' AND so.solicitacao_status = 'Pendente'
             ORDER BY so.solicitacao_id DESC";
+    }
+
+
+
+    public function dadosEmailSolicitacao($solicitacaoId, $usuarioId)
+    {
+        return "
+        SELECT
+
+            -- EMAIL DO CLIENTE
+            u_cliente.usuarios_email AS email,
+
+            -- NOME DO PROFISSIONAL LOGADO
+            COALESCE(
+                CONCAT(pf_prof.pf_nome, ' ', pf_prof.pf_sobrenome),
+                pj_prof.pj_nomeFantasia
+            ) AS nome,
+
+            -- NOME DO SERVIÇO
+            s.servicos_nome AS servico
+
+        FROM solicitacaoServico ss
+
+        INNER JOIN solicitacao so 
+            ON so.solicitacao_id = ss.solicitacaoServico_solicitacao_id
+
+        INNER JOIN servicos s 
+            ON s.servicos_id = ss.solicitacaoServico_servicos_id
+
+        -- CLIENTE
+        INNER JOIN usuarios u_cliente 
+            ON u_cliente.usuarios_id = so.solicitacao_usuarios_id
+
+        -- PROFISSIONAL DONO DO SERVIÇO
+        INNER JOIN usuarios u_prof 
+            ON u_prof.usuarios_id = s.servicos_usuarios_id
+
+        LEFT JOIN pessoaFisica pf_prof 
+            ON pf_prof.pf_usuarios_id = u_prof.usuarios_id
+
+        LEFT JOIN pessoaJuridica pj_prof 
+            ON pj_prof.pj_usuarios_id = u_prof.usuarios_id
+
+        WHERE so.solicitacao_id = '$solicitacaoId'
+        AND s.servicos_usuarios_id =  '$usuarioId'
+    ";
     }
 }

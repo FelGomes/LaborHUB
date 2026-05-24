@@ -175,8 +175,8 @@
 
                                         <div class="row">
                                             <div class="col-md-12 mt-2 mb-4">
-                                                <label for="solicitacao_observacao">Observação</label>
-                                                <textarea name="solicitacao_observacao" class="form-control" placeholder="Descreva o motivo (opcional)" id="solicitacao_observacao">  </textarea>
+                                                <label for="solicitacao_motivo">Observação</label>
+                                                <textarea name="solicitacao_motivo" class="form-control" placeholder="Descreva o motivo (opcional)" id="solicitacao_motivo">  </textarea>
                                             </div>
                                         </div>
 
@@ -184,7 +184,7 @@
                                         <div class="botaoModalDeletar mt-3">
 
                                             <button type="button" data-bs-dismiss="modal" class="btn-negar"> Não</button>
-                                            <button type="button" class="btn-finalizar">Sim</button>
+                                            <button type="button" class="btn-finalizar"  onclick="window.location.href='<?= base_url('pessoaJuridica/recusar/' . $solicitacaoPendente->solicitacao_id) ?>'">Sim</button>
                                         </div>
 
 

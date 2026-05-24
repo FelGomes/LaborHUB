@@ -115,7 +115,6 @@
 
 
         <div class="lista-servico">
-
             <div class="servicos-groups border">
                 <h6>Serviços Pendentes</h6>
                 <p> <?= $total_pendentes?> Servico(s).</p>

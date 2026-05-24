@@ -49,7 +49,7 @@ class Historico extends RenderView
         $servicoPendente = $this->listarHistoricoPendente();
         $data['servicosPendentes'] = $this->solicitacaoServico->selectProfissionais($servicoPendente)->fetchAll(PDO::FETCH_OBJ);
 
-        $servicoRecusado = $this->listarHistoricoPendente();
+        $servicoRecusado = $this->listarHistoricoRecusado();
         $data['servicosRecusados'] = $this->solicitacaoServico->selectProfissionais($servicoRecusado)->fetchAll(PDO::FETCH_OBJ);
 
 
@@ -169,18 +169,13 @@ class Historico extends RenderView
         INNER JOIN solicitacao so ON so.solicitacao_id = ss.solicitacaoServico_solicitacao_id
         INNER JOIN servicos s ON s.servicos_id = ss.solicitacaoServico_servicos_id
         
-        -- Instância 1: Usuário que fez a solicitação (O Cliente Logado)
         INNER JOIN usuarios u_cliente ON u_cliente.usuarios_id = so.solicitacao_usuarios_id
         
-        -- Instância 2: Usuário que é dono do serviço (O Profissional)
         INNER JOIN usuarios u_prof ON u_prof.usuarios_id = s.servicos_usuarios_id
         LEFT JOIN pessoaFisica pf_prof ON pf_prof.pf_usuarios_id = u_prof.usuarios_id 
         LEFT JOIN pessoaJuridica pj_prof ON pj_prof.pj_usuarios_id = u_prof.usuarios_id
         
-        -- Avaliação vinculada ao cliente que avaliou E à solicitação correspondente
         LEFT JOIN avaliacao a ON a.avaliador_usuarios_id = u_cliente.usuarios_id 
-                             -- Se houver um campo na tabela avaliação para identificar o serviço/solicitação, adicione aqui, ex:
-                             -- AND a.solicitacao_id = so.solicitacao_id
         
         -- Filtra pelo ID do cliente logado e status Finalizado
         WHERE u_cliente.usuarios_id = '$this->usuarioID' AND so.solicitacao_status = 'Finalizado'

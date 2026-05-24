@@ -25,7 +25,8 @@ $routes = [
 '/historico/deletarAll'             => ['Historico', 'deletarAll'],
 '/historico/deletarUnique:id'       => ['Historico', 'deletarUnique'],
 '/profissional/detalhesSolicitacao/:id'         => ['PessoaJuridica', 'detalhesSolicitacao'],
-'/pessoaJuridica/aceitar/:id'       => ['PessoaJuridica', 'aceitar'],      
+'/pessoaJuridica/aceitar/:id'       => ['PessoaJuridica', 'aceitar'],
+'/pessoaJuridica/recusar/:id'       => ['PessoaJuridica', 'recusar'],         
 
 
 

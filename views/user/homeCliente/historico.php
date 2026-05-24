@@ -434,8 +434,9 @@
 
 
                                                     <div class="botaoModalDeletar mt-5">
+                                                        <button type="button" class="btn-negar" data-bs-dismiss="modal"> Não</button>
 
-                                                        <button type="submit" name="deleteAll" class="btn-finalizar">Sim</button>
+                                                        <button type="submit" onclick="window.location.href='<?= base_url('historico/deletarAll') ?>'" name="deleteAll" class="btn-finalizar">Sim</button>
                                                     </div>
 
 
@@ -473,50 +474,49 @@
                                         <div class="detalhes">
                                             <h6 class="text-cente"><strong>Observação</strong></h6> <!--Observação de nao aceitar solicitação-->
                                             <?php if (empty($historicoRecusado->motivo)): ?>
-                                                <h4>Não foi fornecida uma justificativa para esta recusa."</h4>
+                                                <p> Não foi fornecida uma justificativa para esta recusa.</p>
 
                                             <?php endif; ?>
 
                                             <p class="text-justify"> <?= $historicoRecusado->motivo ?></p>
 
                                             <div class="botao mt-2">
-                                                <form action="<?= base_url('historico/deletarUnique' . $historicoRecusado->solicitacao_id) ?>" method="post">
-                                                    id="modal-<?= $historicoPendente->solicitacao_id ?>"
-                                                    <button class="btn-deletar mt-2 mb-2" data-bs-target="#modal-<?= $historicoRecusado->solicitacao_id ?>" data-bs-dismiss="modal" data-bs-toggle="modal">Excluir</button>
+                                                <button type="button" class="btn-deletar mt-5 mb-2" data-bs-target="#modal-<?= $historicoRecusado->solicitacao_id ?>" data-bs-dismiss="modal" data-bs-toggle="modal">Excluir</button>
 
-                                                    <div class="modal fade modal-lg" id="modal-<?= $historicoRecusado->solicitacao_id ?>" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-                                                        <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal fade modal-lg" id="modal-<?= $historicoRecusado->solicitacao_id ?>" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                                                    <div class="modal-dialog modal-dialog-centered">
 
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                </div>
-                                                                <div class="modal-body"> <!--COnteudo com os formulario-->
-                                                                    <form action="" method="post">
-                                                                        <div class="row">
-                                                                            <h4 class="text-center ">Deseja excluir esta solicitação?</h4>
-                                                                            <p class="text-center mt-2 mb-3">Ao deletar esta solicitação você perderá todos os detalhes dela. Tem certeza? </p>
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body"> <!--COnteudo com os formulario-->
+                                                                <form action="" method="post">
+                                                                    <div class="row">
+                                                                        <h4 class="text-center ">Deseja excluir esta solicitação?</h4>
+                                                                        <p class="text-center mt-2 mb-3">Ao deletar esta solicitação você perderá todos os detalhes dela. Tem certeza? </p>
 
 
-                                                                            <div class="botaoModalDeletar mt-5">
+                                                                        <div class="botaoModalDeletar mt-5">
 
-                                                                                <button type="submit" name="deleteUnique" class="btn-finalizar">Sim</button>
-                                                                            </div>
+                                                                            <button type="button" class="btn-negar" data-bs-dismiss="modal"> Não</button>
 
-
-
+                                                                            <button type="submit" onclick="window.location.href='<?= base_url('historico/deletarUnique' . $historicoRecusado->solicitacao_id) ?>'" name="deleteUnique" class="btn-finalizar">Sim</button>
                                                                         </div>
 
-                                                                    </form>
 
 
-                                                                </div>
+                                                                    </div>
+
+                                                                </form>
+
 
                                                             </div>
+
                                                         </div>
                                                     </div>
+                                                </div>
 
-                                                </form>
                                             </div>
 
                                         </div>
