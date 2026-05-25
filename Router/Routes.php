@@ -29,7 +29,9 @@ $routes = [
 '/pessoaJuridica/recusar/:id'       => ['PessoaJuridica', 'recusar'],         
 '/pessoaJuridica/finalizarUnique/:id'=> ['PessoaJuridica', 'finalizarUnique'],
 '/pessoaJuridica/finalizarAll'   => ['PessoaJuridica', 'finalizarAll'],
-
+'/user/homeProfissional/historicoProfissional' => ['HistoricoProfissional', 'index'],
+'/pessoaJuridica/avaliacao'                    => ['PessoaJuridica', 'avaliacao'],
+'/historicoProfissional/deletarUnique/:id'     =>   ['HistoricoProfissional', 'deletarUnique'],
 
 '/login/logout' => ['Login', 'logout'],
 

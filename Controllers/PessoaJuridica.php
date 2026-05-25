@@ -216,6 +216,14 @@ class PessoaJuridica extends RenderView
 
 
 
+    public function avaliacao(){
+        $data = [];
+        $data['Avaliacoes'] = 'Avaliacoes';
+
+        return $this->loadView('user/homeProfissional/minhaAvaliacao', []);
+    }
+
+
 
 
     // Mosta os dados da quantidade de ativos
