@@ -5,10 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Serviço Fácil</title>
-    <!-- <link rel="stylesheet" href="../../Assets/Css/style1.css"> -->
     <link rel="stylesheet" href="<?= base_url('Public/template/Css/style1.css') ?>">
     <link rel="stylesheet" href="<?= base_url('Public/template/Css/mediaLogin.css') ?>">
-     <!-- <link rel="stylesheet" href="../../Assets/Css/mediaLogin.css"> -->
 
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -20,32 +18,47 @@
 </head>
 
 <body>
+     <?php if (isset($_SESSION['msg'])): ?>
+
+        <?php
+
+        echo msg(
+            $_SESSION['msg']['texto'],
+            $_SESSION['msg']['color'],
+        );
+
+        unset($_SESSION['msg']);
+
+
+
+        ?>
+
+    <?php endif; ?>
 
     <main>
         <div class="container-box">
             <div class="texto">
 
                 <h3>Recuperação de senha</h3>
-                <h5 class="mb-2">Informe sua nova senha e confirme!</h5>
+                <h5 class="mb-1">Informe sua nova senha e confirme!</h5>
             </div>
             <div class="row ">
-                <form action="cadastro.php" method="post">
+                <form action="<?= base_url('login/salvarSenha') ?>" method="post">
                     <div class="campos">
-                        <div class="col-md-7 mt-3 mb-4">
+                        <div class="col-md-12 mt-2 mb-4">
                             <label for="usuarios_senha_hash">Senha</label>
-                            <input type="email" name="usuarios_senha_hash" id="usuarios_senha_hash" placeholder="Digite seu email" class="login form-control" required>
+                            <input type="password" name="usuarios_senha_hash" id="usuarios_senha_hash" placeholder="Digite sua senha" class="login form-control" required>
 
                         </div>
 
-                        <div class="col-md-7 mt-3 mb-4">
+                        <div class="col-md-12 mt-3 mb-4">
                             <label for="confirmaSenha">Corfirme sua senha</label>
-                            <input type="email" name="confirmaSenha" id="confirmaSenha" placeholder="Confirme sua senha" class="login form-control" required>
+                            <input type="password" name="confirmaSenha" id="confirmaSenha" placeholder="Confirme sua senha" class="login form-control" required>
 
                         </div>
 
-                        <!-- <div class="mb-3 form-check col-md-7 d-flex justify-content-between align-items-center mt-2">
+                        <input type="hidden" name="token" value="<?= $_SESSION['token'] ?>">
 
-                        </div> -->
 
                         <input type="submit" class="btn-submit mt-4" name="enviar" value="Entrar">
 

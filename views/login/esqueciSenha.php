@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - LaborHUB </title>
-    <!-- <link rel="stylesheet" href="../../Assets/Css/style1.css">
-    <link rel="stylesheet" href="../../Assets/Css/mediaLogin.css"> -->
+
     <link rel="stylesheet" href="<?= base_url('Public/template/Css/style1.css') ?>">
     <link rel="stylesheet" href="<?= base_url('Public/template/Css/mediaLogin.css') ?>">
 
@@ -21,6 +20,24 @@
 
 <body>
 
+    <?php if (isset($_SESSION['msg'])): ?>
+
+        <?php
+
+        echo msg(
+            $_SESSION['msg']['texto'],
+            $_SESSION['msg']['color'],
+        );
+
+        unset($_SESSION['msg']);
+
+
+
+        ?>
+
+    <?php endif; ?>
+
+
     <main>
         <div class="container-box">
             <div class="texto">
@@ -29,18 +46,13 @@
                 <h5 class="mb-2">Informe seu email para alterar sua senha!</h5>
             </div>
             <div class="row ">
-                <form action="cadastro.php" method="post">
+                <form action="<?= base_url('login/enviarEmail') ?>" method="post">
                     <div class="campos">
                         <div class="col-md-12 mt-3 mb-4">
                             <label for="usuarios_nome">Email</label>
                             <input type="email" name="usuarios_email" id="usuarios_email" placeholder="Digite seu email" class="login form-control" required>
 
                         </div>
-
-                        <!-- <div class="mb-3 form-check col-md-7 d-flex justify-content-between align-items-center mt-2">
-
-                        </div> -->
-
                         <input type="submit" class="btn-submit mt-5" name="enviar" value="Entrar">
                         <input type="button" class="btn-voltar mt-3" onclick="window.location.href='<?= base_url('login') ?>'" name="voltar" value="Voltar">
 

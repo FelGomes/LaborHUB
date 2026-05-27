@@ -6,6 +6,7 @@ use \Models\Database as Conexao;
 
 use \PDO;
 use \Utils\RenderView;
+use \Utils\Email;
 
 
 class Login extends RenderView
@@ -144,6 +145,213 @@ class Login extends RenderView
     {
         return $this->loadView('login/esqueciSenha', []);
     }
+
+
+    public function enviarEmail()
+    {
+
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            return $this->loadView('login/esqueciSenha', []);
+        }
+
+
+
+        $email = $_POST['usuarios_email'] ?? '';
+
+        if (empty($email)) {
+            $_SESSION['msg'] = [
+                'texto' => 'Informe um email',
+                'color' => 'danger',
+            ];
+
+            return $this->loadView('login/esqueciSenha', []);
+        }
+
+
+        $where = "usuarios_email = '$email'";
+        $usuario = $this->usuario->select(null, $where)->fetch(PDO::FETCH_OBJ);
+
+        if (!$usuario) {
+            $_SESSION['msg'] = [
+                'texto' => "Email inválido. Tente novamente!",
+                'color' => 'danger',
+            ];
+
+            return $this->loadView('login/esqueciSenha', []);
+        }
+
+        $token = bin2hex(random_bytes(32));
+
+        $usuarios_expira_em = date('Y-m-d H:i:s', strtotime('+1 hour'));
+
+
+        $values = [
+            'usuarios_reset_hash' => $token,
+            'usuarios_expira_em' => $usuarios_expira_em,
+        ];
+
+        $whereUpdate = "usuarios_id = '$usuario->usuarios_id'";
+
+        $this->usuario->update($whereUpdate, $values);
+
+        $emailClass = new Email();
+
+        $emailC = $emailClass->alterarSenha($usuario->usuarios_email, $token);
+
+        if ($emailC) {
+            $_SESSION['msg'] = [
+                'texto' => 'Email enviado com sucesso!',
+                'color' => 'success',
+            ];
+        } else {
+
+            $values = [
+                'usuarios_reset_hash' => null,
+                'usuarios_expira_em' => null,
+            ];
+
+            $whereUpdate = "usuarios_id = '$usuario->usuarios_id'";
+
+            $this->usuario->update($whereUpdate, $values);
+
+            $_SESSION['msg'] = [
+                'texto' => "Ocorreu um erro ao enviar seu email",
+                'color' => 'danger',
+            ];
+        }
+
+        return $this->loadView('login/esqueciSenha', []);
+    }
+
+    public function alterarSenha()
+    {
+
+        $token = $_GET['token'] ?? '';
+
+        if (!$token) {
+            $_SESSION['msg'] = [
+                'texto' => 'Token inválido',
+                'color' => 'danger',
+            ];
+
+            return $this->redirect(base_url('login'));
+        }
+
+        $where = "
+        usuarios_reset_hash = '$token'
+        and usuarios_expira_em > NOW()
+        
+        ";
+
+        $usuario = $this->usuario->select(null, $where)->fetch(PDO::FETCH_OBJ);
+
+
+        if (!$usuario) {
+            $_SESSION['msgm'] = [
+                'texto' => 'Link expirado, tente novamente!',
+                'color' => 'danger',
+            ];
+            return $this->redirect(base_url('login'));
+        }
+
+        $_SESSION['token'] = $token;
+        return $this->loadView('login/alterarSenha', []);
+    }
+
+
+
+
+    // FUnção para salvar a nova senha
+     public function salvarSenha(){
+
+        $senha = $_POST['usuarios_senha_hash'] ?? '';
+        $confirmarSenha = $_POST['confirmaSenha'] ?? '';
+        $token = $_POST['token'] ?? '';
+
+
+        if(empty($senha) || empty($confirmarSenha)){
+            $_SESSION['msg'] =[
+                'texto' => "Preencha os campos abaixo!",
+                'color' => 'danger',
+            ];
+
+            return $this->loadView('login/alterarSenha', []);
+        }
+
+
+        if($senha !== $confirmarSenha){
+
+            $_SESSION['msg'] = [
+                'texto' => 'Os campos de senha não podem ser diferentes!',
+                'color' => 'danger',
+            ];
+
+            return $this->loadView('login/alterarSenha', []);
+
+        }
+
+        
+        if(!$token){
+            $_SESSION['msg'] = [
+                'texto' => "Token inválido",
+                'color' => 'danger',
+            ];
+
+            return $this->redirect(base_url('login'));
+        }
+
+
+
+        $where = "usuarios_reset_hash ='$token'
+         AND usuarios_expira_em > NOW()";
+
+
+         
+
+        $usuario = $this->usuario->select(null,$where)->fetch(PDO::FETCH_OBJ);
+
+        if(!$usuario){
+            $_SESSION['msg'] =[
+                'texto' => "Token expirado!",
+                'color' => 'danger',
+            ];
+
+            return $this->redirect(base_url('login'));
+        }
+
+
+        $values = [
+            'usuarios_senha_hash' => password_hash($senha, PASSWORD_DEFAULT),
+
+            'usuarios_reset_hash' => null,
+            'usuarios_expira_em' => null,
+        ];
+        
+
+        $whereUpdate = "usuarios_id ='$usuario->usuarios_id'";
+
+        if(!$this->usuario->update($whereUpdate, $values)){
+            $_SESSION['msg'] = [
+                'texto' => "Erro ao alterar senha!",
+                'color' => 'danger',
+            ];
+
+            return $this->loadView('login/alterarSenha', []);
+        }
+
+        unset($_SESSION['token']);
+
+        $_SESSION['msg'] = [
+            'texto' => 'Senha alterada com sucesso!',
+            'color' => 'success',
+        ];
+
+        return $this->redirect(base_url('login'));
+
+
+    }
+
+
 
 
 
