@@ -160,13 +160,13 @@
 
                 <!-- listagem de historicos -->
                 <div id="form-ultimos">
-                    <?php if (empty($_SESSION['servicosFinalizados'])): ?>
+                    <?php if (empty($servicosFinalizados)): ?>
 
                         <h4 class="text-center mt-5">Não há nenhum registro de contratação de serviços</h4>
 
                     <?php else: ?>
 
-                        <?php foreach ($_SESSION['servicosFinalizados'] as $historicoFinalizado): ?>
+                        <?php foreach ($servicosFinalizados as $historicoFinalizado): ?>
                             <div class="lista-historico ">
                                 <div class="card-historico">
                                     <div class="info-group">
@@ -177,10 +177,10 @@
                                         <div class="info-dados mt-2">
                                             <h4><?= esc($historicoFinalizado->nome) ?></h4>
                                             <h6><?= esc($historicoFinalizado->servico) ?></h6>
-                                            <h5><?= esc(date('d/m/Y', strtotime($historicoFinalizado->solicitacao_data))) ?></h5>
-                                            <h5><?= esc(date('d/m/Y', strtotime($historicoFinalizado->solicitacao_conclusao))) ?></h5>
+                                            <h5><strong>Data solicitação: </strong><?= esc(date('d/m/Y', strtotime($historicoFinalizado->solicitacao_data))) ?></h5>
+                                            <h5><strong>Data de conclusão de serviço: </strong><?= esc(date('d/m/Y', strtotime($historicoFinalizado->solicitacao_conclusao))) ?></h5>
 
-                                            <h5 id="valorServico"><strong>Valor do serviço:</strong> <?= esc($historicoFinalizado->servico_valor) . ' - ' . esc($historicoFinalizado->cobranca) ?> </h5>
+                                            <h5 id="valorServico"><strong>Valor do serviço:</strong> R$ <?= number_format($historicoFinalizado->valor, 2, ',', '.') . ' - ' . esc($historicoFinalizado->cobranca) ?> </h5>
 
                                         </div>
                                     </div>
@@ -189,7 +189,7 @@
 
                                         <?php if (empty($historicoFinalizado->descricao)): ?>
 
-                                            <h5>Não foi feito nenhum comentario. Detalha a tela para avaliar esse serviço!</h5>
+                                            <h5 class="mt-3">Não foi feito nenhum comentario. Detalha a tela para avaliar esse serviço!</h5>
 
                                         <?php else: ?>
                                             <div class="info-validation">
@@ -200,16 +200,16 @@
                                             <div class="detalhes">
                                                 <h6 class="text-center"><strong><?= esc($historicoFinalizado->assunto) ?></strong></h6> <!--TIUTLO DO COMENTARIO-->
                                                 <p class="text-justify"> <?= mb_strimwidth($$historicoFinalizado->descricao, 0, 90, "...") ?></p>
-
-                                                <div class="botao">
-                                                    <i class="bi bi-star" id="favorito"></i>
-                                                    <button class="btn-detalhar" onclick="window.location.href='detalhamentoHistorico.php'">Detalhar</button>
-
-                                                </div>
-
                                             </div>
-
                                         <?php endif; ?>
+
+                                        <div class="botao" style="margin-top: 80px;">
+                                            <i class="bi bi-star" id="favorito"></i>
+                                            <button type="submit" class="btn-detalhar" onclick="window.location.href='<?= base_url('historico/detalharServicoFinalizado/' . $historicoFinalizado->solicitacao_id) ?>'">Detalhar</button>
+
+                                        </div>
+
+
 
                                     </div>
 

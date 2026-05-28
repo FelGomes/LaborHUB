@@ -33,7 +33,9 @@ $routes = [
 '/pessoaJuridica/avaliacao'                    => ['PessoaJuridica', 'avaliacao'],
 '/historicoProfissional/deletarUnique/:id'     =>   ['HistoricoProfissional', 'deletarUnique'],
 '/login/enviarEmail'                           => ['Login', 'enviarEmail'],
-'/login/salvarSenha' => ['Login', 'salvarSenha'],
+'/login/salvarSenha'                           => ['Login', 'salvarSenha'],
+'/historico/detalharServicoFinalizado/:id'      => ['Historico', 'detalharServicoFinalizado'],
+'historico/avaliarProfissional'                 => ['Historico', 'avaliarProfissional'],
 
 '/login/logout' => ['Login', 'logout'],
 

@@ -132,6 +132,44 @@ class Historico extends RenderView
 
 
 
+    public function detalharServicoFinalizado($solicitacaoID) {
+
+        $detalhamento = $this->detalharProfissional($solicitacaoID);
+        $data['detalhamento'] = $this->solicitacaoServico->selectProfissionais($detalhamento)->fetch(PDO::FETCH_OBJ);
+
+        return $this->loadView('user/homeCliente/detalhamentoHistorico', $data);
+
+    }
+
+
+    public function avaliarProfissional(){
+
+        $valuesAvaliacao = [ 
+            'avaliacao_assunto' => $_POST['avaliacao_assunto'] ?? '',
+            'avaliacao_descricao' => $_POST['avaliacao_descricao'] ?? '',
+            'avaliacao_notas'      => $_POST['avaliacao_notas'] ?? '',
+            'avaliacao_data'       => date('Y-m-d'),
+            'avaliador_usuarios_id' => $_POST['cliente_id'],
+            'avaliado_usuarios_id'  => $_POST['profissional_id'],
+            'avaliacao_solicitacao_id' => $_POST['solicitacao_id']
+
+        ];
+
+        if(empty($valuesAvaliacao['avaliacao_assunto'])){
+            $_SESSION['msg'] = [
+                'texto' => 'O campo de assunto não pode ser vazio!',
+                'color' => 'danger',
+            ];
+
+            return $this->loadView('user/homeCliente/detalhamentoHistorico',[]);
+        }
+
+
+
+    }
+
+
+
     // Vai listar todas as solicitações que foram finalizadas pelo profissional - view historico
     public function listarHistoricoFinalizado()
     {
@@ -163,7 +201,8 @@ class Historico extends RenderView
         so.solicitacao_data as solicitacao_data,
         so.solicitacao_data_atual as solicitacao_data_atual,
         so.solicitacao_conclusao as solicitacao_conclusao,
-        so.solicitacao_quantidade as quantidade
+        so.solicitacao_quantidade as quantidade,
+        so.solicitacao_id
 
         FROM solicitacaoServico ss
 
@@ -276,5 +315,64 @@ class Historico extends RenderView
             -- Filtra pelo ID do cliente logado e status Pendente
             WHERE u_cliente.usuarios_id = '$this->usuarioID' AND so.solicitacao_status = 'Recusado'
             ORDER BY so.solicitacao_id DESC";
+    }
+
+     public function detalharProfissional($solicitacaoId)
+    {
+        return "SELECT 
+        s.servicos_nome as servico,
+        s.servicos_data as servico_data,
+        s.servicos_valor as valor,
+        s.servicos_tipo_cobranca as cobranca,
+        s.servicos_nivel_experiencia as experiencia,
+        
+        -- Buscando o nome do PROFISSIONAL que prestou o serviço
+        COALESCE(
+            CONCAT(pf_prof.pf_nome, ' ', pf_prof.pf_sobrenome),
+            pj_prof.pj_nomeFantasia
+        ) AS nome,
+        pf_prof.pf_genero as genero,
+        pj_prof.pj_cnpj as cnpj,
+        
+        -- Dados de contato e foto do PROFISSIONAL
+        u_prof.usuarios_imagem as usuariosImagem,
+        u_prof.usuarios_telefone as telefone,
+        u_prof.usuarios_email as email,
+        u_prof.usuarios_id as profissional_id,
+
+        u_cliente.usuarios_id as cliente_id,
+        
+        -- Dados da avaliação que o cliente fez para ESTE serviço específico
+        a.avaliacao_assunto as assunto,
+        a.avaliacao_descricao as descricao,
+        a.avaliacao_notas as nota,
+        a.avaliacao_data as avaliacao_data,
+        
+        so.solicitacao_data as solicitacao_data,
+        so.solicitacao_data_atual as solicitacao_data_atual,
+        so.solicitacao_conclusao as solicitacao_conclusao,
+        so.solicitacao_quantidade as quantidade,
+        so.solicitacao_id,
+        e.endereco_cidade as cidade,
+        e.endereco_uf as uf
+
+        FROM solicitacaoServico ss
+
+        INNER JOIN solicitacao so ON so.solicitacao_id = ss.solicitacaoServico_solicitacao_id
+        INNER JOIN servicos s ON s.servicos_id = ss.solicitacaoServico_servicos_id
+        
+        INNER JOIN usuarios u_cliente ON u_cliente.usuarios_id = so.solicitacao_usuarios_id
+
+        
+        INNER JOIN usuarios u_prof ON u_prof.usuarios_id = s.servicos_usuarios_id
+        INNER JOIN endereco e on e.endereco_usuarios_id = u_prof.usuarios_id
+        LEFT JOIN pessoaFisica pf_prof ON pf_prof.pf_usuarios_id = u_prof.usuarios_id 
+        LEFT JOIN pessoaJuridica pj_prof ON pj_prof.pj_usuarios_id = u_prof.usuarios_id
+        
+        LEFT JOIN avaliacao a ON a.avaliador_usuarios_id = u_cliente.usuarios_id 
+        
+        -- Filtra pelo ID do cliente logado e status Finalizado
+        WHERE u_cliente.usuarios_id = '$this->usuarioID' AND so.solicitacao_status = 'Finalizado' AND so.solicitacao_id = '$solicitacaoId'
+        ORDER BY so.solicitacao_conclusao DESC";
     }
 }
