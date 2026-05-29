@@ -81,7 +81,7 @@
 
         <nav>
             <ul class="mt-1 mb-5">
-                 <li><a href="<?= base_url('user/homeProfissional/index') ?>">Home</a></li>
+                <li><a href="<?= base_url('user/homeProfissional/index') ?>">Home</a></li>
                 <li><a href="<?= base_url('user/homeProfissional/historicoProfissional') ?>">Histórico</a></li>
                 <li><a href="<?= base_url('pessoaJuridica/avaliacao') ?>">Minhas avaliações</a></li>
 
@@ -248,19 +248,18 @@
             </div>
         <?php endif; ?>
 
-        <hr>
-        <?php if (empty($historicoRecusado)): ?>
+        <div class="listaHistorico" id="form-recusados" style="display: none;">
+            <?php if (empty($historicoRecusado)): ?>
 
-            <div style="margin-top: 150px;">
+                <div style="margin-top: 150px;">
 
-                <h4 class="text-center"> Não há serviço recusado anteriormente! </h4>
-            </div>
+                    <h4 class="text-center"> Não há serviço recusado anteriormente! </h4>
+                </div>
 
 
 
-        <?php else: ?>
+            <?php else: ?>
 
-            <div class="listaHistorico" id="form-recusados" style="display: none;">
 
                 <div class="card mb-3" style="max-width: 540px;">
                     <div class="row g-0">
@@ -335,11 +334,9 @@
                     </div>
                 </div>
 
+        </div>
 
-
-            </div>
-
-        <?php endif; ?>
+    <?php endif; ?>
 
 
 

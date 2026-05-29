@@ -584,6 +584,15 @@ input {
     color: gold;
 }
 
+#lixeira {
+    display: flex;
+    font-size: 35px;
+    color: #f01414;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+
 @media screen and (max-width: 768px) {
 
     .container {

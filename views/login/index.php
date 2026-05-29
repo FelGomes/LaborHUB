@@ -51,7 +51,7 @@
                     <form action="<?= base_url('login/autenticar') ?>" method="post">
                         <div class="col-md-12 mb-3">
                             <label for="usuarios_email">Email</label>
-                            <input type="email" name="usuarios_email" id="usuarios_email" placeholder="Digite seu email" class="login form-control" required>
+                            <input type="email" name="usuarios_email" id="usuarios_email" placeholder="Digite seu email" class="login form-control" value="<?= $_SESSION['old'] ?? '' ?>" required>
 
                         </div>
 

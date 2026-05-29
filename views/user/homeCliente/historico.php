@@ -204,6 +204,7 @@
                                         <?php endif; ?>
 
                                         <div class="botao" style="margin-top: 80px;">
+                                            <i class="bi bi-trash3-fill" id="lixeira" ></i>
                                             <i class="bi bi-star" id="favorito"></i>
                                             <button type="submit" class="btn-detalhar" onclick="window.location.href='<?= base_url('historico/detalharServicoFinalizado/' . $historicoFinalizado->solicitacao_id) ?>'">Detalhar</button>
 

@@ -133,7 +133,7 @@ class Login extends RenderView
                 'texto' => 'Email ou senha inválido!',
                 'color' => 'danger',
             ];
-            $_SESSION['old'] = $post;
+            $_SESSION['old'] = $_POST['ususarios_email'];
 
             return $this->redirect(base_url('/login'));
         }
