@@ -16,12 +16,14 @@ class Historico extends RenderView
     private $usuarioID;
     private $solicitacaoServico;
     private $solicitacao;
+    private $avaliacao;
 
     public function __construct()
     {
         $this->usuarioID = $_SESSION['usuarios_logado']->usuarios_id;
         $this->solicitacaoServico = new Conexao('solicitacaoServico');
         $this->solicitacao = new Conexao('solicitacao');
+        $this->avaliacao = new Conexao('avaliacao');
     }
 
     protected function redirect($path, $mensagem = null)
@@ -84,7 +86,7 @@ class Historico extends RenderView
         return $this->redirect(base_url('historico/index'));
     }
 
-     // Funçao para deletar todas solicitações recusada
+    // Funçao para deletar todas solicitações recusada
     public function deletarAll()
     {
 
@@ -132,19 +134,20 @@ class Historico extends RenderView
 
 
 
-    public function detalharServicoFinalizado($solicitacaoID) {
+    public function detalharServicoFinalizado($solicitacaoID)
+    {
 
         $detalhamento = $this->detalharProfissional($solicitacaoID);
         $data['detalhamento'] = $this->solicitacaoServico->selectProfissionais($detalhamento)->fetch(PDO::FETCH_OBJ);
 
         return $this->loadView('user/homeCliente/detalhamentoHistorico', $data);
-
     }
 
 
-    public function avaliarProfissional(){
+    public function avaliarProfissional()
+    {
 
-        $valuesAvaliacao = [ 
+        $valuesAvaliacao = [
             'avaliacao_assunto' => $_POST['avaliacao_assunto'] ?? '',
             'avaliacao_descricao' => $_POST['avaliacao_descricao'] ?? '',
             'avaliacao_notas'      => $_POST['avaliacao_notas'] ?? '',
@@ -155,18 +158,94 @@ class Historico extends RenderView
 
         ];
 
-        if(empty($valuesAvaliacao['avaliacao_assunto'])){
+        if (empty($valuesAvaliacao['avaliacao_assunto'])) {
             $_SESSION['msg'] = [
                 'texto' => 'O campo de assunto não pode ser vazio!',
                 'color' => 'danger',
             ];
 
-            return $this->loadView('user/homeCliente/detalhamentoHistorico',[]);
+            return $this->detalharServicoFinalizado($_POST['solicitacao_id']);
         }
 
 
+        if ($this->avaliacao->insert($valuesAvaliacao)) {
+            $_SESSION['msg'] = [
+                'texto' => 'Comentário enviado com sucesso!',
+                'color' => 'success',
+            ];
+        } else {
+            $_SESSION['msg'] = [
+                'texto' => 'Erro ao enviar comentario!',
+                'color' => 'danger',
+            ];
+        }
 
+        return $this->detalharServicoFinalizado($_POST['solicitacao_id']);
     }
+
+
+    public function editarAvaliacao()
+    {
+        $avaliacaoID = $_POST['avaliacao_id'] ?? '';
+
+        $where = "avaliacao_id = '$avaliacaoID'";
+
+        $avaliacaoAtual = $this->avaliacao->select(null, $where)->fetch(PDO::FETCH_OBJ);
+
+
+        $dadosNovos = [
+            'avaliacao_notas' => trim($_POST['avaliacao_notas'] ?? ''),
+            'avaliacao_assunto' => trim($_POST['avaliacao_assunto'] ?? ''),
+            'avaliacao_descricao' => trim($_POST['avaliacao_descricao'] ?? ''),
+        ];
+
+        $dadosAntigos = [
+            'avaliacao_notas' => trim($avaliacaoAtual->avaliacao_notas),
+            'avaliacao_assunto' => trim($avaliacaoAtual->avaliacao_assunto),
+            'avaliacao_descricao' => trim($avaliacaoAtual->avaliacao_descricao),
+
+        ];
+
+
+
+        if ($dadosNovos == $dadosAntigos) {
+
+            $_SESSION['msg'] = [
+                'texto' => 'Nenhum dado foi alterado!',
+                'color' => 'warning',
+            ];
+            return $this->detalharServicoFinalizado($_POST['solicitacao_id']);
+        }
+
+
+        if ($this->avaliacao->update($where, $dadosNovos)) {
+            $_SESSION['msg'] = [
+                'texto' => 'Comentário editado com sucesso!',
+                'color' => 'success',
+            ];
+        } else {
+            $_SESSION['msg'] = [
+                'texto' => 'Erro ao editar comentario!',
+                'color' => 'danger',
+            ];
+        }
+
+        return $this->detalharServicoFinalizado($_POST['solicitacao_id']);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -192,7 +271,7 @@ class Historico extends RenderView
         u_prof.usuarios_imagem as usuariosImagem,
         u_prof.usuarios_telefone as telefone,
         
-        -- Dados da avaliação que o cliente fez para ESTE serviço específico
+        -- Dados da avaliação que o cliente fez para ESTE servisolicitacao_data_atualço específico
         a.avaliacao_assunto as assunto,
         a.avaliacao_descricao as descricao,
         a.avaliacao_notas as nota,
@@ -215,7 +294,7 @@ class Historico extends RenderView
         LEFT JOIN pessoaFisica pf_prof ON pf_prof.pf_usuarios_id = u_prof.usuarios_id 
         LEFT JOIN pessoaJuridica pj_prof ON pj_prof.pj_usuarios_id = u_prof.usuarios_id
         
-        LEFT JOIN avaliacao a ON a.avaliador_usuarios_id = u_cliente.usuarios_id 
+        LEFT JOIN avaliacao a ON a.avaliacao_solicitacao_id = so.solicitacao_id 
         
         -- Filtra pelo ID do cliente logado e status Finalizado
         WHERE u_cliente.usuarios_id = '$this->usuarioID' AND so.solicitacao_status = 'Finalizado'
@@ -268,7 +347,7 @@ class Historico extends RenderView
             WHERE u_cliente.usuarios_id = '$this->usuarioID' AND so.solicitacao_status = 'Pendente'
             ORDER BY so.solicitacao_id DESC";
     }
-    
+
     // Selec para retornar dados de solicitações recusados - view historico
     public function listarHistoricoRecusado()
     {
@@ -317,7 +396,7 @@ class Historico extends RenderView
             ORDER BY so.solicitacao_id DESC";
     }
 
-     public function detalharProfissional($solicitacaoId)
+    public function detalharProfissional($solicitacaoId)
     {
         return "SELECT 
         s.servicos_nome as servico,
@@ -343,6 +422,7 @@ class Historico extends RenderView
         u_cliente.usuarios_id as cliente_id,
         
         -- Dados da avaliação que o cliente fez para ESTE serviço específico
+        a.avaliacao_id,
         a.avaliacao_assunto as assunto,
         a.avaliacao_descricao as descricao,
         a.avaliacao_notas as nota,
@@ -369,7 +449,7 @@ class Historico extends RenderView
         LEFT JOIN pessoaFisica pf_prof ON pf_prof.pf_usuarios_id = u_prof.usuarios_id 
         LEFT JOIN pessoaJuridica pj_prof ON pj_prof.pj_usuarios_id = u_prof.usuarios_id
         
-        LEFT JOIN avaliacao a ON a.avaliador_usuarios_id = u_cliente.usuarios_id 
+         LEFT JOIN avaliacao a ON a.avaliacao_solicitacao_id = so.solicitacao_id 
         
         -- Filtra pelo ID do cliente logado e status Finalizado
         WHERE u_cliente.usuarios_id = '$this->usuarioID' AND so.solicitacao_status = 'Finalizado' AND so.solicitacao_id = '$solicitacaoId'

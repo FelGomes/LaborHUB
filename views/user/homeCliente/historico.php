@@ -198,8 +198,8 @@
                                             </div>
 
                                             <div class="detalhes">
-                                                <h6 class="text-center"><strong><?= esc($historicoFinalizado->assunto) ?></strong></h6> <!--TIUTLO DO COMENTARIO-->
-                                                <p class="text-justify"> <?= mb_strimwidth($$historicoFinalizado->descricao, 0, 90, "...") ?></p>
+                                                <h6 class="text-start"><strong><?= esc($historicoFinalizado->assunto) ?></strong></h6> <!--TIUTLO DO COMENTARIO-->
+                                                <p class="text-justify"> <?= mb_strimwidth($historicoFinalizado->descricao, 0, 90, "...") ?></p>
                                             </div>
                                         <?php endif; ?>
 

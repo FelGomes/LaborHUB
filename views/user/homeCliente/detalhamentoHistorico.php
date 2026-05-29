@@ -113,14 +113,12 @@
         </div>
 
         <div class="voltarPerfil">
-            <a href="historico.php"><i class="bi bi-arrow-left"></i> Voltar</a>
+            <a href="<?= base_url('historico/index') ?>"><i class="bi bi-arrow-left"></i> Voltar</a>
         </div>
 
         <div class="tituloSolicitacao mt-2">
             <h3 class="text-center"> <a href=""><i class="bi bi-caret-left-fill"></i></a> Outros Serviços <a href=""><i class="bi bi-caret-right-fill"></i></a></h3>
         </div>
-
-        <?php var_dump($detalhamento) ?>
 
         <div class="solicitacao ">
             <div class="solicitacaoDados">
@@ -216,68 +214,152 @@
 
         </div>
 
-        <!-- <div class="solicitacaoObservacao "> Caso ja existe comentario feito
-            <h4 class="mb-4">Seu comentário</h4>
-            <h5 style="display: flex; justify-content: space-between"><strong> Ótimo Profissional </strong>  <span class="text-end small">5.0 - 12/02/2025</span> </h5>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laboriosam nihil, commodi quaerat fugiat et veniam earum atque, tenetur soluta, sapiente dolore repellat excepturi labore hic est animi! Debitis, illo ipsam? Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, eaque aperiam illo inventore neque esse beatae cum corporis, quam quod consequatur minima at mollitia error, aliquid sapiente pariatur veritatis nihil.</p>
+        <?php if (!empty($detalhamento->assunto)): ?>
+            <div class="solicitacaoObservacao ">
+                <h4 class="mb-4"><?= $detalhamento->assunto ?></h4>
+                <h5 style="display: flex; justify-content: space-between"><strong> Ótimo Profissional </strong> <span class="text-end small"> Nota: <?= number_format($detalhamento->nota, 1, '.', '') . ' - ' . date('d/m/Y', strtotime($detalhamento->solicitacao_data_atual)) ?></span> </h5>
+                <?php if (empty($detalhamento->descricao)): ?>
+                    <p> Você não fez nenhuma descrição para este serviço</p>
 
-            <div class="botaoEditar" style="display: flex; justify-content: flex-end;">
-                <button type="submit" class="btn-finalizar" style="width:170px; margin-right: 0px !important; ">Editar Comentário</button>
+                <?php else: ?>
 
-            </div>
-        </div> -->
+                    <p class="text-justify"><?= esc($detalhamento->descricao) ?> </p>
 
-        <!-- Realizar comentario -->
-        <div class="solicitacaoObservacao ">
-            <h4 class="mb-4">Faça um comentário</h4>
 
-            <form action="<?= base_url('historico/avaliarProfissional') ?>" method="post">
-                <label for="comentarios_notas">Notas do serviço: &nbsp; &nbsp;</label> <br>
-                <div class="form-check form-check-inline mb-4">
-                    <input class="form-check-input" type="radio" name="comentarios_notas" id="inlineRadio1" value="1">
-                    <label class="form-check-label" for="inlineRadio1">1</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="comentarios_notas" id="inlineRadio2" value="2">
-                    <label class="form-check-label" for="inlineRadio2">2</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="comentarios_notas" id="inlineRadio3" value="3">
-                    <label class="form-check-label" for="inlineRadio3">3</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="comentarios_notas" id="inlineRadio4" value="4">
-                    <label class="form-check-label" for="inlineRadio3">4</label>
-                </div>
-                <div class="form-check form-check-inline ">
-                    <input class="form-check-input" type="radio" name="comentarios_notas" id="inlineRadio5" value="5">
-                    <label class="form-check-label" for="inlineRadio3">5</label>
-                </div>
+                <?php endif; ?>
 
-                <div class="col-md-6">
-                    <label for="avaliacao_assunto">Título do Comentário:</label>
-                    <input type="text" id="avaliacao_assunto" class="form-control" name="avaliacao_assunto" placeholder="Ex: Excelente serviço! / Poderia melhorar" required>
-                </div>
-                <br>
-                <div class="row">
+                <div class="botaoEditar" style="display: flex; justify-content: flex-end;">
+                    <button type="submit" class="btn-finalizar" data-bs-target="#modalEditarComentario" data-bs-toggle="modal" style="width:170px; margin-right: 0px !important; ">Editar Comentário</button>
 
-                    <div class="col-md-12 mt-3 mb-4">
-                        <label for="avaliacao_descricao">Comentários:</label>
-                        <textarea id="avaliacao_descricao" name="avaliacao_descricao" rows="4" class="form-control" placeholder="Conte mais detalhes sobre sua experiência..."></textarea>
+                    <div class="modal fade modal-lg" id="modalEditarComentario" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Editar comentário</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+
+                                <form action="<?= base_url('historico/editarAvaliacao') ?>" method="post">
+                                    <div class="modal-body"> <!--COnteudo com os formulario-->
+                                        <div class="row">
+
+                                            <div class="col-md-12 mb-3">
+                                                <label for="avaliacao_assunto">Título do Comentário:</label>
+                                                <input type="text" id="avaliacao_assunto" class="form-control" name="avaliacao_assunto" placeholder="Ex: Excelente serviço! / Poderia melhorar" required value="<?= esc($detalhamento->assunto) ?>">
+                                            </div>
+
+
+                                            <div class="col-md-12 mt-3 mb-3">
+                                                <label for="avaliacao_descricao">Comentários:</label>
+                                                <textarea id="avaliacao_descricao" name="avaliacao_descricao" rows="4" class="form-control" placeholder="Conte mais detalhes sobre sua experiência..."> <?= esc($detalhamento->descricao) ?></textarea>
+                                            </div>
+                                            
+                                            <input type="hidden" name="avaliacao_id" value="<?= $detalhamento->avaliacao_id ?>">
+                                            <input type="hidden" name="cliente_id" value="<?= $detalhamento->cliente_id ?>">
+                                            <input type="hidden" name="profissional_id" value="<?= $detalhamento->profissional_id ?>">
+                                            <input type="hidden" name="solicitacao_id" value="<?= $detalhamento->solicitacao_id ?>">
+
+
+                                            <div class="solicitacaoObservacao" style="margin-left: 5px !important;">
+                                                <label for="avaliacao_notas">Notas do serviço: &nbsp; &nbsp;</label> <br>
+                                                <div class="form-check form-check-inline mb-4">
+                                                    <input class="form-check-input" <?= $detalhamento->nota === 1 ? 'checked' : '' ?> type="radio" name="avaliacao_notas" id="inlineRadio1" value="1">
+                                                    <label class="form-check-label" for="inlineRadio1">1</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" <?= $detalhamento->nota === 2 ? 'checked' : '' ?> type="radio" name="avaliacao_notas" id="inlineRadio2" value="2">
+                                                    <label class="form-check-label" for="inlineRadio2">2</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" <?= $detalhamento->nota === 3 ? 'checked' : '' ?> type="radio" name="avaliacao_notas" id="inlineRadio3" value="3">
+                                                    <label class="form-check-label" for="inlineRadio3">3</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" <?= $detalhamento->nota === 4 ? 'checked' : '' ?> type="radio" name="avaliacao_notas" id="inlineRadio4" value="4">
+                                                    <label class="form-check-label" for="inlineRadio3">4</label>
+                                                </div>
+                                                <div class="form-check form-check-inline ">
+                                                    <input class="form-check-input" <?= $detalhamento->nota === 5 ? 'checked' : '' ?> type="radio" name="avaliacao_notas" id="inlineRadio5" value="5">
+                                                    <label class="form-check-label" for="inlineRadio3">5</label>
+                                                </div>
+
+                                                <input type="hidden" name="servicos_id" value="<?= $servico_id ?? '' ?>">
+                                                <input type="hidden" name="profissional_id" value="<?= $dadosProfissional->usuarios_id ?? '' ?>">
+
+
+                                            </div>
+
+
+                                        </div>
+
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn-finalizar" type="submit">Enviar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
 
-                    <input type="hidden" name="cliente_id" value="<?= $detalhamento->clientes_id ?>">
-                    <input type="hidden" name="profissional_id" value="<?= $detalhamento->profissional_id ?>">
-                    <input type="hidden" name="solicitacao_id" value="<?= $detalhamento->solicitacao_id ?>">
-
                 </div>
-                <div class="botaoEditar mb-5" style="display: flex; justify-content: flex-end;">
-                    <button type="submit" class="btn-finalizar" style="width:170px; margin-right: 0px !important; ">Enviar Comentário</button>
+            </div>
 
-                </div>
-            </form>
+        <?php else: ?>
 
-        </div>
+            <!-- Realizar comentario -->
+            <div class="solicitacaoObservacao ">
+                <h4 class="mb-4">Faça um comentário</h4>
+
+                <form action="<?= base_url('historico/avaliarProfissional') ?>" method="post">
+                    <label for="avaliacao_notas">Notas do serviço: &nbsp; &nbsp;</label> <br>
+                    <div class="form-check form-check-inline mb-4">
+                        <input class="form-check-input" type="radio" name="avaliacao_notas" id="inlineRadio1" value="1">
+                        <label class="form-check-label" for="inlineRadio1">1</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="avaliacao_notas" id="inlineRadio2" value="2">
+                        <label class="form-check-label" for="inlineRadio2">2</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="avaliacao_notas" id="inlineRadio3" value="3">
+                        <label class="form-check-label" for="inlineRadio3">3</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="avaliacao_notas" id="inlineRadio4" value="4">
+                        <label class="form-check-label" for="inlineRadio3">4</label>
+                    </div>
+                    <div class="form-check form-check-inline ">
+                        <input class="form-check-input" type="radio" name="avaliacao_notas" id="inlineRadio5" value="5">
+                        <label class="form-check-label" for="inlineRadio3">5</label>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="avaliacao_assunto">Título do Comentário:</label>
+                        <input type="text" id="avaliacao_assunto" class="form-control" name="avaliacao_assunto" placeholder="Ex: Excelente serviço! / Poderia melhorar" required>
+                    </div>
+                    <br>
+                    <div class="row">
+
+                        <div class="col-md-12 mt-3 mb-4">
+                            <label for="avaliacao_descricao">Comentários:</label>
+                            <textarea id="avaliacao_descricao" name="avaliacao_descricao" rows="4" class="form-control" placeholder="Conte mais detalhes sobre sua experiência..."></textarea>
+                        </div>
+
+                        <input type="hidden" name="cliente_id" value="<?= $detalhamento->cliente_id ?>">
+                        <input type="hidden" name="profissional_id" value="<?= $detalhamento->profissional_id ?>">
+                        <input type="hidden" name="solicitacao_id" value="<?= $detalhamento->solicitacao_id ?>">
+
+                    </div>
+                    <div class="botaoEditar mb-5" style="display: flex; justify-content: flex-end;">
+                        <button type="submit" class="btn-finalizar" style="width:170px; margin-right: 0px !important; ">Enviar Comentário</button>
+
+                    </div>
+                </form>
+
+            </div>
+
+        <?php endif; ?>
 
 
 

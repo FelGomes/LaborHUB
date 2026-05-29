@@ -34,8 +34,9 @@ $routes = [
 '/historicoProfissional/deletarUnique/:id'     =>   ['HistoricoProfissional', 'deletarUnique'],
 '/login/enviarEmail'                           => ['Login', 'enviarEmail'],
 '/login/salvarSenha'                           => ['Login', 'salvarSenha'],
-'/historico/detalharServicoFinalizado/:id'      => ['Historico', 'detalharServicoFinalizado'],
-'historico/avaliarProfissional'                 => ['Historico', 'avaliarProfissional'],
+'/historico/detalharServicoFinalizado/:id'     => ['Historico', 'detalharServicoFinalizado'],
+'/historico/avaliarProfissional'               => ['Historico', 'avaliarProfissional'],
+'/historico/editarAvaliacao'                   => ['Historico', 'editarAvaliacao'],    
 
 '/login/logout' => ['Login', 'logout'],
 
