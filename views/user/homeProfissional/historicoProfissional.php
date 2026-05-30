@@ -201,13 +201,13 @@
                                 <div class="card-body">
                                     <h4 class="card-title mb-2"><strong><?= esc($finalizado->nome) ?></strong></h4>
                                     <h6><strong>Contato: </strong> <?= esc($finalizado->telefone) ?></h6>
-                                    <h6><strong>Data conclusão: </strong> <?= esc($finalizado->conclusao) ?></h6>
+                                    <h6><strong>Data conclusão: </strong> <?= date('d/m/Y', strtotime($finalizado->conclusao)) ?></h6>
                                     <h6><strong>Endereço: </strong> <?= esc($finalizado->endereco) ?></h6>
                                     <h6><strong>Cidade: </strong> <?= esc($finalizado->cidade) ?></h6>
                                     <h6><strong>Valor do serviço: </strong> R$ <?= number_format($finalizado->valor, 2, ',', '.')  ?></h6>
 
                                     <div class="status">
-                                        <p>Concluído</p>
+                                        <p style="font-size: 16pt;">Concluído</p>
                                     </div>
 
                                     <div class="cardBotao mt-3">

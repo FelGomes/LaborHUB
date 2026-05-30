@@ -125,7 +125,6 @@
                             <div class="infoComent "> <!--informaçoes do comentario -->
                                 <div class="comentImage">
                                     <img class="Imagecomentario" src="<?= base_url($avaliacao->usuariosImagem) ?>" alt="">
-                                    <?php var_dump($avaliacao->avaliacao_id)?>
                                 </div>
                                 <div class="perfilStars infoComentario">
                                     <h5><?= esc($avaliacao->nome) ?></h5>
