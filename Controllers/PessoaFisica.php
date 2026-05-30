@@ -3,6 +3,7 @@
 
 namespace Controllers;
 
+use DateTime;
 use \Models\Database as Conexao;
 use \Utils\Email as Email;
 use \PDO;
@@ -52,20 +53,10 @@ class PessoaFisica extends RenderView
         $data = [];
         $data['pagina'] = 'Pessoa Fisica';
 
-
-        // recebe o select com o return
+      
         $profissional = $this->view->listarTodos();
 
         $data['listaProfissionais'] = $profissional;
-
-        // $solicitacao = $this->verificarPendencia($_SESSION['usuarios_logado']->usuarios_id, $this->profissionalId);
-        // $pendencia = $this->solicitacao->selectProfissionais($solicitacao)->fetch(PDO::FETCH_OBJ);
-
-        // if($pendencia->total > 0) {
-        //     $_SESSION['desabilitarSolicitacao'] = true;
-        // } else {
-        //     $_SESSION['desabilitarSolicitacao'] = false;
-        // }
 
         return $this->loadView('user/homeCliente/index', $data);
     }
@@ -90,6 +81,7 @@ class PessoaFisica extends RenderView
             'solicitacao_quantidade'  => $_POST['solicitacao_quantidade'],
             'solicitacao_observacao'  => $_POST['solicitacao_observacao'],
             'solicitacao_status'      => 'Pendente',
+            'solicitacao_status_profissional' => 'Pendente',
             'solicitacao_endereco_id' => $endereco->endereco_id,
             'solicitacao_usuarios_id' => $usuarioId,
         ];
@@ -104,9 +96,27 @@ class PessoaFisica extends RenderView
             return $this->listaProfissionais->perfil($profissionalId);
         }
 
+        
+
+       
+
+        if($values['solicitacao_quantidade'] > 60) {
+            $_SESSION['msg'] = ['texto' => "Não é possível solicitar serviço para mais de 2 meses!", 'color' => 'danger'];
+            return $this->listaProfissionais->perfil($profissionalId);
+            
+        }
+
         if (strtotime($values['solicitacao_data']) < strtotime($dataAtual)) {
             $_SESSION['msg'] = ['texto' => "A data informada não pode ser menor que a data atual.", 'color' => 'danger'];
             return $this->listaProfissionais->perfil($profissionalId);
+        }
+
+        $dataLimite = (new DateTime())->modify('+2 months');
+
+        if(strtotime($values['solicitacao_data']) > strtotime($dataLimite->format('Y-m-d'))){
+             $_SESSION['msg'] = ['texto' => "Você não pode solicitar serviço para daqui 2 meses ou mais!", 'color' => 'danger'];
+            return $this->listaProfissionais->perfil($profissionalId);
+
         }
 
         if ($values['solicitacao_quantidade'] <= 0) {
@@ -154,22 +164,6 @@ class PessoaFisica extends RenderView
 
         return $this->endereco->select($join, $where)->fetch(PDO::FETCH_OBJ);
     }
-
-
-    // public function verificarPendencia($usuarioId, $profissionalId)
-    // {
-    //     // Busca se existe algum registro com o ID desse cliente e desse profissional com status 'Pendente'
-    //    return "SELECT count(*) as total 
-    //         FROM solicitacao
-    //         INNER JOIN solicitacaoServico ON solicitacao_id = solicitacaoServico_solicitacao_id
-    //         INNER JOIN servicos ON solicitacaoServico_servicos_id = servicos_id
-    //         WHERE solicitacao_usuarios_id = $usuarioId 
-    //         AND servicos_usuarios_id = $profissionalId 
-    //         AND solicitacao_status = 'Pendente'
-    //         LIMIT 1";
-
-
-    // }
 
 
     // FUnção para enviar email para prestador de serviço

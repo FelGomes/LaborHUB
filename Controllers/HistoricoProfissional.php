@@ -56,7 +56,7 @@ class HistoricoProfissional extends RenderView
     {
 
         $valuesRecusado = [
-            'solicitacao_status' => 'Excluido',
+            'solicitacao_status_profissional' => 'Excluido',
             'solicitacao_deletada_em' => date('Y-m-d'),
         ];
 
@@ -79,7 +79,8 @@ class HistoricoProfissional extends RenderView
         }
 
         $values = [
-            'solicitacao_status' => 'Excluído',
+            'solicitacao_status_profissional' => 'Excluído',
+            'solicitacao_deletada_em' => date('Y-m-d'),
         ];
 
         $where = "solicitacao_id = '$solicitacaoID'";
@@ -129,6 +130,7 @@ class HistoricoProfissional extends RenderView
             so.solicitacao_data_atual as solicitacao_data_atual,
             so.solicitacao_quantidade as quantidade,
             so.solicitacao_conclusao as conclusao
+           
 
             FROM solicitacaoServico ss
 
@@ -147,7 +149,7 @@ class HistoricoProfissional extends RenderView
             LEFT JOIN pessoaJuridica pj_cliente ON pj_cliente.pj_usuarios_id = u_cliente.usuarios_id
             
             -- Filtra pelo ID do cliente logado e status Pendente
-            WHERE u_prof.usuarios_id = '$this->usuarioID' AND so.solicitacao_status = 'Finalizado'
+            WHERE u_prof.usuarios_id = '$this->usuarioID' AND so.solicitacao_status_profissional = 'Finalizado'
             ORDER BY so.solicitacao_id DESC";
     }
 
@@ -181,6 +183,7 @@ class HistoricoProfissional extends RenderView
             so.solicitacao_data_atual as solicitacao_data_atual,
             so.solicitacao_quantidade as quantidade,
             so.solicitacao_conclusao as conclusao,
+            so.solicitacao_motivo as motivo,
             s.servicos_id
 
             FROM solicitacaoServico ss
@@ -200,7 +203,7 @@ class HistoricoProfissional extends RenderView
             LEFT JOIN pessoaJuridica pj_cliente ON pj_cliente.pj_usuarios_id = u_cliente.usuarios_id
             
             -- Filtra pelo ID do cliente logado e status Pendente
-            WHERE u_prof.usuarios_id = '$this->usuarioID' AND so.solicitacao_status = 'Recusado'
+            WHERE u_prof.usuarios_id = '$this->usuarioID' AND so.solicitacao_status_profissional = 'Recusado'
             ORDER BY so.solicitacao_id DESC";
     }
 }

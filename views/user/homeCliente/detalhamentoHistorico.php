@@ -228,6 +228,13 @@
 
                 <?php endif; ?>
 
+
+                <?php if(!empty($detalhamento->resposta)):?>
+                    <p class="text-justify"><?= $detalhamento->resposta ?></p>
+
+                <?php endif;?>
+
+
                 <div class="botaoEditar" style="display: flex; justify-content: flex-end;">
                     <button type="submit" class="btn-finalizar" data-bs-target="#modalEditarComentario" data-bs-toggle="modal" style="width:170px; margin-right: 0px !important; ">Editar Comentário</button>
 

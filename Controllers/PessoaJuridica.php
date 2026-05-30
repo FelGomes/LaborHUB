@@ -17,6 +17,7 @@ class PessoaJuridica extends RenderView
     private $usuarioId;
     private $solicitacao;
     private $servico;
+    private $avaliacaoServico;
 
     public function __construct()
     {
@@ -25,6 +26,7 @@ class PessoaJuridica extends RenderView
         $this->usuarioId = $_SESSION['usuarios_logado']->usuarios_id;
         $this->solicitacao = new Conexao('solicitacao');
         $this->servico = new Conexao('servicos');
+        $this->avaliacaoServico = new Conexao('avaliacao');
     }
 
     protected function redirect($path, $mensagem = null)
@@ -101,6 +103,7 @@ class PessoaJuridica extends RenderView
 
         $values = [
             'solicitacao_status' => 'Ativo',
+            'solicitacao_status_profissional' => 'Ativo',
         ];
 
         $where = "solicitacao_id = '$solicitacaoId'";
@@ -138,6 +141,7 @@ class PessoaJuridica extends RenderView
 
         $values = [
             'solicitacao_status' => 'Recusado',
+            'solicitacao_status_profissional' => 'Recusado',
             'solicitacao_motivo' => $_POST['solicitacao_motivo'] ?? '',
         ];
 
@@ -177,13 +181,12 @@ class PessoaJuridica extends RenderView
                     INNER JOIN solicitacaoServico ss on ss.solicitacaoServico_solicitacao_id = so.solicitacao_id
                     INNER JOIN servicos s on ss.solicitacaoServico_servicos_id = s.servicos_id
                     Set so.solicitacao_status = 'Finalizado',
+                    so.solicitacao_status_profissional = 'Finalizado'
                     so.solicitacao_conclusao = NOW()
                     WHERE s.servicos_usuarios_id = '$this->usuarioId'";
 
         if ($this->solicitacaoServico->selectProfissionais($sql)) {
             $_SESSION['msg'] = ['texto' => 'Solicitações excluídas com sucesso!', 'color' => 'success'];
-
-            
         } else {
             $_SESSION['msg'] = ['texto' => 'Erro ao excluir as solicitações, tente novamente!', 'color' => 'danger'];
         }
@@ -201,6 +204,7 @@ class PessoaJuridica extends RenderView
         $sql = "UPDATE solicitacao so
                     INNER JOIN solicitacaoServico ss on ss.solicitacaoServico_solicitacao_id = so.solicitacao_id
                     Set so.solicitacao_status = 'Finalizado',
+                    so.solicitacao_status_profissional = 'Finalizado',
                     so.solicitacao_conclusao = NOW()
                     WHERE so.solicitacao_id = '$solicitacaoID'";
 
@@ -216,11 +220,16 @@ class PessoaJuridica extends RenderView
 
 
 
-    public function avaliacao(){
+    public function avaliacao()
+    {
         $data = [];
         $data['Avaliacoes'] = 'Avaliacoes';
 
-        return $this->loadView('user/homeProfissional/minhaAvaliacao', []);
+        $minhasAvaliacao = $this->comentarios($this->usuarioId);
+
+        $data['minhasAvaliacao'] = $this->avaliacaoServico->selectProfissionais($minhasAvaliacao)->fetchAll(PDO::FETCH_OBJ);
+
+        return $this->loadView('user/homeProfissional/minhaAvaliacao', $data);
     }
 
 
@@ -240,7 +249,7 @@ class PessoaJuridica extends RenderView
             INNER JOIN solicitacao so
 	            on so.solicitacao_id = ss.solicitacaoServico_solicitacao_id
 
-            WHERE so.solicitacao_status = 'Ativo'
+            WHERE so.solicitacao_status_profissional = 'Ativo'
             AND s.servicos_usuarios_id = '$usuarioId'";
 
         return $this->solicitacaoServico->selectProfissionais($selectCount)->fetchObject();
@@ -260,7 +269,7 @@ class PessoaJuridica extends RenderView
             INNER JOIN solicitacao so
 	            on so.solicitacao_id = ss.solicitacaoServico_solicitacao_id
 
-            WHERE so.solicitacao_status = 'Pendente'
+            WHERE so.solicitacao_status_profissional = 'Pendente'
             AND s.servicos_usuarios_id = '$usuarioId'";
 
         return $this->solicitacaoServico->selectProfissionais($selectCount)->fetchObject();
@@ -306,7 +315,7 @@ class PessoaJuridica extends RenderView
             left JOIN endereco e on e.endereco_usuarios_id = u_cliente.usuarios_id
             
             -- Filtra pelo ID do cliente logado e status Pendente
-            WHERE servicos_usuarios_id = '$this->usuarioId' AND so.solicitacao_status = 'Pendente'
+            WHERE servicos_usuarios_id = '$this->usuarioId' AND so.solicitacao_status_profissional = 'Pendente'
             ORDER BY so.solicitacao_id DESC";
     }
 
@@ -350,7 +359,7 @@ class PessoaJuridica extends RenderView
             left JOIN endereco e on e.endereco_usuarios_id = u_cliente.usuarios_id
             
             -- Filtra pelo ID do cliente logado e status Pendente
-            WHERE servicos_usuarios_id = '$this->usuarioId' AND so.solicitacao_status = 'Ativo'
+            WHERE servicos_usuarios_id = '$this->usuarioId' AND so.solicitacao_status_profissional = 'Ativo'
             ORDER BY so.solicitacao_id DESC";
     }
 
@@ -398,5 +407,53 @@ class PessoaJuridica extends RenderView
         WHERE so.solicitacao_id = '$solicitacaoId'
         AND s.servicos_usuarios_id =  '$usuarioId'
     ";
+    }
+
+
+
+    public function comentarios($usuariosAvaliadoId)
+    {
+
+        return "SELECT 
+        
+        COALESCE(
+            CONCAT(pf_cliente.pf_nome, ' ', pf_cliente.pf_sobrenome),
+            pj_cliente.pj_nomeFantasia
+        ) AS nome,
+        u_cliente.usuarios_imagem as usuariosImagem,
+        u_cliente.usuarios_id as cliente_id,
+        
+        a.avaliacao_id,
+        a.avaliacao_assunto as assunto,
+        a.avaliacao_descricao as descricao,
+        a.avaliacao_notas as nota,
+        a.avaliacao_data as avaliacao_data
+        
+        FROM avaliacao a
+
+        INNER JOIN solicitacao so 
+            ON so.solicitacao_id = a.avaliacao_solicitacao_id
+
+        INNER JOIN solicitacaoServico ss 
+            ON ss.solicitacaoServico_solicitacao_id = so.solicitacao_id
+
+        INNER JOIN servicos s 
+            ON s.servicos_id = ss.solicitacaoServico_servicos_id
+
+        INNER JOIN usuarios u_cliente 
+            ON u_cliente.usuarios_id = so.solicitacao_usuarios_id
+
+        INNER JOIN usuarios u_prof 
+            ON u_prof.usuarios_id = s.servicos_usuarios_id
+
+
+        LEFT JOIN pessoaFisica pf_cliente 
+            ON pf_cliente.pf_usuarios_id = u_cliente.usuarios_id 
+        
+        LEFT JOIN pessoaJuridica pj_cliente
+            ON pj_cliente.pj_usuarios_id = u_cliente.usuarios_id
+
+        WHERE u_prof.usuarios_id = '$usuariosAvaliadoId'
+        ORDER BY so.solicitacao_conclusao DESC";
     }
 }

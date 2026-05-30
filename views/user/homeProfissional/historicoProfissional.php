@@ -182,15 +182,15 @@
             </div>
         </div>
 
-        <?php if (empty($historicoFinalizado)): ?>
+        <div class="listaHistorico " id="form-concluidos">
+            <?php if (empty($historicoFinalizado)): ?>
 
-            <div style="margin-top: 150px;">
+                <div style="margin-top: 150px;">
 
-                <h4 class="text-center"> Não há serviço prestado anteriormente! </h4>
-            </div>
+                    <h4 class="text-center"> Não há serviço prestado anteriormente! </h4>
+                </div>
 
-        <?php else: ?>
-            <div class="listaHistorico " id="form-concluidos">
+            <?php else: ?>
                 <?php foreach ($historicoFinalizado as $finalizado): ?>
                     <div class="card mb-3" style="max-width: 540px;">
                         <div class="row g-0">
@@ -245,10 +245,13 @@
                     </div>
                 <?php endforeach; ?>
 
-            </div>
-        <?php endif; ?>
+
+            <?php endif; ?>
+        </div>
+
 
         <div class="listaHistorico" id="form-recusados" style="display: none;">
+
             <?php if (empty($historicoRecusado)): ?>
 
                 <div style="margin-top: 150px;">
@@ -259,88 +262,71 @@
 
 
             <?php else: ?>
+                <?php foreach ($historicoRecusado as $recusado): ?>
+                    <div class="card mb-3" style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="<?= base_url($recusado->usuariosImagem) ?>" class="img-card" alt="...">
+                            </div>
+                            <div class="col-md-7">
+                                <div class="card-body">
+                                    <h4 class="card-title mb-2"><strong><?= esc($recusado->nome) ?></strong></h4>
+                                    <h6><strong>Contato: </strong><?= esc($recusado->telefone) ?></h6>
+                                    <h6><strong>Data de solicitação: </strong> <?= esc($recusado->solicitacao_data_atual) ?></h6>
+                                    <h6><strong>Endereço: </strong> <?= esc($recusado->endereco) ?></h6>
+                                    <h6><strong>Cidade: </strong> <?= esc($recusado->cidade) ?></h6>
 
-
-                <div class="card mb-3" style="max-width: 540px;">
-                    <div class="row g-0">
-                        <div class="col-md-4">
-                            <img src="../../Assets/Images/Academia.jpeg" class="img-card" alt="...">
-                        </div>
-                        <div class="col-md-7">
-                            <div class="card-body">
-                                <h4 class="card-title mb-2"><strong>Felipe Ferreira Gomes</strong></h4>
-                                <h6><strong>Contato: </strong> 62996496240</h6>
-                                <h6><strong>Data de solicitação: </strong> 01/05/2026</h6>
-                                <h6><strong>Endereço: </strong> Rua 18 QD-Z 18 LT-16 Jardim Sorriso II</h6>
-                                <h6><strong>Cidade: </strong> Ceres GO</h6>
-
-                                <div class="statusR">
-                                    <p>Recusado</p>
-                                </div>
-
-                                <div class="descricao">
-                                    <details>
-                                        <summary>Observação</summary>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste animi adipisci ut vel
-                                            libero nobis obcaecati harum eius error quas perferendis, dicta praesentium amet
-                                            assumenda? Eligendi voluptas error sequi dolore. Lorem ipsum dolor, sit amet
-                                            consectetur adipisicing elit. Beatae repellendus temporibus excepturi assumenda
-                                            nesciunt, aliquid corrupti ex pariatur dolorum quae, veniam iure animi maxime soluta
-                                            facilis vero ipsum quia debitis.</p>
-                                    </details>
-                                </div>
-
-                                <div class="cardBotao mt-3">
-                                    <button type="button" name="deletar" class="btn-deletar" data-bs-target="#modalDeletarUniqueRecusado" data-bs-dismiss="modal" data-bs-toggle="modal"> Excluir</button>
-                                    <div class="modal fade modal-lg" id="modalDeletarUniqueRecusado" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-                                        <div class="modal-dialog modal-dialog-centered">
-
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body"> <!--COnteudo com os formulario-->
-                                                    <form action="" method="post">
-                                                        <div class="row">
-                                                            <h4 class="text-center ">Deseja excluir histórico recusado de: <strong>Felipe Ferreira Gomes</strong></h4>
-                                                            <p class="text-center mt-2 mb-3">Ao deletar este histórico, você perderá todos os detalhes desta solicitação de serviço </p>
-
-
-                                                            <div class="botaoModalDeletar mt-5">
-
-                                                                <button type="button" data-bs-dismiss="modal" class="btn-negar"> Não</button>
-                                                                <button type="button" class="btn-finalizar">Sim</button>
-                                                            </div>
-
-
-
-                                                        </div>
-
-                                                    </form>
-
-
-                                                </div>
-
-                                            </div>
-                                        </div>
+                                    <div class="statusR">
+                                        <p>Recusado</p>
                                     </div>
 
+                                    <?php if (!empty($recusado->motivo)): ?>
+                                        <div class="descricao">
+                                            <details>
+                                                <summary>Observação</summary>
+                                                <p><?= esc($recusado->motivo) ?></p>
+                                            </details>
+                                        </div>
 
+                                    <?php endif; ?>
+
+                                    <div class="cardBotao mt-3">
+                                        <button type="button" name="deletar" class="btn-deletar" data-bs-target="#modal-<?= $recusado->solicitacao_id ?>" data-bs-dismiss="modal" data-bs-toggle="modal"> Excluir</button>
+
+
+                                        <form action="<?= base_url('historicoProfissional/deletarUnique/' . $recusado->solicitacao_id) ?>">
+                                            <div class="modal fade modal-lg" id="modal-<?= $recusado->solicitacao_id ?>" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                                                <div class="modal-dialog modal-dialog-centered">
+
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body"> <!--COnteudo com os formulario-->
+                                                            <div class="row">
+                                                                <h4 class="text-center ">Deseja excluir histórico recusado de: <strong>Felipe Ferreira Gomes</strong></h4>
+                                                                <p class="text-center mt-2 mb-3">Ao deletar este histórico, você perderá todos os detalhes desta solicitação de serviço </p>
+
+
+                                                                <div class="botaoModalDeletar mt-5">
+
+                                                                    <button type="button" data-bs-dismiss="modal" class="btn-negar"> Não</button>
+                                                                    <button type="submit" class="btn-finalizar">Sim</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
-
-
                             </div>
                         </div>
                     </div>
-                </div>
-
+                <?php endforeach; ?>
+            <?php endif; ?>
         </div>
-
-    <?php endif; ?>
-
-
-
-
 
     </main>
 

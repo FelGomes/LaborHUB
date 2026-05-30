@@ -69,6 +69,7 @@ class Historico extends RenderView
 
         $values = [
             'solicitacao_status' => 'Cancelado',
+            'soliitacao_status_profissional' => 'Cancelado'
         ];
 
         $where = "solicitacao_id = '$solicitacaoId'";
@@ -232,21 +233,6 @@ class Historico extends RenderView
 
         return $this->detalharServicoFinalizado($_POST['solicitacao_id']);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     // Vai listar todas as solicitações que foram finalizadas pelo profissional - view historico
@@ -427,6 +413,8 @@ class Historico extends RenderView
         a.avaliacao_descricao as descricao,
         a.avaliacao_notas as nota,
         a.avaliacao_data as avaliacao_data,
+        a.avaliacao_resposta as resposta,
+        
         
         so.solicitacao_data as solicitacao_data,
         so.solicitacao_data_atual as solicitacao_data_atual,

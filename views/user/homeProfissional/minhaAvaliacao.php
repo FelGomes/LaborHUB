@@ -72,7 +72,7 @@
 
         <nav>
             <ul class="mt-1 mb-5">
-                 <li><a href="<?= base_url('user/homeProfissional/index') ?>">Home</a></li>
+                <li><a href="<?= base_url('user/homeProfissional/index') ?>">Home</a></li>
                 <li><a href="<?= base_url('user/homeProfissional/historicoProfissional') ?>">Histórico</a></li>
                 <li><a href="<?= base_url('pessoaJuridica/avaliacao') ?>">Minhas avaliações</a></li>
 
@@ -105,205 +105,76 @@
             </div>
 
         </div>
-        
 
         <div class="perfilAvaliacao"> <!--Background gray -->
             <h4 class="mb-4"><strong>Suas Avaliações</strong></h4>
-            <div class="avaliacaoGroup "> <!--Listagem de avaliacoes -->
 
-                <div class="comentGroup border "> <!--Bloco de comentario -->
-                    <div class="infoComent "> <!--informaçoes do comentario -->
-                        <div class="comentImage">
-                            <img class="Imagecomentario" src="../../Assets/Images/comentario.jpg" alt="">
+            <?php if (empty($minhasAvaliacao)): ?>
 
-                        </div>
-                        <div class="perfilStars infoComentario">
-                            <h5>Maria Gonçalves Ferreira</h5>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
+                <div>
+                    <p> Não há nenhuma avaliação referente a seu serviço!</p>
+                </div>
 
-                            <h5 class="mt-3"><strong>Ótimo profissional</strong></h5>
-                            <p>Ele foi super prestativo no serviço, trabalho bem feito, AMEI!!! </p>
+            <?php else: ?>
 
-                            <div class="respostaBox" style="display: none;">
-                                <textarea class="form-control" placeholder="Responder comentário..."></textarea>
-                                <button class="btn-solicitacao mt-4">Responder</button>
+
+                <div class="avaliacaoGroup"> <!--Listagem de avaliacoes -->
+
+                    <?php foreach ($minhasAvaliacao as $avaliacao): ?>
+                        <div class="comentGroup border "> <!--Bloco de comentario -->
+                            <div class="infoComent "> <!--informaçoes do comentario -->
+                                <div class="comentImage">
+                                    <img class="Imagecomentario" src="<?= base_url($avaliacao->usuariosImagem) ?>" alt="">
+                                    <?php var_dump($avaliacao->avaliacao_id)?>
+                                </div>
+                                <div class="perfilStars infoComentario">
+                                    <h5><?= esc($avaliacao->nome) ?></h5>
+                                    <?php for ($i = 1; $i <= 5; $i++): ?>
+
+                                        <?php if ($i <= $avaliacao->nota): ?>
+                                            <i class="bi bi-star-fill" style="color: gold;"></i>
+
+                                        <?php else: ?>
+                                            <i class="bi bi-star"></i>
+
+                                        <?php endif; ?>
+
+                                    <?php endfor; ?>
+
+                                    <h5 class="mt-3"><strong><?= esc($avaliacao->assunto) ?></strong></h5>
+                                    <p><?= esc($avaliacao->descricao) ?></p>
+
+                                    <div class="respostaBox" style="display: none;">
+                                        <textarea class="form-control" name="avaliacao_resposta" placeholder="Responder comentário..."></textarea>
+                                        <button type="submit" onclick="window.location.href='<?= base_url('pessoaJuridica/responderAvaliacao/' . $avaliacao->avaliacao_id ) ?>'" class="btn-solicitacao mt-4">Responder</button>
+                                    </div>
+
+                                </div>
+
                             </div>
 
+                            <div class="dataComentario ">
+                                <div class="data">
+                                    <p><?= date('d/m/Y', strtotime($avaliacao->avaliacao_data)) ?></p>
+
+                                </div>
+
+                                <div class="icones">
+                                    <i class="bi bi-exclamation-triangle-fill fs-3 disable" style="color: #C52222"></i>
+                                    <i class="bi bi-arrow-return-left fs-3" onclick="toggleResposta(this)" style="color: var(--corPrincipal);"></i>
+
+
+                                </div>
+                            </div>
+
+
                         </div>
 
-                    </div>
-
-                    <div class="dataComentario ">
-                        <div class="data">
-                            <p>10/02/2026</p>
-
-                        </div>
-
-                        <div class="icones">
-                            <i class="bi bi-exclamation-triangle-fill fs-3 disable" style="color: #C52222"></i>
-                            <i class="bi bi-arrow-return-left fs-3" onclick="toggleResposta(this)" style="color: var(--corPrincipal);"></i>
-
-
-                        </div>
-                    </div>
-
+                    <?php endforeach; ?>
 
                 </div>
 
-
-                <div class="comentGroup border"> <!--card -->
-                    <div class="infoComent"> <!--informaçoes do comentario -->
-                        <div class="comentImage">
-                            <img class="Imagecomentario" src="../../Assets/Images/comentario2.jpg" alt="">
-
-                        </div>
-                        <div class="perfilStars infoComentario">
-                            <h5>Maria Gonçalves Ferreira</h5>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-
-                            <h5 class="mt-3"><strong>Ótimo profissional</strong></h5>
-                            <p>Ele foi super prestativo no serviço, trabalho bem feito, AMEI!!! </p>
-
-                        </div>
-
-                    </div>
-
-                    <div class="dataComentario ">
-                        <div class="data">
-                            <p>10/02/2026</p>
-
-                        </div>
-
-                        <div class="icones">
-                            <i class="bi bi-exclamation-triangle-fill fs-3" style="color: #C52222"></i>
-                            <i class="bi bi-arrow-return-left fs-3" style="color: var(--corPrincipal);"></i>
-
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="comentGroup border"> <!--Card -->
-                    <div class="infoComent"> <!--informaçoes do comentario -->
-                        <div class="comentImage">
-                            <img class="Imagecomentario" src="../../Assets/Images/comentario3.jpg" alt="">
-
-                        </div>
-                        <div class="perfilStars infoComentario">
-                            <h5>Maria Gonçalves Ferreira</h5>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-
-                            <h5 class="mt-3"><strong>Ótimo profissional</strong></h5>
-                            <p>Ele foi super prestativo no serviço, trabalho bem feito, AMEI!!! </p>
-
-                        </div>
-
-                    </div>
-
-                    <div class="dataComentario">
-                        <p>10/02/2026</p>
-                    </div>
-
-                </div>
-
-                <div class="comentGroup border"> <!--CARD -->
-                    <div class="infoComent"> <!--informaçoes do comentario -->
-                        <div class="comentImage">
-                            <img class="Imagecomentario" src="../../Assets/Images/comentario4.jpg" alt="">
-
-                        </div>
-                        <div class="perfilStars infoComentario">
-                            <h5>Maria Gonçalves Ferreira</h5>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-
-                            <h5 class="mt-3"><strong>Ótimo profissional</strong></h5>
-                            <p>Ele foi super prestativo no serviço, trabalho bem feito, AMEI!!! </p>
-
-                        </div>
-
-                    </div>
-
-                    <div class="dataComentario">
-                        <p>10/02/2026</p>
-                    </div>
-
-                </div>
-
-                <div class="comentGroup border"> <!--Card -->
-                    <div class="infoComent"> <!--informaçoes do comentario -->
-                        <div class="comentImage">
-                            <img class="Imagecomentario" src="../../Assets/Images/comentario.jpg" alt="">
-
-                        </div>
-                        <div class="perfilStars infoComentario">
-                            <h5>Maria Gonçalves Ferreira</h5>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-
-                            <h5 class="mt-3"><strong>Ótimo profissional</strong></h5>
-                            <p>Ele foi super prestativo no serviço, trabalho bem feito, AMEI!!! </p>
-
-                        </div>
-
-                    </div>
-
-                    <div class="dataComentario">
-                        <p>10/02/2026</p>
-                    </div>
-
-                </div>
-
-                <div class="comentGroup border"> <!--Card-->
-                    <div class="infoComent"> <!--informaçoes do comentario -->
-                        <div class="comentImage">
-                            <img class="Imagecomentario" src="../../Assets/Images/comentario4.jpg" alt="">
-
-                        </div>
-                        <div class="perfilStars infoComentario">
-                            <h5>Maria Gonçalves Ferreira</h5>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-
-                            <h5 class="mt-3"><strong>Ótimo profissional</strong></h5>
-                            <p>Ele foi super prestativo no serviço, trabalho bem feito, AMEI!!! </p>
-
-                        </div>
-
-                    </div>
-
-                    <div class="dataComentario">
-                        <p>10/02/2026</p>
-                    </div>
-
-                </div>
-
-
-
-
-
-            </div>
+            <?php endif; ?>
 
         </div>
 
