@@ -1,0 +1,299 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--fontePrincipal);
+}
+
+
+
+:root {
+    --corPrincipal: #3B82F6;
+    font-family: 'Montserrat', sans-serif;
+    --TamanhoFonte: 700;
+    --bordas: 5px;
+    --sombras: 2px 2px 3px rgba(0, 0, 0, 0.199);
+
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+html,
+body {
+    height: 70%;
+
+
+}
+
+main {
+    min-height: 90vh;
+}
+
+.topo {
+    display: flex;
+    margin-left: 50px;
+
+}
+
+.perfil {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+
+}
+
+.textoTela {
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+}
+
+.listagem {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.person {
+    display: flex;
+    align-items: center;
+}
+
+.cliente {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+
+}
+
+.botaoAreaRestrita {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 140px;
+}
+
+.btn-finalizar {
+    width: 150px;
+    height: 40px;
+    border: 1px solid var(--corPrincipal);
+    box-shadow: var(--sombras);
+    border-radius: var(--bordas);
+    margin-right: 15px;
+    margin-bottom: 15px;
+    background-color: var(--corPrincipal);
+    color: white;
+    font-weight: 600;
+
+
+}
+
+.btn-finalizar:hover {
+    transform: scale(1.03) translateY(-5px) translateX(3px);
+}
+
+.cardList {
+    border: 1px solid rgba(0, 0, 0, 0.16);
+    width: 25%;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: var(--sombras)
+}
+
+.cardList>h5 {
+    font-weight: bold;
+    font-size: 18pt;
+}
+
+.cardList p {
+    line-height: 0.7;
+}
+
+.personInfo {
+    display: flex;
+}
+
+.info {
+    padding: 10px;
+}
+
+.info>h6 {
+    font-size: 14pt;
+}
+
+.info>p {
+    font-size: 10pt;
+    color: #535353d8;
+}
+
+.grafico {
+    display: flex;
+    justify-content: center;
+    height: 500px;
+    margin-top: 50px;
+
+}
+
+.listaGrafico {
+    height: 480px;
+    padding: 15px;
+    margin-bottom: 50px;
+    width: 79%;
+    border: 1px solid rgba(0, 0, 0, 0.16);
+    border-radius: 5px;
+    box-shadow: var(--sombras);
+}
+
+@media screen and (max-width: 768px) {
+    /* .botaoAreaRestrita {
+        display: flex;
+        justify-content: flex-end;
+        width: 89%;
+    } */
+    
+    .listagem {
+        display: flex;
+        flex-flow: column wrap;
+        align-items: center;
+    }
+
+    .cardList {
+        width: 70%;
+    }
+
+    .listaGrafico {
+        width: 70%;
+    }
+
+
+}
+
+@media (min-width: 768px) and (max-width: 1300px) {
+
+    .listagem {
+        display: flex;
+        flex-flow: column wrap;
+        align-items: center;
+    }
+
+    .cardList {
+        width: 70%;
+    }
+
+    .listaGrafico {
+        width: 70%;
+    }
+
+
+}
+
+.btn-finalizar {
+    width: 150px;
+    height: 40px;
+    border: 1px solid var(--corPrincipal);
+    box-shadow: var(--sombras);
+    border-radius: var(--bordas);
+    margin-right: 15px;
+    margin-bottom: 15px;
+    background-color: var(--corPrincipal);
+    color: white;
+    font-weight: 600;
+}
+
+/* Fim do css area restrita */
+
+
+.listagemBusca form .row {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+
+
+}
+
+.botoes {
+    margin: 10px 0px 60px 0px;
+}
+
+.campo {
+    width: 590px !important;
+    display: flex;
+    gap: 20px;
+}
+
+.btn {
+    width: 120px !important;
+}
+
+.cliente {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+
+}
+
+.listaTabela {
+    display: flex;
+    justify-content: center;
+}
+
+.tabelaCliente {
+    width: 80%;
+    padding: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.16);
+    border-radius: 5px;
+    box-shadow: var(--sombras);
+
+}
+
+
+
+
+
+@media screen and (max-width: 768px) {
+    .listagemBusca {
+        width: 850px !important;
+        display: flex;
+        justify-content: flex-start !important;
+    }
+
+
+    .campo {
+        width: 400px !important;
+    }
+
+    .listaTabela {
+        display: flex;
+        flex-flow: column wrap;
+    }
+
+    .min-vh-100 {
+        height: auto;
+    }
+
+}
+
+
+
+@media (min-width: 768px) and (max-width: 1300px) {
+
+
+    .listagemBusca {
+        width: 600px !important;
+        display: flex;
+        justify-content: center !important;
+    }
+
+
+    .campo {
+        width: 400px !important;
+    }
+}

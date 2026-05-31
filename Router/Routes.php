@@ -36,7 +36,10 @@ $routes = [
 '/login/salvarSenha'                           => ['Login', 'salvarSenha'],
 '/historico/detalharServicoFinalizado/:id'     => ['Historico', 'detalharServicoFinalizado'],
 '/historico/avaliarProfissional'               => ['Historico', 'avaliarProfissional'],
-'/historico/editarAvaliacao'                   => ['Historico', 'editarAvaliacao'],    
+'/historico/editarAvaliacao'                   => ['Historico', 'editarAvaliacao'],
+'/adm/index'                                   => ['Admin','index'],
+'/admin/listarClientes'                        => ['Admin', 'listarClientes'],
+'/clientes/detalhes/:id'                       => ['Admin', 'detalhes'],
 
 '/login/logout' => ['Login', 'logout'],
 

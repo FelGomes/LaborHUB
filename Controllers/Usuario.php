@@ -380,10 +380,10 @@ class Usuario extends RenderView
             'usuarios_senha_hash' => password_hash($post['usuarios_senha_hash'], PASSWORD_DEFAULT) ?? '',
             'usuarios_ativo' => 1,
             'usuarios_is_admin' => 0,
-
-
+            'usuarios_criado_em' => date('Y-m-d'),
 
         ];
+        
         // Se deu certo para inserir na tabela usuarios, passamos para tabela de Pessoa Fisica
         $usuarioID = $this->usuario->insert($values);
 

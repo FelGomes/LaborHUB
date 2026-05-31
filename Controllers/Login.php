@@ -118,7 +118,7 @@ class Login extends RenderView
                     'color' => 'success',
                 ];
 
-                return $this->redirect(base_url('adm/home'));
+                return $this->redirect(base_url('adm/index'));
             } else {
                 // se der errado, ele vai considerar como user normal
                 $_SESSION['msg'] = [
