@@ -13,12 +13,16 @@ class Admin extends RenderView
 
     private $solicitacaoServico;
     private $usuarios;
+    private $endereco;
+    private $pessoaFisica;
 
 
     public function __construct()
     {
         $this->solicitacaoServico = new Conexao('solicitacaoServico');
         $this->usuarios = new Conexao('usuarios');
+        $this->endereco = new Conexao('endereco');
+        $this->pessoaFisica = new Conexao('pessoaFisica');
     }
 
 
@@ -42,7 +46,8 @@ class Admin extends RenderView
     }
 
     // Listar clientes
-    public function listarClientes() {
+    public function listarClientes()
+    {
 
         $tabelaCliente = $this->listasClientes();
         $data['listarClientes'] = $this->usuarios->selectProfissionais($tabelaCliente)->fetchAll(PDO::FETCH_OBJ);
@@ -53,16 +58,153 @@ class Admin extends RenderView
         return $this->loadView('adm/listaCliente', $data);
     }
 
-    public function detalhes($usaurios_id){
+    public function detalhes($usauriosID)
+    {
 
         $data = [''];
         $data['detalhes'] = 'Detalhes cliente';
 
+        $detalharUsuariosPF = $this->detalharUsuario($usauriosID);
+        $data['detalharUsuariosPF'] = $detalharUsuariosPF;
+
         return $this->loadView('adm/detalhamento', $data);
-
-
     }
 
+
+
+    // FUNÇAO PARA EDITAR CLIENTES DO TIPO PESSOA FISICA NA TELA DE DETALHAMENTO
+    public function editarClientesPf($usuarios_id)
+    {
+
+        $detalharUsuariosPF = $this->detalharUsuario($usuarios_id);
+
+
+        $valuesUsuarios = [
+            'usuarios_email' => $_POST['usuarios_email'] ?? '',
+            'usuarios_telefone' => $_POST['usuarios_telefone'] ?? '',
+            'usuarios_senha_hash' => !empty($_POST['usuarios_senha_hash']) ? password_hash($_POST['usuarios_senha_hash'], PASSWORD_DEFAULT) : $detalharUsuariosPF->usuarios_senha_hash,
+            'usuarios_ativo' => $_POST['usuarios_ativo'] ?? '',
+            'usuarios_is_admin' => $_POST['usuarios_is_admin'] ?? '',
+            'usuarios_atualizado_em' => date('Y-m/d H:i:s'),
+        ];
+
+        $where = "usuarios_id = '$usuarios_id'";
+
+        $usuariosUpdate = $this->usuarios->update($where, $valuesUsuarios);
+
+        if (!$usuariosUpdate) {
+            $_SESSION['msg'] = [
+                'texto' => 'Não foi possível editar os dados deste usuários!',
+                'color' => 'danger',
+            ];
+
+            return $this->detalhes($usuarios_id);
+        }
+
+        $valuesEndereco = [
+            "endereco_rua" => $_POST['endereco_rua'] ?? '',
+            "endereco_bairro" => $_POST['endereco_bairro'] ?? '',
+            "endereco_complemento" => $_POST['endereco_complemento'] ?? '',
+            "endereco_numero" => $_POST['endereco_numero'] ?? '',
+            "endereco_cidade" => $_POST['endereco_cidade'] ?? '',
+            "endereco_uf" => $_POST['endereco_uf'] ?? '',
+        ];
+
+        $whereEndereco = "endereco_usuarios_id = '$usuarios_id'";
+
+        $enderecoUpdate = $this->endereco->update($whereEndereco, $valuesEndereco);
+
+
+        if (!$enderecoUpdate) {
+            $_SESSION['msg'] = [
+                'texto' => 'Não foi possível editar os dados de endereco deste usuários!',
+                'color' => 'danger',
+            ];
+
+            return $this->detalhes($usuarios_id);
+        }
+
+        $valuesPessoaFisica = [
+            "pf_nome" => $_POST['pf_nome'] ?? '',
+            "pf_sobrenome" => $_POST['pf_sobrenome'] ?? '',
+            "pf_dataNascimento" => $_POST['pf_dataNascimento'] ?? '',
+            "pf_genero" => $_POST['pf_genero'] ?? '',
+        ];
+
+        $wherePF = "pf_usuarios_id = '$usuarios_id'";
+
+        $PFUpdate = $this->pessoaFisica->update($wherePF, $valuesPessoaFisica);
+
+
+        if (!$PFUpdate) {
+            $_SESSION['msg'] = [
+                'texto' => 'Não foi possível editar os dados da pessoa física deste usuários!',
+                'color' => 'danger',
+            ];
+
+            return $this->detalhes($usuarios_id);
+        }
+
+        $_SESSION['msg'] = [
+            'texto' => 'Usuário editado com sucesso!',
+            'color' => 'success',
+        ];
+
+        return $this->detalhes($usuarios_id);
+    }
+
+    // Função para deletar usuarios na tela de detalhamentos, apenas adm
+    public function excluirUsuario($usuariosID)
+    {
+        $valuesDeletarUsuario = [
+            'usuarios_deletado_em' => date('Y-m-d H:i:s'),
+            'usuarios_ativo'       => 0,
+            'usuarios_is_admin'    => 0,
+        ];
+
+        $where = "usuarios_id = '$usuariosID'";
+
+        if ($this->usuarios->update($where, $valuesDeletarUsuario)) {
+            $_SESSION['msg'] = [
+                'texto' => 'Usuário deletado com sucesso',
+                'color' => 'success',
+            ];
+        } else {
+            $_SESSION['msg'] = [
+                'texto' => 'Erro ao deletar o usuario',
+                'color' => 'danger',
+            ];
+        }
+
+        return $this->detalhes($usuariosID);
+    }
+
+    // Função para desfazer exclusão do usuário na tela de detalhamento, apenas adm
+    public function desfazerExclusao($usuariosID)
+    {
+
+        $valuesDesfazerExclusao = [
+            'usuarios_deletado_em' => '0000-00-00 00:00:00',
+            'usuarios_ativo'       => 1,
+            'usuarios_is_admin'    => 0,
+        ];
+
+        $where = "usuarios_id = '$usuariosID'";
+
+        if ($this->usuarios->update($where, $valuesDesfazerExclusao)) {
+            $_SESSION['msg'] = [
+                'texto' => 'Exclusão desfeita com sucesso',
+                'color' => 'success',
+            ];
+        } else {
+            $_SESSION['msg'] = [
+                'texto' => 'Erro ao desfazer exclusão',
+                'color' => 'danger',
+            ];
+        }
+
+        return $this->detalhes($usuariosID);
+    }
 
 
 
@@ -150,7 +292,7 @@ class Admin extends RenderView
     }
 
     //  Listar clientes pessoa juridica na tela de adm - clientes - pessoa Jurdica
-     private function listasClientesPJ()
+    private function listasClientesPJ()
     {
         return " SELECT
                 *,
@@ -161,5 +303,18 @@ class Admin extends RenderView
             ON usuarios_id = pj_cliente.pj_usuarios_id
         WHERE pj_cliente.pj_tipo = 'Cliente'
         ORDER BY nome ASC";
+    }
+
+
+    private function detalharUsuario($usuarios_id)
+    {
+
+        $join = 'INNER JOIN pessoaFisica pf_cliente on pf_cliente.pf_usuarios_id = usuarios_id
+        INNER JOIN endereco e on e.endereco_usuarios_id = usuarios_id';
+
+        $where = "usuarios_id = '$usuarios_id'";
+
+
+        return $this->usuarios->select($join, $where)->fetch(PDO::FETCH_OBJ);
     }
 }

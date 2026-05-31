@@ -1,3 +1,4 @@
+<?php redirectPages() ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -31,7 +32,7 @@
                         <span class="fs-5 d-none d-sm-inline mt-3 mb-3"> <img class="perfil" src="<?= base_url($fotoPerfil) ?>" alt="Foto Escolhida"> Felipe Ferreira Gomes</span>
                         <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                             <li class="nav-item mt-4">
-                                <a href="#" class="nav-link align-middle px-0 text-white">
+                                <a href="<?= base_url('adm/index') ?>" class="nav-link align-middle px-0 text-white">
                                     <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">DashBoard</span>
                                 </a>
                             </li>

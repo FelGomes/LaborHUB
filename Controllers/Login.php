@@ -72,6 +72,16 @@ class Login extends RenderView
         if (password_verify($senha, $usuario->usuarios_senha_hash)) {
             $_SESSION['usuarios_logado'] = $usuario;
 
+            if($usuario->usuarios_ativo === 0){
+                $_SESSION['msg'] = [
+                'texto' => 'Usuário excluído pelo administrador!',
+                'color' => 'danger',
+            ];
+
+            return $this->redirect(base_url('/login'));
+
+            }
+
             // Se for 0 é usuario normal
             if ($usuario->usuarios_is_admin == 0) {
 
