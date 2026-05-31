@@ -21,15 +21,48 @@
 
     <?php $fotoPerfil = $_SESSION['usuarios_logado']->usuarios_imagem ?? ''; ?>
 
+    <?php $usuarioTipo = $_SESSION['usuarios_logado']->pf_tipo ?? '' ?>
+
+    <?php if ($usuarioTipo === 'Cliente'): ?>
+
+        <?php $nomeUsuario = $_SESSION['usuarios_logado']->pf_nome . ' ' . $_SESSION['usuarios_logado']->pf_sobrenome; ?>
+
+
+
+    <?php else: ?>
+
+        <?php $nomeUsuario = $_SESSION['usuarios_logado']->pj_nomeFantasia ?? ''; ?>
+
+
+    <?php endif; ?>
+
 
 
     <main>
+
+        <?php if (isset($_SESSION['msg'])): ?>
+
+            <?php
+
+            echo msg(
+                $_SESSION['msg']['texto'],
+                $_SESSION['msg']['color'],
+            );
+
+            unset($_SESSION['msg']);
+
+
+
+
+            ?>
+        <?php endif; ?>
+
         <div class="container-fluid">
             <div class="row flex-nowrap">
                 <!-- Sidebar -->
                 <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark min-vh-100">
                     <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white sticky-top">
-                        <span class="fs-5 d-none d-sm-inline mt-3 mb-3"> <img class="perfil" src="<?= base_url($fotoPerfil) ?>" alt="Foto Escolhida"> Felipe Ferreira Gomes</span>
+                        <span class="fs-5 d-none d-sm-inline mt-3 mb-3"> <img class="perfil" src="<?= base_url($fotoPerfil) ?>" alt="Foto Escolhida"> <?= esc($nomeUsuario) ?></span>
                         <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                             <li class="nav-item mt-4">
                                 <a href="<?= base_url('adm/index') ?>" class="nav-link align-middle px-0 text-white">
@@ -43,7 +76,7 @@
                             </li>
 
                             <li>
-                                <a href="listaProfissional.php" class="nav-link px-0 align-middle text-white">
+                                <a href="" class="nav-link px-0 align-middle text-white">
                                     <i class="bi bi-building fs-4"></i> <span class="ms-1 d-none d-sm-inline">Profissionais</span>
                                 </a>
                             </li>
@@ -52,7 +85,7 @@
                         <hr>
 
                         <div class="sair">
-                            <a href="../Src/Public/Views/login.php" class="nav-link px-0 align-middle text-white">
+                            <a href="<?= base_url('login/logout') ?>" class="nav-link px-0 align-middle text-white">
                                 <i class="bi bi-arrow-bar-left fs-4"></i> <span class="ms-1 d-none d-sm-inline">Sair</span>
                             </a>
                         </div>

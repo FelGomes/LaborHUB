@@ -15,6 +15,7 @@ class Admin extends RenderView
     private $usuarios;
     private $endereco;
     private $pessoaFisica;
+    private $pessoaJuridica;
 
 
     public function __construct()
@@ -23,6 +24,7 @@ class Admin extends RenderView
         $this->usuarios = new Conexao('usuarios');
         $this->endereco = new Conexao('endereco');
         $this->pessoaFisica = new Conexao('pessoaFisica');
+        $this->pessoaJuridica = new Conexao('pessoaJuridica');
     }
 
 
@@ -58,17 +60,22 @@ class Admin extends RenderView
         return $this->loadView('adm/listaCliente', $data);
     }
 
-    public function detalhes($usauriosID)
+    // Detalhar clientes pessoa fisica e juridica
+    public function detalhes($usuariosID)
     {
 
         $data = [''];
         $data['detalhes'] = 'Detalhes cliente';
 
-        $detalharUsuariosPF = $this->detalharUsuario($usauriosID);
+        $detalharUsuariosPF = $this->detalharUsuario($usuariosID);
         $data['detalharUsuariosPF'] = $detalharUsuariosPF;
+
+        $detalharUsuarioPJ = $this->detalharUsuarioClientePj($usuariosID);
+        $data['detalharUsuariosPj'] = $detalharUsuarioPJ;
 
         return $this->loadView('adm/detalhamento', $data);
     }
+
 
 
 
@@ -127,7 +134,6 @@ class Admin extends RenderView
         $valuesPessoaFisica = [
             "pf_nome" => $_POST['pf_nome'] ?? '',
             "pf_sobrenome" => $_POST['pf_sobrenome'] ?? '',
-            "pf_dataNascimento" => $_POST['pf_dataNascimento'] ?? '',
             "pf_genero" => $_POST['pf_genero'] ?? '',
         ];
 
@@ -152,6 +158,86 @@ class Admin extends RenderView
 
         return $this->detalhes($usuarios_id);
     }
+
+    // Editar dados de pessoa juridica na tela de detalhamentos
+     public function editarClientesPJ($usuarios_id)
+    {
+
+        $detalharUsuariosPJ = $this->detalharUsuarioClientePj($usuarios_id);
+
+
+        $valuesUsuarios = [
+            'usuarios_email' => $_POST['usuarios_email'] ?? '',
+            'usuarios_telefone' => $_POST['usuarios_telefone'] ?? '',
+            'usuarios_senha_hash' => !empty($_POST['usuarios_senha_hash']) ? password_hash($_POST['usuarios_senha_hash'], PASSWORD_DEFAULT) : $detalharUsuariosPJ->usuarios_senha_hash,
+            'usuarios_ativo' => $_POST['usuarios_ativo'] ?? '',
+            'usuarios_is_admin' => $_POST['usuarios_is_admin'] ?? '',
+            'usuarios_atualizado_em' => date('Y-m/d H:i:s'),
+        ];
+
+        $where = "usuarios_id = '$usuarios_id'";
+
+        $usuariosUpdate = $this->usuarios->update($where, $valuesUsuarios);
+
+        if (!$usuariosUpdate) {
+            $_SESSION['msg'] = [
+                'texto' => 'Não foi possível editar os dados deste usuários!',
+                'color' => 'danger',
+            ];
+
+            return $this->detalhes($usuarios_id);
+        }
+
+        $valuesEndereco = [
+            "endereco_rua" => $_POST['endereco_rua'] ?? '',
+            "endereco_bairro" => $_POST['endereco_bairro'] ?? '',
+            "endereco_complemento" => $_POST['endereco_complemento'] ?? '',
+            "endereco_numero" => $_POST['endereco_numero'] ?? '',
+            "endereco_cidade" => $_POST['endereco_cidade'] ?? '',
+            "endereco_uf" => $_POST['endereco_uf'] ?? '',
+        ];
+
+        $whereEndereco = "endereco_usuarios_id = '$usuarios_id'";
+
+        $enderecoUpdate = $this->endereco->update($whereEndereco, $valuesEndereco);
+
+
+        if (!$enderecoUpdate) {
+            $_SESSION['msg'] = [
+                'texto' => 'Não foi possível editar os dados de endereco deste usuários!',
+                'color' => 'danger',
+            ];
+
+            return $this->detalhes($usuarios_id);
+        }
+
+        $valuesPessoaJuridica = [
+            "pj_razaoSocial" => $_POST['pj_razaoSocial'] ?? '',
+            "pj_nomeFantasia" => $_POST['pj_nomeFantasia'] ?? '',
+        ];
+
+        $wherePF = "pj_usuarios_id = '$usuarios_id'";
+
+        $PFUpdate = $this->pessoaJuridica->update($wherePF, $valuesPessoaJuridica);
+
+
+        if (!$PFUpdate) {
+            $_SESSION['msg'] = [
+                'texto' => 'Não foi possível editar os dados da pessoa jurídica deste usuários!',
+                'color' => 'danger',
+            ];
+
+            return $this->detalhes($usuarios_id);
+        }
+
+        $_SESSION['msg'] = [
+            'texto' => 'Usuário editado com sucesso!',
+            'color' => 'success',
+        ];
+
+        return $this->detalhes($usuarios_id);
+    }
+
 
     // Função para deletar usuarios na tela de detalhamentos, apenas adm
     public function excluirUsuario($usuariosID)
@@ -306,11 +392,26 @@ class Admin extends RenderView
     }
 
 
+    // Detalhar pessoa fisica tipo cliente
     private function detalharUsuario($usuarios_id)
     {
 
         $join = 'INNER JOIN pessoaFisica pf_cliente on pf_cliente.pf_usuarios_id = usuarios_id
         INNER JOIN endereco e on e.endereco_usuarios_id = usuarios_id';
+
+        $where = "usuarios_id = '$usuarios_id'";
+
+
+        return $this->usuarios->select($join, $where)->fetch(PDO::FETCH_OBJ);
+    }
+
+
+    // Detalhar pessoa juridica tipo cliente
+    private function detalharUsuarioClientePj($usuarios_id)
+    {
+
+        $join = 'INNER JOIN pessoaJuridica pj_cliente on pj_cliente.pj_usuarios_id = usuarios_id
+        LEFT JOIN endereco e on e.endereco_usuarios_id = usuarios_id';
 
         $where = "usuarios_id = '$usuarios_id'";
 
