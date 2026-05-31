@@ -1,4 +1,3 @@
-<?php redirectPages() ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -17,9 +16,11 @@
 
 
 
+
 </head>
 
 <body>
+
 
     <?php $fotoPerfil = $_SESSION['usuarios_logado']->usuarios_imagem ?? ''; ?>
 
@@ -35,32 +36,33 @@
 
         <?php $nomeUsuario = $_SESSION['usuarios_logado']->pj_nomeFantasia ?? ''; ?>
 
-
     <?php endif; ?>
 
-
-    <?php if (isset($_SESSION['msg'])): ?>
-
-        <?php
-
-        echo msg(
-            $_SESSION['msg']['texto'],
-            $_SESSION['msg']['color'],
-        );
-
-        unset($_SESSION['msg']);
-
-        ?>
-
-    <?php endif; ?>
     <main>
+
+        <?php if (isset($_SESSION['msg'])): ?>
+
+            <?php
+
+            echo msg(
+                $_SESSION['msg']['texto'],
+                $_SESSION['msg']['color'],
+            );
+
+            unset($_SESSION['msg']);
+
+
+
+
+            ?>
+        <?php endif; ?>
         <!-- Gatilho (Botão) -->
         <div class="container-fluid">
             <div class="row flex-nowrap">
                 <!-- Sidebar -->
                 <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark min-vh-100">
                     <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white sticky-top">
-                       <span class="fs-5 d-none d-sm-inline mt-3 mb-3"> <img class="perfil" src="<?= base_url($fotoPerfil) ?>" alt="Foto Escolhida"> <?= esc($nomeUsuario) ?></span>
+                        <span class="fs-5 d-none d-sm-inline mt-3 mb-3"> <img class="perfil" src="<?= base_url($fotoPerfil) ?>" alt="Foto Escolhida"> <?= esc($nomeUsuario) ?></span>
                         <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                             <li class="nav-item mt-4">
                                 <a href="<?= base_url('adm/index') ?>" class="nav-link align-middle px-0 text-white">
@@ -92,14 +94,17 @@
 
                 <!-- Conteúdo Principal -->
                 <div class="col py-3">
-                    <h4>Listagem de Clientes</h4>
+                    <h4>Listagem de Profissionais</h4>
                     <div class="listagemBusca mt-4">
 
                         <form action="" role="search" method="POST">
                             <div class="row">
                                 <div class="campo col-12 col-md-6 col-lg-4 input-group">
-                                    <input type="search" name="buscarUsuario" class="form-control" aria-label="Search" placeholder="Pesquise por um cliente" id="buscarUsuario">
-                                    <button type="button" class="btn btn-outline-primary">Buscar <i class="bi bi-search"></i> </button>
+                                    <input type="search" name="buscarUsuario" class="form-control" aria-label="Search" placeholder="Pesquise por um profissional" id="buscarUsuario">
+                                    <div class="botao">
+
+                                        <button type="button" class="btn btn-outline-primary">Buscar <i class="bi bi-search"></i> </button>
+                                    </div>
 
                                 </div>
 
@@ -140,18 +145,19 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php if (empty($listarClientes)): ?>
-                                            <p class="mt-5">Não há clientes de pessoa física cadastrado no sistema</p>
+                                        <?php if (empty($listarProfissional)): ?>
+                                            <p class="mt-5">Não há profissionais de pessoa física cadastrado no sistema</p>
                                         <?php else: ?>
-                                            <?php foreach ($listarClientes as $cliente): ?>
+                                            <?php foreach ($listarProfissional as $profissional): ?>
                                                 <tr>
-                                                    <td scope="row"><img class="cliente" src="<?= base_url($cliente->usuarios_imagem) ?>" alt=""></td>
-                                                    <td><?= esc($cliente->nome) ?></td>
-                                                    <td><?= esc($cliente->usuarios_email) ?> </td>
-                                                    <td><?= esc($cliente->genero) ?></td>
-                                                    <td><?= date('d/m/Y', strtotime($cliente->usuarios_criado_em)) ?></td>
-                                                    <td> <button type="button" onclick="window.location.href='<?= base_url('clientes/detalhes/' . $cliente->usuarios_id) ?>'" class="btn btn-outline-primary">Buscar <i class="bi bi-plus"></i> </button></td>
+                                                    <td scope="row"><img class="cliente" src="<?= base_url($profissional->usuarios_imagem) ?>" alt=""></td>
+                                                    <td><?= esc($profissional->nome) ?></td>
+                                                    <td><?= esc($profissional->usuarios_email) ?></td>
+                                                    <td><?= esc($profissional->genero) ?></td>
+                                                    <td><?= date('d/m/Y', strtotime($profissional->usuarios_criado_em)) ?></td>
+                                                    <td> <button type="button" onclick="window.location.href='detalhamento.php'" class="btn btn-outline-primary">Buscar <i class="bi bi-plus"></i> </button></td>
                                                 </tr>
+
                                             <?php endforeach; ?>
                                         <?php endif; ?>
                                     </tbody>
@@ -165,23 +171,23 @@
                                             <th scope="col"></th>
                                             <th scope="col">Razão Social</th>
                                             <th scope="col">Email</th>
-                                            <th scope="col">CNPJ</th>
+                                            <th scope="col">CPF/CNPJ</th>
                                             <th scope="col">Criado em</th>
                                             <th scope="col">Detalhar</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php if (empty($listarClientePJ)): ?>
-                                            <p class="mt-5">Não há clientes de pessoa jurídica cadastrado no sistema</p>
+                                        <?php if (empty($listarProfissionalPJ)): ?>
+                                            <p class="mt-5">Não há profissionais de pessoa física cadastrado no sistema</p>
                                         <?php else: ?>
-                                            <?php foreach ($listarClientePJ as $clientePJ): ?>
+                                            <?php foreach ($listarProfissionalPJ as $profissional): ?>
                                                 <tr>
-                                                    <td scope="row"><img class="cliente" src="<?= base_url($clientePJ->usuarios_imagem) ?>" alt=""></td>
-                                                    <td><?= esc($clientePJ->nome) ?></td>
-                                                    <td><?= esc($clientePJ->usuarios_email) ?></td>
-                                                    <td><?= esc($clientePJ->documento) ?></td>
-                                                    <td><?= date('d/m/Y', strtotime($clientePJ->usuarios_criado_em)) ?></td>
-                                                    <td> <button type="button" onclick="window.location.href='<?= base_url('clientes/detalhes/' . $clientePJ->usuarios_id) ?>'" class="btn btn-outline-primary">Detalhar <i class="bi bi-plus"></i> </button></td>
+                                                    <td scope="row"><img class="cliente" src="<?= base_url($profissional->usuarios_imagem) ?>" alt=""></td>
+                                                    <td><?= esc($profissional->nome) ?></td>
+                                                    <td><?= esc($profissional->usuarios_email) ?></td>
+                                                    <td><?= esc($profissional->pj_cnpj) ?></td>
+                                                    <td><?= date('d/m/Y', strtotime($profissional->usuarios_criado_em)) ?></td>
+                                                    <td> <button type="button" onclick="window.location.href='detalhamento.php'" class="btn btn-outline-primary">Buscar <i class="bi bi-plus"></i> </button></td>
                                                 </tr>
 
                                             <?php endforeach; ?>

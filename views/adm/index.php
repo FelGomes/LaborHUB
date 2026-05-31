@@ -76,7 +76,7 @@
                             </li>
 
                             <li>
-                                <a href="" class="nav-link px-0 align-middle text-white">
+                                <a href="<?= base_url('admin/listarProfissional') ?>" class="nav-link px-0 align-middle text-white">
                                     <i class="bi bi-building fs-4"></i> <span class="ms-1 d-none d-sm-inline">Profissionais</span>
                                 </a>
                             </li>

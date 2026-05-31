@@ -60,6 +60,19 @@ class Admin extends RenderView
         return $this->loadView('adm/listaCliente', $data);
     }
 
+    // LISTAR PROFISSIONAIS
+    public function listarProfissional(){
+        $tabelaProfissional = $this->listasProfissional();
+        $data['listarProfissional'] = $this->usuarios->selectProfissionais($tabelaProfissional)->fetchAll(PDO::FETCH_OBJ);
+
+        $tabelaProfissionalPJ = $this->listasProfissionalPJ();
+        $data['listarProfissionalPJ'] = $this->usuarios->selectProfissionais($tabelaProfissionalPJ)->fetchAll(PDO::FETCH_OBJ);
+
+        return $this->loadView('adm/listaProfissional', $data);
+    }
+
+
+
     // Detalhar clientes pessoa fisica e juridica
     public function detalhes($usuariosID)
     {
@@ -390,6 +403,40 @@ class Admin extends RenderView
         WHERE pj_cliente.pj_tipo = 'Cliente'
         ORDER BY nome ASC";
     }
+
+
+
+    // Listar cliente pessoa fisica na tela de adm - Profissional - pessoa fisica
+    private function listasProfissional()
+    {
+        return " SELECT
+                *,
+                CONCAT(pf_prof.pf_nome, ' ', pf_prof.pf_sobrenome
+            ) AS nome,
+            pf_prof.pf_cpf AS documento,
+            pf_prof.pf_genero as genero
+        FROM usuarios
+        LEFT JOIN pessoaFisica pf_prof
+            ON usuarios_id = pf_prof.pf_usuarios_id
+        WHERE pf_prof.pf_tipo = 'Profissional'
+        ORDER BY nome ASC";
+    }
+
+    //  Listar clientes pessoa juridica na tela de adm - clientes - pessoa Jurdica
+    private function listasProfissionalPJ()
+    {
+        return " SELECT
+                *,
+            pj_prof.pj_razaoSocial AS nome,
+            pj_prof.pj_cnpj AS documento
+        FROM usuarios
+        LEFT JOIN pessoaJuridica pj_prof
+            ON usuarios_id = pj_prof.pj_usuarios_id
+        WHERE pj_prof.pj_tipo = 'Profissional'
+        ORDER BY nome ASC";
+    }
+
+
 
 
     // Detalhar pessoa fisica tipo cliente

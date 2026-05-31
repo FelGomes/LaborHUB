@@ -44,6 +44,7 @@ $routes = [
 '/admin/editarClientesPJ/:id'                  => ['Admin', 'editarClientesPJ'],
 '/admin/excluirUsuario/:id'                    => ['Admin', 'excluirUsuario'],
 '/admin/desfazerExclusao/:id'                  => ['Admin', 'desfazerExclusao'],
+'/admin/listarProfissional'                    => ['Admin', 'listarProfissional'],
 
 '/login/logout' => ['Login', 'logout'],
 
