@@ -146,7 +146,7 @@
                     <div class="filtros nav nav-underline">
                         <ul>
                             <li class="nav-item"> <a class="nav-link" onclick="mostrar('ultimos')" return false href="#">Últimos</a></li>
-                            <li class="nav-item"> <a class="nav-link" onclick="mostrar('favoritos')" return false href="#">Favoritos</a></li>
+                            <!-- <li class="nav-item"> <a class="nav-link" onclick="mostrar('favoritos')" return false href="#">Favoritos</a></li> -->
                             <li class="nav-item"> <a class="nav-link" onclick="mostrar('pendentes')" return false href="#">Pendentes</a></li>
                             <li class="nav-item"> <a class="nav-link" onclick="mostrar('recusados')" return false href="#">Recusados</a></li>
                         </ul>
@@ -227,7 +227,7 @@
 
 
                 <!-- Listagem de apenas serviços favoritados -->
-                <div id="form-favoritos" style="display: none;">
+                <!-- <div id="form-favoritos" style="display: none;">
                     <div class="lista-historico ">
 
                         <div class="card-historico">
@@ -254,7 +254,7 @@
                                 </div>
 
                                 <div class="detalhes">
-                                    <h6 class="text-center"><strong>Atendimento Fantástico</strong></h6> <!--TIUTLO DO COMENTARIO-->
+                                    <h6 class="text-center"><strong>Atendimento Fantástico</strong></h6> --TIUTLO DO COMENTARIO
                                     <p class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad velit sint itaque quasi aliquid necessitatibus, nostrum aut totam placeat magni perferendis exercitationem dolores, quibusdam quae, saepe numquam voluptatum? In, ipsam?</p>
 
                                     <div class="botao">
@@ -298,7 +298,7 @@
                                 </div>
 
                                 <div class="detalhes">
-                                    <h6 class="text-center"><strong>Atendimento Fantástico</strong></h6> <!--TIUTLO DO COMENTARIO-->
+                                    <h6 class="text-center"><strong>Atendimento Fantástico</strong></h6> --TIUTLO DO COMENTARIO
                                     <p class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad velit sint itaque quasi aliquid necessitatibus, nostrum aut totam placeat magni perferendis exercitationem dolores, quibusdam quae, saepe numquam voluptatum? In, ipsam?</p>
 
                                     <div class="botao">
@@ -316,7 +316,7 @@
 
                     </div>
 
-                </div>
+                </div> -->
 
                 <!-- Serviços Pendentes -->
                 <div id="form-pendentes" style="display: none;">
@@ -622,7 +622,7 @@
 
         function mostrar(tipo) {
             document.getElementById("form-ultimos").style.display = 'none';
-            document.getElementById("form-favoritos").style.display = 'none';
+            // document.getElementById("form-favoritos").style.display = 'none';
             document.getElementById("form-recusados").style.display = 'none';
             document.getElementById("form-pendentes").style.display = 'none';
 

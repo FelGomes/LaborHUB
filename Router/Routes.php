@@ -40,11 +40,21 @@ $routes = [
 '/adm/index'                                   => ['Admin','index'],
 '/admin/listarClientes'                        => ['Admin', 'listarClientes'],
 '/clientes/detalhes/:id'                       => ['Admin', 'detalhes'],
+'/profissional/detalhes/:id'                   => ['Admin', 'detalhesProfissional'],
 '/admin/editarClientesPf/:id'                  => ['Admin', 'editarClientesPf'],
 '/admin/editarClientesPJ/:id'                  => ['Admin', 'editarClientesPJ'],
 '/admin/excluirUsuario/:id'                    => ['Admin', 'excluirUsuario'],
 '/admin/desfazerExclusao/:id'                  => ['Admin', 'desfazerExclusao'],
 '/admin/listarProfissional'                    => ['Admin', 'listarProfissional'],
+
+
+
+
+
+'/admin/editarProfissionalPj/:id'               =>['Admin', 'editarProfissionalPj'],
+'/admin/editarProfissionalPf/:id'               =>['Admin', 'editarProfissionalPf'],
+'/admin/excluirUsuarioProfissional/:id'                    => ['Admin', 'excluirUsuarioProfissional'],
+'/admin/desfazerExclusaoProfissional/:id' => ['Admin', 'desfazerExclusaoProfissional'],
 
 '/login/logout' => ['Login', 'logout'],
 

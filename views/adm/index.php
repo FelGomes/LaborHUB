@@ -201,7 +201,7 @@
 
                     </div>
 
-                    <div class="grafico">
+                    <!-- <div class="grafico">
 
                         <div class="listaGrafico">
                             <div id="myPlot" style="width:100%;max-width:700px">
@@ -211,7 +211,7 @@
 
                         </div>
 
-                    </div>
+                    </div> -->
 
 
 

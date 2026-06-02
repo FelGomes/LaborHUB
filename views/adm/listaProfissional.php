@@ -155,7 +155,7 @@
                                                     <td><?= esc($profissional->usuarios_email) ?></td>
                                                     <td><?= esc($profissional->genero) ?></td>
                                                     <td><?= date('d/m/Y', strtotime($profissional->usuarios_criado_em)) ?></td>
-                                                    <td> <button type="button" onclick="window.location.href='detalhamento.php'" class="btn btn-outline-primary">Buscar <i class="bi bi-plus"></i> </button></td>
+                                                    <td> <button type="button" onclick="window.location.href='<?= base_url('profissional/detalhes/' . $profissional->usuarios_id) ?>'" class="btn btn-outline-primary">Buscar <i class="bi bi-plus"></i> </button></td>
                                                 </tr>
 
                                             <?php endforeach; ?>
@@ -171,7 +171,7 @@
                                             <th scope="col"></th>
                                             <th scope="col">Razão Social</th>
                                             <th scope="col">Email</th>
-                                            <th scope="col">CPF/CNPJ</th>
+                                            <th scope="col">CNPJ</th>
                                             <th scope="col">Criado em</th>
                                             <th scope="col">Detalhar</th>
                                         </tr>
@@ -187,7 +187,7 @@
                                                     <td><?= esc($profissional->usuarios_email) ?></td>
                                                     <td><?= esc($profissional->pj_cnpj) ?></td>
                                                     <td><?= date('d/m/Y', strtotime($profissional->usuarios_criado_em)) ?></td>
-                                                    <td> <button type="button" onclick="window.location.href='detalhamento.php'" class="btn btn-outline-primary">Buscar <i class="bi bi-plus"></i> </button></td>
+                                                    <td> <button type="button" onclick="window.location.href='<?= base_url('profissional/detalhes/' . $profissional->usuarios_id) ?>'" class="btn btn-outline-primary">Buscar <i class="bi bi-plus"></i> </button></td>
                                                 </tr>
 
                                             <?php endforeach; ?>
