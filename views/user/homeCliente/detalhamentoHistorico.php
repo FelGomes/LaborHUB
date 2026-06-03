@@ -78,13 +78,12 @@
         </div>
 
         <nav>
-            <ul class="mt-1 mb-5 ">
+             <ul class="mt-1 mb-5 ">
                 <li><a href="<?= base_url('user/homeCliente/index') ?>">Home</a></li>
                 <li><a href="<?= base_url('historico/index') ?>">Histórico</a></li>
-                <li><a href="#">Agenda</a></li>
+                <li><a href="<?= base_url('agenda/index') ?>">Agenda</a></li>
 
             </ul>
-
         </nav>
     </header>
 
