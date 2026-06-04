@@ -24,7 +24,7 @@
         .card {
             border: 1px solid rgba(0, 0, 0, 0.16);
             border-radius: 5px;
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.14);
+            /* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.14); */
         }
 
         .botaoModalDeletar {

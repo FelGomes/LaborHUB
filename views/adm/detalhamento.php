@@ -24,7 +24,7 @@
         .card {
             border: 1px solid rgba(0, 0, 0, 0.16);
             border-radius: 5px;
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.14);
+            /* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.14); */
         }
 
         .botaoModalDeletar {
@@ -357,7 +357,7 @@
                             <div class="card mb-3" style="max-width: 640px;">
                                 <div class="row g-0 p-3">
                                     <div class="col-md-4 ">
-                                        <img src="<?= base_url($detalharUsuariosPj->usuarios_imagem) ?>" class="foto img-fluid rounded-start" alt="...">
+                                        <img src="<?= base_url($detalharUsuariosPj->usuarios_imagem) ?>" class="foto img-fluid rounded-start mt-4" alt="...">
                                     </div>
                                     <div class="col-md-8">
                                         <div class="card-body">

@@ -20,18 +20,7 @@
     <!-- 2º carrega o locale PT-BR -->
     <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.20/locales/pt-br.global.min.js'></script>
 
-    <style>
-        .botaoRecusado {
-            display: flex;
-            justify-content: flex-end;
-            margin-right: 120px;
-            margin-top: 15px;
-        }
 
-
-      
-
-    </style>
 
 </head>
 
@@ -101,34 +90,92 @@
     </header>
     <main>
 
-    <div class="lista-servico">
+        <div class="lista-servico">
             <div class="servicos-groups border">
                 <h6>Serviços Ativos <i style="color: #3B82F6" class="bi-tools "></i></h6>
-                <p> Servico(s) ativos.</p>
+                <p> <?= $contadorAtivo->total ?> Servico(s) ativos.</p>
 
             </div>
 
             <div class="servicos-groups border">
-                <h6>Serviços Concluidos  <i style="color: #22C55E" class="bi bi-check2-circle "></i></h6>
-                <p> Servico(s) finalizados</p>
+                <h6>Serviços Concluidos <i style="color: #22C55E" class="bi bi-check2-circle "></i></h6>
+                <p> <?= $contadorFinalizado->total ?> Servico(s) finalizados</p>
 
             </div>
 
             <div class="servicos-groups border">
                 <h6>Serviços Pendentes <i style="color: #FACC15" class="bi bi-question-lg"></i></h6>
-                <p> Servico(s) Pendentes</p>
+                <p> <?= $contadorPendente->total ?> Servico(s) Pendentes</p>
 
             </div>
 
             <div class="servicos-groups border">
                 <h6>Serviços Recusados <i style="color: #FF4E4E" class="bi bi-x-circle"></i></h6>
-                <p> Servico(s) Recusados</p>
+                <p> <?= $contadorRecusado->total ?> Servico(s) Recusados</p>
 
             </div>
 
         </div>
 
-        
+        <!-- Caixa do foreach -->
+        <div class="conteudo">
+
+            <?php if (empty($ativos)): ?>
+
+                <div> Não há nenhum serviço ativo no momento</div>
+
+            <?php else: ?>
+
+                <?php foreach ($ativos as $ativos): ?>
+
+                    <div class="listagemAtivas">
+
+                        <div class="listaAtivos">
+
+                            <div class="perfilAtivo">
+                                <div class="perfilAtivo">
+                                    <div class="imgAtivo">
+                                        <img src="<?= base_url($ativos->usuariosImagem) ?>" alt="foto">
+                                    </div>
+                                    <div class="infoAtivo mt-2">
+                                        <h4 class="mb-2"><strong><?= esc($ativos->nome) ?></strong></h4>
+                                        <p><strong>Telefone: </strong> <?= esc($ativos->telefone) ?></p>
+                                        <P><strong>Cidade: </strong> <?= esc($ativos->cidade) ?></P>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="servicoAtivo">
+                                <h5><?= esc($ativos->servico) ?></h5>
+                            </div>
+
+                        </div>
+
+                        <hr class="margemDotted">
+
+                        <div class="extraAtivo">
+                            <h6><strong>Valor: </strong> <span id="valor">R$ <?= number_format($ativos->valor, 2, ',', '.') ?></span></h6>
+                            <h6><strong>Data solicitada: </strong> <?= date('d/m/Y', strtotime($ativos->solicitacao_data)) ?></h6>
+                            <h6><strong>Quantidade de dias: </strong> <?= $ativos->quantidade ?> dia(s)</h6>
+                        </div>
+
+
+
+
+                    </div>
+
+                <?php endforeach; ?>
+
+            <?php endif; ?>
+        </div>
+
+
+
+
+
+
 
 
     </main>

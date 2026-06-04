@@ -191,7 +191,6 @@ main {
     width: 85% !important;
     /* box-shadow: var(--sombras);
      */
-    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.199);
 
 }
 
@@ -404,7 +403,7 @@ img {
     border-radius: 15px;
     line-height: 1.2;
     width: 300px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.175);
+    /* box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.175); */
 }
 
 .servicos-groups>h6 {
@@ -742,7 +741,7 @@ input {
     border-radius: 15px;
     line-height: 1.2;
     width: 300px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.175);
+    /* box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.175); */
 }
 
 .servicos-groups>h6 {
@@ -1567,4 +1566,72 @@ details p {
 
 .btn-pendente:hover {
     transform: scale(1.03) translateY(-5px) translateX(3px);
+}
+
+
+/* AGENDA */
+.botaoRecusado {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 120px;
+    margin-top: 15px;
+}
+
+.conteudo {
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 70px;
+}
+
+.listagemAtivas {
+    padding: 10px;
+    border-radius: var(--bordas);
+    border: 1px solid #00000028;
+}
+
+.listaAtivos {
+    display: flex;
+    justify-content: space-between;
+}
+
+.perfilAtivo {
+    display: flex;
+    gap: 10px;
+}
+
+.imgAtivo>img {
+    border-radius: 15%;
+    height: 120px;
+    width: 120px;
+}
+
+.infoAtivo>p {
+    font-size: 12pt;
+    line-height: 0.5;
+}
+
+
+.servicoAtivo {
+    padding: 10px;
+}
+
+.margemDotted {
+    border: 1px dashed #000000;
+}
+
+.extraAtivo {
+    display: flex;
+    justify-content: space-around;
+}
+
+#valor {
+    color: #22C55E;
+    font-weight: bold;
+}
+
+
+@media screen and (max-width: 950px) {
+    .conteudo {
+        display: none;
+    }
 }

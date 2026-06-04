@@ -95,11 +95,6 @@
                 <div class="col pt-3">
                     <h4 class="mb-5">Area Restrita</h4>
 
-                    <div class="botaoAreaRestrita">
-                        <button type="button" class="btn-finalizar">Criar usuarios</button>
-                    </div>
-
-
                     <div class="listagem mt-4">
 
                         <div class="cardList">

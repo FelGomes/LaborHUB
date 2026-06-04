@@ -103,7 +103,7 @@ main {
     width: 25%;
     padding: 15px;
     border-radius: 5px;
-    box-shadow: var(--sombras)
+    /* box-shadow: var(--sombras) */
 }
 
 .cardList>h5 {
@@ -112,7 +112,7 @@ main {
 }
 
 .cardList p {
-    line-height: 0.7;
+    line-height: 0.9;
 }
 
 .personInfo {
@@ -147,7 +147,7 @@ main {
     width: 79%;
     border: 1px solid rgba(0, 0, 0, 0.16);
     border-radius: 5px;
-    box-shadow: var(--sombras);
+    /* box-shadow: var(--sombras); */
 }
 
 @media screen and (max-width: 768px) {
@@ -250,7 +250,7 @@ main {
     padding: 20px;
     border: 1px solid rgba(0, 0, 0, 0.16);
     border-radius: 5px;
-    box-shadow: var(--sombras);
+    /* box-shadow: var(--sombras); */
 
 }
 

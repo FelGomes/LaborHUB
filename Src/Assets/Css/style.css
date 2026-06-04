@@ -43,7 +43,7 @@ h2,
 
 main>.container {
     border-radius: 10px;
-    box-shadow: var(--sombras);
+    /* box-shadow: var(--sombras); */
 }
 
 .iconeFoto {
