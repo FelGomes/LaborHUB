@@ -26,7 +26,7 @@
 
 <body>
 
-    <?php if (isset($_POST['msg'])): ?>
+    <?php if (isset($_SESSION['msg'])): ?>
 
         <?php echo msg(
             $_SESSION['msg']['texto'],
@@ -171,7 +171,7 @@
                                 <div class="col-md-6 mt-4 mb-2">
                                     <label for="endereco_uf">UF</label>
                                     <select name="endereco_uf" class="form-control" value="<?= $_POST['endereco_uf'] ?? '' ?>" id="endereco_uf_pf">
-                                        <option selected>Selecione o UF</option>
+                                        <option disabled >Selecione o UF</option>
                                         <option value="AC">AC</option>
                                         <option value="AL">AL</option>
                                         <option value="AP">AP</option>
@@ -244,7 +244,7 @@
 
                                 <div class="col-md-6 mt-4 mb-2">
                                     <label for="pj_cnpj">CNPJ</label>
-                                    <input type="text" name="pj_cnpj" id="pj_cnpj" placeholder="Digite seu CNPJ" class="form-control cnpj" required value="<?= $_POST['pf_cnpj'] ?? '' ?>">
+                                    <input type="text" name="pj_cnpj" id="pj_cnpj" placeholder="Digite seu CNPJ" class="form-control cnpj" required value="<?= $_POST['pj_cnpj'] ?? '' ?>">
                                 </div>
 
                                 <div class="col-md-6 mt-4 mb-2">
@@ -305,7 +305,7 @@
                                 <div class="col-md-6 mt-4 mb-2">
                                     <label for="endereco_uf">UF</label>
                                     <select name="endereco_uf" class="form-control" id="endereco_uf" value="<?= $_POST['endereco_uf'] ?? '' ?>">
-                                        <option selected>Selecione o UF</option>
+                                        <option disabled >Selecione o UF</option>
                                         <option value="AC">AC</option>
                                         <option value="AL">AL</option>
                                         <option value="AP">AP</option>

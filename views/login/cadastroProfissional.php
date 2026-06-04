@@ -19,6 +19,26 @@
 
 <body>
     <main>
+
+        <?php if (isset($_SESSION['msg'])): ?>
+
+            <?php
+
+            echo msg(
+                $_SESSION['msg']['texto'],
+                $_SESSION['msg']['color'],
+            );
+
+            unset($_SESSION['msg']);
+
+
+
+
+
+            ?>
+
+        <?php endif; ?>
+
         <div class="container mt-3 mb-5 border">
             <div class="row">
                 <h4 class="text-center mt-3">Preencha seus dados pessoais e endereço - Profissional</h4>
@@ -67,7 +87,7 @@
 
                             <div class="col-md-6 mt-4 mb-2">
                                 <label for="pf_sobrenome">Sobrenome </label>
-                                <input type="text" name="pf_sobrenome" id="pf_sobrenome" placeholder="Digite seu sobrenome" class="form-control" required   value="<?= $_POST['pf_sobrenome'] ?? '' ?>">
+                                <input type="text" name="pf_sobrenome" id="pf_sobrenome" placeholder="Digite seu sobrenome" class="form-control" required value="<?= $_POST['pf_sobrenome'] ?? '' ?>">
                             </div>
 
                             <div class="col-md-6 mt-4 mb-2">
@@ -89,7 +109,7 @@
 
                             <div class="col-md-6 mt-4 mb-2">
                                 <label for="pf_cpf">CPF</label>
-                                <input type="text" name="pf_cpf" id="pf_cpf" placeholder="Digite seu CPF" class="form-control cpf" required  value="<?= $_POST['pf_cpf'] ?? '' ?>">
+                                <input type="text" name="pf_cpf" id="pf_cpf" placeholder="Digite seu CPF" class="form-control cpf" required value="<?= $_POST['pf_cpf'] ?? '' ?>">
                             </div>
 
                             <div class="col-md-6 mt-4 mb-2">
@@ -262,13 +282,13 @@
 
                             <div class="col-md-3 mt-4 mb-2">
                                 <label for="endereco_cidade">Cidade </label>
-                                <input type="text" name="endereco_cidade" id="endereco_cidade" placeholder="Digite sua cidade" class="form-control" required value="<?= $_POST['endereco_cidade'] ?? '' ?>" >
+                                <input type="text" name="endereco_cidade" id="endereco_cidade" placeholder="Digite sua cidade" class="form-control" required value="<?= $_POST['endereco_cidade'] ?? '' ?>">
                             </div>
 
                             <div class="col-md-6 mt-4 mb-2">
                                 <label for="endereco_uf">UF</label>
                                 <select name="endereco_uf" class="form-control" id="endereco_uf" value="<?= $_POST['endereco_uf'] ?? '' ?>">
-                                    <option selected disabled >Selecione o UF</option>
+                                    <option selected disabled>Selecione o UF</option>
                                     <option value="AC">AC</option>
                                     <option value="AL">AL</option>
                                     <option value="AP">AP</option>
@@ -301,7 +321,7 @@
 
                             <div class="botoes col-md-6 ms-auto mt-5 mb-4">
                                 <button type="reset" class="btn-reset">Limpar formulario</button>
-                                <button type="submit" class="btn-submit" name="enviar" >Próximo</button>
+                                <button type="submit" class="btn-submit" name="enviar">Próximo</button>
 
                             </div>
 

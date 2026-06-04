@@ -7,7 +7,7 @@
     <title>Serviço Facil</title>
     <!-- <link rel="stylesheet" href="../../Assets/Css/style.css">
     <link rel="stylesheet" href="../../Assets/Css/mediaQuery.css"> -->
-     <link rel="stylesheet" href="<?= base_url('Public/template/Css/style.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('Public/template/Css/style.css') ?>">
     <link rel="stylesheet" href="<?= base_url('Public/template/Css/mediaQuery.css') ?>">
 
 
@@ -29,6 +29,27 @@
 
 <body>
     <main style="min-height: 100vh">
+
+        <?php if (isset($_SESSION['msg'])): ?>
+
+            <?php
+
+            echo msg(
+                $_SESSION['msg']['texto'],
+                $_SESSION['msg']['color'],
+            );
+
+            unset($_SESSION['msg']);
+
+
+
+
+
+            ?>
+
+        <?php endif; ?>
+
+
         <div class="container mt-4 mb-5 border">
             <div class="row">
                 <h2 class="text-center mt-3">Serviços</h2>
@@ -103,7 +124,7 @@
                             </div>
                             <div class="botoes col-12 col-md-6 mt-5 mb-4 ms-auto mt-md-5 mb-md-4">
                                 <button type="button" onclick="window.history.back()" class="btn-reset">Voltar</button>
-                                <button type="submit" name="enviar" class="btn-submit" >Finalizar</button>
+                                <button type="submit" name="enviar" class="btn-submit">Finalizar</button>
 
                             </div>
 

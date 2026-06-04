@@ -158,12 +158,12 @@
 
                                 </div>
 
-                                <div class="icones">
+                                <!-- <div class="icones disabled">
                                     <i class="bi bi-exclamation-triangle-fill fs-3 disable" style="color: #C52222"></i>
                                     <i class="bi bi-arrow-return-left fs-3" onclick="toggleResposta(this)" style="color: var(--corPrincipal);"></i>
 
 
-                                </div>
+                                </div> -->
                             </div>
 
 

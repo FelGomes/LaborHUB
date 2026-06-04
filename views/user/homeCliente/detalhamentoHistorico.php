@@ -78,7 +78,7 @@
         </div>
 
         <nav>
-             <ul class="mt-1 mb-5 ">
+            <ul class="mt-1 mb-5 ">
                 <li><a href="<?= base_url('user/homeCliente/index') ?>">Home</a></li>
                 <li><a href="<?= base_url('historico/index') ?>">Histórico</a></li>
                 <li><a href="<?= base_url('agenda/index') ?>">Agenda</a></li>
@@ -88,6 +88,7 @@
     </header>
 
     <main>
+
 
         <div class="offcanvas offcanvas-end" style="height: 100vh" tabindex="-1" id="sidebarPerfil">
 
@@ -106,10 +107,16 @@
             </div>
 
             <div class="offcanvas-body">
-                <button type="button" onclick="window.location.href='<?= base_url('/login/logout') ?>'" class="btn-sair">Sair</button>
+                <div class="links">
+                    <a class="linksEdicoes" href="<?= base_url('usuario/editCliente/' . $_SESSION['usuarios_logado']->usuarios_id) ?>"><i class="bi bi-person-plus-fill fs-3"></i> &nbsp; Editar perfil</a>
+                    <a class="linksEdicoes" href="<?= base_url('login/logout') ?>"><i class="bi bi-box-arrow-left fs-3"></i> &nbsp; Sair</a>
+                </div>
+
+
             </div>
 
         </div>
+
 
         <div class="voltarPerfil">
             <a href="<?= base_url('historico/index') ?>"><i class="bi bi-arrow-left"></i> Voltar</a>
@@ -228,10 +235,10 @@
                 <?php endif; ?>
 
 
-                <?php if(!empty($detalhamento->resposta)):?>
+                <?php if (!empty($detalhamento->resposta)): ?>
                     <p class="text-justify"><?= $detalhamento->resposta ?></p>
 
-                <?php endif;?>
+                <?php endif; ?>
 
 
                 <div class="botaoEditar" style="display: flex; justify-content: flex-end;">
@@ -259,7 +266,7 @@
                                                 <label for="avaliacao_descricao">Comentários:</label>
                                                 <textarea id="avaliacao_descricao" name="avaliacao_descricao" rows="4" class="form-control" placeholder="Conte mais detalhes sobre sua experiência..."> <?= esc($detalhamento->descricao) ?></textarea>
                                             </div>
-                                            
+
                                             <input type="hidden" name="avaliacao_id" value="<?= $detalhamento->avaliacao_id ?>">
                                             <input type="hidden" name="cliente_id" value="<?= $detalhamento->cliente_id ?>">
                                             <input type="hidden" name="profissional_id" value="<?= $detalhamento->profissional_id ?>">

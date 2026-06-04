@@ -86,6 +86,35 @@
     </header>
     <main>
 
+
+        <div class="offcanvas offcanvas-end" style="height: 100vh" tabindex="-1" id="sidebarPerfil">
+
+            <div class="offcanvas-header">
+                <div class="comentImage">
+                    <img class="Imagecomentario" style="border-radius: 50% !important;" src="<?= base_url($fotoPerfil) ?>" alt="">
+
+                </div>
+                <h5> &nbsp; <?= esc($nomeUsuario); ?></h5>
+                <br>
+
+                <button type="button"
+                    class="btn-close"
+                    data-bs-dismiss="offcanvas">
+                </button>
+            </div>
+
+            <div class="offcanvas-body">
+                <div class="links">
+                    <a class="linksEdicoes" href="<?= base_url('usuario/editCliente/' . $_SESSION['usuarios_logado']->usuarios_id) ?>"><i class="bi bi-person-plus-fill fs-3"></i> &nbsp; Editar perfil</a>
+                    <a class="linksEdicoes" href="<?= base_url('login/logout') ?>"><i class="bi bi-box-arrow-left fs-3"></i> &nbsp; Sair</a>
+                </div>
+
+
+            </div>
+
+        </div>
+
+
         <div class="lista-servico">
             <div class="servicos-groups border">
                 <h6>Serviços Ativos <i style="color: #3B82F6" class="bi-tools "></i></h6>

@@ -69,7 +69,7 @@ class Historico extends RenderView
 
         $values = [
             'solicitacao_status' => 'Cancelado',
-            'soliitacao_status_profissional' => 'Cancelado'
+            'solicitacao_status_profissional' => 'Cancelado'
         ];
 
         $where = "solicitacao_id = '$solicitacaoId'";

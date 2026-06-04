@@ -487,7 +487,7 @@ class Usuario extends RenderView
         if ($pessoaJuridica) {
             $data['pessoaJuridica'] = $pessoaJuridica;
 
-            return $this->loadView('user/editarPerfilPJ', $data);
+            return $this->loadView('user/homeCliente/editarPerfilPJ', $data);
         }
     }
 
@@ -640,6 +640,154 @@ class Usuario extends RenderView
         return $this->editCliente($usuarios_id);
     }
 
+     public function AlterarDadosPJ($usuarios_id)
+    {
+
+        if (!isset($_FILES['usuarios_imagem']) || $_FILES['usuarios_imagem']['error'] == UPLOAD_ERR_NO_FILE) {
+            $usuarios_imagem = $_SESSION['usuarios_logado']->usuarios_imagem;
+        } else {
+
+            $arquivo = $_FILES['usuarios_imagem'];
+
+            // Verifica erro de upload
+            if ($arquivo['error'] !== UPLOAD_ERR_OK) {
+
+                $_SESSION['msg'] = [
+                    'texto' => 'Erro ao enviar a imagem.',
+                    'color' => 'danger'
+                ];
+
+                return $this->editCliente($usuarios_id);
+            }
+
+            // Tamanho máximo
+            if (!$this->usuario->validaImagemPerfi($arquivo)) {
+
+                $_SESSION['msg'] = [
+                    'texto' => 'A imagem deve ter no máximo 2MB.',
+                    'color' => 'danger'
+                ];
+
+                return $this->editCliente($usuarios_id);
+            }
+
+            // Tipo permitido
+            if (!$this->usuario->tipoImagem($arquivo)) {
+
+                $_SESSION['msg'] = [
+                    'texto' => 'Formato inválido. Utilize JPG, JPEG ou PNG.',
+                    'color' => 'danger'
+                ];
+
+                return $this->editCliente($usuarios_id);
+            }
+
+            // Dimensões mínimas
+            if (!$this->usuario->tamanhoImagem($arquivo)) {
+
+                $_SESSION['msg'] = [
+                    'texto' => 'A imagem deve possuir no mínimo 400x400 pixels.',
+                    'color' => 'danger'
+                ];
+
+                return $this->editCliente($usuarios_id);
+            }
+
+            // Pasta de destino
+            $pasta = __DIR__ . '/../Public/template/UploadImages/';
+
+            // Nome único
+            $nomeArquivo = uniqid() . '-' . basename($arquivo['name']);
+
+            $caminhoFinal = $pasta . $nomeArquivo;
+
+            // Upload
+            if (!move_uploaded_file($arquivo['tmp_name'], $caminhoFinal)) {
+
+                $_SESSION['msg'] = [
+                    'texto' => 'Erro ao salvar a imagem.',
+                    'color' => 'danger'
+                ];
+
+                return $this->editCliente($usuarios_id);
+            }
+
+            // Exclui imagem antiga (se não for a padrão)
+            if (
+                !empty($usuarioAtual->usuarios_imagem) &&
+                $usuarioAtual->usuarios_imagem !== 'UploadImages/default.png'
+            ) {
+
+                $imagemAntiga = __DIR__ . '/../' . $usuarioAtual->usuarios_imagem;
+
+                if (file_exists($imagemAntiga)) {
+                    unlink($imagemAntiga);
+                }
+            }
+
+            // Caminho que será salvo no banco
+            $usuarios_imagem = 'Public/template/UploadImages/' . $nomeArquivo;
+        }
+
+        $valuesUsuarios = [
+            'usuarios_imagem' => $usuarios_imagem,
+            'usuarios_telefone' => $_POST['usuarios_telefone'],
+        ];
+
+        $whereUsuarios = "usuarios_id = '$usuarios_id'";
+
+        if (!$this->usuario->update($whereUsuarios, $valuesUsuarios)) {
+            $_SESSION['msg'] = [
+                'texto' => 'Erro ao alterar os dados!',
+                'color' => 'danger',
+            ];
+        }
+
+        $valuesPessoaJuridica = [
+            'pj_razaoSocial' => $_POST['pj_razaoSocial'],
+            'pj_nomeFantasia' => $_POST['pj_nomeFantasia'],
+            'pj_dataFundacao' => $_POST['pj_dataFundacao'],
+        ];
+
+        $wherePF = "pj_usuarios_id = '$usuarios_id'";
+
+        if (!$this->pessoaJuridica->update($wherePF, $valuesPessoaJuridica)) {
+            $_SESSION['msg'] = [
+                'texto' => 'Erro ao alterar os dados!',
+                'color' => 'danger',
+            ];
+        }
+
+        $valuesEndereco = [
+            "endereco_rua" => $_POST['endereco_rua'],
+            "endereco_bairro" => $_POST['endereco_bairro'],
+            "endereco_complemento" => $_POST['endereco_complemento'],
+            "endereco_numero" => $_POST['endereco_numero'],
+            "endereco_descricao" => $_POST['endereco_descricao'],
+            "endereco_cidade" => $_POST['endereco_cidade'],
+            "endereco_uf" => $_POST['endereco_uf'],
+        ];
+
+        $whereEndereco = "endereco_usuarios_id = '$usuarios_id'";
+
+        $enderecoUpdate = $this->endereco->update($whereEndereco, $valuesEndereco);
+
+
+        if (!$enderecoUpdate) {
+            $_SESSION['msg'] = [
+                'texto' => 'Não foi possível editar os dados de endereco deste usuários!',
+                'color' => 'danger',
+            ];
+        }
+
+        $_SESSION['msg'] = [
+            'texto' => "Dados alterado com sucesso!",
+            'color' => "success",
+        ];
+
+        return $this->editCliente($usuarios_id);
+    }
+
 
     // DESATIVAR CONTA DO USUARIO
     public function desativarConta($usuario_id)
@@ -683,7 +831,7 @@ class Usuario extends RenderView
     private function selectEdiPJ($usuarioID)
     {
 
-        $join = "INNER JOIN endereco on endereco_usuarios_id = usuarios_id INNER JOIN pessoaFisica pf on pf.pf_usuarios_id = usuarios_id";
+        $join = "INNER JOIN endereco on endereco_usuarios_id = usuarios_id INNER JOIN pessoaJuridica pj on pj.pj_usuarios_id = usuarios_id";
         $where = "usuarios_id = '$usuarioID'";
 
         return $this->usuario->select($join, $where)->fetch(PDO::FETCH_OBJ);

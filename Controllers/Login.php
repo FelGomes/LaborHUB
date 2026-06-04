@@ -382,6 +382,6 @@ class Login extends RenderView
         ];
         unset($_SESSION['usuarios_logado']);
 
-        return $this->redirect(base_url('/login'));
+        return $this->redirect(base_url('login'));
     }
 }

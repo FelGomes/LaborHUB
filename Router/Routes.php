@@ -53,7 +53,8 @@ $routes = [
 '/admin/desfazerExclusaoProfissional/:id' => ['Admin', 'desfazerExclusaoProfissional'],
 '/agenda/index'                             =>['Agenda', 'index'],
 '/usuario/editCliente/:id'                         => ['Usuario', 'editCliente'],  
-'/usuario/AlterarDados/:id'                     => ['Usuario', 'AlterarDados'],   
+'/usuario/AlterarDados/:id'                     => ['Usuario', 'AlterarDados'],  
+'/usuario/AlterarDadosPJ/:id'                     => ['Usuario', 'AlterarDadosPJ'],    
 '/usuario/DesativarConta/:id'                   => ['Usuario', 'desativarConta'],     
 
 '/login/logout' => ['Login', 'logout'],
