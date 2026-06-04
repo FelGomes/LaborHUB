@@ -1,6 +1,7 @@
 @media screen and (max-width: 768px) {
     .container-box {
-        width: 90%;
+        width: 95%;
+        height: 80%;
     }
 
     .campos {
