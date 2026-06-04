@@ -72,14 +72,23 @@ class Login extends RenderView
         if (password_verify($senha, $usuario->usuarios_senha_hash)) {
             $_SESSION['usuarios_logado'] = $usuario;
 
-            if($usuario->usuarios_ativo === 0){
+            if ($usuario->usuarios_ativo === 0) {
                 $_SESSION['msg'] = [
-                'texto' => 'Usuário excluído pelo administrador!',
-                'color' => 'danger',
-            ];
+                    'texto' => 'Usuário excluído pelo administrador!',
+                    'color' => 'danger',
+                ];
 
-            return $this->redirect(base_url('/login'));
+                return $this->redirect(base_url('/login'));
+            }
 
+
+            if ($usuario->usuarios_ativo === 2) {
+                $_SESSION['msg'] = [
+                    'texto' => 'Usuário excluído!',
+                    'color' => 'danger',
+                ];
+
+                return $this->redirect(base_url('/login'));
             }
 
             // Se for 0 é usuario normal
@@ -272,15 +281,16 @@ class Login extends RenderView
 
 
     // FUnção para salvar a nova senha
-     public function salvarSenha(){
+    public function salvarSenha()
+    {
 
         $senha = $_POST['usuarios_senha_hash'] ?? '';
         $confirmarSenha = $_POST['confirmaSenha'] ?? '';
         $token = $_POST['token'] ?? '';
 
 
-        if(empty($senha) || empty($confirmarSenha)){
-            $_SESSION['msg'] =[
+        if (empty($senha) || empty($confirmarSenha)) {
+            $_SESSION['msg'] = [
                 'texto' => "Preencha os campos abaixo!",
                 'color' => 'danger',
             ];
@@ -289,7 +299,7 @@ class Login extends RenderView
         }
 
 
-        if($senha !== $confirmarSenha){
+        if ($senha !== $confirmarSenha) {
 
             $_SESSION['msg'] = [
                 'texto' => 'Os campos de senha não podem ser diferentes!',
@@ -297,11 +307,10 @@ class Login extends RenderView
             ];
 
             return $this->loadView('login/alterarSenha', []);
-
         }
 
-        
-        if(!$token){
+
+        if (!$token) {
             $_SESSION['msg'] = [
                 'texto' => "Token inválido",
                 'color' => 'danger',
@@ -316,12 +325,12 @@ class Login extends RenderView
          AND usuarios_expira_em > NOW()";
 
 
-         
 
-        $usuario = $this->usuario->select(null,$where)->fetch(PDO::FETCH_OBJ);
 
-        if(!$usuario){
-            $_SESSION['msg'] =[
+        $usuario = $this->usuario->select(null, $where)->fetch(PDO::FETCH_OBJ);
+
+        if (!$usuario) {
+            $_SESSION['msg'] = [
                 'texto' => "Token expirado!",
                 'color' => 'danger',
             ];
@@ -336,11 +345,11 @@ class Login extends RenderView
             'usuarios_reset_hash' => null,
             'usuarios_expira_em' => null,
         ];
-        
+
 
         $whereUpdate = "usuarios_id ='$usuario->usuarios_id'";
 
-        if(!$this->usuario->update($whereUpdate, $values)){
+        if (!$this->usuario->update($whereUpdate, $values)) {
             $_SESSION['msg'] = [
                 'texto' => "Erro ao alterar senha!",
                 'color' => 'danger',
@@ -357,8 +366,6 @@ class Login extends RenderView
         ];
 
         return $this->redirect(base_url('login'));
-
-
     }
 
 

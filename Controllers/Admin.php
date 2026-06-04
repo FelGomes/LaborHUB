@@ -93,8 +93,6 @@ class Admin extends RenderView
     }
 
 
-
-
     // FUNÇAO PARA EDITAR CLIENTES DO TIPO PESSOA FISICA NA TELA DE DETALHAMENTO
     public function editarClientesPf($usuarios_id)
     {
@@ -256,9 +254,7 @@ class Admin extends RenderView
         return $this->detalhes($usuarios_id);
     }
 
-
-
-
+    // DETALHAR PROFISSIONAL
     public function detalhesProfissional($usuariosID)
     {
         $data = [''];
@@ -271,7 +267,7 @@ class Admin extends RenderView
         return $this->loadView('adm/detalhamentoProfissional', $data);
     }
 
-
+    // Editar profissional que é pessoa Fisica
     public function editarProfissionalPf($usuarios_id)
     {
 
@@ -478,9 +474,6 @@ class Admin extends RenderView
         return $this->detalhesProfissional($usuarios_id);
     }
 
-
-
-
     // Função para deletar usuarios na tela de detalhamentos, apenas adm
     public function excluirUsuario($usuariosID)
     {
@@ -534,8 +527,8 @@ class Admin extends RenderView
         return $this->detalhes($usuariosID);
     }
 
-
-      public function excluirUsuarioProfissional($usuariosID)
+    // FUnção para excluir profissional na tela de detalhamento - apenas adm
+    public function excluirUsuarioProfissional($usuariosID)
     {
         $valuesDeletarUsuario = [
             'usuarios_deletado_em' => date('Y-m-d H:i:s'),
@@ -586,8 +579,6 @@ class Admin extends RenderView
 
         return $this->detalhesProfissional($usuariosID);
     }
-
-
 
     // Contador de solicitaçoes de pessoas Fisicas
     private function contadorDeSolicitacoesDePF()
@@ -717,8 +708,6 @@ class Admin extends RenderView
         WHERE pj_prof.pj_tipo = 'Profissional'
         ORDER BY nome ASC";
     }
-
-
 
 
     // Detalhar pessoa fisica tipo cliente

@@ -22,6 +22,27 @@
             margin-right: 120px;
             margin-top: 15px;
         }
+
+        .links {
+            display: flex;
+            flex-flow: column wrap;
+            gap: 5px;
+        }
+
+        .linksEdicoes {
+            text-decoration: none;
+            color: black;
+            gap: 5px;
+
+        }
+
+        a.linksEdicoes:hover {
+            transform: none !important;
+            color: black !important;
+            font-weight: normal !important;
+            
+        }
+
     </style>
 
 </head>
@@ -81,7 +102,7 @@
         </div>
 
         <nav>
-             <ul class="mt-1 mb-5 ">
+            <ul class="mt-1 mb-5 ">
                 <li><a href="<?= base_url('user/homeCliente/index') ?>">Home</a></li>
                 <li><a href="<?= base_url('historico/index') ?>">Histórico</a></li>
                 <li><a href="<?= base_url('agenda/index') ?>">Agenda</a></li>
@@ -92,14 +113,6 @@
     </header>
     <main>
 
-        <?php
-        // Isso vai te mostrar todas as variáveis que o extract() criou nesta página
-        // echo "<pre>";
-        // print_r(get_defined_vars());
-        // echo "</pre>";
-        // die();
-        // 
-        ?>
 
         <div class="offcanvas offcanvas-end" style="height: 100vh" tabindex="-1" id="sidebarPerfil">
 
@@ -118,7 +131,12 @@
             </div>
 
             <div class="offcanvas-body">
-                <button type="button" onclick="window.location.href='<?= base_url('/login/logout') ?>'" class="btn-sair">Sair</button>
+                <div class="links">
+                    <a class="linksEdicoes" href="<?= base_url('usuario/editCliente/' . $_SESSION['usuarios_logado']->usuarios_id) ?>"><i class="bi bi-person-plus-fill fs-3"></i> &nbsp; Editar perfil</a>
+                    <a class="linksEdicoes" href="<?= base_url('/login/logout') ?>'"><i class="bi bi-box-arrow-left fs-3"></i> &nbsp; Sair</a>
+                </div>
+
+
             </div>
 
         </div>
@@ -204,7 +222,7 @@
                                         <?php endif; ?>
 
                                         <div class="botao" style="margin-top: 80px;">
-                                            <i class="bi bi-trash3-fill"  onclick="window.location.href='<?= base_url('historico/deletarUnique' . $historicoFinalizado->solicitacao_id) ?>'" id="lixeira" ></i>
+                                            <i class="bi bi-trash3-fill" onclick="window.location.href='<?= base_url('historico/deletarUnique' . $historicoFinalizado->solicitacao_id) ?>'" id="lixeira"></i>
                                             <i class="bi bi-star" id="favorito"></i>
                                             <button type="submit" class="btn-detalhar" onclick="window.location.href='<?= base_url('historico/detalharServicoFinalizado/' . $historicoFinalizado->solicitacao_id) ?>'">Detalhar</button>
 
