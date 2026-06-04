@@ -15,10 +15,6 @@
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
-    <!-- 1º carrega o FullCalendar -->
-    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.20/index.global.min.js'></script>
-    <!-- 2º carrega o locale PT-BR -->
-    <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.20/locales/pt-br.global.min.js'></script>
 
 
 
@@ -237,43 +233,6 @@
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
 
-
-    <script>
-        const estrela = document.getElementById("favorito");
-
-        estrela.addEventListener("click", () => {
-            estrela.classList.toggle("ativo");
-
-            if (estrela.classList.contains("ativo")) {
-                estrela.classList.remove("bi-star");
-                estrela.classList.add("bi-star-fill");
-            } else {
-                estrela.classList.remove("bi-star-fill");
-                estrela.classList.add("bi-star");
-            }
-        });
-
-        function mostrar(tipo) {
-            document.getElementById("form-ultimos").style.display = 'none';
-            // document.getElementById("form-favoritos").style.display = 'none';
-            document.getElementById("form-recusados").style.display = 'none';
-            document.getElementById("form-pendentes").style.display = 'none';
-
-            document.getElementById('form-' + tipo).style.display = 'block';
-
-        }
-    </script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const calendarEl = document.getElementById('calendar');
-            const calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth',
-                locale: 'pt-br'
-            });
-            calendar.render();
-        });
-    </script>
 
 
 
