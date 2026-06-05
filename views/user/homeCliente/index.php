@@ -25,7 +25,7 @@
 
         <?php $fotoPerfil = $_SESSION['usuarios_logado']->usuarios_imagem ?? ''; ?>
 
-        <?php $usuarioTipo = $_SESSION['usuarios_logado']->pf_tipo ?? ''?>
+        <?php $usuarioTipo = $_SESSION['usuarios_logado']->pf_tipo ?? '' ?>
 
         <?php if ($usuarioTipo === 'Cliente'): ?>
 
@@ -87,7 +87,7 @@
 
     <main>
 
-        
+
         <div class="offcanvas offcanvas-end" style="height: 100vh" tabindex="-1" id="sidebarPerfil">
 
             <div class="offcanvas-header">
@@ -170,9 +170,20 @@
                                         <div class="info">
                                             <h4><strong><?= esc($profissionais->nome) ?></strong></h4>
                                             <p><?= esc($profissionais->cidade . ', ' . $profissionais->uf) ?></p>
-                                            <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <?= $profissionais->totalAvaliacoes . ' ' . $profissionais->mediaAvaliacao ?>
+                                            <?php for ($i = 1; $i <= 5; $i++): ?>
 
-                                            <h6 class="mt-2"><strong>Atendimento: </strong> <?= esc($profissionais->atendimento) ?></h6>
+                                                <?php if ($i <= $profissionais->totalAvaliacoes): ?>
+                                                    <i class="bi bi-star-fill" style="color: gold;"></i>
+
+                                                <?php else: ?>
+                                                    <i class="bi bi-star"></i>
+
+                                                <?php endif; ?>
+
+                                                <?php endfor; ?> 
+                                                <?= $profissionais->totalAvaliacoes . ' ' . $profissionais->mediaAvaliacao ?>
+
+                                                <h6 class="mt-2"><strong>Atendimento: </strong> <?= esc($profissionais->atendimento) ?></h6>
                                         </div>
 
                                     </div>
@@ -180,13 +191,13 @@
                                     <div class="texto mt-3">
                                         <h4><strong>Observação</strong></h4>
                                         <!-- FUnção para limitar o numero de caracter que ira mostrar na tela -->
-                                        <p> <?= esc($profissionais->experiencia . ' ' . mb_strimwidth($profissionais->descricao, 0, 70, "...")); ?></p>
+                                        <p> <?= esc($profissionais->experiencia . ': ' . mb_strimwidth($profissionais->descricao, 0, 70, "...")); ?></p>
                                     </div>
 
                                     <div class="valor">
                                         <h4>R$: <?= number_format($profissionais->valor, 2, ',', '.') . ' - ' . ($profissionais->cobranca) ?></h4>
                                     </div>
-                                    <?php 
+                                    <?php
                                     ?>
                                     <div class="botoes mb-2">
                                         <button type="button" class="btn-perfil" onclick="window.location.href='<?= base_url('profissionais/perfil/' . $profissionais->usuarios_id); ?>'" name="verPerfil">Ver perfil</button>

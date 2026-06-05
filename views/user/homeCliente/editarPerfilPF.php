@@ -139,7 +139,7 @@
                             <div class="filtros nav nav-underline">
                                 <ul>
                                     <li class="nav-item"> <a class="nav-link" onclick="mostrar('dadosPessoais')" return false href="#">Dados Pessoais</a></li>
-                                    <li class="nav-item"> <a class="nav-link" onclick="mostrar('endereco')" return false href="#">Endereco</a></li>
+                                    <li class="nav-item"> <a class="nav-link" onclick="mostrar('endereco')" return false href="#">Endereço</a></li>
                                 </ul>
 
                             </div>
@@ -227,7 +227,7 @@
                         <div class="filtros nav nav-underline">
                             <ul>
                                 <li class="nav-item"> <a class="nav-link" onclick="mostrar('dadosPessoais')" return false href="#">Dados Pessoais</a></li>
-                                <li class="nav-item"> <a class="nav-link" onclick="mostrar('endereco')" return false href="#">Endereco</a></li>
+                                <li class="nav-item"> <a class="nav-link" onclick="mostrar('endereco')" return false href="#">Endereço</a></li>
                             </ul>
 
                         </div>

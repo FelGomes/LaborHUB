@@ -83,7 +83,6 @@
     </header>
 
     <main>
-
         <div class="offcanvas offcanvas-end" style="height: 100vh" tabindex="-1" id="sidebarPerfil">
 
             <div class="offcanvas-header">
@@ -101,7 +100,12 @@
             </div>
 
             <div class="offcanvas-body">
-                <button type="button" onclick="window.location.href='<?= base_url('/login/logout') ?>'" class="btn-sair">Sair</button>
+                <div class="links">
+                    <a class="linksEdicoes" href="<?= base_url('usuario/editCliente/' . $_SESSION['usuarios_logado']->usuarios_id) ?>"><i class="bi bi-person-plus-fill fs-3"></i> &nbsp; Editar perfil</a>
+                    <a class="linksEdicoes" href="<?= base_url('login/logout') ?>"><i class="bi bi-box-arrow-left fs-3"></i> &nbsp; Sair</a>
+                </div>
+
+
             </div>
 
         </div>
@@ -145,7 +149,7 @@
 
                                     <div class="respostaBox" style="display: none;">
                                         <textarea class="form-control" name="avaliacao_resposta" placeholder="Responder comentário..."></textarea>
-                                        <button type="submit" onclick="window.location.href='<?= base_url('pessoaJuridica/responderAvaliacao/' . $avaliacao->avaliacao_id ) ?>'" class="btn-solicitacao mt-4">Responder</button>
+                                        <button type="submit" onclick="window.location.href='<?= base_url('pessoaJuridica/responderAvaliacao/' . $avaliacao->avaliacao_id) ?>'" class="btn-solicitacao mt-4">Responder</button>
                                     </div>
 
                                 </div>

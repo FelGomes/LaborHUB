@@ -50,7 +50,7 @@
             $total_pendentes = $total_pendentes ?? '';
 
             $solicitacaoPendente = $solicitacaoPendente ?? '';
-            
+
             $usuarios_perfil = $solicitacaoPendente->usuariosImagem ?? '';
             $nome = $solicitacaoPendente->nome ?? '';
             $email = $solicitacaoPendente->email ?? '';
@@ -113,11 +113,15 @@
             </div>
 
             <div class="offcanvas-body">
-                <button type="button" onclick="window.location.href='<?= base_url('/login/logout') ?>'" class="btn-sair">Sair</button>
+                <div class="links">
+                    <a class="linksEdicoes" href="<?= base_url('usuario/editCliente/' . $_SESSION['usuarios_logado']->usuarios_id) ?>"><i class="bi bi-person-plus-fill fs-3"></i> &nbsp; Editar perfil</a>
+                    <a class="linksEdicoes" href="<?= base_url('login/logout') ?>"><i class="bi bi-box-arrow-left fs-3"></i> &nbsp; Sair</a>
+                </div>
+
+
             </div>
 
         </div>
-
 
         <div class="voltarPerfil ">
             <a href="<?= base_url('PessoaJuridica/telaPendentes') ?>"><i class="bi bi-arrow-left"></i> Voltar</a>
@@ -135,7 +139,7 @@
                 <div class="solicitacaoInfo">
                     <h4><strong><?= esc($solicitacaoPendente->nome) ?></strong></h4>
                     <h5><Strong>Endereço: </Strong><?= esc($solicitacaoPendente->rua) . ' ' . esc($solicitacaoPendente->complemento) . ' Nº ' . esc($solicitacaoPendente->numero) . ' ' . esc($solicitacaoPendente->bairro) . ' ' . esc($solicitacaoPendente->descricao) ?></h5>
-                    <h5><strong>Cidade: </strong><?= esc($solicitacaoPendente->cidade). ' - ' .esc($solicitacaoPendente->uf) ?></h5>
+                    <h5><strong>Cidade: </strong><?= esc($solicitacaoPendente->cidade) . ' - ' . esc($solicitacaoPendente->uf) ?></h5>
                     <h5><strong>Data de solicitação: </strong> <?= date('d/m/Y', strtotime($solicitacaoPendente->solicitacao_data_atual)) ?></h5>
                     <h5><strong>Data para serviço: </strong> <?= date('d/m/Y', strtotime($solicitacaoPendente->solicitacao_data)) ?></h5>
                     <h5><strong>Dias solicitados: </strong> <?= esc($solicitacaoPendente->quantidade) ?> dia(s)</h5>
@@ -145,7 +149,7 @@
                     <h5><strong>Email: </strong> <?= $solicitacaoPendente->email ?> </h5>
 
                 </div>
-            </div> 
+            </div>
 
             <form action="" method="post">
                 <div class="solicitacaoConfirmar border">
@@ -184,7 +188,7 @@
                                         <div class="botaoModalDeletar mt-3">
 
                                             <button type="button" data-bs-dismiss="modal" class="btn-negar"> Não</button>
-                                            <button type="button" class="btn-finalizar"  onclick="window.location.href='<?= base_url('pessoaJuridica/recusar/' . $solicitacaoPendente->solicitacao_id) ?>'">Sim</button>
+                                            <button type="button" class="btn-finalizar" onclick="window.location.href='<?= base_url('pessoaJuridica/recusar/' . $solicitacaoPendente->solicitacao_id) ?>'">Sim</button>
                                         </div>
 
 

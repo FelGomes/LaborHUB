@@ -94,7 +94,7 @@
         </div>
 
         <nav>
-             <ul class="mt-1 mb-5 ">
+            <ul class="mt-1 mb-5 ">
                 <li><a href="<?= base_url('user/homeCliente/index') ?>">Home</a></li>
                 <li><a href="<?= base_url('historico/index') ?>">Histórico</a></li>
                 <li><a href="<?= base_url('agenda/index') ?>">Agenda</a></li>
@@ -106,7 +106,7 @@
 
 
     <main>
-      
+
         <div class="offcanvas offcanvas-end" style="height: 100vh" tabindex="-1" id="sidebarPerfil">
 
             <div class="offcanvas-header">
@@ -126,7 +126,7 @@
             <div class="offcanvas-body">
                 <div class="links">
                     <a class="linksEdicoes" href="<?= base_url('usuario/editCliente/' . $_SESSION['usuarios_logado']->usuarios_id) ?>"><i class="bi bi-person-plus-fill fs-3"></i> &nbsp; Editar perfil</a>
-                     <a class="linksEdicoes" href="<?= base_url('login/logout') ?>"><i class="bi bi-box-arrow-left fs-3"></i> &nbsp; Sair</a>
+                    <a class="linksEdicoes" href="<?= base_url('login/logout') ?>"><i class="bi bi-box-arrow-left fs-3"></i> &nbsp; Sair</a>
                 </div>
 
 
@@ -159,11 +159,17 @@
                     </div>
                     <div class="perfilNotas">
                         <div class="perfilStars">
-                            <i class="bi bi-star-fill fs-5"></i>
-                            <i class="bi bi-star-fill fs-5"></i>
-                            <i class="bi bi-star-fill fs-5"></i>
-                            <i class="bi bi-star-fill fs-5"></i>
-                            <i class="bi bi-star-fill fs-5"></i>
+                            <?php for ($i = 1; $i <= 5; $i++): ?>
+
+                                <?php if ($i <= $totalAvaliacao): ?>
+                                    <i class="bi bi-star-fill fs-5" style="color: gold;"></i>
+
+                                <?php else: ?>
+                                    <i class="bi bi-star fs-5"></i>
+
+                                <?php endif; ?>
+
+                            <?php endfor; ?>
                             <p> <?= number_format($mediaAvaliacao, 1, ',', '.') ?> &nbsp; <?= $totalAvaliacao ?></p>
 
                         </div>
@@ -182,7 +188,7 @@
                 </div>
 
             </div>
-
+            <?php var_dump($dadosProfissional)?>
             <div class="perfiServico">
                 <h5>Serviço</h5>
                 <h6>R$: <?= esc(number_format($servicoValor, '2', ',', '.') . ' - ' . $servicoCobranca) ?> </h6>
@@ -197,7 +203,7 @@
                                 <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Solicitação de serviço</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            
+
                             <form action="<?= base_url('pessoaFisica/enviarSolicitacao') ?>" method="post">
                                 <div class="modal-body"> <!--COnteudo com os formulario-->
                                     <div class="row">
@@ -220,7 +226,7 @@
                                             </textarea>
                                         </div>
 
-                                        <input type="hidden" name="servicos_id" value="<?= $servico_id ?? ''?>">
+                                        <input type="hidden" name="servicos_id" value="<?= $servico_id ?? '' ?>">
                                         <input type="hidden" name="profissional_id" value="<?= $dadosProfissional->usuarios_id ?? '' ?>">
 
 
@@ -232,7 +238,7 @@
 
                                 </div>
                                 <div class="modal-footer">
-                                    <button class="btn-finalizar" type="submit" >Enviar</button>
+                                    <button class="btn-finalizar" type="submit">Enviar</button>
                                 </div>
                             </form>
                         </div>

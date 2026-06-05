@@ -20,13 +20,11 @@
 </head>
 
 <body>
-    <header>
+     <header>
 
         <?php $fotoPerfil = $_SESSION['usuarios_logado']->usuarios_imagem ?? ''; ?>
 
-        <?php $usuarioTipo = $_SESSION['usuarios_logado']->pf_tipo ?? '' ?>
-
-        <?php if ($usuarioTipo === 'Cliente'): ?>
+        <?php if ($_SESSION['usuarios_logado']->pf_tipo == 'Profissional'): ?>
 
             <?php $nomeUsuario = $_SESSION['usuarios_logado']->pf_nome . ' ' . $_SESSION['usuarios_logado']->pf_sobrenome; ?>
 
@@ -34,7 +32,7 @@
 
         <?php else: ?>
 
-            <?php $nomeUsuario = $_SESSION['usuarios_logado']->pj_nomeFantasia ?? ''; ?>
+            <?php $nomeUsuario = $_SESSION['usuarios_logado']->pj_nomeFantasia; ?>
 
 
         <?php endif; ?>
@@ -51,6 +49,12 @@
 
             unset($_SESSION['msg']);
 
+            $total_ativos = $total_ativos ?? '';
+            $total_pendentes = $total_pendentes ?? '';
+
+
+
+
 
             ?>
 
@@ -65,16 +69,13 @@
             <div class="imagem">
                 <img src="<?= base_url($fotoPerfil) ?>" alt="Foto Escolhida" data-bs-toggle="offcanvas" data-bs-target="#sidebarPerfil">
             </div>
-
-
-
         </div>
 
         <nav>
-            <ul class="mt-1 mb-5 ">
-                <li><a href="<?= base_url('user/homeCliente/index') ?>">Home</a></li>
-                <li><a href="<?= base_url('historico/index') ?>">Histórico</a></li>
-                <li><a href="<?= base_url('agenda/index') ?>">Agenda</a></li>
+            <ul class="mt-1 mb-5">
+                <li><a href="<?= base_url('user/homeProfissional/index') ?>">Home</a></li>
+                <li><a href="<?= base_url('user/homeProfissional/historicoProfissional') ?>">Histórico</a></li>
+                <li><a href="<?= base_url('pessoaJuridica/avaliacao') ?>">Minhas avaliações</a></li>
 
             </ul>
 
@@ -138,9 +139,11 @@
 
                             <div class="filtros nav nav-underline">
                                 <ul>
-                                    <li class="nav-item"> <a class="nav-link" onclick="mostrar('dadosPessoais')" return false href="#">Dados Empresarial</a></li>
-                                    <li class="nav-item"> <a class="nav-link" onclick="mostrar('endereco')" return false href="#">Endereço</a></li>
-                                </ul>
+                                <li class="nav-item"> <a class="nav-link" onclick="mostrar('dadosPessoais')" return false href="#">Dados Pessoais</a></li>
+                                <li class="nav-item"> <a class="nav-link" onclick="mostrar('endereco')" return false href="#">Endereco</a></li>
+                                <li class="nav-item"> <a class="nav-link" onclick="mostrar('servicos')" return false href="#">Serviços</a></li>
+                            </ul>
+
 
                             </div>
 
@@ -216,9 +219,11 @@
 
                         <div class="filtros nav nav-underline">
                             <ul>
-                                <li class="nav-item"> <a class="nav-link" onclick="mostrar('dadosPessoais')" return false href="#">Dados Empresarial</a></li>
-                                <li class="nav-item"> <a class="nav-link" onclick="mostrar('endereco')" return false href="#">Endereço</a></li>
+                                <li class="nav-item"> <a class="nav-link" onclick="mostrar('dadosPessoais')" return false href="#">Dados Pessoais</a></li>
+                                <li class="nav-item"> <a class="nav-link" onclick="mostrar('endereco')" return false href="#">Endereco</a></li>
+                                <li class="nav-item"> <a class="nav-link" onclick="mostrar('servicos')" return false href="#">Serviços</a></li>
                             </ul>
+
 
                         </div>
 

@@ -20,7 +20,7 @@
 <body>
 
     <main>
-        <div class="container-box">
+        <div class="container-box" style="height: 500px;">
             <h2 class="mb-4">Escolha seu tipo de usuário</h2>
 
 

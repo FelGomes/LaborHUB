@@ -39,7 +39,7 @@
 
 
     <main>
-        <div class="container-box">
+        <div class="container-box" style="height: 500px;">
             <div class="texto">
 
                 <h3>Recuperação de senha</h3>
@@ -54,7 +54,7 @@
 
                         </div>
                         <input type="submit" class="btn-submit mt-5" name="enviar" value="Entrar">
-                        <input type="button" class="btn-voltar mt-3" onclick="window.location.href='<?= base_url('login') ?>'" name="voltar" value="Voltar">
+                        <input type="button" class="btn-voltar mt-3 mb-4" onclick="window.location.href='<?= base_url('login') ?>'" name="voltar" value="Voltar">
 
                     </div>
 

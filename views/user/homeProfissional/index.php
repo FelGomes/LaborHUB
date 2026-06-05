@@ -108,11 +108,15 @@
             </div>
 
             <div class="offcanvas-body">
-                <button type="button" onclick="window.location.href='<?= base_url('/login/logout') ?>'" class="btn-sair">Sair</button>
+                <div class="links">
+                    <a class="linksEdicoes" href="<?= base_url('usuario/editProfissional/' . $_SESSION['usuarios_logado']->usuarios_id) ?>"><i class="bi bi-person-plus-fill fs-3"></i> &nbsp; Editar perfil</a>
+                    <a class="linksEdicoes" href="<?= base_url('login/logout') ?>"><i class="bi bi-box-arrow-left fs-3"></i> &nbsp; Sair</a>
+                </div>
+
+
             </div>
 
         </div>
-
 
         <div class="lista-servico">
             <div class="servicos-groups border">

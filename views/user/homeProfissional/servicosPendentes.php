@@ -73,7 +73,7 @@
 
         <nav>
             <ul class="mt-1 mb-5">
-              <li><a href="<?= base_url('user/homeProfissional/index') ?>">Home</a></li>
+                <li><a href="<?= base_url('user/homeProfissional/index') ?>">Home</a></li>
                 <li><a href="<?= base_url('user/homeProfissional/historicoProfissional') ?>">Histórico</a></li>
                 <li><a href="<?= base_url('pessoaJuridica/avaliacao') ?>">Minhas avaliações</a></li>
 
@@ -102,7 +102,12 @@
             </div>
 
             <div class="offcanvas-body">
-                <button type="button" onclick="window.location.href='<?= base_url('/login/logout') ?>'" class="btn-sair">Sair</button>
+                <div class="links">
+                    <a class="linksEdicoes" href="<?= base_url('usuario/editCliente/' . $_SESSION['usuarios_logado']->usuarios_id) ?>"><i class="bi bi-person-plus-fill fs-3"></i> &nbsp; Editar perfil</a>
+                    <a class="linksEdicoes" href="<?= base_url('login/logout') ?>"><i class="bi bi-box-arrow-left fs-3"></i> &nbsp; Sair</a>
+                </div>
+
+
             </div>
 
         </div>
@@ -114,7 +119,7 @@
 
             <?php if (empty($solicitacaoPendente)): ?>
                 <div style="margin-top: 150px;">
-                    
+
                     <h4 class="text-center"> Não há nenhuma solicitação de serviço pendentes! </h4>
                 </div>
 

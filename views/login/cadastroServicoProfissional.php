@@ -57,9 +57,6 @@
                 <form action="<?= base_url('usuario/cadastarProfissional') ?>" method="post"> <!--Formulario para enviou de validação de dados -->
 
                     <div class="cadastro mt-4">
-
-
-
                         <!-- Cadastro de pessoa fisica -->
                         <div id="form-pf tela1" class="col-md-12 mt-4">
                             <div class="row">
@@ -105,7 +102,7 @@
                                     <select name="servicos_nivel_experiencia" class="form-control" id="servicos_nivel_experiencia" value="<?= $post['servicos_nivel_experiencia'] ?? '' ?>">
                                         <option selected>Selecione o nível de experiência</option>
                                         <option value="Inciante">Inciante</option>
-                                        <option value="Intermediario">Intermediário</option>
+                                        <option value="Intermediário">Intermediário</option>
                                         <option value="Avançado">Avançado</option>
                                     </select>
 
