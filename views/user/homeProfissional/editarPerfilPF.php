@@ -102,15 +102,13 @@
 
             <div class="offcanvas-body">
                 <div class="links">
-                    <a class="linksEdicoes" href=""><i class="bi bi-person-plus-fill fs-3"></i> &nbsp; Editar perfil</a>
+                    <a class="linksEdicoes" href="<?= base_url('usuario/editProfissional/' . $_SESSION['usuarios_logado']->usuarios_id) ?>"><i class="bi bi-person-plus-fill fs-3"></i> &nbsp; Editar perfil</a>
                     <a class="linksEdicoes" href="<?= base_url('login/logout') ?>"><i class="bi bi-box-arrow-left fs-3"></i> &nbsp; Sair</a>
                 </div>
 
 
             </div>
-
         </div>
-
 
         <section>
 
@@ -141,7 +139,7 @@
                                 <ul>
                                     <li class="nav-item"> <a class="nav-link" onclick="mostrar('dadosPessoais')" return false href="#">Dados Pessoais</a></li>
                                     <li class="nav-item"> <a class="nav-link" onclick="mostrar('endereco')" return false href="#">Endereço</a></li>
-                                    <li class="nav-item"> <a class="nav-link" onclick="mostrar('servicos')" return false href="#">Serviços</a></li>
+                                    <li class="nav-item"> <a class="nav-link" onclick="mostrar('servico')" return false href="#">Serviços</a></li>
                                 </ul>
 
 
@@ -233,7 +231,7 @@
                             <ul>
                                 <li class="nav-item"> <a class="nav-link" onclick="mostrar('dadosPessoais')" return false href="#">Dados Pessoais</a></li>
                                 <li class="nav-item"> <a class="nav-link" onclick="mostrar('endereco')" return false href="#">Endereço</a></li>
-                                <li class="nav-item"> <a class="nav-link" onclick="mostrar('servicos')" return false href="#">Serviços</a></li>
+                                <li class="nav-item"> <a class="nav-link" onclick="mostrar('servico')" return false href="#">Serviços</a></li>
                             </ul>
 
                         </div>
@@ -247,7 +245,7 @@
 
                             <div class="col-md-6 mt-4 mb-2">
                                 <label for="endereco_bairro">Bairro </label>
-                                <input type="text" name="endereco_bairro" id="endereco_bairro" placeholder="Digite seu bairro" class="form-control"  value="<?= $pessoaFisica->endereco_bairro ?>">
+                                <input type="text" name="endereco_bairro" id="endereco_bairro" placeholder="Digite seu bairro" class="form-control" value="<?= $pessoaFisica->endereco_bairro ?>">
                             </div>
 
                             <div class="col-md-6 mt-4 mb-2">
@@ -267,7 +265,7 @@
 
                             <div class="col-md-6 mt-4 mb-2">
                                 <label for="endereco_nome">Titulo endereco </label>
-                                <input type="text" name="endereco_nome" id="endereco_nome" placeholder="Ex. Minha loja" class="form-control"  value="<?= $pessoaFisica->endereco_nome ?>">
+                                <input type="text" name="endereco_nome" id="endereco_nome" placeholder="Ex. Minha loja" class="form-control" value="<?= $pessoaFisica->endereco_nome ?>">
                             </div>
 
                             <div class="col-md-6 mt-4 mb-2">
@@ -366,13 +364,13 @@
 
 
                     <!-- Servicos -->
-                    <div id="form-servicos" style="display:none" class="cold-md-12 mt-4">
+                    <div id="form-servico" style="display:none" class="cold-md-12 mt-4">
 
                         <div class="filtros nav nav-underline">
                             <ul>
                                 <li class="nav-item"> <a class="nav-link" onclick="mostrar('dadosPessoais')" return false href="#">Dados Pessoais</a></li>
                                 <li class="nav-item"> <a class="nav-link" onclick="mostrar('endereco')" return false href="#">Endereço</a></li>
-                                <li class="nav-item"> <a class="nav-link" onclick="mostrar('servicos')" return false href="#">Serviços</a></li>
+                                <li class="nav-item"> <a class="nav-link" onclick="mostrar('servico')" return false href="#">Serviços</a></li>
                             </ul>
 
                         </div>
@@ -429,7 +427,7 @@
 
                             <div class="col-md-12 mt-4 mb-5">
                                 <label for="servicos_descricao">Descrição</label>
-                                <textarea name="servicos_descricao" placeholder="Descreva mais sobre seu serviço" class="form-control h-1200px" id="servicos_descricao" ><?= $pessoaFisica->servicos_descricao ?>
+                                <textarea name="servicos_descricao" placeholder="Descreva mais sobre seu serviço" class="form-control h-1200px" id="servicos_descricao"><?= $pessoaFisica->servicos_descricao ?>
 
                                     </textarea>
 
@@ -559,6 +557,7 @@
         function mostrar(tipo) {
             document.getElementById("form-dadosPessoais").style.display = 'none';
             document.getElementById("form-endereco").style.display = 'none';
+            document.getElementById("form-servico").style.display = 'none';
 
             document.getElementById('form-' + tipo).style.display = 'block';
 

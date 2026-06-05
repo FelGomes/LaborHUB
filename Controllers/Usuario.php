@@ -1017,7 +1017,7 @@ class Usuario extends RenderView
                     'color' => 'danger'
                 ];
 
-                return $this->editCliente($usuarios_id);
+                return $this->editProfissional($usuarios_id);
             }
 
             // Tamanho máximo
@@ -1028,7 +1028,7 @@ class Usuario extends RenderView
                     'color' => 'danger'
                 ];
 
-                return $this->editCliente($usuarios_id);
+                return $this->editProfissional($usuarios_id);
             }
 
             // Tipo permitido
@@ -1039,7 +1039,7 @@ class Usuario extends RenderView
                     'color' => 'danger'
                 ];
 
-                return $this->editCliente($usuarios_id);
+                return $this->editProfissional($usuarios_id);
             }
 
             // Dimensões mínimas
@@ -1050,7 +1050,7 @@ class Usuario extends RenderView
                     'color' => 'danger'
                 ];
 
-                return $this->editCliente($usuarios_id);
+                return $this->editProfissional($usuarios_id);
             }
 
             // Pasta de destino
@@ -1069,7 +1069,7 @@ class Usuario extends RenderView
                     'color' => 'danger'
                 ];
 
-                return $this->editCliente($usuarios_id);
+                return $this->editProfissional($usuarios_id);
             }
 
             // Exclui imagem antiga (se não for a padrão)
@@ -1140,12 +1140,34 @@ class Usuario extends RenderView
             ];
         }
 
+
+        $valuesServicos = [
+            'servicos_nome'                 => $_POST['servicos_nome'],
+            'servicos_data'                 => $_POST['servicos_data'],
+            'servicos_valor'                => $_POST['servicos_valor'],
+            'servicos_tipo_cobranca'        => $_POST['servicos_tipo_cobranca'],
+            'servicos_nivel_experiencia'    => $_POST['servicos_nivel_experiencia'],
+            'servicos_descricao'            => $_POST['servicos_descricao']
+        ];
+
+        $whereServicos = "servicos_usuarios_id = '$usuarios_id'";
+
+        $servicosUpdate = $this->servico->update($whereServicos, $valuesServicos);
+
+        if (!$servicosUpdate) {
+            $_SESSION['msg'] = [
+                'texto' => 'Não foi possível editar os dados de endereco deste usuários!',
+                'color' => 'danger',
+            ];
+        }
+
+
         $_SESSION['msg'] = [
             'texto' => "Dados alterado com sucesso!",
             'color' => "success",
         ];
 
-        return $this->editCliente($usuarios_id);
+        return $this->editProfissional($usuarios_id);
     }
 
 

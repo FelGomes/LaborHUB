@@ -15,12 +15,12 @@
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
-    
+
 
 </head>
 
 <body>
-     <header>
+    <header>
 
         <?php $fotoPerfil = $_SESSION['usuarios_logado']->usuarios_imagem ?? ''; ?>
 
@@ -102,7 +102,7 @@
 
             <div class="offcanvas-body">
                 <div class="links">
-                    <a class="linksEdicoes" href=""><i class="bi bi-person-plus-fill fs-3"></i> &nbsp; Editar perfil</a>
+                    <a class="linksEdicoes" href="<?= base_url('usuario/editProfissional/' . $_SESSION['usuarios_logado']->usuarios_id) ?>"><i class="bi bi-person-plus-fill fs-3"></i> &nbsp; Editar perfil</a>
                     <a class="linksEdicoes" href="<?= base_url('login/logout') ?>"><i class="bi bi-box-arrow-left fs-3"></i> &nbsp; Sair</a>
                 </div>
 
@@ -117,7 +117,7 @@
 
             <div id="principal" class="container container-custom border mt-4 mb-5 pb-4">
 
-                <form action="<?= base_url('usuario/AlterarDadosPJ/' . $pessoaJuridica->usuarios_id) ?>" method="post" enctype="multipart/form-data"> <!--Formulario para enviou de validação de dados -->
+                <form action="<?= base_url('usuario/AlterarDadosProfissionalPJ/' . $pessoaJuridica->usuarios_id) ?>" method="post" enctype="multipart/form-data"> <!--Formulario para enviou de validação de dados -->
 
                     <div id="form-dadosPessoais">
                         <div class="row">
@@ -125,7 +125,7 @@
                             <div class="fotoPerfilEdit">
                                 <div class="infoDados">
                                     <div class="editPerfil">
-                                        <img class="text-center"  id="previewImagem" value="<?= $_POST['usuarios_imagem'] ?? '' ?>" src="<?= base_url($pessoaJuridica->usuarios_imagem) ?>" alt="">
+                                        <img class="text-center" id="previewImagem" value="<?= $_POST['usuarios_imagem'] ?? '' ?>" src="<?= base_url($pessoaJuridica->usuarios_imagem) ?>" alt="">
 
                                     </div>
                                     <div class="buttonPerfil">
@@ -139,16 +139,16 @@
 
                             <div class="filtros nav nav-underline">
                                 <ul>
-                                <li class="nav-item"> <a class="nav-link" onclick="mostrar('dadosPessoais')" return false href="#">Dados Pessoais</a></li>
-                                <li class="nav-item"> <a class="nav-link" onclick="mostrar('endereco')" return false href="#">Endereco</a></li>
-                                <li class="nav-item"> <a class="nav-link" onclick="mostrar('servicos')" return false href="#">Serviços</a></li>
-                            </ul>
+                                    <li class="nav-item"> <a class="nav-link" onclick="mostrar('dadosPessoais')" return false href="#">Dados Pessoais</a></li>
+                                    <li class="nav-item"> <a class="nav-link" onclick="mostrar('endereco')" return false href="#">Endereço</a></li>
+                                    <li class="nav-item"> <a class="nav-link" onclick="mostrar('servico')" return false href="#">Serviços</a></li>
+                                </ul>
 
 
                             </div>
 
                             <!-- Cadastro de pessoa fisica -->
-                           <h5 class="text-start"> <i class="bi bi-building-fill fs-3"></i> Dados Empresarial</h5>
+                            <h5 class="text-start"> <i class="bi bi-building-fill fs-3"></i> Dados Empresarial</h5>
                             <div class="row">
 
                                 <div class="col-md-6 mt-4 mb-2">
@@ -177,38 +177,7 @@
 
                             </div>
 
-                            <div class="botoes col-md-6 ms-auto mt-5 mb-4">
-                                <button type="button" class="btn-deletar" data-bs-target="#modalDeletarTodosHistoricoCliente" data-bs-dismiss="modal" data-bs-toggle="modal">Desativar </button>
 
-                                <div class="modal fade modal-lg" id="modalDeletarTodosHistoricoCliente" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-                                    <div class="modal-dialog modal-dialog-centered">
-
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body"> <!--COnteudo com os formulario-->
-                                                <div class="row">
-                                                    <h4 class="text-center ">Deseja desativar <strong>sua conta?</strong></h4>
-                                                    <p class="text-center mt-2 mb-3">Ao desativar sua conta, você perderá o acesso ao sistema. Ela só poderá ser reativada por um administrador. Tem certeza de que deseja continuar? </p>
-
-
-                                                    <div class="botaoModalDeletar mt-5">
-                                                        <button type="button" class="btn-negar" data-bs-dismiss="modal"> Não</button>
-
-                                                        <button type="button" onclick="window.location.href='<?= base_url('usuario/DesativarConta/' . $pessoaJuridica->usuarios_id) ?>'"  class="btn-finalizar">Sim</button>
-                                                    </div>
-
-
-
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button type="submit" class="btn-finalizar">Editar</button>
-                            </div>
 
 
                         </div>
@@ -220,10 +189,9 @@
                         <div class="filtros nav nav-underline">
                             <ul>
                                 <li class="nav-item"> <a class="nav-link" onclick="mostrar('dadosPessoais')" return false href="#">Dados Pessoais</a></li>
-                                <li class="nav-item"> <a class="nav-link" onclick="mostrar('endereco')" return false href="#">Endereco</a></li>
-                                <li class="nav-item"> <a class="nav-link" onclick="mostrar('servicos')" return false href="#">Serviços</a></li>
+                                <li class="nav-item"> <a class="nav-link" onclick="mostrar('endereco')" return false href="#">Endereço</a></li>
+                                <li class="nav-item"> <a class="nav-link" onclick="mostrar('servico')" return false href="#">Serviços</a></li>
                             </ul>
-
 
                         </div>
 
@@ -236,7 +204,7 @@
 
                             <div class="col-md-6 mt-4 mb-2">
                                 <label for="endereco_bairro">Bairro </label>
-                                <input type="text" name="endereco_bairro" id="endereco_bairro" placeholder="Digite seu bairro" class="form-control" required value="<?= $pessoaJuridica->endereco_bairro ?>">
+                                <input type="text" name="endereco_bairro" id="endereco_bairro" placeholder="Digite seu bairro" class="form-control" value="<?= $pessoaJuridica->endereco_bairro ?>">
                             </div>
 
                             <div class="col-md-6 mt-4 mb-2">
@@ -246,7 +214,7 @@
 
                             <div class="col-md-6 mt-4 mb-2">
                                 <label for="endereco_numero">Número </label>
-                                <input type="text" name="endereco_numero" id="endereco_numero" placeholder="Número da residência" class="form-control" required value="<?= $pessoaJuridica->endereco_numero ?>">
+                                <input type="text" name="endereco_numero" id="endereco_numero" placeholder="Número da residência" class="form-control" value="<?= $pessoaJuridica->endereco_numero ?>">
                             </div>
 
                             <div class="col-md-6 mt-4 mb-2">
@@ -256,12 +224,12 @@
 
                             <div class="col-md-6 mt-4 mb-2">
                                 <label for="endereco_nome">Titulo endereco </label>
-                                <input type="text" name="endereco_nome" id="endereco_nome" placeholder="Ex. Minha loja" class="form-control" required value="<?= $pessoaJuridica->endereco_nome ?>">
+                                <input type="text" name="endereco_nome" id="endereco_nome" placeholder="Ex. Minha loja" class="form-control" value="<?= $pessoaJuridica->endereco_nome ?>">
                             </div>
 
                             <div class="col-md-6 mt-4 mb-2">
                                 <label for="endereco_cidade">Cidade </label>
-                                <input type="text" name="endereco_cidade" id="endereco_cidade" placeholder="Digite sua cidade" class="form-control" required value="<?= $pessoaJuridica->endereco_cidade ?>">
+                                <input type="text" name="endereco_cidade" id="endereco_cidade" placeholder="Digite sua cidade" class="form-control" value="<?= $pessoaJuridica->endereco_cidade ?>">
                             </div>
 
                             <?php
@@ -318,38 +286,119 @@
 
 
                         </div>
-                        <div class="botoes col-md-6 ms-auto mt-5 mb-4">
-                            <button type="button" class="btn-deletar" data-bs-target="#modalDeletarTodosHistoricoCliente" data-bs-dismiss="modal" data-bs-toggle="modal">Desativar </button>
 
-                            <div class="modal fade modal-lg" id="modalDeletarTodosHistoricoCliente" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-                                <div class="modal-dialog modal-dialog-centered">
-
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body"> <!--COnteudo com os formulario-->
-                                            <div class="row">
-                                                <h4 class="text-center ">Deseja desativar <strong>sua conta?</strong></h4>
-                                                <p class="text-center mt-2 mb-3">Ao desativar sua conta, você perderá o acesso ao sistema. Ela só poderá ser reativada por um administrador. Tem certeza de que deseja continuar? </p>
+                    </div>
 
 
-                                                <div class="botaoModalDeletar mt-5">
-                                                    <button type="button" class="btn-negar" data-bs-dismiss="modal"> Não</button>
+                    <!-- Servicos -->
+                    <div id="form-servico" style="display:none" class="cold-md-12 mt-4">
 
-                                                    <button type="submit" onclick="window.location.href='<?= base_url('usuario/DesativarConta') ?>'" name="deleteAll" class="btn-finalizar">Sim</button>
-                                                </div>
+                        <div class="filtros nav nav-underline">
+                            <ul>
+                                <li class="nav-item"> <a class="nav-link" onclick="mostrar('dadosPessoais')" return false href="#">Dados Pessoais</a></li>
+                                <li class="nav-item"> <a class="nav-link" onclick="mostrar('endereco')" return false href="#">Endereço</a></li>
+                                <li class="nav-item"> <a class="nav-link" onclick="mostrar('servico')" return false href="#">Serviços</a></li>
+                            </ul>
+
+                        </div>
+
+                        <h5 class="text-start mt-5 "><i class="bi bi-wrench-adjustable"></i> Endereço</h5>
+                        <div class="row">
+
+                            <div class="col-md-6 mt-4 mb-2">
+                                <label for="servicos_nome">Tipo de serviço </label>
+                                <input type="text" name="servicos_nome" id="servicos_nome" placeholder="Informe o tipo de serviço" class="form-control" required value="<?= $pessoaJuridica->servicos_nome ?>">
+                            </div>
+
+                            <div class="col-md-6 mt-4 mb-2">
+                                <label for="servicos_data">Dias de serviço</label>
+                                <select name="servicos_data" class="form-control" id="data">
+                                    <option selected>Selecione</option>
+                                    <option value="Segunda à Sexta" <?= $pessoaJuridica->servicos_data == 'Segunda à Sexta' ? 'Selected' : '' ?>>Seg. à Sexta</option>
+                                    <option value="Segunda à Sabado" <?= $pessoaJuridica->servicos_data == "Segunda à Sabado" ? 'Selected' : '' ?>>Seg. à Sábado</option>
+                                    <option value="Todos os dias" <?= $pessoaJuridica->servicos_data == "Todos os dias" ? 'Selected' : '' ?>>Todos os dias</option>
+                                    <option value="Fins de Semana" <?= $pessoaJuridica->servicos_data == "Fins de Semana" ? 'Selected' : '' ?>>Fins de Semana</option>
+                                    <option value="Dias Intercalados" <?= $pessoaJuridica->servicos_data == "Dias Intercalados" ? 'Selected' : '' ?>>Dias intercalados</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6 mt-4 mb-2">
+                                <label for="servicos_valor">Valor do atendimento </label>
+                                <input type="number" name="servicos_valor" placeholder="Informe o valor do seu serviço" id="servicos_valor" class="form-control" step="0.01" min="0.01" required value="<?= $pessoaJuridica->servicos_valor ?>">
+                            </div>
+
+
+                            <div class="col-md-6 mt-4 mb-2">
+                                <label for="servicos_tipo_cobranca">Tipo de cobrança</label>
+                                <select name="servicos_tipo_cobranca" class="form-control" id="servicos_tipo_cobranca" value="<?= $post['servicos_tipo_cobrança'] ?? '' ?>">
+                                    <option value="" disabled>Selecione a cobrança</option>
+                                    <option value="Hora" <?= $pessoaJuridica->servicos_tipo_cobranca == "Todos os dias" ? 'Selected' : '' ?>>Por hora</option>
+                                    <option value="Dia" <?= $pessoaJuridica->servicos_tipo_cobranca == "Dia" ? 'Selected' : '' ?>>Por dia</option>
+                                    <option value="Total" <?= $pessoaJuridica->servicos_tipo_cobranca == "Total" ? 'Selected' : '' ?>>Serviço total</option>
+                                    <option value="Negociar" <?= $pessoaJuridica->servicos_tipo_cobranca == "Negociar" ? 'Selected' : '' ?>>A negociar</option>
+
+                                </select>
+                            </div>
+
+
+                            <div class="col-md-12 mt-4 mb-2">
+                                <label for="servicos_nivel_experiencia">Nível de experiência</label>
+                                <select name="servicos_nivel_experiencia" class="form-control" id="servicos_nivel_experiencia">
+                                    <option selected>Selecione o nível de experiência</option>
+                                    <option value="Inciante" <?= $pessoaJuridica->servicos_nivel_experiencia == "Inciante" ? 'Selected' : '' ?>>Inciante</option>
+                                    <option value="Intermediário" <?= $pessoaJuridica->servicos_nivel_experiencia == "Intermediário" ? 'Selected' : '' ?>>Intermediário</option>
+                                    <option value="Avançado" <?= $pessoaJuridica->servicos_nivel_experiencia == "Avançado" ? 'Selected' : '' ?>> Avançado</option>
+                                </select>
+
+                            </div>
+
+                            <div class="col-md-12 mt-4 mb-5">
+                                <label for="servicos_descricao">Descrição</label>
+                                <textarea name="servicos_descricao" placeholder="Descreva mais sobre seu serviço" class="form-control h-1200px" id="servicos_descricao"><?= $pessoaJuridica->servicos_descricao ?>
+
+                                    </textarea>
+
+                            </div>
 
 
 
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="botoes col-md-6 ms-auto mt-5 mb-4">
+                        <button type="button" class="btn-deletar" data-bs-target="#modalDeletarTodosHistoricoCliente" data-bs-dismiss="modal" data-bs-toggle="modal">Desativar </button>
+
+                        <div class="modal fade modal-lg" id="modalDeletarTodosHistoricoCliente" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                            <div class="modal-dialog modal-dialog-centered">
+
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body"> <!--COnteudo com os formulario-->
+                                        <div class="row">
+                                            <h4 class="text-center ">Deseja desativar <strong>sua conta?</strong></h4>
+                                            <p class="text-center mt-2 mb-3">Ao desativar sua conta, você perderá o acesso ao sistema. Ela só poderá ser reativada por um administrador. Tem certeza de que deseja continuar? </p>
+
+
+                                            <div class="botaoModalDeletar mt-5">
+                                                <button type="button" class="btn-negar" data-bs-dismiss="modal"> Não</button>
+
+                                                <button type="button" onclick="window.location.href='<?= base_url('usuario/DesativarConta/' . $pessoaJuridica->usuarios_id) ?>'" name="deleteAll" class="btn-finalizar">Sim</button>
                                             </div>
 
+
+
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn-finalizar">Editar</button>
                         </div>
+                        <button type="submit" class="btn-finalizar">Editar</button>
                     </div>
 
 
@@ -437,6 +486,7 @@
         function mostrar(tipo) {
             document.getElementById("form-dadosPessoais").style.display = 'none';
             document.getElementById("form-endereco").style.display = 'none';
+            document.getElementById("form-servico").style.display = 'none';
 
             document.getElementById('form-' + tipo).style.display = 'block';
 
