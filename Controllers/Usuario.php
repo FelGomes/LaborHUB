@@ -278,6 +278,46 @@ class Usuario extends RenderView
 
         ];
 
+
+
+        if (empty($values['usuarios_email'])) {
+            $_SESSION['msg'] = [
+                'texto' => 'Informe um email!',
+                'color' => 'danger',
+            ];
+
+            return $this->loadView('login/cadastroCliente', $data);
+        }
+
+
+        if (empty($values['usuarios_telefone'])) {
+            $_SESSION['msg'] = [
+                'texto' => 'Informe um número de telefone!',
+                'color' => 'danger',
+            ];
+
+            return $this->loadView('login/cadastroCliente', $data);
+        }
+
+        if ((strlen($values['usuarios_telefone']) > 21) || (strlen($values['usuarios_telefone']) < 11)) {
+            $_SESSION['msg'] = [
+                'texto' => 'Informe um número de telefone válido!',
+                'color' => 'danger',
+            ];
+
+            return $this->loadView('login/cadastroCliente', $data);
+        }
+
+        if (!preg_match('/^[0-9()\-\s]+$/', $values['usuarios_telefone'])) {
+            $_SESSION['msg'] = [
+                'texto' => 'Telefone inválido!',
+                'color' => 'danger',
+            ];
+
+            return $this->loadView('login/cadastroCliente', $data);
+        }
+
+
         $usuarioID = $this->usuario->insert($values);
 
 
@@ -295,6 +335,107 @@ class Usuario extends RenderView
 
                 ];
 
+
+                if (empty($valuesPf['pf_nome'])) {
+                    $_SESSION['msg'] = [
+                        'texto' => 'Informe seu nome!',
+                        'color' => 'danger',
+                    ];
+
+                    return $this->loadView('login/cadastroCliente', $data);
+                }
+
+                if ((strlen($valuesPf['pf_nome']) > 50) || (strlen($valuesPf['pf_nome']) < 3)) {
+                    $_SESSION['msg'] = [
+                        'texto' => 'Limite de caracter não permitido para esse nome!',
+                        'color' => 'danger',
+                    ];
+
+                    return $this->loadView('login/cadastroCliente', $data);
+                }
+
+                if (empty($valuesPf['pf_sobrenome'])) {
+                    $_SESSION['msg'] = [
+                        'texto' => 'Informe seu sobrenome!',
+                        'color' => 'danger',
+                    ];
+
+                    return $this->loadView('login/cadastroCliente', $data);
+                }
+
+                if ((strlen($valuesPf['pf_sobrenome']) > 150) || (strlen($valuesPf['pf_sobrenome']) < 3)) {
+                    $_SESSION['msg'] = [
+                        'texto' => 'Limite de caracter não permitido para esse sobrenome!',
+                        'color' => 'danger',
+                    ];
+
+                    return $this->loadView('login/cadastroCliente', $data);
+                }
+
+                if (empty($valuesPf['pf_dataNascimento'])) {
+                    $_SESSION['msg'] = [
+                        'texto' => 'Informe sua data de nascimento!',
+                        'color' => 'danger',
+                    ];
+                }
+
+                $dataNascimento = new DateTime($valuesPf['pf_dataNascimento']);
+                $dataAtual = new DateTime();
+
+                $idade = $dataAtual->diff($dataNascimento)->y;
+
+                if ($idade <= 16) {
+                    $_SESSION['msg'] = [
+                        'texto' => 'Você não tem idade para utilizar esse sistema!',
+                        'color' => 'danger',
+                    ];
+
+                    return $this->loadView('login/cadastroCliente', $data);
+                }
+
+                if (!preg_match('/^[0-9()\-\s]+$/', $valuesPf['pf_cpf'])) {
+                    $_SESSION['msg'] = [
+                        'texto' => 'CPF inválido',
+                        'color' => 'danger',
+                    ];
+
+                    return $this->loadView('login/cadastroCliente', $data);
+                }
+
+                if (empty($valuesPf['pf_cpf'])) {
+                    $_SESSION['msg'] = [
+                        'texto' => 'Informe seu CPF!',
+                        'color' => 'danger',
+                    ];
+
+                    return $this->loadView('login/cadastroCliente', $data);
+                }
+
+                if ((strlen($valuesPf['pf_cpf']) > 14) || (strlen($valuesPf['pf_cpf']) < 11)) {
+                    $_SESSION['msg'] = [
+                        'texto' => 'Limite de caracter não permitido para o campo de CPF',
+                        'color' => 'danger',
+                    ];
+
+                    return $this->loadView('login/cadastroCliente', $data);
+                }
+
+                $cpf = $valuesPf['pf_cpf'];
+                $whereCPF = "pf_cpf = '$cpf'";
+
+                $cpfExistente = $this->pessoaFisica->select(null, $whereCPF)->fetch(PDO::FETCH_OBJ);
+
+                if ($cpfExistente) {
+                    $_SESSION['msg'] = [
+                        'texto' => 'CPF ja cadastrado no sistema',
+                        'color' => 'danger',
+                    ];
+
+                    return $this->loadView('login/cadastroCliente', $data);
+                }
+
+
+
                 $this->pessoaFisica->insert($valuesPf);
             }
         } else {
@@ -309,6 +450,81 @@ class Usuario extends RenderView
                     'pj_usuarios_id' => $usuarioID,
 
                 ];
+
+
+                if (empty($valuesPj['pj_razaoSocial'])) {
+                    $_SESSION['msg'] = [
+                        'texto' => 'Informe sua Razão Social!',
+                        'color' => 'danger',
+                    ];
+
+                    return $this->loadView('login/cadastroCliente', $data);
+                }
+
+                if ((strlen($valuesPj['pj_razaoSocial']) > 200) || (strlen($valuesPj['pj_razaoSocial']) < 3)) {
+                    $_SESSION['msg'] = [
+                        'texto' => 'Limite de caracter não permitido para essa Razão Social!',
+                        'color' => 'danger',
+                    ];
+
+                    return $this->loadView('login/cadastroCliente', $data);
+                }
+
+                if (empty($valuesPj['pj_nomeFantasia'])) {
+                    $_SESSION['msg'] = [
+                        'texto' => 'Informe o Nome Fantasia!',
+                        'color' => 'danger',
+                    ];
+
+                    return $this->loadView('login/cadastroCliente', $data);
+                }
+
+
+                if ((strlen($valuesPj['pj_nomeFantasia']) > 200) || (strlen($valuesPj['pj_nomeFantasia']) < 3)) {
+                    $_SESSION['msg'] = [
+                        'texto' => 'Limite de caracter não permitido para esse Nome Fantasia!',
+                        'color' => 'danger',
+                    ];
+
+                    return $this->loadView('login/cadastroCliente', $data);
+                }
+
+                if (empty($valuesPj['pf_dataNascimento'])) {
+                    $_SESSION['msg'] = [
+                        'texto' => 'Informe sua data de nascimento!',
+                        'color' => 'danger',
+                    ];
+                }
+
+                if (!preg_match('/^[0-9()\-\s]+$/', $valuesPj['pj_cnpj'])) {
+                    $_SESSION['msg'] = [
+                        'texto' => 'CPF inválido',
+                        'color' => 'danger',
+                    ];
+
+                    return $this->loadView('login/cadastroCliente', $data);
+                }
+
+
+
+                if (empty($valuesPj['pj_cnpj'])) {
+                    $_SESSION['msg'] = [
+                        'texto' => 'Informe seu CPF!',
+                        'color' => 'danger',
+                    ];
+
+                    return $this->loadView('login/cadastroCliente', $data);
+                }
+
+                if ((strlen($valuesPj['pj_cnpj']) > 18) || (strlen($valuesPj['pj_cnpj']) < 14)) {
+                    $_SESSION['msg'] = [
+                        'texto' => 'Limite de caracter não permitido para o campo de CPF',
+                        'color' => 'danger',
+                    ];
+
+                    return $this->loadView('login/cadastroCliente', $data);
+                }
+
 
                 $this->pessoaJuridica->insert($valuesPj);
             }
