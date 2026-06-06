@@ -325,11 +325,15 @@ class Usuario extends RenderView
 
             if ($usuarioID > 0) {
                 $valuesPf = [
-                    'pf_nome' => $post['pf_nome'] ?? '',
-                    'pf_sobrenome' => $post['pf_sobrenome'] ?? '',
-                    'pf_dataNascimento' =>  $post['pf_dataNascimento'] ?? '',
-                    'pf_genero' => $post['pf_genero'] ?? '',
-                    'pf_cpf' => $post['pf_cpf'] ?? '',
+                    'pf_nome' => trim(
+                        mb_convert_case($post['pf_nome'] ?? '', MB_CASE_TITLE, "UTF-8")
+                    ),
+                    'pf_sobrenome' => trim(
+                        mb_convert_case($post['pf_sobrenome'] ?? '', MB_CASE_TITLE, "UTF-8")
+                    ),
+                    'pf_dataNascimento' =>  trim($post['pf_dataNascimento']) ?? '',
+                    'pf_genero' => trim($post['pf_genero']) ?? '',
+                    'pf_cpf' => trim($post['pf_cpf']) ?? '',
                     'pf_tipo' => 'Cliente',
                     'pf_usuarios_id' => $usuarioID,
 
@@ -442,9 +446,13 @@ class Usuario extends RenderView
 
             if ($usuarioID > 0) {
                 $valuesPj = [
-                    'pj_razaoSocial' => $post['pj_razaoSocial'] ?? '',
-                    'pj_nomeFantasia' => $post['pj_nomeFantasia'] ?? '',
-                    'pj_dataFundacao' =>  $post['pj_dataFundacao'] ?? '',
+                    'pj_razaoSocial' => trim(
+                        mb_convert_case($post['pj_razaoSocial'] ?? '', MB_CASE_TITLE, "UTF-8")
+                    ),
+                    'pj_nomeFantasia' => trim(
+                        mb_convert_case($post['pj_nomeFantasia'] ?? '', MB_CASE_TITLE, "UTF-8")
+                    ),
+                    'pj_dataFundacao' => trim($post['pj_dataFundacao']) ?? '',
                     'pj_cnpj' => $post['pj_cnpj'] ?? '',
                     'pj_tipo' => 'Cliente',
                     'pj_usuarios_id' => $usuarioID,
@@ -531,18 +539,92 @@ class Usuario extends RenderView
         }
 
         $valuesEndereco = [
-            'endereco_nome' => $post['endereco_nome'] ?? '',
-            'endereco_rua' => $post['endereco_rua'] ?? '',
-            'endereco_bairro' => $post['endereco_bairro'] ?? '',
-            'endereco_cep'    => $post['endereco_cep'] ?? '',
-            'endereco_complemento'   => $post['endereco_complemento'] ?? '',
-            'endereco_numero' => $post['endereco_numero'] ?? '',
-            'endereco_descricao' => $post['endereco_descricao'] ?? '',
-            'endereco_cidade' => $post['endereco_cidade'] ?? '',
-            'endereco_uf'    => $post['endereco_uf'] ?? '',
+            'endereco_nome' => trim($post['endereco_nome']) ?? '',
+            'endereco_rua' => trim($post['endereco_rua']) ?? '',
+            'endereco_bairro' => trim($post['endereco_bairro']) ?? '',
+            'endereco_cep'    => trim($post['endereco_cep']) ?? '',
+            'endereco_complemento'   => trim($post['endereco_complemento']) ?? '',
+            'endereco_numero' => trim($post['endereco_numero']) ?? '',
+            'endereco_descricao' => trim($post['endereco_descricao']) ?? '',
+            'endereco_cidade' => trim(
+                mb_convert_case($post['endereco_cidade'] ?? '', MB_CASE_TITLE, "UTF-8")
+            ),
+            'endereco_uf'    => trim($post['endereco_uf']) ?? '',
             'endereco_usuarios_id' => $usuarioID,
 
         ];
+
+        // Validando a rua
+        if (empty($valuesEndereco['endereco_rua'])) {
+            $_SESSION['msg'] = [
+                'texto' => 'Informe sua rua',
+                'color' => 'danger',
+            ];
+
+            return $this->loadView('login/cadastroCliente', $data);
+        }
+
+        if ((strlen($valuesEndereco['endereco_rua']) > 200) || (strlen($valuesEndereco['endereco_rua']) < 3)) {
+            $_SESSION['msg'] = [
+                'texto' => 'Limite de caracter não permitido para essa Rua!',
+                'color' => 'danger',
+            ];
+
+            return $this->loadView('login/cadastroCliente', $data);
+        }
+
+
+        // Validando o bairro
+        if (empty($valuesEndereco['endereco_bairro'])) {
+            $_SESSION['msg'] = [
+                'texto' => 'Informe seu bairro',
+                'color' => 'danger',
+            ];
+
+            return $this->loadView('login/cadastroCliente', $data);
+        }
+
+        if ((strlen($valuesEndereco['endereco_bairro']) > 200) || (strlen($valuesEndereco['endereco_bairro']) < 3)) {
+            $_SESSION['msg'] = [
+                'texto' => 'Limite de caracter não permitido para esse Bairro!',
+                'color' => 'danger',
+            ];
+
+            return $this->loadView('login/cadastroCliente', $data);
+        }
+
+
+        // Validando a cidade
+        if (empty($valuesEndereco['endereco_cidade'])) {
+            $_SESSION['msg'] = [
+                'texto' => 'Informe sua Cidade',
+                'color' => 'danger',
+            ];
+
+            return $this->loadView('login/cadastroCliente', $data);
+        }
+
+        if ((strlen($valuesEndereco['endereco_cidade']) > 100) || (strlen($valuesEndereco['endereco_cidade']) < 4)) {
+            $_SESSION['msg'] = [
+                'texto' => 'Limite de caracter não permitido para o campo Cidade!',
+                'color' => 'danger',
+            ];
+
+            return $this->loadView('login/cadastroCliente', $data);
+        }
+
+        // Validando o UF
+        if (empty($valuesEndereco['endereco_uf'])) {
+            $_SESSION['msg'] = [
+                'texto' => 'Informe o UF do seu estado!',
+                'color' => 'danger',
+            ];
+
+            return $this->loadView('login/cadastroCliente', $data);
+        }
+
+
+
         if ($this->endereco->insert($valuesEndereco)) {
 
             $_SESSION['msg'] = [
