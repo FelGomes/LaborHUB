@@ -6,8 +6,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Serviço Facil</title>
+    <title>LaborHUB</title>
     <link rel="stylesheet" href="<?= base_url('Public/template/Css/home.css') ?>">
+    <link rel="shortcut icon" href="<?= base_url('Public/template/Images/favicon.png') ?>" type="image/x-icon">
 
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -149,65 +150,80 @@
                     <h5><strong>Email: </strong> <?= $solicitacaoPendente->email ?> </h5>
 
                 </div>
-            </div>
 
-            <form action="" method="post">
-                <div class="solicitacaoConfirmar border">
 
-                    <div class="solicitacaoTitulo">
-                        <h5 class="text-center mt-4 mb-5"><strong>Solicitação de serviço</strong></h5>
-
+                <div id="loadingSolicitacao" class="text-center mt-3" style="display:none;">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Carregando...</span>
                     </div>
-
-                    <div class="solicitacaoBotao">
-                        <button type="button" class="btn-negar" data-bs-target="#modalrecusar" data-bs-dismiss="modal" data-bs-toggle="modal">Recusar</button>
-                        <button type="button" class="btn-finalizar" onclick="window.location.href='<?= base_url('pessoaJuridica/aceitar/' . $solicitacaoPendente->solicitacao_id) ?>'" style="margin-right: 0px !important">Aceitar</button>
-
-                    </div>
-
-                    <div class="modal fade modal-lg" id="modalrecusar" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-                        <div class="modal-dialog modal-dialog-centered">
-
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body"> <!--COnteudo com os formulario-->
-                                    <div class="row">
-                                        <h4 class="text-center ">Deseja recusar esse serviço?</h4>
-                                        <p class="text-center mt-2 mb-3">Ao recusar esse serviço, você não consiguirá mais ver detalhes dele em sua conta!</p>
-
-                                        <div class="row">
-                                            <div class="col-md-12 mt-2 mb-4">
-                                                <label for="solicitacao_motivo">Observação</label>
-                                                <textarea name="solicitacao_motivo" class="form-control" placeholder="Descreva o motivo (opcional)" id="solicitacao_motivo">  </textarea>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="botaoModalDeletar mt-3">
-
-                                            <button type="button" data-bs-dismiss="modal" class="btn-negar"> Não</button>
-                                            <button type="button" class="btn-finalizar" onclick="window.location.href='<?= base_url('pessoaJuridica/recusar/' . $solicitacaoPendente->solicitacao_id) ?>'">Sim</button>
-                                        </div>
-
-
-
-                                    </div>
-
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-
-
+                    <p class="mt-2">Processando...</p>
                 </div>
 
 
-            </form>
+
+            </div>
+
+            <div class="solicitacaoConfirmar border">
+
+                <div class="solicitacaoTitulo">
+                    <h5 class="text-center mt-4 mb-5"><strong>Solicitação de serviço</strong></h5>
+
+                </div>
+
+                <div class="solicitacaoBotao">
+                    <button type="button" class="btn-negar" data-bs-target="#modalrecusar" data-bs-dismiss="modal" data-bs-toggle="modal">Recusar</button>
+                    <button type="button" class="btn-finalizar btn-processar"  data-url="<?= base_url('pessoaJuridica/aceitar/' . $solicitacaoPendente->solicitacao_id) ?>" style="margin-right: 0px !important">Aceitar</button>
+
+                </div>
+
+                <div class="modal fade modal-lg" id="modalrecusar" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body"> <!--COnteudo com os formulario-->
+                                <div class="row">
+                                    <h4 class="text-center ">Deseja recusar esse serviço?</h4>
+                                    <p class="text-center mt-2 mb-3">Ao recusar esse serviço, você não consiguirá mais ver detalhes dele em sua conta!</p>
+
+                                    <div class="row">
+                                        <div id="loadingSolicitacao" class="text-center mt-3" style="display:none;">
+                                            <div class="spinner-border text-primary" role="status">
+                                                <span class="visually-hidden">Carregando...</span>
+                                            </div>
+                                            <p class="mt-2">Processando...</p>
+                                        </div>
+                                        <div class="col-md-12 mt-2 mb-4">
+                                            <label for="solicitacao_motivo">Observação</label>
+                                            <textarea name="solicitacao_motivo" class="form-control" placeholder="Descreva o motivo (opcional)" id="solicitacao_motivo">  </textarea>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="botaoModalDeletar mt-3">
+
+                                        <button type="button" data-bs-dismiss="modal" class="btn-negar"> Não</button>
+                                        <button type="button" class="btn-finalizar btn-processar"  data-url="<?= base_url('pessoaJuridica/recusar/' . $solicitacaoPendente->solicitacao_id) ?>"> Sim</button>
+                                    </div>
+
+
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+
 
 
         </div>
@@ -279,6 +295,25 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
+
+    <script>
+        document.querySelectorAll('.btn-processar').forEach(botao => {
+
+            botao.addEventListener('click', function() {
+
+                document.getElementById('loadingSolicitacao').style.display = 'block';
+
+                this.disabled = true;
+                this.innerHTML = 'Processando...';
+
+                setTimeout(() => {
+                    window.location.href = this.dataset.url;
+                }, 300);
+
+            });
+
+        });
+    </script>
 
 
 </body>

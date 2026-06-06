@@ -6,9 +6,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Serviço Facil</title>
+    <title>LaborHUB</title>
     <link rel="stylesheet" href="<?= base_url('Public/template/Css/home.css') ?>">
-    <link rel="shortcut icon" href="../../Assets/Images/Texto-do-seu-parágrafo.ico" type="image/x-icon">
+     <link rel="shortcut icon" href="<?= base_url('Public/template/Images/favicon.png') ?>" type="image/x-icon">
 
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -140,7 +140,7 @@
                             <div class="filtros nav nav-underline">
                                 <ul>
                                     <li class="nav-item"> <a class="nav-link" onclick="mostrar('dadosPessoais')" return false href="#">Dados Pessoais</a></li>
-                                    <li class="nav-item"> <a class="nav-link" onclick="mostrar('endereco')" return false href="#">Endereço</a></li>
+                                    <li class="nav-item"> <a class="nav-link" onclick="mostrar('endereco')" return false href="#">E</a></li>
                                     <li class="nav-item"> <a class="nav-link" onclick="mostrar('servico')" return false href="#">Serviços</a></li>
                                 </ul>
 

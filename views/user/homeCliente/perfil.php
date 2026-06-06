@@ -5,8 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Serviço Facil</title>
+    <title>LaborHUB</title>
     <link rel="stylesheet" href="<?= base_url('Public/template/Css/home.css') ?>">
+    <link rel="shortcut icon" href="<?= base_url('Public/template/Images/favicon.png') ?>" type="image/x-icon">
 
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -188,7 +189,6 @@
                 </div>
 
             </div>
-            <?php var_dump($dadosProfissional)?>
             <div class="perfiServico">
                 <h5>Serviço</h5>
                 <h6>R$: <?= esc(number_format($servicoValor, '2', ',', '.') . ' - ' . $servicoCobranca) ?> </h6>
@@ -204,7 +204,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
 
-                            <form action="<?= base_url('pessoaFisica/enviarSolicitacao') ?>" method="post">
+                            <form action="<?= base_url('pessoaFisica/enviarSolicitacao') ?>" id="formSolicitacao" method="post">
                                 <div class="modal-body"> <!--COnteudo com os formulario-->
                                     <div class="row">
 
@@ -232,13 +232,20 @@
 
                                         <a href="" class="mt-3">Clique aqui para alterar seu endereço</a>
 
+                                        <div id="loadingSolicitacao" class="text-center mt-3" style="display:none;">
+                                            <div class="spinner-border text-primary" role="status">
+                                                <span class="visually-hidden">Carregando...</span>
+                                            </div>
+                                            <p class="mt-2">Enviando solicitação...</p>
+                                        </div>
+
 
                                     </div>
 
 
                                 </div>
                                 <div class="modal-footer">
-                                    <button class="btn-finalizar" type="submit">Enviar</button>
+                                    <button class="btn-finalizar" id="btnEnviar" type="submit">Enviar</button>
                                 </div>
                             </form>
                         </div>
@@ -379,6 +386,19 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
+
+    <script>
+        document.getElementById('formSolicitacao').addEventListener('submit', function() {
+
+            // Mostra o spinner
+            document.getElementById('loadingSolicitacao').style.display = 'block';
+
+            // Desabilita o botão
+            const btn = document.getElementById('btnEnviar');
+            btn.disabled = true;
+            btn.innerHTML = 'Enviando...';
+        });
+    </script>
 
 
 </body>

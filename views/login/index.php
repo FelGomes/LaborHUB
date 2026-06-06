@@ -4,10 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Serviço Fácil</title>
+    <title>Login - LaborHUB</title>
     <!-- <link rel="stylesheet" href="../../Assets/Css/style1.css"> -->
     <link rel="stylesheet" href="<?= base_url('Public/template/Css/style1.css') ?>">
     <link rel="stylesheet" href="<?= base_url('Public/template/Css/mediaLogin.css') ?>">
+    <link rel="shortcut icon" href="<?= base_url('Public/template/Images/favicon.png') ?>" type="image/x-icon">
     <!-- <link rel="stylesheet" href="../../Assets/Css/mediaLogin.css"> -->
 
 
