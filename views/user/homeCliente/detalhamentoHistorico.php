@@ -170,10 +170,9 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
 
-                            <form action="<?= base_url('pessoaFisica/enviarSolicitacao') ?>" id="formSolicitacaoNovamente" method="post">
+                            <form action="<?= base_url('historico/enviarSolicitacao') ?>" id="formSolicitacaoNovamente" method="post">
                                 <div class="modal-body"> <!--COnteudo com os formulario-->
                                     <div class="row">
-
                                         <div class="col-md-12">
                                             <label for="solicitacao_data">Data de solicitação</label>
                                             <input type="date" name="solicitacao_data" class="form-control" placeholder="Data para o serviço" id="solicitacao_data" value="<?= $_POST['solicitacao_data'] ?? '' ?>" required>
@@ -192,8 +191,9 @@
                                             </textarea>
                                         </div>
 
-                                        <input type="hidden" name="servicos_id" value="<?= $servico_id ?? '' ?>">
-                                        <input type="hidden" name="profissional_id" value="<?= $dadosProfissional->usuarios_id ?? '' ?>">
+                                        <input type="hidden" name="servicos_id" value="<?= $detalhamento->servicos_id ?? '' ?>">
+                                        <input type="hidden" name="profissional_id" value="<?= $detalhamento->profissional_id ?? '' ?>">
+                                        <input type="hidden" name="solicitacao_id" value="<?= $detalhamento->solicitacao_id ?? '' ?>">
 
 
                                         <a href="<?= base_url('usuario/editCliente/' . $_SESSION['usuarios_logado']->usuarios_id) ?>" class="mt-3">Clique aqui para alterar seu endereço</a>
@@ -301,8 +301,8 @@
                                                     <label class="form-check-label" for="inlineRadio3">5</label>
                                                 </div>
 
-                                                <input type="hidden" name="servicos_id" value="<?= $servico_id ?? '' ?>">
-                                                <input type="hidden" name="profissional_id" value="<?= $dadosProfissional->usuarios_id ?? '' ?>">
+                                                <input type="hidden" name="servicos_id" value="<?= $detalhamento->servico_id ?? '' ?>">
+                                                <input type="hidden" name="profissional_id" value="<?= $detalhamento->usuarios_id ?? '' ?>">
 
 
                                             </div>

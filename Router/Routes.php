@@ -59,6 +59,7 @@ $routes = [
 '/usuario/editProfissional/:id'                 => ['Usuario', 'editProfissional'],
 '/usuario/AlterarDadosProfissionalPF/:id'       => ['Usuario', 'AlterarDadosProfissionalPF'],
 '/usuario/AlterarDadosProfissionalPJ/:id'       => ['Usuario', 'AlterarDadosProfissionalPJ'],
+'/historico/enviarSolicitacao'                  => ['Historico', 'enviarSolicitacao'],
 
 '/login/logout' => ['Login', 'logout'],
 
