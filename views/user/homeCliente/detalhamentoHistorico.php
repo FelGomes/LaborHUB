@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LaborHUB</title>
     <link rel="stylesheet" href="<?= base_url('Public/template/Css/home.css') ?>">
-     <link rel="shortcut icon" href="<?= base_url('Public/template/Images/favicon.png') ?>" type="image/x-icon">
+    <link rel="shortcut icon" href="<?= base_url('Public/template/Images/favicon.png') ?>" type="image/x-icon">
 
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -150,72 +150,77 @@
 
             </div>
 
-            <form action="" method="post">
-                <div class="solicitacaoConfirmar">
+            <div class="solicitacaoConfirmar">
 
-                    <div class="solicitacaoTitulo">
-                        <h5 class="text-center mt-4 mb-5"><strong>Solicitar serviço novamente</strong></h5>
+                <div class="solicitacaoTitulo">
+                    <h5 class="text-center mt-4 mb-5"><strong>Solicitar serviço novamente</strong></h5>
 
-                    </div>
+                </div>
 
-                    <div class="solicitacaoBotao">
-                        <button type="button" class="btn-finalizar" data-bs-target="#modalSolicitarNovamente" data-bs-toggle="modal" style="margin-right: 0px !important">Solicitar</button>
+                <div class="solicitacaoBotao">
+                    <button type="button" class="btn-finalizar" data-bs-target="#modalSolicitarNovamente" data-bs-toggle="modal" style="margin-right: 0px !important">Solicitar</button>
 
-                    </div>
+                </div>
+                
+                <div class="modal fade modal-lg" id="modalSolicitarNovamente" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Solicitação de serviço</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
 
-                    <div class="modal fade modal-lg" id="modalSolicitarNovamente" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Solicitação de serviço</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
+                            <form action="<?= base_url('pessoaFisica/enviarSolicitacao') ?>" id="formSolicitacaoNovamente" method="post">
+                                <div class="modal-body"> <!--COnteudo com os formulario-->
+                                    <div class="row">
 
-                                <form action="<?= base_url('pessoaFisica/enviarSolicitacao') ?>" method="post">
-                                    <div class="modal-body"> <!--COnteudo com os formulario-->
-                                        <div class="row">
+                                        <div class="col-md-12">
+                                            <label for="solicitacao_data">Data de solicitação</label>
+                                            <input type="date" name="solicitacao_data" class="form-control" placeholder="Data para o serviço" id="solicitacao_data" value="<?= $_POST['solicitacao_data'] ?? '' ?>" required>
+                                        </div>
 
-                                            <div class="col-md-12">
-                                                <label for="solicitacao_data">Data de solicitação</label>
-                                                <input type="date" name="solicitacao_data" class="form-control" placeholder="Data para o serviço" id="solicitacao_data" value="<?= $_POST['solicitacao_data'] ?? '' ?>" required>
-                                            </div>
-
-                                            <div class="col-md-12 mt-3">
-                                                <label for="solicitacao_quantidade">Quantidade de dias para serviço</label>
-                                                <input type="number" name="solicitacao_quantidade" class="form-control" placeholder="Quantidade de dias para o serviço" id="solicitacao_quantidade" value="<?= $_POST['solicitacao_quantidade'] ?? '' ?>" required>
-                                            </div>
+                                        <div class="col-md-12 mt-3">
+                                            <label for="solicitacao_quantidade">Quantidade de dias para serviço</label>
+                                            <input type="number" name="solicitacao_quantidade" class="form-control" placeholder="Quantidade de dias para o serviço" id="solicitacao_quantidade" value="<?= $_POST['solicitacao_quantidade'] ?? '' ?>" required>
+                                        </div>
 
 
-                                            <div class="col-md-12 mb-3 mt-3">
-                                                <label for="solicitacao_observacao">Observação</label>
-                                                <textarea name="solicitacao_observacao" class="form-control" placeholder="Observação do serviço" id="solicitacao_observacao">
+                                        <div class="col-md-12 mb-3 mt-3">
+                                            <label for="solicitacao_observacao">Observação</label>
+                                            <textarea name="solicitacao_observacao" class="form-control" placeholder="Observação do serviço" id="solicitacao_observacao">
 
                                             </textarea>
+                                        </div>
+
+                                        <input type="hidden" name="servicos_id" value="<?= $servico_id ?? '' ?>">
+                                        <input type="hidden" name="profissional_id" value="<?= $dadosProfissional->usuarios_id ?? '' ?>">
+
+
+                                        <a href="<?= base_url('usuario/editCliente/' . $_SESSION['usuarios_logado']->usuarios_id) ?>" class="mt-3">Clique aqui para alterar seu endereço</a>
+
+                                        <div id="loadingSolicitacaoNovamente" class="text-center mt-3" style="display:none;">
+                                            <div class="spinner-border text-primary" role="status">
+                                                <span class="visually-hidden">Carregando...</span>
                                             </div>
-
-                                            <input type="hidden" name="servicos_id" value="<?= $servico_id ?? '' ?>">
-                                            <input type="hidden" name="profissional_id" value="<?= $dadosProfissional->usuarios_id ?? '' ?>">
-
-
-                                            <a href="" class="mt-3">Clique aqui para alterar seu endereço</a>
-
-
+                                            <p class="mt-2">Enviando solicitação...</p>
                                         </div>
 
 
                                     </div>
-                                    <div class="modal-footer">
-                                        <button class="btn-finalizar" type="submit">Enviar</button>
-                                    </div>
-                                </form>
-                            </div>
+
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn-finalizar" id="btnEnviarNovamente" type="submit">Enviar</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
-
                 </div>
 
+            </div>
 
-            </form>
+
 
 
         </div>
@@ -439,6 +444,20 @@
 
 
     <script src="<?= base_url('Public/Js/timeAlert.js') ?>"></script>
+
+
+    <script>
+        document.getElementById('formSolicitacaoNovamente').addEventListener('submit', function() {
+
+            // Mostra o spinner
+            document.getElementById('loadingSolicitacaoNovamente').style.display = 'block';
+
+            // Desabilita o botão
+            const btn = document.getElementById('btnEnviarNovamente');
+            btn.disabled = true;
+            btn.innerHTML = 'Enviando...';
+        });
+    </script>
 
 
 </body>

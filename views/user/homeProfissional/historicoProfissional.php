@@ -148,7 +148,7 @@
 
             </div>
 
-            <div class="cardBotaoExcluir">
+            <!-- <div class="cardBotaoExcluir">
                 <button type="button" name="deletar" class="btn-deletar" data-bs-target="#modalDeletar" data-bs-dismiss="modal" data-bs-toggle="modal"> Excluir todos</button>
 
                 <div class="modal fade modal-lg" id="modalDeletar" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
@@ -158,11 +158,11 @@
                             <div class="modal-header">
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <div class="modal-body"> <!--COnteudo com os formulario-->
+                            <div class="modal-body"> COnteudo com os formulario
                                 <form action="" method="post">
                                     <div class="row">
                                         <h4 class="text-center ">Deseja excluir <strong>todo histórico?</strong></h4>
-                                        <p class="text-center mt-2 mb-3">Ao deletar todo histórico, você não conseguirá ver seus serviços prestados e cancelados anteriormente! Somente comentários recebidos por serviços anteriores na aba- <strong> <a href="<?= base_url('pessoaJuridica/avaliacao') ?>">Minhas avaliações.</a></strong> Serviços recusados serão deletados da sua base de dados. </p>
+                                        <p class="text-center mt-2 mb-3">Ao deletar todo histórico, você não conseguirá ver seus serviços prestados e cancelados anteriormente! Somente comentários recebidos por serviços anteriores na aba- <strong> <a href="<//?= base_url('pessoaJuridica/avaliacao') ?>">Minhas avaliações.</a></strong> Serviços recusados serão deletados da sua base de dados. </p>
 
 
                                         <div class="botaoModalDeletar mt-5">
@@ -184,7 +184,7 @@
                     </div>
                 </div>
 
-            </div>
+            </div> -->
         </div>
 
         <div class="listaHistorico " id="form-concluidos">

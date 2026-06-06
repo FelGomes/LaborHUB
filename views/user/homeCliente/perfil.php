@@ -162,7 +162,7 @@
                         <div class="perfilStars">
                             <?php for ($i = 1; $i <= 5; $i++): ?>
 
-                                <?php if ($i <= $totalAvaliacao): ?>
+                                <?php if ($i <= $mediaAvaliacao): ?>
                                     <i class="bi bi-star-fill fs-5" style="color: gold;"></i>
 
                                 <?php else: ?>
@@ -171,7 +171,7 @@
                                 <?php endif; ?>
 
                             <?php endfor; ?>
-                            <p> <?= number_format($mediaAvaliacao, 1, ',', '.') ?> &nbsp; <?= $totalAvaliacao ?></p>
+                            <p> (<?= number_format($mediaAvaliacao, 1, '.', ',') ?>) &nbsp; <?= $totalAvaliacao ?></p>
 
                         </div>
 
@@ -230,7 +230,7 @@
                                         <input type="hidden" name="profissional_id" value="<?= $dadosProfissional->usuarios_id ?? '' ?>">
 
 
-                                        <a href="" class="mt-3">Clique aqui para alterar seu endereço</a>
+                                        <a  href="<?= base_url('usuario/editCliente/' . $_SESSION['usuarios_logado']->usuarios_id) ?>" class="mt-3">Clique aqui para alterar seu endereço</a>
 
                                         <div id="loadingSolicitacao" class="text-center mt-3" style="display:none;">
                                             <div class="spinner-border text-primary" role="status">
@@ -281,11 +281,17 @@
                                 </div>
                                 <div class="perfilStars infoComentario">
                                     <h5><?= esc($comentario->nome) ?></h5>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
+                                    <?php for ($i = 1; $i <= 5; $i++): ?>
+
+                                        <?php if ($i <= $mediaAvaliacao): ?>
+                                            <i class="bi bi-star-fill fs-5" style="color: gold;"></i>
+
+                                        <?php else: ?>
+                                            <i class="bi bi-star fs-5"></i>
+
+                                        <?php endif; ?>
+
+                                    <?php endfor; ?>
 
                                     <h5 class="mt-3"><strong><?= esc($comentario->assunto) ?></strong></h5>
                                     <p><?= esc($comentario->descricao) ?> </p>

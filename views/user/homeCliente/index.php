@@ -172,7 +172,7 @@
                                             <p><?= esc($profissionais->cidade . ', ' . $profissionais->uf) ?></p>
                                             <?php for ($i = 1; $i <= 5; $i++): ?>
 
-                                                <?php if ($i <= $profissionais->totalAvaliacoes): ?>
+                                                <?php if ($i <= $profissionais->mediaAvaliacao): ?>
                                                     <i class="bi bi-star-fill" style="color: gold;"></i>
 
                                                 <?php else: ?>
@@ -181,7 +181,7 @@
                                                 <?php endif; ?>
 
                                                 <?php endfor; ?> 
-                                                <?= $profissionais->totalAvaliacoes . ' ' . $profissionais->mediaAvaliacao ?>
+                                                <?= $profissionais->totalAvaliacoes . ' ' .'('. number_format($profissionais->mediaAvaliacao, 1, '.', ',') .')' ?>
 
                                                 <h6 class="mt-2"><strong>Atendimento: </strong> <?= esc($profissionais->atendimento) ?></h6>
                                         </div>

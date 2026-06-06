@@ -181,7 +181,7 @@ class PessoaJuridica extends RenderView
                     INNER JOIN solicitacaoServico ss on ss.solicitacaoServico_solicitacao_id = so.solicitacao_id
                     INNER JOIN servicos s on ss.solicitacaoServico_servicos_id = s.servicos_id
                     Set so.solicitacao_status = 'Finalizado',
-                    so.solicitacao_status_profissional = 'Finalizado'
+                    so.solicitacao_status_profissional = 'Finalizado',
                     so.solicitacao_conclusao = NOW()
                     WHERE s.servicos_usuarios_id = '$this->usuarioId'";
 

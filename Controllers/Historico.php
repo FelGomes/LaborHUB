@@ -3,7 +3,9 @@
 
 namespace Controllers;
 
+use DateTime;
 use \Models\Database as Conexao;
+use \Utils\Email as Email;
 use \PDO;
 
 use \Utils\RenderView;
@@ -145,6 +147,92 @@ class Historico extends RenderView
     }
 
 
+    // Refazer
+    public function enviarSolicitacao()
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            return $this->redirect(base_url('user/homeCliente/index'));
+        }
+
+        $usuarioId      = $_SESSION['usuarios_logado']->usuarios_id;
+        $endereco       = $this->buscarEndereco();
+        $dataAtual      = date('Y-m-d');
+        $servicosID     = $_POST['servicos_id'] ?? '';
+        $profissionalId = $_POST['profissional_id'] ?? '';  // ← ID do profissional
+
+        $values = [
+            'solicitacao_data'        => $_POST['solicitacao_data'],
+            'solicitacao_data_atual'  => $dataAtual,
+            'solicitacao_quantidade'  => $_POST['solicitacao_quantidade'],
+            'solicitacao_observacao'  => $_POST['solicitacao_observacao'],
+            'solicitacao_status'      => 'Pendente',
+            'solicitacao_status_profissional' => 'Pendente',
+            'solicitacao_endereco_id' => $endereco->endereco_id,
+            'solicitacao_usuarios_id' => $usuarioId,
+        ];
+
+        if (empty($values['solicitacao_data'])) {
+            $_SESSION['msg'] = ['texto' => "Informe uma data para solicitar o serviço!", 'color' => 'danger'];
+            return $this->detalharServicoFinalizado($profissionalId); // ← chama direto
+        }
+
+        if (empty($values['solicitacao_quantidade'])) {
+            $_SESSION['msg'] = ['texto' => "Informe a quantidade de dias!", 'color' => 'danger'];
+             return $this->detalharServicoFinalizado($profissionalId); // ← chama direto
+        }
+
+
+
+
+
+        if ($values['solicitacao_quantidade'] > 60) {
+            $_SESSION['msg'] = ['texto' => "Não é possível solicitar serviço para mais de 2 meses!", 'color' => 'danger'];
+            return $this->detalharServicoFinalizado($profissionalId); // ← chama direto
+        }
+
+        if (strtotime($values['solicitacao_data']) < strtotime($dataAtual)) {
+            $_SESSION['msg'] = ['texto' => "A data informada não pode ser menor que a data atual.", 'color' => 'danger'];
+             return $this->detalharServicoFinalizado($profissionalId); // ← chama direto
+        }
+
+        $dataLimite = (new DateTime())->modify('+2 months');
+
+        if (strtotime($values['solicitacao_data']) > strtotime($dataLimite->format('Y-m-d'))) {
+            $_SESSION['msg'] = ['texto' => "Você não pode solicitar serviço para daqui 2 meses ou mais!", 'color' => 'danger'];
+             return $this->detalharServicoFinalizado($profissionalId); // ← chama direto
+        }
+
+        if ($values['solicitacao_quantidade'] <= 0) {
+            $_SESSION['msg'] = ['texto' => "A quantidade de dias não pode ser 0 ou menor.", 'color' => 'danger'];
+             return $this->detalharServicoFinalizado($profissionalId); // ← chama direto
+        }
+
+        $solicitacaoId = $this->solicitacao->insert($values);
+
+        if ($solicitacaoId) {
+            $valuesSolicitacaoServico = [
+                'solicitacaoServico_servicos_id'    => $servicosID,
+                'solicitacaoServico_solicitacao_id' => $solicitacaoId,
+            ];
+
+            if ($this->solicitacaoServico->insert($valuesSolicitacaoServico)) {
+                $_SESSION['msg'] = ['texto' => "Solicitação enviada com sucesso!", 'color' => 'success'];
+
+                $dadosUsuario = $this->dadosEmailSolicitacao($profissionalId, $usuarioId);
+                $emailDados = $this->solicitacaoServico->selectProfissionais($dadosUsuario)->fetch(PDO::FETCH_OBJ);
+
+
+                $email = new Email();
+                $email->enviarSolicitacao($emailDados->email);
+            } else {
+                $_SESSION['msg'] = ['texto' => "Erro ao solicitar serviço!", 'color' => 'danger'];
+            }
+        }
+
+         return $this->detalharServicoFinalizado($profissionalId); // ← chama direto
+    }
+
+
     public function avaliarProfissional()
     {
 
@@ -195,9 +283,9 @@ class Historico extends RenderView
 
 
         $dadosNovos = [
-            'avaliacao_notas' => trim($_POST['avaliacao_notas'] ?? ''),
-            'avaliacao_assunto' => trim($_POST['avaliacao_assunto'] ?? ''),
-            'avaliacao_descricao' => trim($_POST['avaliacao_descricao'] ?? ''),
+            'avaliacao_notas' => $_POST['avaliacao_notas'],
+            'avaliacao_assunto' => $_POST['avaliacao_assunto'],
+            'avaliacao_descricao' => $_POST['avaliacao_descricao'],
         ];
 
         $dadosAntigos = [
@@ -442,5 +530,61 @@ class Historico extends RenderView
         -- Filtra pelo ID do cliente logado e status Finalizado
         WHERE u_cliente.usuarios_id = '$this->usuarioID' AND so.solicitacao_status = 'Finalizado' AND so.solicitacao_id = '$solicitacaoId'
         ORDER BY so.solicitacao_conclusao DESC";
+    }
+
+        // ENviar da conta para enviar email
+      public function dadosEmailSolicitacao($solicitacaoId, $usuarioId)
+    {
+        return "
+        SELECT
+
+            -- EMAIL DO CLIENTE
+            u_cliente.usuarios_email AS email,
+
+            -- NOME DO PROFISSIONAL LOGADO
+            COALESCE(
+                CONCAT(pf_prof.pf_nome, ' ', pf_prof.pf_sobrenome),
+                pj_prof.pj_nomeFantasia
+            ) AS nome,
+
+            -- NOME DO SERVIÇO
+            s.servicos_nome AS servico
+
+        FROM solicitacaoServico ss
+
+        INNER JOIN solicitacao so 
+            ON so.solicitacao_id = ss.solicitacaoServico_solicitacao_id
+
+        INNER JOIN servicos s 
+            ON s.servicos_id = ss.solicitacaoServico_servicos_id
+
+        -- CLIENTE
+        INNER JOIN usuarios u_cliente 
+            ON u_cliente.usuarios_id = so.solicitacao_usuarios_id
+
+        -- PROFISSIONAL DONO DO SERVIÇO
+        INNER JOIN usuarios u_prof 
+            ON u_prof.usuarios_id = s.servicos_usuarios_id
+
+        LEFT JOIN pessoaFisica pf_prof 
+            ON pf_prof.pf_usuarios_id = u_prof.usuarios_id
+
+        LEFT JOIN pessoaJuridica pj_prof 
+            ON pj_prof.pj_usuarios_id = u_prof.usuarios_id
+
+        WHERE so.solicitacao_id = '$solicitacaoId'
+        AND s.servicos_usuarios_id =  '$usuarioId'
+    ";
+    }
+
+    // Buscar os dados do endereco a partir do id dele
+     public function buscarEndereco()
+    {
+        $usuarioId = $_SESSION['usuarios_logado']->usuarios_id;
+        $join = "INNER JOIN usuarios on usuarios_id = endereco_usuarios_id";
+        $where = "usuarios_id = '$usuarioId'";
+
+
+        return $this->endereco->select($join, $where)->fetch(PDO::FETCH_OBJ);
     }
 }
