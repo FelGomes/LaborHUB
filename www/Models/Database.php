@@ -9,15 +9,15 @@ class Database
 {
 
 
-    const HOST = 'localhost';
+    const HOST = 'mysql_server';
 
     const NAME = 'LaborHUB';
 
-    const USER = 'root';
+    const USER = 'aluno';
 
-    const PASS = '';
+    const PASS = '123456';
 
-    const PORT = '3307';
+    const PORT = '3306';
 
     private ?string $tabela;
 
