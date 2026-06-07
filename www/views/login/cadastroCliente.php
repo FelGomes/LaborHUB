@@ -100,7 +100,7 @@
                                 <div class="col-md-6 mt-4 mb-2">
                                     <label for="pf_genero">Gênero</label>
                                     <select name="pf_genero" class="form-control" value="<?= $_POST['pf_genero'] ?? '' ?>" id="pf_genero">
-                                        <option selected>Selecione seu gênero</option>
+                                        <option disabled>Selecione seu gênero</option>
                                         <option value="Masculino">Masculino</option>
                                         <option value="Feminino">Feminino</option>
                                         <option value="Outro">Outro</option>

@@ -16,6 +16,7 @@ services:
       - apache
     networks:
       - frontend_net
+      - backend_net
 
   # CONTAINER 2 — Apache + PHP (Servidor de Aplicação)
   apache:
@@ -43,7 +44,7 @@ services:
     image: mysql:8.0
     container_name: mysql_server
     restart: unless-stopped
-    command: --default-authentication-plugin=mysql_native_password
+    command: --default-authentication-plugin=mysql_native_password --sql-mode="STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION"
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: LaborHUB
