@@ -8,7 +8,7 @@ services:
     ports:
       - "8050:80"       # tráfego HTTP da aplicação
       - "8443:443"      # HTTPS (opcional)
-      - "8081:81"         # painel admin do Nginx Proxy Manager
+      - "81:81"         # painel admin do Nginx Proxy Manager
     volumes:
       - npm_data:/data
       - npm_letsencrypt:/etc/letsencrypt
@@ -23,14 +23,9 @@ services:
       context: ./php
       dockerfile: Dockerfile
     container_name: apache_php
-
-    ports:
-      - "8080:80"
-
-
     volumes:
       - ./www:/var/www/html
-      - nfs_uploads:/var/www/html/Public/UploadImages
+      - nfs_uploads:/var/www/html/Public/templateUploadImages
     depends_on:
       mysql:
         condition: service_healthy
