@@ -16,7 +16,6 @@ services:
       - apache
     networks:
       - frontend_net
-      - backend_net
 
   # CONTAINER 2 — Apache + PHP (Servidor de Aplicação)
   apache:
