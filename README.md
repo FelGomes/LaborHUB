@@ -71,15 +71,26 @@ Ao todo, foram criados quatro containers:
 - docker compose up -d
 
 Portas para acessar:
-HTTP : 80
-Painel Nginx Proxy Manager: 81
-PhpMyAdmin: 8051
+- HTTP : 80
+- Painel Nginx Proxy Manager: 81
+- PhpMyAdmin: 8051
 
 
 # Estrutura do Projeto
-/app – Controladores, modelos e visualizações.
-/public – Arquivos públicos da aplicação.
-/docker – Configurações dos containers.
-/database – Scripts SQL e estrutura do banco de dados.
+- /www/: Todos os arquivos
+- /Config/: Helpers
+- /Controllers/: Classes de validações
+- /Core/: Core
+- /Models/: Database
+- /public/: Js, Images, Css e Uploads de imagens
+- /Router/: Routes
+- /Utils/: Email e RenderView
+- /Vendor/: Composer e phpmailer
+- /views/: Telas da aplicação
+- /php/ – Dockerfile
+- docker-compose: Configuração dos containers
+- htacces: Configuração do apache
+- index: Incialização das rotas para formato em MVC
+
 
   
