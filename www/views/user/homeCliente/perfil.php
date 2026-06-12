@@ -230,7 +230,7 @@
                                         <input type="hidden" name="profissional_id" value="<?= $dadosProfissional->usuarios_id ?? '' ?>">
 
 
-                                        <a  href="<?= base_url('usuario/editCliente/' . $_SESSION['usuarios_logado']->usuarios_id) ?>" class="mt-3">Clique aqui para alterar seu endereço</a>
+                                        <a href="<?= base_url('usuario/editCliente/' . $_SESSION['usuarios_logado']->usuarios_id) ?>" class="mt-3">Clique aqui para alterar seu endereço</a>
 
                                         <div id="loadingSolicitacao" class="text-center mt-3" style="display:none;">
                                             <div class="spinner-border text-primary" role="status">
@@ -392,6 +392,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
+    <script src="<?= base_url('Public/Js/timeAlert.js') ?>"></script>
 
     <script>
         document.getElementById('formSolicitacao').addEventListener('submit', function() {

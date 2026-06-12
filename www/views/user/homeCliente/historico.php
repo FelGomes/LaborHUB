@@ -40,9 +40,8 @@
             transform: none !important;
             color: black !important;
             font-weight: normal !important;
-            
-        }
 
+        }
     </style>
 
 </head>
@@ -621,7 +620,7 @@
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
 
-
+    <script src="<?= base_url('Public/Js/timeAlert.js') ?>"></script>
     <script>
         const estrela = document.getElementById("favorito");
 

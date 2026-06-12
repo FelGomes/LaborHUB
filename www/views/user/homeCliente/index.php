@@ -180,10 +180,10 @@
 
                                                 <?php endif; ?>
 
-                                                <?php endfor; ?> 
-                                                <?= $profissionais->totalAvaliacoes . ' ' .'('. number_format($profissionais->mediaAvaliacao, 1, '.', ',') .')' ?>
+                                            <?php endfor; ?>
+                                            <?= $profissionais->totalAvaliacoes . ' ' . '(' . number_format($profissionais->mediaAvaliacao, 1, '.', ',') . ')' ?>
 
-                                                <h6 class="mt-2"><strong>Atendimento: </strong> <?= esc($profissionais->atendimento) ?></h6>
+                                            <h6 class="mt-2"><strong>Atendimento: </strong> <?= esc($profissionais->atendimento) ?></h6>
                                         </div>
 
                                     </div>
@@ -285,6 +285,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
+    <script src="<?= base_url('Public/Js/timeAlert.js') ?>"></script>
 
 
 </body>

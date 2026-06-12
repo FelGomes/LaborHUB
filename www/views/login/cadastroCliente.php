@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../../Assets/Css/mediaQuery.css"> -->
     <link rel="stylesheet" href="<?= base_url('Public/template/Css/style.css') ?>">
     <link rel="stylesheet" href="<?= base_url('Public/template/Css/mediaQuery.css') ?>">
-     <link rel="shortcut icon" href="<?= base_url('Public/template/Images/favicon.png') ?>" type="image/x-icon">
+    <link rel="shortcut icon" href="<?= base_url('Public/template/Images/favicon.png') ?>" type="image/x-icon">
 
 
 
@@ -172,7 +172,7 @@
                                 <div class="col-md-6 mt-4 mb-2">
                                     <label for="endereco_uf">UF</label>
                                     <select name="endereco_uf" class="form-control" value="<?= $_POST['endereco_uf'] ?? '' ?>" id="endereco_uf_pf">
-                                        <option disabled >Selecione o UF</option>
+                                        <option disabled>Selecione o UF</option>
                                         <option value="AC">AC</option>
                                         <option value="AL">AL</option>
                                         <option value="AP">AP</option>
@@ -306,7 +306,7 @@
                                 <div class="col-md-6 mt-4 mb-2">
                                     <label for="endereco_uf">UF</label>
                                     <select name="endereco_uf" class="form-control" id="endereco_uf" value="<?= $_POST['endereco_uf'] ?? '' ?>">
-                                        <option disabled >Selecione o UF</option>
+                                        <option disabled>Selecione o UF</option>
                                         <option value="AC">AC</option>
                                         <option value="AL">AL</option>
                                         <option value="AP">AP</option>
@@ -416,6 +416,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
+    <script src="<?= base_url('Public/Js/timeAlert.js') ?>"></script>
 
 
     <script>

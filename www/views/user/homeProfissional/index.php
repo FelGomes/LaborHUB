@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LaborHUB</title>
     <link rel="stylesheet" href="<?= base_url('Public/template/Css/home.css') ?>">
-     <link rel="shortcut icon" href="<?= base_url('Public/template/Images/favicon.png') ?>" type="image/x-icon">
+    <link rel="shortcut icon" href="<?= base_url('Public/template/Images/favicon.png') ?>" type="image/x-icon">
 
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -122,7 +122,7 @@
         <div class="lista-servico">
             <div class="servicos-groups border">
                 <h6>Serviços Pendentes</h6>
-                <p> <?= $total_pendentes?> Servico(s).</p>
+                <p> <?= $total_pendentes ?> Servico(s).</p>
                 <p class="comentService">Veja quem solicitou seu serviço</p>
                 <a href="<?= base_url('PessoaJuridica/telaPendentes') ?>">Acessar <i class="bi bi-arrow-right-short"></i></a>
 
@@ -130,7 +130,7 @@
 
             <div class="servicos-groups border">
                 <h6>Serviços ativos</h6>
-                <p> <?= $total_ativos?> Servico(s) ativos</p>
+                <p> <?= $total_ativos ?> Servico(s) ativos</p>
                 <p class="comentService">Veja detalhado seus serviços</p>
                 <a href="<?= base_url('PessoaJuridica/telaAtivas') ?>">Acessar <i class="bi bi-arrow-right-short"></i></a>
 
@@ -194,6 +194,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
+    <script src="<?= base_url('Public/Js/timeAlert.js') ?>"></script>
 
 
 </body>

@@ -172,7 +172,7 @@
 
                 <div class="solicitacaoBotao">
                     <button type="button" class="btn-negar" data-bs-target="#modalrecusar" data-bs-dismiss="modal" data-bs-toggle="modal">Recusar</button>
-                    <button type="button" class="btn-finalizar btn-processar"  data-url="<?= base_url('pessoaJuridica/aceitar/' . $solicitacaoPendente->solicitacao_id) ?>" style="margin-right: 0px !important">Aceitar</button>
+                    <button type="button" class="btn-finalizar btn-processar" data-url="<?= base_url('pessoaJuridica/aceitar/' . $solicitacaoPendente->solicitacao_id) ?>" style="margin-right: 0px !important">Aceitar</button>
 
                 </div>
 
@@ -205,7 +205,7 @@
                                     <div class="botaoModalDeletar mt-3">
 
                                         <button type="button" data-bs-dismiss="modal" class="btn-negar"> Não</button>
-                                        <button type="button" class="btn-finalizar btn-processar"  data-url="<?= base_url('pessoaJuridica/recusar/' . $solicitacaoPendente->solicitacao_id) ?>"> Sim</button>
+                                        <button type="button" class="btn-finalizar btn-processar" data-url="<?= base_url('pessoaJuridica/recusar/' . $solicitacaoPendente->solicitacao_id) ?>"> Sim</button>
                                     </div>
 
 
@@ -314,7 +314,7 @@
 
         });
     </script>
-
+    <script src="<?= base_url('Public/Js/timeAlert.js') ?>"></script>
 
 </body>
 

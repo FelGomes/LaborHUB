@@ -267,6 +267,7 @@
         crossorigin="anonymous"></script>
 
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="<?= base_url('Public/Js/timeAlert.js') ?>"></script>
 
 
     <script>
