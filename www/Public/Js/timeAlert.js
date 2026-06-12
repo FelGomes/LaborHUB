@@ -9,7 +9,7 @@ setTimeout(() => {
         bsAlert.close();
     }
 
-}, 7000);
+}, 6500);
 
 
 
