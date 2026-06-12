@@ -7,7 +7,7 @@
     <title>Escolher Usuário - LaborHUB</title>
     <!-- <link rel="stylesheet" href="../../Assets/Css/style1.css"> -->
     <link rel="stylesheet" href="<?= base_url('Public/template/Css/style1.css') ?>">
-     <link rel="shortcut icon" href="<?= base_url('Public/template/Images/favicon.png') ?>" type="image/x-icon">
+    <link rel="shortcut icon" href="<?= base_url('Public/template/Images/favicon.png') ?>" type="image/x-icon">
 
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -28,7 +28,7 @@
             <div class="usuario ">
                 <div class="cliente">
                     <img src="<?= base_url('Public/template/Images/cliente.png') ?>" alt="cliente">
-                    <button type="button" class="btn-escolher mt-5"  onclick="window.location.href='<?= base_url('usuario/cadastro/cliente') ?>'" name="cliente"> Cliente</button>
+                    <button type="button" class="btn-escolher mt-5" onclick="window.location.href='<?= base_url('usuario/cadastro/cliente') ?>'" name="cliente"> Cliente</button>
                 </div>
 
                 <div class="profissional">
@@ -44,13 +44,12 @@
 
     </main>
 
-
     <footer class="bg-dark text-center text-white py-4">
         <div class="container">
 
             <div class="row">
                 <div class="col-lg-6 col-md-12 mb-4">
-                    <h5 class="text-uppercase">Serviço Fácil</h5>
+                    <h5 class="text-uppercase">LaborHUB</h5>
                     <p>
                         O sistema tem como finalidade de conectar cliente à prestadores de serviço a qualquer hora do dia
                     </p>
@@ -58,8 +57,8 @@
 
                 <div class="col-lg-3 col-md-6 mb-4">
                     <h5 class="text-uppercase">Contato</h5>
-                    <p>Email: contato@email.com</p>
-                    <p>Telefone: (00) 00000-0000</p>
+                    <p>Email: laborhubconection.com</p>
+                    <p>Telefone: (62) 9 9649-6240</p>
                 </div>
 
                 <!-- Ícones de Redes Sociais  -->
@@ -69,11 +68,11 @@
                         <i class="bi bi-github"></i>
                     </a>
 
-                    <a class="btn btn-outline-light btn-floating m-1" href="#!" target="_blank" role="button">
+                    <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/dheniiel" target="_blank" role="button">
                         <i class="bi bi-github"></i>
                     </a>
 
-                    <a class="btn btn-outline-light btn-floating m-1" href="#!" target="_blank" role="button">
+                    <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/KaduDLF" target="_blank" role="button">
                         <i class="bi bi-github"></i>
                     </a>
 
@@ -82,11 +81,10 @@
 
                 <!-- Texto de Copyright  -->
                 <div class="text-center p-3">
-                    © 2026 Copyright: <a class="text-white" href="#">Equipe geral de desenvolvimento do serviço fácil</a>
+                    © 2026 Copyright: <a class="text-white" href="https://github.com/FelGomes">Equipe geral de desenvolvimento do serviço fácil</a>
                 </div>
             </div>
     </footer>
-
 
 
 
