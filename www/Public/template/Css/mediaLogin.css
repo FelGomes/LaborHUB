@@ -18,12 +18,22 @@
     }
 
     .btn-submit {
-        width: 93%;
+        width: 97%;
+        margin: auto;
     }
 
     .btn-voltar {
-        width: 93%;
+        width: 97%;
+        margin: auto;
 
+    }
+
+    .campos {
+        /* background-color: blue; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 5px;
     }
 
     

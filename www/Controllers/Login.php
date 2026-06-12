@@ -40,7 +40,7 @@ class Login extends RenderView
         return $this->loadView('login/index', $data);
     }
 
-
+    // FUnção para entrar no sistema
     public function autenticar()
     {
 

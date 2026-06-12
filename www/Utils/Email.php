@@ -22,16 +22,16 @@ class Email
             $mail->isSMTP();                                           
             $mail->Host       = 'smtp.gmail.com';                     
             $mail->SMTPAuth   = true;                                   
-            $mail->Username   = 'felipeferreiraag0@gmail.com';  //EMAIL QUE VAMOS CRIAR PARA LABORHUB
-            $mail->Password   = 'yors vjly hcwe lnji';       
+            $mail->Username   = 'laborhubconection@gmail.com';  //EMAIL QUE VAMOS CRIAR PARA LABORHUB
+            $mail->Password   = 'szym yjms iefo qlql';       
             $mail->SMTPSecure =  PHPMailer::ENCRYPTION_STARTTLS;        
             $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
             
             //Recipients
-            $mail->setFrom('felipeferreiraag0@gmail.com', 'LaborHUB ');         
+            $mail->setFrom('laborhubconection@gmail.com', 'LaborHUB ');         
             $mail->addAddress($email);   //EMAIL DO USUARIO 
             // $mail->addAddress('ellen@example.com');             
-            $mail->addReplyTo('felipeferreiraag0@gmail.com', 'LaborHUB'); 
+            $mail->addReplyTo('laborhubconection@gmail.com', 'LaborHUB'); 
             
             //Attachments
             

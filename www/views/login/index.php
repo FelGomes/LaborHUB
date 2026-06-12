@@ -26,12 +26,12 @@
 
         <?php
 
-            echo msg(
-                $_SESSION['msg']['texto'],
-                $_SESSION['msg']['color'],
-            );
+        echo msg(
+            $_SESSION['msg']['texto'],
+            $_SESSION['msg']['color'],
+        );
 
-            unset($_SESSION['msg']);
+        unset($_SESSION['msg']);
 
 
 
@@ -42,12 +42,12 @@
 
 
     <main>
-        <div class="container-box">
+        <div class="container-box" style="height: 500px;">
             <div class="texto">
 
                 <h3>Olá, seja bem vindo ao LaborHUB!</h3>
             </div>
-            <div class="campos ">
+            <div class="campos">
                 <div class="row ">
                     <form action="<?= base_url('login/autenticar') ?>" method="post">
                         <div class="col-md-12 mb-3">
@@ -76,7 +76,7 @@
 
                         <input type="submit" class="btn-submit mt-5" name="enviar" value="Entrar">
                         <div class="mt-2">
-                            <p class="text-center">Ainda não tem conta? <a href="<?= base_url('usuario/escolherUsuario') ?>">Criar conta agora</a></p>
+                            <p class="text-center mb-5">Ainda não tem conta? <a href="<?= base_url('usuario/escolherUsuario') ?>">Criar conta agora</a></p>
                         </div>
                 </div>
 

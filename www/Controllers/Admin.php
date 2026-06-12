@@ -505,7 +505,7 @@ class Admin extends RenderView
     {
 
         $valuesDesfazerExclusao = [
-            'usuarios_deletado_em' => '0000-00-00 00:00:00',
+            'usuarios_deletado_em' => NULL,
             'usuarios_ativo'       => 1,
             'usuarios_is_admin'    => 0,
         ];
