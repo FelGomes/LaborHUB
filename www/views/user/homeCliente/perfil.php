@@ -341,6 +341,7 @@
     <?php endif; ?>
 
 
+
     <footer class="bg-dark text-center text-white py-4">
         <div class="container">
 
@@ -354,31 +355,31 @@
 
                 <div class="col-lg-3 col-md-6 mb-4">
                     <h5 class="text-uppercase">Contato</h5>
-                    <p>Email: contato@email.com</p>
-                    <p>Telefone: (00) 00000-0000</p>
+                    <p>Email: laborhubconection.com</p>
+                    <p>Telefone: (62) 9 9649-6240</p>
                 </div>
 
-                <!-- Ícones de Redes Sociais -->
+                <!-- Ícones de Redes Sociais  -->
                 <section class="mb-4">
 
                     <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/FelGomes" target="_blank" role="button">
                         <i class="bi bi-github"></i>
                     </a>
 
-                    <a class="btn btn-outline-light btn-floating m-1" href="#!" target="_blank" role="button">
+                    <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/dheniiel" target="_blank" role="button">
                         <i class="bi bi-github"></i>
                     </a>
 
-                    <a class="btn btn-outline-light btn-floating m-1" href="#!" target="_blank" role="button">
+                    <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/KaduDLF" target="_blank" role="button">
                         <i class="bi bi-github"></i>
                     </a>
 
 
                 </section>
 
-                <!-- Texto de Copyright -->
+                <!-- Texto de Copyright  -->
                 <div class="text-center p-3">
-                    © 2026 Copyright: <a class="text-white" href="#">Equipe geral de desenvolvimento do serviço fácil</a>
+                    © 2026 Copyright: <a class="text-white" href="https://github.com/FelGomes">Equipe geral de desenvolvimento do serviço fácil</a>
                 </div>
             </div>
     </footer>
