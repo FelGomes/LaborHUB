@@ -161,7 +161,7 @@
                     <button type="button" class="btn-finalizar" data-bs-target="#modalSolicitarNovamente" data-bs-toggle="modal" style="margin-right: 0px !important">Solicitar</button>
 
                 </div>
-                
+
                 <div class="modal fade modal-lg" id="modalSolicitarNovamente" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
@@ -390,7 +390,7 @@
 
 
 
-  <footer class="bg-dark text-center text-white py-4">
+    <footer class="bg-dark text-center text-white py-4">
         <div class="container">
 
             <div class="row">
@@ -427,11 +427,10 @@
 
                 <!-- Texto de Copyright  -->
                 <div class="text-center p-3">
-                    © 2026 Copyright: <a class="text-white" href="https://github.com/FelGomes">Equipe geral de desenvolvimento do serviço fácil</a>
+                    © 2026 Copyright: <a class="text-white" href="https://github.com/FelGomes">Equipe geral de desenvolvimento do LaborHUB</a>
                 </div>
             </div>
     </footer>
-
 
 
 
