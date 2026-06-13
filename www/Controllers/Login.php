@@ -68,6 +68,15 @@ class Login extends RenderView
         $where = "usuarios_email = ?";
         $usuario = $this->usuario->selectLogin($join, $where, [$login])->fetchObject();
 
+        if (!$usuario) {
+            $_SESSION['msg'] = [
+                'texto' => 'Email ou senha inválido!',
+                'color' => 'danger',
+            ];
+            $_SESSION['old'] = $login;
+            return $this->redirect(base_url('/login'));
+        }
+
 
         if (password_verify($senha, $usuario->usuarios_senha_hash)) {
             $_SESSION['usuarios_logado'] = $usuario;
@@ -244,7 +253,6 @@ class Login extends RenderView
 
     public function alterarSenha()
     {
-
         $token = $_GET['token'] ?? '';
 
         if (!$token) {
@@ -283,7 +291,6 @@ class Login extends RenderView
     // FUnção para salvar a nova senha
     public function salvarSenha()
     {
-
         $senha = $_POST['usuarios_senha_hash'] ?? '';
         $confirmarSenha = $_POST['confirmaSenha'] ?? '';
         $token = $_POST['token'] ?? '';

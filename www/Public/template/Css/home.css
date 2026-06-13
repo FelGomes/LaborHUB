@@ -1150,6 +1150,11 @@ p {
     margin-left: 10px;
 }
 
+.infoComentario p {
+    text-align: justify;
+    font-size: 11pt;
+}
+
 .Imagecomentario {
     width: 80px;
     height: 80px;

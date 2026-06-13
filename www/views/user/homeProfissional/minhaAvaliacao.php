@@ -132,7 +132,7 @@
                                 <div class="comentImage">
                                     <img class="Imagecomentario" src="<?= base_url($avaliacao->usuariosImagem) ?>" alt="">
                                 </div>
-                                <div class="perfilStars infoComentario">
+                                <div class="perfilStars infoComentario" >
                                     <h5><?= esc($avaliacao->nome) ?></h5>
                                     <?php for ($i = 1; $i <= 5; $i++): ?>
 

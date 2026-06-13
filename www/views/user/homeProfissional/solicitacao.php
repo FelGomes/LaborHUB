@@ -230,7 +230,13 @@
 
         <div class="solicitacaoObservacao ">
             <h4>Observação</h4>
-            <p><?= esc($solicitacaoPendente->observacao) ?></p>
+            <?php if (empty(trim($solicitacaoPendente->observacao))): ?>
+                <h5>Não foi informado nenhuma observação!</h5>
+
+            <?php else: ?>
+                <p><?= esc($solicitacaoPendente->observacao) ?></p>
+
+            <?php endif; ?>
         </div>
 
 

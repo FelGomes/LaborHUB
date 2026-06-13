@@ -146,7 +146,7 @@
                         </div>
 
                         <div class="botoesSerivces">
-                            <button type="button" class="btn-solicitacao" onclick="window.location.href='<?= base_url('profissional/detalhesSolicitacao/' . $pendentes->solicitacao_id) ?>'">Ver solicitação</button>
+                            <button type="button" class="btn-solicitacao" onclick="window.location.href='<?= base_url('profissional/detalhesSolicitacao/' . $pendentes->solicitacao_id) ?>'">Ver mais </button>
                         </div>
 
                     </div>

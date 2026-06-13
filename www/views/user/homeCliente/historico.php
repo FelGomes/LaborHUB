@@ -206,7 +206,7 @@
 
                                         <?php if (empty($historicoFinalizado->descricao)): ?>
 
-                                            <h5 class="mt-3">Não foi feito nenhum comentario. Detalha a tela para avaliar esse serviço!</h5>
+                                            <h6 class="mt-3" style="font-size: 13pt;">Não foi feito nenhum comentario. Detalha a tela para avaliar esse serviço!</h6>
 
                                         <?php else: ?>
                                             <div class="info-validation">

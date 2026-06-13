@@ -216,7 +216,11 @@
 
                                             <div class="modalObservacao mt-3">
                                                 <h4 class="text-start"><strong>Observação</strong></h4>
-                                                <p><?= esc($ativos->observacao) ?></p>
+                                                <?php if (empty(trim($ativos->observacao))): ?>
+                                                    <h6>Não há nenhuma observação referente a esse serviço</h6>
+                                                <?php else: ?>
+                                                    <p><?= esc($ativos->observacao) ?></p>
+                                                <?php endif; ?>
                                             </div>
 
 
